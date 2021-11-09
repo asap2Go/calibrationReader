@@ -1,0 +1,68 @@
+package a2l
+
+import (
+	"github.com/rs/zerolog/log"
+	"errors"
+	"strconv"
+)
+
+type axisPts4 struct {
+	position      uint16
+	positionSet   bool
+	datatype      dataTypeEnum
+	datatypeSet   bool
+	indexIncr     IndexOrderEnum
+	indexIncrSet  bool
+	addressing    AddrTypeEnum
+	addressingSet bool
+}
+
+func parseAxisPts4(tok *tokenGenerator) (axisPts4, error) {
+	ap4 := axisPts4{}
+	var err error
+forLoop:
+	for {
+		tok.next()
+		if tok.current() == emptyToken {
+			err = errors.New("unexpected end of file")
+				log.Err(err).Msg("axisPts4 could not be parsed")
+			break forLoop
+		} else if !ap4.positionSet {
+			var buf uint64
+			buf, err = strconv.ParseUint(tok.current(), 10, 16)
+			if err != nil {
+					log.Err(err).Msg("axisPts4 position could not be parsed")
+				break forLoop
+			}
+			ap4.position = uint16(buf)
+			ap4.positionSet = true
+				log.Info().Msg("axisPts4 position successfully parsed")
+		} else if !ap4.datatypeSet {
+			ap4.datatype, err = parseDataTypeEnum(tok)
+			if err != nil {
+					log.Err(err).Msg("axisPts4 datatype could not be parsed")
+				break forLoop
+			}
+			ap4.datatypeSet = true
+				log.Info().Msg("axisPts4 datatype successfully parsed")
+		} else if !ap4.indexIncrSet {
+			ap4.indexIncr, err = parseIndexOrderEnum(tok)
+			if err != nil {
+					log.Err(err).Msg("axisPts4 indexIncr could not be parsed")
+				break forLoop
+			}
+			ap4.indexIncrSet = true
+				log.Info().Msg("axisPts4 indexIncr successfully parsed")
+		} else if !ap4.addressingSet {
+			ap4.addressing, err = parseAddrTypeEnum(tok)
+			if err != nil {
+					log.Err(err).Msg("axisPts4 addressing could not be parsed")
+				break forLoop
+			}
+			ap4.addressingSet = true
+				log.Info().Msg("axisPts4 addressing successfully parsed")
+			break forLoop
+		}
+	}
+	return ap4, err
+}

@@ -1,0 +1,50 @@
+package a2l
+
+import (
+	"github.com/rs/zerolog/log"
+	"errors"
+	"strconv"
+)
+
+type distOp4 struct {
+	position    uint16
+	positionSet bool
+	datatype    dataTypeEnum
+	datatypeSet bool
+}
+
+func parseDistOp4(tok *tokenGenerator) (distOp4, error) {
+	do := distOp4{}
+	var err error
+forLoop:
+	for {
+		tok.next()
+		if tok.current() == emptyToken {
+			err = errors.New("unexpected end of file")
+				log.Err(err).Msg("distOp4 could not be parsed")
+			break forLoop
+		} else if !do.positionSet {
+			var buf uint64
+			buf, err = strconv.ParseUint(tok.current(), 10, 16)
+			if err != nil {
+					log.Err(err).Msg("distOp4 position could not be parsed")
+				break forLoop
+			}
+			do.position = uint16(buf)
+			do.positionSet = true
+				log.Info().Msg("distOp4 position successfully parsed")
+		} else if !do.datatypeSet {
+			var buf dataTypeEnum
+			buf, err = parseDataTypeEnum(tok)
+			if err != nil {
+					log.Err(err).Msg("distOp4 datatype could not be parsed")
+				break forLoop
+			}
+			do.datatype = buf
+			do.datatypeSet = true
+				log.Info().Msg("distOp4 datatype successfully parsed")
+			break forLoop
+		}
+	}
+	return do, err
+}

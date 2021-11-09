@@ -1,0 +1,32 @@
+package a2l
+
+import (
+	"errors"
+
+	"github.com/rs/zerolog/log"
+)
+
+type Deposit struct {
+	mode    ModeEnum
+	modeSet bool
+}
+
+func parseDeposit(tok *tokenGenerator) (Deposit, error) {
+	d := Deposit{}
+	var err error
+	tok.next()
+	if tok.current() == emptyToken {
+		err = errors.New("unexpected end of file")
+			log.Err(err).Msg("deposit could not be parsed")
+	} else if !d.modeSet {
+		var buf ModeEnum
+		buf, err = parseModeEnum(tok)
+		if err != nil {
+				log.Err(err).Msg("deposit could not be parsed")
+		}
+		d.mode = buf
+		d.modeSet = true
+			log.Info().Msg("deposit mode successfully parsed")
+	}
+	return d, err
+}
