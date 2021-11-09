@@ -51,9 +51,9 @@ func configureLogger() (*os.File, error) {
 		log.Error().Err(err).Msg("could not find current working directory")
 		return file, err
 	}
-	file, err = os.CreateTemp(dir, "a2l.*.log")
+	file, err = os.CreateTemp(dir, "calibReader.*.log")
 	if err != nil {
-		log.Error().Err(err).Msg("could not create a2l log-file")
+		log.Error().Err(err).Msg("could not create calibration reader log-file")
 		return file, err
 	}
 	fileWriter := zerolog.New(file).With().Logger()

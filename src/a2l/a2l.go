@@ -42,7 +42,7 @@ func ParseFromFile(filepath string) (A2L, error) {
 		log.Err(err).Msg("failed parsing with error:")
 		return a, err
 	}
-	log.Info().Str("prject name", a.Project.name).Msg("finished parsing:")
+	log.Info().Str("prject name", a.Project.Name).Msg("finished parsing:")
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
 	log.Info().Msg("time for parsing file: " + fmt.Sprint(elapsed.Milliseconds()))

@@ -1,12 +1,13 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+
+	"github.com/rs/zerolog/log"
 )
 
 type Project struct {
-	name              string
+	Name              string
 	nameSet           bool
 	longIdentifier    string
 	longIdentifierSet bool
@@ -24,11 +25,11 @@ forLoop:
 			var buf header
 			buf, err = parseHeader(tok)
 			if err != nil {
-					log.Err(err).Msg("project header could not be parsed")
+				log.Err(err).Msg("project header could not be parsed")
 				break forLoop
 			}
 			p.header = buf
-				log.Info().Msg("project header successfully parsed")
+			log.Info().Msg("project header successfully parsed")
 		case beginModuleToken:
 			var buf module
 			if useMultithreading {
@@ -37,26 +38,26 @@ forLoop:
 				buf, err = parseModule(tok)
 			}
 			if err != nil {
-					log.Err(err).Msg("project module could not be parsed")
+				log.Err(err).Msg("project module could not be parsed")
 				break forLoop
 			}
 			p.Module = append(p.Module, buf)
-				log.Info().Msg("project module successfully parsed")
+			log.Info().Msg("project module successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("project could not be parsed")
+				log.Err(err).Msg("project could not be parsed")
 				break forLoop
 			} else if tok.current() == endProjectToken {
 				break forLoop
 			} else if !p.nameSet {
-				p.name = tok.current()
+				p.Name = tok.current()
 				p.nameSet = true
-					log.Info().Msg("project name successfully parsed")
+				log.Info().Msg("project name successfully parsed")
 			} else if !p.longIdentifierSet {
 				p.longIdentifier = tok.current()
 				p.longIdentifierSet = true
-					log.Info().Msg("project longIdentifier successfully parsed")
+				log.Info().Msg("project longIdentifier successfully parsed")
 			}
 		}
 	}
