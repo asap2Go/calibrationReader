@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"os"
 	"runtime"
-	"strings"
 	"time"
 
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
 
@@ -25,23 +23,18 @@ type A2L struct {
 }
 
 func ParseFromFile(filepath string) (A2L, error) {
-	var logFile *os.File
 	var err error
-	var f string
+	var text string
 	var a A2L
+
 	startTime := time.Now()
-	logFile, err = createLogger()
-	if err != nil {
-		log.Err(err).Msg("a2l log-file could not be created:")
-		return a, err
-	}
-	f, err = readFileToString(filepath)
+	text, err = readFileToString(filepath)
 	if err != nil {
 		log.Err(err).Msg("a2l test-file could not be read:")
 		return a, err
 	}
 	var tg tokenGenerator
-	tg, _ = buildTokenGeneratorFromString(f)
+	tg, _ = buildTokenGeneratorFromString(text)
 	log.Info().Msg("created tokenizer")
 	//log.Info().Msg("created tok")
 	a, err = parseA2l(&tg)
@@ -53,8 +46,6 @@ func ParseFromFile(filepath string) (A2L, error) {
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
 	log.Info().Msg("time for parsing file: " + fmt.Sprint(elapsed.Milliseconds()))
-	//in case there are no error delete log file
-	os.Remove(logFile.Name())
 	return a, nil
 }
 
@@ -103,38 +94,4 @@ func readFileToString(filepath string) (string, error) {
 	}
 	text := string(bytesString)
 	return text, nil
-}
-
-func createLogger() (*os.File, error) {
-	var err error
-	var dir string
-	var file *os.File
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
-	dir, err = os.Getwd()
-	if err != nil {
-		log.Error().Err(err).Msg("could not find current working directory")
-		return file, err
-	}
-	file, err = os.CreateTemp(dir, "a2l.*.log")
-	if err != nil {
-		log.Error().Err(err).Msg("could not create a2l log-file")
-		return file, err
-	}
-	fileWriter := zerolog.New(file).With().Logger()
-	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
-	consoleWriter.FormatLevel = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
-	}
-	consoleWriter.FormatMessage = func(i interface{}) string {
-		return fmt.Sprintf("***%s****", i)
-	}
-	consoleWriter.FormatFieldName = func(i interface{}) string {
-		return fmt.Sprintf("%s:", i)
-	}
-	consoleWriter.FormatFieldValue = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("%s", i))
-	}
-	multi := zerolog.MultiLevelWriter(fileWriter, consoleWriter)
-	log.Logger = zerolog.New(multi).With().Timestamp().Caller().Logger()
-	return file, err
 }

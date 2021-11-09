@@ -8,9 +8,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
-	"time"
 
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
 
@@ -96,23 +94,18 @@ var (
 	}
 )
 
-type ihex struct {
+type Hex struct {
 	DataBytes map[uint32]byte
 }
 
 //parseHex parses a hex-file given as an slice of strings and return a hex struct containing the data in byte form with all the addresses attached.
-func parseHex(lines []string) (ihex, error) {
-	var h ihex
+func parseHex(lines []string) (Hex, error) {
+	var h Hex
 	var err error
-	var logFile *os.File
+
 	h.DataBytes = make(map[uint32]byte, 5000000)
 	recs := make([]record, 0, 200000)
 
-	logFile, err = createLogger()
-	if err != nil {
-		log.Err(err).Msg("a2l log-file could not be created:")
-		return h, err
-	}
 	//locRecord contains slices of records that the individual parsers in the goroutines produced
 	//this way we can ensure that the order of the records remains correct
 	//because the positions of the return values are determined by the position of the channel within locRecord
@@ -201,7 +194,7 @@ func parseHex(lines []string) (ihex, error) {
 			}
 		}
 	}
-	os.Remove(logFile.Name())
+
 	return h, nil
 }
 
@@ -217,18 +210,21 @@ func readFileToString(filepath string) (string, error) {
 }
 
 //ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses
-func ParseFromFile(filepath string) (ihex, error) {
-	h := ihex{}
-	f, err := readFileToString(filepath)
+func ParseFromFile(filepath string) (Hex, error) {
+	h := Hex{}
+	var text string
+	var err error
+
+	text, err = readFileToString(filepath)
 	if err != nil {
 		log.Err(err).Msg("hex test-file could not be read")
 		return h, err
 	}
 	//split the text into lines
-	lines := strings.Split(f, "\r\n")
+	lines := strings.Split(text, "\r\n")
 	if len(lines) == 1 {
 		//in case unix line terminator is used.
-		lines = strings.Split(f, "\n")
+		lines = strings.Split(text, "\n")
 	}
 	h, err = parseHex(lines)
 	if err != nil {
@@ -276,38 +272,4 @@ func hexToByteSlice(hexVal string) ([]byte, error) {
 		log.Err(err)
 	}
 	return decoded, err
-}
-
-func createLogger() (*os.File, error) {
-	var err error
-	var dir string
-	var file *os.File
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
-	dir, err = os.Getwd()
-	if err != nil {
-		log.Error().Err(err).Msg("could not find current working directory")
-		return file, err
-	}
-	file, err = os.CreateTemp(dir, "a2l.*.log")
-	if err != nil {
-		log.Error().Err(err).Msg("could not create a2l log-file")
-		return file, err
-	}
-	fileWriter := zerolog.New(file).With().Logger()
-	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
-	consoleWriter.FormatLevel = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
-	}
-	consoleWriter.FormatMessage = func(i interface{}) string {
-		return fmt.Sprintf("***%s****", i)
-	}
-	consoleWriter.FormatFieldName = func(i interface{}) string {
-		return fmt.Sprintf("%s:", i)
-	}
-	consoleWriter.FormatFieldValue = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("%s", i))
-	}
-	multi := zerolog.MultiLevelWriter(fileWriter, consoleWriter)
-	log.Logger = zerolog.New(multi).With().Timestamp().Caller().Logger()
-	return file, err
 }

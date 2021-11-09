@@ -8,9 +8,9 @@ import (
 )
 
 type characteristic struct {
-	name                    string
+	Name                    string
 	nameSet                 bool
-	longIdentifier          string
+	LongIdentifier          string
 	longIdentifierSet       bool
 	Type                    typeEnum
 	TypeSet                 bool
@@ -276,11 +276,11 @@ forLoop:
 			} else if tok.current() == endCharacteristicToken {
 				break forLoop
 			} else if !c.nameSet {
-				c.name = tok.current()
+				c.Name = tok.current()
 				c.nameSet = true
 				log.Info().Msg("characteristic name successfully parsed")
 			} else if !c.longIdentifierSet {
-				c.longIdentifier = tok.current()
+				c.LongIdentifier = tok.current()
 				c.longIdentifierSet = true
 				log.Info().Msg("characteristic longIdentifier successfully parsed")
 			} else if !c.TypeSet {

@@ -94,7 +94,7 @@ forLoop:
 				log.Err(err).Msg("module characteristic could not be parsed")
 				break forLoop
 			}
-			myModule.Characteristics[bufCharacteristic.name] = bufCharacteristic
+			myModule.Characteristics[bufCharacteristic.Name] = bufCharacteristic
 			log.Info().Msg("module characteristic successfully parsed")
 		case beginCompuMethodToken:
 			bufCompuMethod, err = parseCompuMethod(tok)
@@ -371,7 +371,7 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cCharacteristic {
-			myModule.Characteristics[elem.name] = elem
+			myModule.Characteristics[elem.Name] = elem
 		}
 		log.Info().Msg("collected characteristics")
 	}(wgCollectors)
@@ -504,7 +504,7 @@ forLoopSelect:
 		myModule.AxisPts[b.name] = b
 		bOpn = b2
 	case c, c2 := <-cCharacteristic:
-		myModule.Characteristics[c.name] = c
+		myModule.Characteristics[c.Name] = c
 		cOpn = c2
 	case d, d2 := <-cCompuMethod:
 		myModule.CompuMethods[d.name] = d
