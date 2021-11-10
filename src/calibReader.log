@@ -1,0 +1,1329 @@
+Nov 10 19:39:31.318042 | INFO | calib_data.go:83 > parsed hex file
+Nov 10 19:39:31.974533 | INFO | a2l/a2l.go:38 > created tokenizer
+Nov 10 19:39:31.974628 | INFO | a2l/project.go:56 > project name successfully parsed
+Nov 10 19:39:31.974675 | INFO | a2l/project.go:60 > project longIdentifier successfully parsed
+Nov 10 19:39:31.974699 | INFO | a2l/header.go:50 > header comment successfully parsed
+Nov 10 19:39:31.974722 | INFO | a2l/version.go:24 > version versionIdentifier successfully parsed
+Nov 10 19:39:31.974743 | INFO | a2l/header.go:39 > header version successfully parsed
+Nov 10 19:39:31.974763 | INFO | a2l/project_no.go:24 > projectNo projectNumber successfully parsed
+Nov 10 19:39:31.974794 | INFO | a2l/header.go:30 > header projectNo successfully parsed
+Nov 10 19:39:31.974819 | INFO | a2l/project.go:32 > project header successfully parsed
+Nov 10 19:39:31.974842 | INFO | a2l/module.go:242 > creating maps for module subtypes
+Nov 10 19:39:31.975094 | INFO | a2l/module.go:269 > module name successfully parsed
+Nov 10 19:39:31.975123 | INFO | a2l/module.go:273 > module longIdentifier successfully parsed
+Nov 10 19:39:31.975145 | INFO | a2l/module.go:277 > creating channels
+Nov 10 19:39:31.975342 | INFO | a2l/module.go:304 > MODULE begins at index startIndex=15
+Nov 10 19:39:31.980857 | INFO | a2l/module.go:315 > MODULE ends at index endIndex=2870067
+Nov 10 19:39:31.980951 | INFO | a2l/module.go:323 > goroutine 0 starting index: 15 until end at index: 59806 of 2870067
+Nov 10 19:39:31.980985 | INFO | a2l/module.go:323 > goroutine 1 starting index: 59807 until end at index: 119598 of 2870067
+Nov 10 19:39:31.981015 | INFO | a2l/module.go:323 > goroutine 2 starting index: 119599 until end at index: 179390 of 2870067
+Nov 10 19:39:31.981038 | INFO | a2l/module.go:323 > goroutine 3 starting index: 179391 until end at index: 239182 of 2870067
+Nov 10 19:39:31.981061 | INFO | a2l/module.go:323 > goroutine 4 starting index: 239183 until end at index: 298974 of 2870067
+Nov 10 19:39:31.981085 | INFO | a2l/module.go:323 > goroutine 5 starting index: 298975 until end at index: 358766 of 2870067
+Nov 10 19:39:31.981108 | INFO | a2l/module.go:323 > goroutine 6 starting index: 358767 until end at index: 418558 of 2870067
+Nov 10 19:39:31.981141 | INFO | a2l/module.go:323 > goroutine 7 starting index: 418559 until end at index: 478350 of 2870067
+Nov 10 19:39:31.981177 | INFO | a2l/module.go:323 > goroutine 8 starting index: 478351 until end at index: 538142 of 2870067
+Nov 10 19:39:31.981213 | INFO | a2l/module.go:323 > goroutine 9 starting index: 538143 until end at index: 597934 of 2870067
+Nov 10 19:39:31.981157 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981146 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.981148 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.981271 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981367 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.981384 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:31.981294 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.981466 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981248 | INFO | a2l/module.go:323 > goroutine 10 starting index: 597935 until end at index: 657726 of 2870067
+Nov 10 19:39:31.981511 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:31.981180 | INFO | a2l/compu_vtab_range.go:48 > compuVtabRange name successfully parsed
+Nov 10 19:39:31.981553 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.981566 | INFO | a2l/module.go:323 > goroutine 11 starting index: 657727 until end at index: 717518 of 2870067
+Nov 10 19:39:31.981581 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:31.981137 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981639 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981624 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.981647 | INFO | a2l/record_layout.go:197 > recordLayout noAxisPtsx successfully parsed
+Nov 10 19:39:31.981692 | INFO | a2l/module.go:323 > goroutine 12 starting index: 717519 until end at index: 777310 of 2870067
+Nov 10 19:39:31.981680 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981717 | INFO | a2l/module.go:323 > goroutine 13 starting index: 777311 until end at index: 837102 of 2870067
+Nov 10 19:39:31.981425 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.981742 | INFO | a2l/module.go:323 > goroutine 14 starting index: 837103 until end at index: 896894 of 2870067
+Nov 10 19:39:31.981723 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.981769 | INFO | a2l/module.go:323 > goroutine 15 starting index: 896895 until end at index: 956686 of 2870067
+Nov 10 19:39:31.981737 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.981798 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981795 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.981751 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.981812 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.981838 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.981864 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.981214 | INFO | a2l/function.go:121 > function name successfully parsed
+Nov 10 19:39:31.981765 | INFO | a2l/mod_par.go:190 > modPar comment successfully parsed
+Nov 10 19:39:31.981279 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981889 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.981799 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.981674 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981938 | INFO | a2l/no_of_interfaces.go:29 > noOfInterfaces num successfully parsed
+Nov 10 19:39:31.981829 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981950 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.981969 | INFO | a2l/function.go:125 > function longIdentifier successfully parsed
+Nov 10 19:39:31.981931 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.981617 | INFO | a2l/compu_vtab_range.go:52 > compuVtabRange longIdentifier successfully parsed
+Nov 10 19:39:31.981698 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.982025 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981286 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.982047 | INFO | a2l/def_characteristic.go:26 > defCharacteristic identifier successfully parsed
+Nov 10 19:39:31.982051 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.982087 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.982078 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.981923 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.982099 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.981522 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:31.982126 | INFO | a2l/function.go:48 > function defCharacteristic successfully parsed
+Nov 10 19:39:31.982159 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.982185 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.981959 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.981983 | INFO | a2l/mod_par.go:134 > modPar noOfInterfaces successfully parsed
+Nov 10 19:39:31.982197 | INFO | a2l/compu_vtab_range.go:62 > compuVtabRange numberValueTriples successfully parsed
+Nov 10 19:39:31.982213 | INFO | a2l/in_measurement.go:26 > inMeasurement identifier successfully parsed
+Nov 10 19:39:31.982059 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.982014 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.982269 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.982264 | INFO | a2l/fnc_values.go:39 > fncValues position successfully parsed
+Nov 10 19:39:31.982275 | INFO | a2l/function.go:75 > function inMeasurement successfully parsed
+Nov 10 19:39:31.982080 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.982226 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.982330 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.982338 | INFO | a2l/fnc_values.go:49 > fncValues datatype successfully parsed
+Nov 10 19:39:31.982346 | INFO | a2l/module.go:701 > module function[bufFunction name] successfully parsed
+Nov 10 19:39:31.982282 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.982370 | INFO | a2l/compu_method.go:54 > compuMethod compuTabRef successfully parsed
+Nov 10 19:39:31.982393 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.982405 | INFO | a2l/fnc_values.go:59 > fncValues indexMode successfully parsed
+Nov 10 19:39:31.982444 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.982460 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.982311 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.982481 | INFO | a2l/fnc_values.go:69 > fncValues addresstype successfully parsed
+Nov 10 19:39:31.982364 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.982519 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982238 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.982374 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982442 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:31.982547 | INFO | a2l/record_layout.go:179 > recordLayout fncValues successfully parsed
+Nov 10 19:39:31.982604 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.982577 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.982304 | INFO | a2l/bit_mask.go:23 > bitMask mask successfully parsed
+Nov 10 19:39:31.982639 | INFO | a2l/record_layout.go:197 > recordLayout noAxisPtsx successfully parsed
+Nov 10 19:39:31.982655 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.982163 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982664 | INFO | a2l/measurement.go:82 > measurement bitMask successfully parsed
+Nov 10 19:39:31.982706 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.981877 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982737 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.982597 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.982601 | INFO | a2l/compu_vtab.go:48 > compuVtab name successfully parsed
+Nov 10 19:39:31.982801 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.982792 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.982039 | INFO | a2l/module.go:323 > goroutine 16 starting index: 956687 until end at index: 1016478 of 2870067
+Nov 10 19:39:31.982635 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.982844 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.982504 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.982882 | INFO | a2l/module.go:323 > goroutine 17 starting index: 1016479 until end at index: 1076270 of 2870067
+Nov 10 19:39:31.982870 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.982691 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.982917 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.982917 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.982934 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.982925 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.982959 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.982982 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.983001 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.983018 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.982848 | INFO | a2l/compu_vtab.go:52 > compuVtab longIdentifier successfully parsed
+Nov 10 19:39:31.982114 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982969 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:31.982939 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.983071 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.983089 | INFO | a2l/compu_vtab.go:60 > compuVtab conversionType successfully parsed
+Nov 10 19:39:31.982735 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.983112 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:31.983125 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.983136 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.983152 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.983035 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.983204 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.982682 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.983195 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.983228 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.983225 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.983141 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.983255 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.983251 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.983278 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.983273 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.982754 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.982995 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.983316 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.983339 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.983332 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.983365 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.983030 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:31.983389 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.983195 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.983372 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.983172 | INFO | a2l/record_layout.go:197 > recordLayout noAxisPtsx successfully parsed
+Nov 10 19:39:31.983427 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:31.983308 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.983497 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.983289 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.983523 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.982778 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.983549 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.983548 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.983363 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.983579 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.983603 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.982417 | INFO | a2l/function.go:121 > function name successfully parsed
+Nov 10 19:39:31.983619 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.983629 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.983657 | INFO | a2l/function.go:125 > function longIdentifier successfully parsed
+Nov 10 19:39:31.983651 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.983682 | INFO | a2l/def_characteristic.go:26 > defCharacteristic identifier successfully parsed
+Nov 10 19:39:31.983678 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.983439 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.983645 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.982667 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.982976 | INFO | a2l/module.go:323 > goroutine 18 starting index: 1076271 until end at index: 1136062 of 2870067
+Nov 10 19:39:31.983745 | INFO | a2l/module.go:323 > goroutine 19 starting index: 1136063 until end at index: 1195854 of 2870067
+Nov 10 19:39:31.983735 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.983770 | INFO | a2l/module.go:323 > goroutine 20 starting index: 1195855 until end at index: 1255646 of 2870067
+Nov 10 19:39:31.983382 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.983053 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.983783 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.982556 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.983803 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.983825 | INFO | a2l/compu_vtab.go:81 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.983835 | INFO | a2l/module.go:323 > goroutine 21 starting index: 1255647 until end at index: 1315438 of 2870067
+Nov 10 19:39:31.983861 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.983699 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.983887 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.983494 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.983896 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.982153 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.983740 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.983412 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.983958 | INFO | a2l/module.go:323 > goroutine 22 starting index: 1315439 until end at index: 1375230 of 2870067
+Nov 10 19:39:31.983812 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.983971 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.983985 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.983997 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.983797 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.984027 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.984019 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.984019 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.984058 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.984048 | INFO | a2l/memory_segment.go:43 > memorySegment ifData successfully parsed
+Nov 10 19:39:31.983473 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.983705 | INFO | a2l/function.go:48 > function defCharacteristic successfully parsed
+Nov 10 19:39:31.983947 | INFO | a2l/default_value.go:24 > defaultValue displayString successfully parsed
+Nov 10 19:39:31.983940 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.984092 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.984123 | INFO | a2l/compu_vtab.go:37 > compuVtab defaultValue successfully parsed
+Nov 10 19:39:31.984102 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.984017 | INFO | a2l/module.go:323 > goroutine 23 starting index: 1375231 until end at index: 1435022 of 2870067
+Nov 10 19:39:31.983299 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.984084 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.984161 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.984174 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.984069 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.984196 | INFO | a2l/module.go:323 > goroutine 24 starting index: 1435023 until end at index: 1494814 of 2870067
+Nov 10 19:39:31.984207 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.983788 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.984222 | INFO | a2l/in_measurement.go:26 > inMeasurement identifier successfully parsed
+Nov 10 19:39:31.984239 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.983158 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.984262 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.984287 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.983915 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.984284 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.984292 | INFO | a2l/function.go:75 > function inMeasurement successfully parsed
+Nov 10 19:39:31.984322 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.984315 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.984186 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.984352 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.984217 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.984377 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.984251 | INFO | a2l/module.go:323 > goroutine 25 starting index: 1494815 until end at index: 1554606 of 2870067
+Nov 10 19:39:31.984226 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.984382 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.984418 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.984437 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.984283 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.984460 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.984464 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.984472 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984498 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.984505 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.984516 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.984522 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984528 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.983669 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984057 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.984571 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.984339 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.984588 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984599 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.984366 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.984616 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984393 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984621 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.984082 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.984434 | INFO | a2l/module.go:323 > goroutine 26 starting index: 1554607 until end at index: 1614398 of 2870067
+Nov 10 19:39:31.984398 | INFO | a2l/module.go:701 > module function[bufFunction name] successfully parsed
+Nov 10 19:39:31.984668 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984119 | INFO | a2l/mod_par.go:125 > modPar memorySegment successfully parsed
+Nov 10 19:39:31.984487 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.984705 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.984719 | INFO | a2l/module.go:323 > goroutine 27 starting index: 1614399 until end at index: 1674190 of 2870067
+Nov 10 19:39:31.984724 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984306 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.984770 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.984569 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.984790 | INFO | a2l/module.go:323 > goroutine 28 starting index: 1674191 until end at index: 1733982 of 2870067
+Nov 10 19:39:31.984833 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.984825 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=4
+Nov 10 19:39:31.984859 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.984873 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.984881 | INFO | a2l/module.go:323 > goroutine 29 starting index: 1733983 until end at index: 1793774 of 2870067
+Nov 10 19:39:31.984037 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.984908 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.984922 | INFO | a2l/fnc_values.go:39 > fncValues position successfully parsed
+Nov 10 19:39:31.984899 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:31.984959 | INFO | a2l/fnc_values.go:49 > fncValues datatype successfully parsed
+Nov 10 19:39:31.984958 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.984983 | INFO | a2l/fnc_values.go:59 > fncValues indexMode successfully parsed
+Nov 10 19:39:31.984972 | INFO | a2l/mod_par.go:190 > modPar comment successfully parsed
+Nov 10 19:39:31.984455 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.985021 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.985053 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.983450 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.984154 | INFO | a2l/module.go:677 > module compuVtab[bufCompuVtab name] successfully parsed
+Nov 10 19:39:31.985122 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.985129 | INFO | a2l/compu_vtab.go:48 > compuVtab name successfully parsed
+Nov 10 19:39:31.984562 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.985145 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.985179 | INFO | a2l/compu_vtab.go:52 > compuVtab longIdentifier successfully parsed
+Nov 10 19:39:31.984135 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.985200 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.985227 | INFO | a2l/compu_vtab.go:60 > compuVtab conversionType successfully parsed
+Nov 10 19:39:31.984576 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984639 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985222 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.985274 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.985290 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.984594 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.984626 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.985335 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.984935 | INFO | a2l/module.go:323 > goroutine 30 starting index: 1793775 until end at index: 1853566 of 2870067
+Nov 10 19:39:31.985333 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.985369 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984294 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.985383 | INFO | a2l/module.go:323 > goroutine 31 starting index: 1853567 until end at index: 1913358 of 2870067
+Nov 10 19:39:31.984074 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.985398 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.985423 | INFO | a2l/module.go:323 > goroutine 32 starting index: 1913359 until end at index: 1973150 of 2870067
+Nov 10 19:39:31.985415 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.985078 | INFO | a2l/fnc_values.go:39 > fncValues position successfully parsed
+Nov 10 19:39:31.984738 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.985463 | INFO | a2l/fnc_values.go:49 > fncValues datatype successfully parsed
+Nov 10 19:39:31.984795 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.985457 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985171 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.985448 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.985486 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.984835 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985509 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.985529 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985281 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.985549 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.985584 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.983896 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.985308 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985565 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.985593 | INFO | a2l/module.go:323 > goroutine 33 starting index: 1973151 until end at index: 2032942 of 2870067
+Nov 10 19:39:31.984925 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.985626 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.985616 | INFO | a2l/coeffs.go:43 > coeffs a successfully parsed
+Nov 10 19:39:31.985636 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.985656 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.985027 | INFO | a2l/no_of_interfaces.go:29 > noOfInterfaces num successfully parsed
+Nov 10 19:39:31.984731 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.985664 | INFO | a2l/module.go:323 > goroutine 34 starting index: 2032943 until end at index: 2092734 of 2870067
+Nov 10 19:39:31.985688 | INFO | a2l/mod_par.go:134 > modPar noOfInterfaces successfully parsed
+Nov 10 19:39:31.985671 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.985518 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token="/begin IF_DATA"
+Nov 10 19:39:31.984765 | INFO | a2l/function.go:121 > function name successfully parsed
+Nov 10 19:39:31.985724 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.985768 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=1
+Nov 10 19:39:31.985755 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.985785 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.985799 | INFO | a2l/measurement.go:190 > measurement matrixDim successfully parsed
+Nov 10 19:39:31.985809 | INFO | a2l/fnc_values.go:39 > fncValues position successfully parsed
+Nov 10 19:39:31.985555 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985836 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.985862 | INFO | a2l/fnc_values.go:49 > fncValues datatype successfully parsed
+Nov 10 19:39:31.984679 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.984647 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.985908 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.985924 | INFO | a2l/fnc_values.go:59 > fncValues indexMode successfully parsed
+Nov 10 19:39:31.985931 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.985894 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.985365 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.985411 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.985008 | INFO | a2l/fnc_values.go:69 > fncValues addresstype successfully parsed
+Nov 10 19:39:31.985984 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.985994 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.986000 | INFO | a2l/dependent_characteristic.go:33 > dependentCharacteristic formula successfully parsed
+Nov 10 19:39:31.985003 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.986031 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.986065 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.986102 | INFO | a2l/fnc_values.go:69 > fncValues addresstype successfully parsed
+Nov 10 19:39:31.986088 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.986109 | INFO | a2l/record_layout.go:179 > recordLayout fncValues successfully parsed
+Nov 10 19:39:31.986135 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.986151 | INFO | a2l/record_layout.go:179 > recordLayout fncValues successfully parsed
+Nov 10 19:39:31.986155 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.985746 | INFO | a2l/module.go:323 > goroutine 35 starting index: 2092735 until end at index: 2152526 of 2870067
+Nov 10 19:39:31.986174 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.985777 | INFO | a2l/function.go:125 > function longIdentifier successfully parsed
+Nov 10 19:39:31.986205 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.986215 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.986242 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.985339 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.986297 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.986305 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.985241 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.986350 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.986369 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.986378 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.985598 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.986456 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.986476 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984995 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.985679 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.986035 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.985418 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.986552 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.986526 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.986074 | INFO | a2l/dependent_characteristic.go:28 > dependentCharacteristic characteristic successfully parsed
+Nov 10 19:39:31.985455 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.986580 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.985727 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.986099 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.986599 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.986608 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.986615 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.984181 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.986647 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.986220 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.986642 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.986667 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.986678 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:31.985839 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.986703 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.986698 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.986712 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.986738 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.986340 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.985867 | INFO | a2l/measurement.go:191 > measurement current token: current token=1
+Nov 10 19:39:31.985607 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.986778 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.986385 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.986792 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.986807 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.986820 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.986571 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.986846 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.985685 | INFO | a2l/coeffs.go:53 > coeffs b successfully parsed
+Nov 10 19:39:31.986056 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.985966 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.986873 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.986865 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.986606 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.986904 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.986888 | INFO | a2l/coeffs.go:63 > coeffs c successfully parsed
+Nov 10 19:39:31.986920 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.986925 | INFO | a2l/compu_vtab.go:81 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.983840 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.986945 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.984901 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.986236 | INFO | a2l/module.go:323 > goroutine 36 starting index: 2152527 until end at index: 2212318 of 2870067
+Nov 10 19:39:31.986951 | INFO | a2l/coeffs.go:73 > coeffs d successfully parsed
+Nov 10 19:39:31.986626 | INFO | a2l/characteristic.go:122 > characteristic dependentCharacteristic successfully parsed
+Nov 10 19:39:31.986958 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.986257 | INFO | a2l/def_characteristic.go:26 > defCharacteristic identifier successfully parsed
+Nov 10 19:39:31.986985 | INFO | a2l/module.go:323 > goroutine 37 starting index: 2212319 until end at index: 2272110 of 2870067
+Nov 10 19:39:31.986989 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.986772 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.986760 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.986979 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.987010 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.987029 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.987048 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.986833 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.987064 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.987057 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.987096 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.987113 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.987107 | INFO | a2l/module.go:323 > goroutine 38 starting index: 2272111 until end at index: 2331902 of 2870067
+Nov 10 19:39:31.985716 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.987147 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.986558 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.987118 | INFO | a2l/measurement.go:118 > measurement displayIdentifier successfully parsed
+Nov 10 19:39:31.987177 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.987188 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.986859 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.987196 | INFO | a2l/dependent_characteristic.go:33 > dependentCharacteristic formula successfully parsed
+Nov 10 19:39:31.986993 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.987187 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.986755 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=4
+Nov 10 19:39:31.987232 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.987245 | INFO | a2l/dependent_characteristic.go:28 > dependentCharacteristic characteristic successfully parsed
+Nov 10 19:39:31.987258 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:31.986735 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.987273 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.987287 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.987295 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.987313 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.987308 | INFO | a2l/characteristic.go:122 > characteristic dependentCharacteristic successfully parsed
+Nov 10 19:39:31.987323 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.987339 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.987348 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.985546 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.987365 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.987356 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.984260 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.987092 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.987408 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.987428 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=6
+Nov 10 19:39:31.987412 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.986402 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.987444 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.987464 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:31.986657 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.987471 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.987486 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.987144 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.987203 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.987533 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.987557 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.986274 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.986917 | INFO | a2l/compu_method.go:54 > compuMethod compuTabRef successfully parsed
+Nov 10 19:39:31.987565 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.987597 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:31.987291 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.987630 | INFO | a2l/compu_vtab.go:48 > compuVtab name successfully parsed
+Nov 10 19:39:31.985765 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.987658 | INFO | a2l/compu_vtab.go:52 > compuVtab longIdentifier successfully parsed
+Nov 10 19:39:31.985514 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.985489 | INFO | a2l/fnc_values.go:59 > fncValues indexMode successfully parsed
+Nov 10 19:39:31.987067 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.987693 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.987378 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.987728 | INFO | a2l/fnc_values.go:69 > fncValues addresstype successfully parsed
+Nov 10 19:39:31.987740 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.987768 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.987779 | INFO | a2l/dependent_characteristic.go:33 > dependentCharacteristic formula successfully parsed
+Nov 10 19:39:31.987372 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.987420 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.987793 | INFO | a2l/record_layout.go:179 > recordLayout fncValues successfully parsed
+Nov 10 19:39:31.987818 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.986420 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.987833 | INFO | a2l/dependent_characteristic.go:28 > dependentCharacteristic characteristic successfully parsed
+Nov 10 19:39:31.987417 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.987123 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.987905 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=4
+Nov 10 19:39:31.987874 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.987909 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.987478 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.986824 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.987503 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.987543 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.987962 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.987958 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.987986 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.987997 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.986934 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.988006 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.988019 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.988012 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.986969 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.985728 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.988058 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.988051 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.988094 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.988089 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.986736 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:31.987681 | INFO | a2l/compu_vtab.go:60 > compuVtab conversionType successfully parsed
+Nov 10 19:39:31.988128 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.988162 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.987749 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.987796 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.987017 | INFO | a2l/function.go:48 > function defCharacteristic successfully parsed
+Nov 10 19:39:31.988190 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.987824 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.988187 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.988202 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.988216 | INFO | a2l/memory_segment.go:43 > memorySegment ifData successfully parsed
+Nov 10 19:39:31.987087 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.988226 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.987494 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.988243 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.988258 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.987932 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:31.987161 | INFO | a2l/module.go:323 > goroutine 39 starting index: 2331903 until end at index: 2391694 of 2870067
+Nov 10 19:39:31.988270 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.987506 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.987586 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.986649 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.988028 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:31.987622 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.987603 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.988073 | INFO | a2l/module.go:677 > module compuVtab[bufCompuVtab name] successfully parsed
+Nov 10 19:39:31.987026 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.988064 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.987675 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.988103 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.987281 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.988118 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.988148 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.985631 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.987710 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.988170 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.987851 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.987876 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.988223 | INFO | a2l/in_measurement.go:26 > inMeasurement identifier successfully parsed
+Nov 10 19:39:31.988241 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.987864 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.988247 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.985467 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.987155 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.987053 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.988254 | INFO | a2l/mod_par.go:125 > modPar memorySegment successfully parsed
+Nov 10 19:39:31.986843 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.987899 | INFO | a2l/characteristic.go:122 > characteristic dependentCharacteristic successfully parsed
+Nov 10 19:39:31.987973 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.987219 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.987024 | INFO | a2l/coeffs.go:83 > coeffs e successfully parsed
+Nov 10 19:39:31.989167 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.989196 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.989218 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.989229 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.989249 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.989244 | INFO | a2l/coeffs.go:43 > coeffs a successfully parsed
+Nov 10 19:39:31.989261 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.989279 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.989305 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.989297 | INFO | a2l/coeffs.go:53 > coeffs b successfully parsed
+Nov 10 19:39:31.989328 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.989353 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.989312 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.989369 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.989379 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.989366 | INFO | a2l/coeffs.go:63 > coeffs c successfully parsed
+Nov 10 19:39:31.989404 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.989409 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.989439 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.989429 | INFO | a2l/coeffs.go:73 > coeffs d successfully parsed
+Nov 10 19:39:31.989439 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.989471 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.989525 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.989547 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.989489 | INFO | a2l/coeffs.go:83 > coeffs e successfully parsed
+Nov 10 19:39:31.989584 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.989602 | INFO | a2l/coeffs.go:93 > coeffs f successfully parsed
+Nov 10 19:39:31.989596 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.989633 | INFO | a2l/compu_method.go:40 > compuMethod coeffs successfully parsed
+Nov 10 19:39:31.989640 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.989652 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.989660 | INFO | a2l/function.go:75 > function inMeasurement successfully parsed
+Nov 10 19:39:31.989688 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.989674 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.989619 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.989664 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.989723 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.989735 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.989730 | INFO | a2l/module.go:701 > module function[bufFunction name] successfully parsed
+Nov 10 19:39:31.989745 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.989774 | INFO | a2l/coeffs.go:93 > coeffs f successfully parsed
+Nov 10 19:39:31.989802 | INFO | a2l/function.go:121 > function name successfully parsed
+Nov 10 19:39:31.989719 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.989755 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.989843 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:31.989847 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.989784 | INFO | a2l/module.go:323 > goroutine 40 starting index: 2391695 until end at index: 2451486 of 2870067
+Nov 10 19:39:31.989863 | INFO | a2l/function.go:125 > function longIdentifier successfully parsed
+Nov 10 19:39:31.989877 | INFO | a2l/record_layout.go:197 > recordLayout noAxisPtsx successfully parsed
+Nov 10 19:39:31.989884 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.989933 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.989918 | INFO | a2l/module.go:323 > goroutine 41 starting index: 2451487 until end at index: 2511278 of 2870067
+Nov 10 19:39:31.989856 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.989949 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.989954 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.989976 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.989873 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.989766 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.989999 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.989994 | INFO | a2l/module.go:323 > goroutine 42 starting index: 2511279 until end at index: 2571070 of 2870067
+Nov 10 19:39:31.990022 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.990028 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.989813 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.989929 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.990034 | INFO | a2l/axis_pts_ref.go:24 > axisPtsRef axisPoints successfully parsed
+Nov 10 19:39:31.990048 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.990072 | INFO | a2l/status_string_ref.go:24 > statusStringRef conversionTable successfully parsed
+Nov 10 19:39:31.989838 | INFO | a2l/compu_method.go:40 > compuMethod coeffs successfully parsed
+Nov 10 19:39:31.990096 | INFO | a2l/compu_method.go:77 > compuMethod statusStringRef successfully parsed
+Nov 10 19:39:31.989833 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.990092 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.990086 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990107 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.990142 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.989971 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.990137 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.990143 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.990162 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.990185 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.990169 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990183 | INFO | a2l/discrete.go:16 > discrete value successfully parsed
+Nov 10 19:39:31.990063 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.990049 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.989893 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.989692 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.990077 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.990232 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.989964 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.990116 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.990274 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.990079 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.990296 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990294 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.990306 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.990330 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990322 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.989898 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.990354 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.990144 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.990349 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.989854 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.990393 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.990152 | INFO | a2l/module.go:323 > goroutine 43 starting index: 2571071 until end at index: 2630862 of 2870067
+Nov 10 19:39:31.990383 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.990421 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.990417 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.990406 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.990450 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.990058 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.990468 | INFO | a2l/module.go:323 > goroutine 44 starting index: 2630863 until end at index: 2690654 of 2870067
+Nov 10 19:39:31.990476 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.990500 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.990495 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.990007 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.990524 | INFO | a2l/module.go:323 > goroutine 45 starting index: 2690655 until end at index: 2750446 of 2870067
+Nov 10 19:39:31.990539 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.990102 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.990567 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.990575 | INFO | a2l/module.go:323 > goroutine 46 starting index: 2750447 until end at index: 2810238 of 2870067
+Nov 10 19:39:31.990557 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.990583 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.990259 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.990622 | INFO | a2l/module.go:323 > goroutine 47 starting index: 2810239 until end at index: 2870067 of 2870067
+Nov 10 19:39:31.990287 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.990640 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.990623 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.989924 | INFO | a2l/def_characteristic.go:26 > defCharacteristic identifier successfully parsed
+Nov 10 19:39:31.990666 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.990681 | INFO | a2l/no_rescale_x.go:35 > noRescalex position successfully parsed
+Nov 10 19:39:31.990687 | INFO | a2l/module.go:559 > collected all channels
+Nov 10 19:39:31.990685 | INFO | a2l/mod_par.go:190 > modPar comment successfully parsed
+Nov 10 19:39:31.990366 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.990708 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990726 | INFO | a2l/record_layout.go:206 > recordLayout noRescalex successfully parsed
+Nov 10 19:39:31.989996 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.990749 | INFO | a2l/no_of_interfaces.go:29 > noOfInterfaces num successfully parsed
+Nov 10 19:39:31.990429 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:31.990724 | INFO | a2l/module.go:569 > waiting for the parsers to finish
+Nov 10 19:39:31.990780 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990792 | INFO | a2l/reserved.go:35 > reserved position successfully parsed
+Nov 10 19:39:31.990012 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990802 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.990008 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.990201 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:31.989915 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.990213 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.990218 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990891 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.990905 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.990546 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.990929 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.990924 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990526 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.990579 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.990956 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.990967 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:31.990599 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.990959 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.990988 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.990594 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.991018 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.991017 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.990629 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.991051 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.991036 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.991074 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.991090 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.991111 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.989978 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.991119 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.991142 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990352 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.990137 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.991226 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.989752 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.990718 | INFO | a2l/function.go:48 > function defCharacteristic successfully parsed
+Nov 10 19:39:31.991267 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.991257 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.991294 | INFO | a2l/in_measurement.go:26 > inMeasurement identifier successfully parsed
+Nov 10 19:39:31.991315 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.991324 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.991340 | INFO | a2l/function.go:75 > function inMeasurement successfully parsed
+Nov 10 19:39:31.990179 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.990812 | INFO | a2l/mod_par.go:134 > modPar noOfInterfaces successfully parsed
+Nov 10 19:39:31.991391 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991378 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.991395 | INFO | a2l/module.go:701 > module function[bufFunction name] successfully parsed
+Nov 10 19:39:31.991416 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.990866 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991446 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991441 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.990505 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991461 | INFO | a2l/function.go:121 > function name successfully parsed
+Nov 10 19:39:31.990538 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.991487 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.991496 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.990530 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.991519 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.991508 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.991562 | INFO | a2l/function.go:125 > function longIdentifier successfully parsed
+Nov 10 19:39:31.991558 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.990100 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.989874 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.991013 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.991612 | INFO | a2l/in_measurement.go:26 > inMeasurement identifier successfully parsed
+Nov 10 19:39:31.991638 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991629 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.989960 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.990650 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.991676 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.991669 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.991683 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991705 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.991730 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991737 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.991764 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.991781 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991158 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.991806 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.991832 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991830 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.990738 | INFO | a2l/project.go:45 > project module successfully parsed
+Nov 10 19:39:31.991858 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.990412 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.991885 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.991880 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.990468 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.991911 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.990831 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991935 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.991422 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.991929 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.991961 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.991953 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.991984 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.991967 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.992006 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.991503 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992011 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.992018 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.992032 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.992063 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.990270 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.991531 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992122 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.992116 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.991552 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.990609 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.992149 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992190 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.992203 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.992179 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.992215 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.989812 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.992243 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.990700 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.990127 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:31.992275 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.992272 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.991747 | INFO | a2l/bit_mask.go:23 > bitMask mask successfully parsed
+Nov 10 19:39:31.990723 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.991825 | INFO | a2l/function.go:75 > function inMeasurement successfully parsed
+Nov 10 19:39:31.992314 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.992342 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.991820 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.992370 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992379 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.992393 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.990795 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.990041 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.992443 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.992464 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.990247 | INFO | a2l/characteristic.go:130 > characteristic discrete successfully parsed
+Nov 10 19:39:31.992491 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.992487 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:31.991004 | INFO | a2l/mod_par.go:125 > modPar memorySegment successfully parsed
+Nov 10 19:39:31.990973 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.990876 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token="/begin IF_DATA"
+Nov 10 19:39:31.992545 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.991544 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.992565 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:31.992582 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.992601 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.990854 | INFO | a2l/reserved.go:45 > reserved dataSize successfully parsed
+Nov 10 19:39:31.990237 | INFO | a2l/axis_descr.go:60 > axisDescr axisPtsRef successfully parsed
+Nov 10 19:39:31.991995 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.990945 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.992629 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.992609 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.992651 | INFO | a2l/record_layout.go:224 > recordLayout reserved successfully parsed
+Nov 10 19:39:31.992673 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.992681 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.992695 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.992725 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.992709 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.992746 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992761 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.992775 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.992290 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.990158 | INFO | a2l/compu_method.go:88 > compuMethod name successfully parsed
+Nov 10 19:39:31.992805 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992827 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.990395 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.991787 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.992852 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.991199 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.992334 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.992861 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.992898 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.992925 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.990820 | INFO | a2l/dependent_characteristic.go:33 > dependentCharacteristic formula successfully parsed
+Nov 10 19:39:31.992411 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:31.992423 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992963 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.992975 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.992994 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:31.992496 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.993017 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.993024 | INFO | a2l/dependent_characteristic.go:28 > dependentCharacteristic characteristic successfully parsed
+Nov 10 19:39:31.992034 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.993048 | INFO | a2l/record_layout.go:197 > recordLayout noAxisPtsx successfully parsed
+Nov 10 19:39:31.993088 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.992588 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.993084 | INFO | a2l/characteristic.go:122 > characteristic dependentCharacteristic successfully parsed
+Nov 10 19:39:31.993133 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.993145 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.992612 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=16
+Nov 10 19:39:31.993183 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.991058 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.990590 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.993195 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.993289 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.993301 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.993310 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.993336 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.993346 | INFO | a2l/module.go:717 > module ifData[bufIfData name] successfully parsed
+Nov 10 19:39:31.993256 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.993366 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.992810 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.993398 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.992250 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.993387 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.993408 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.992877 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.992868 | INFO | a2l/compu_method.go:92 > compuMethod longIdentifier successfully parsed
+Nov 10 19:39:31.991188 | INFO | a2l/coeffs.go:43 > coeffs a successfully parsed
+Nov 10 19:39:31.992356 | INFO | a2l/out_measurement.go:26 > outMeasurement identifier successfully parsed
+Nov 10 19:39:31.992297 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.992906 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992920 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.991861 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.992943 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.991883 | INFO | a2l/a2l.go:79 > a2l project successfully parsed
+Nov 10 19:39:31.992950 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.991363 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.992998 | INFO | a2l/axis_pts_ref.go:24 > axisPtsRef axisPoints successfully parsed
+Nov 10 19:39:31.991474 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.993033 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.990845 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.992436 | INFO | a2l/measurement.go:82 > measurement bitMask successfully parsed
+Nov 10 19:39:31.993060 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.992049 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.992509 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.990478 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.993068 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.993115 | INFO | a2l/axis_pts_x.go:39 > axisPtsX position successfully parsed
+Nov 10 19:39:31.990950 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:31.993938 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.992089 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.993984 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.994011 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.992068 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.994044 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.994058 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.994051 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.991080 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.993237 | INFO | a2l/measurement.go:190 > measurement matrixDim successfully parsed
+Nov 10 19:39:31.991025 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.994103 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.991144 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.992770 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.994085 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.992282 | INFO | a2l/no_rescale_x.go:35 > noRescalex position successfully parsed
+Nov 10 19:39:31.994122 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.994153 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.992794 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.991660 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:31.994134 | INFO | a2l/function.go:92 > function outMeasurement successfully parsed
+Nov 10 19:39:31.994181 | INFO | a2l/a2l.go:82 > a2l parsed
+Nov 10 19:39:31.994185 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.994208 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.992718 | INFO | a2l/axis_rescale_x.go:41 > AxisRescaleX position successfully parsed
+Nov 10 19:39:31.993171 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.994140 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.994222 | INFO | a2l/module.go:701 > module function[bufFunction name] successfully parsed
+Nov 10 19:39:31.994256 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.994251 | INFO | a2l/axis_rescale_x.go:51 > AxisRescaleX datatype successfully parsed
+Nov 10 19:39:31.992298 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.994229 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.994288 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.994265 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.994147 | INFO | a2l/measurement.go:191 > measurement current token: current token=16
+Nov 10 19:39:31.994302 | INFO | a2l/axis_rescale_x.go:61 > AxisRescaleX maxNumberOfRescalePairs successfully parsed
+Nov 10 19:39:31.994283 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.994311 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.992891 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.994336 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.994332 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.994368 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.994358 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994224 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.994381 | INFO | a2l/coeffs.go:53 > coeffs b successfully parsed
+Nov 10 19:39:31.994401 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.994157 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.994405 | INFO | a2l/axis_descr.go:60 > axisDescr axisPtsRef successfully parsed
+Nov 10 19:39:31.994421 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.994432 | INFO | a2l/matrix_dim.go:43 > matrixDim xDim successfully parsed
+Nov 10 19:39:31.994177 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.994299 | INFO | a2l/group.go:102 > group groupName successfully parsed
+Nov 10 19:39:31.994456 | INFO | a2l/coeffs.go:63 > coeffs c successfully parsed
+Nov 10 19:39:31.994188 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:31.994490 | INFO | a2l/axis_pts_x.go:47 > axisPtsX datatype successfully parsed
+Nov 10 19:39:31.994468 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.992631 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:31.994517 | INFO | a2l/group.go:106 > group groupLongIdentifier successfully parsed
+Nov 10 19:39:31.994484 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.994536 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.994551 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.994557 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:31.994235 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.994572 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.994604 | INFO | a2l/compu_method.go:100 > compuMethod conversionType successfully parsed
+Nov 10 19:39:31.994589 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:31.994623 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.994637 | INFO | a2l/compu_method.go:104 > compuMethod format successfully parsed
+Nov 10 19:39:31.994389 | INFO | a2l/record_layout.go:206 > recordLayout noRescalex successfully parsed
+Nov 10 19:39:31.994437 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.994666 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.991581 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994449 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.994661 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:31.994689 | INFO | a2l/reserved.go:35 > reserved position successfully parsed
+Nov 10 19:39:31.994193 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:31.994722 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:31.994476 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.994712 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.994343 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.994735 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.994716 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.994732 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:31.994747 | INFO | a2l/reserved.go:45 > reserved dataSize successfully parsed
+Nov 10 19:39:31.994094 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:31.994203 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.994779 | INFO | a2l/matrix_dim.go:52 > matrixDim yDim successfully parsed
+Nov 10 19:39:31.994564 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token="/begin IF_DATA"
+Nov 10 19:39:31.994793 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:31.994799 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:31.994807 | INFO | a2l/matrix_dim.go:30 > matrixDim detected keyword: current token=FORMAT
+Nov 10 19:39:31.994805 | INFO | a2l/record_layout.go:224 > recordLayout reserved successfully parsed
+Nov 10 19:39:31.994634 | INFO | a2l/compu_vtab_range.go:90 > compuVtabRange outVal successfully parsed
+Nov 10 19:39:31.994833 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.992095 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.994852 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=2
+Nov 10 19:39:31.994841 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.994880 | INFO | a2l/measurement.go:190 > measurement matrixDim successfully parsed
+Nov 10 19:39:31.994645 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.994908 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.994705 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.994683 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.994913 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.994697 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.994971 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.994724 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.995003 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.995003 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.995027 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.995034 | INFO | a2l/root.go:16 > root value successfully parsed
+Nov 10 19:39:31.995054 | INFO | a2l/monotony.go:28 > monotony monotony successfully parsed
+Nov 10 19:39:31.994342 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.995078 | INFO | a2l/monotony.go:30 > monotony monotony successfully parsed
+Nov 10 19:39:31.994744 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.995093 | INFO | a2l/memory_segment.go:43 > memorySegment ifData successfully parsed
+Nov 10 19:39:31.995084 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=4
+Nov 10 19:39:31.995104 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.995103 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.994770 | INFO | a2l/discrete.go:16 > discrete value successfully parsed
+Nov 10 19:39:31.994786 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.992824 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:31.995148 | INFO | a2l/axis_descr.go:132 > axisDescr monotony successfully parsed
+Nov 10 19:39:31.995139 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:31.995162 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994373 | INFO | a2l/a2l.go:45 > finished parsing: prject name=ASAP2_Example
+Nov 10 19:39:31.995166 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.994775 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.995188 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.995206 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:31.994829 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.995245 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:31.994812 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.995267 | INFO | a2l/a2l.go:48 > time for parsing file: 724
+Nov 10 19:39:31.995260 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.995281 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:31.995277 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.994890 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994664 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.995327 | INFO | a2l/measurement.go:109 > measurement discrete successfully parsed
+Nov 10 19:39:31.995345 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:31.995358 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.995370 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:31.994933 | INFO | a2l/measurement.go:191 > measurement current token: current token=2
+Nov 10 19:39:31.995364 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.994964 | INFO | a2l/compu_vtab_range.go:71 > compuVtabRange inValMin successfully parsed
+Nov 10 19:39:31.995357 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.995403 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.994531 | INFO | a2l/coeffs.go:73 > coeffs d successfully parsed
+Nov 10 19:39:31.995440 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.994991 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:31.995419 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:31.995447 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.994501 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:31.994321 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994541 | INFO | a2l/axis_pts_x.go:55 > axisPtsX indexIncr successfully parsed
+Nov 10 19:39:31.995122 | INFO | a2l/mod_par.go:125 > modPar memorySegment successfully parsed
+Nov 10 19:39:31.994816 | INFO | a2l/if_data.go:33 > ifData name successfully parsed
+Nov 10 19:39:31.995159 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:31.994393 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:31.994590 | INFO | a2l/compu_method.go:108 > compuMethod unit successfully parsed
+Nov 10 19:39:31.994834 | INFO | a2l/matrix_dim.go:32 > matrixDim rolled back to: current token=4
+Nov 10 19:39:31.995182 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:31.994216 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.994236 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:31.995214 | INFO | a2l/group.go:82 > group root successfully parsed
+Nov 10 19:39:31.995219 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:31.995240 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.994650 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.994867 | INFO | a2l/axis_rescale_x.go:41 > AxisRescaleX position successfully parsed
+Nov 10 19:39:31.994626 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:31.993957 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:31.995301 | INFO | calib_data.go:68 > parsed a2l file
+Nov 10 19:39:31.994849 | INFO | a2l/mod_par.go:125 > modPar memorySegment successfully parsed
+Nov 10 19:39:31.994863 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:31.995315 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.995307 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.995320 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:31.995335 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:31.994701 | INFO | a2l/compu_method.go:54 > compuMethod compuTabRef successfully parsed
+Nov 10 19:39:31.995351 | INFO | a2l/formula_inv.go:24 > formulaInv gx successfully parsed
+Nov 10 19:39:31.994509 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:31.994966 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:31.994348 | INFO | a2l/axis_rescale_x.go:71 > AxisRescaleX indexIncr successfully parsed
+Nov 10 19:39:31.994916 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:31.995382 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:31.994974 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:31.995396 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:31.995429 | INFO | a2l/compu_vtab_range.go:83 > compuVtabRange inValMax successfully parsed
+Nov 10 19:39:31.994764 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:31.995019 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.994753 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:31.994758 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:31.995071 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:31.994595 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:31.996972 | INFO | a2l/module.go:637 > module a2ml successfully parsed
+Nov 10 19:39:32.091517 | INFO | a2l/coeffs.go:83 > coeffs e successfully parsed
+Nov 10 19:39:32.091503 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:32.091650 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:32.091627 | INFO | a2l/coeffs.go:93 > coeffs f successfully parsed
+Nov 10 19:39:32.091674 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:32.091583 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:32.091749 | INFO | a2l/compu_method.go:40 > compuMethod coeffs successfully parsed
+Nov 10 19:39:32.091704 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.091783 | INFO | a2l/status_string_ref.go:24 > statusStringRef conversionTable successfully parsed
+Nov 10 19:39:32.091772 | INFO | a2l/axis_pts_x.go:63 > axisPtsX addressing successfully parsed
+Nov 10 19:39:32.091767 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.091781 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:32.091828 | INFO | a2l/if_data.go:28 > ifData data successfully parsed
+Nov 10 19:39:32.091812 | INFO | a2l/characteristic.go:208 > characteristic matrixDim successfully parsed
+Nov 10 19:39:32.091876 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.091886 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.091812 | INFO | a2l/coeffs.go:43 > coeffs a successfully parsed
+Nov 10 19:39:32.091840 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.091926 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.091925 | INFO | a2l/dependent_characteristic.go:33 > dependentCharacteristic formula successfully parsed
+Nov 10 19:39:32.091718 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.091947 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:32.091982 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:32.091978 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.091901 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:32.092001 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092013 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:32.091957 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:32.092025 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:32.091931 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:32.092043 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.092055 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.091994 | INFO | a2l/dependent_characteristic.go:28 > dependentCharacteristic characteristic successfully parsed
+Nov 10 19:39:32.092030 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.092106 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:32.092104 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.092094 | INFO | a2l/characteristic.go:80 > characteristic axisDescr successfully parsed
+Nov 10 19:39:32.092127 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:32.091841 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:32.092153 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.092182 | INFO | a2l/record_layout.go:143 > recordLayout axisPtsx successfully parsed
+Nov 10 19:39:32.092195 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:32.092196 | INFO | a2l/sub_group.go:26 > subGroup identifier successfully parsed
+Nov 10 19:39:32.092068 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:32.092214 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:32.092065 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:32.092082 | INFO | a2l/characteristic.go:335 > characteristic upperLimit successfully parsed
+Nov 10 19:39:32.092087 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092020 | INFO | a2l/axis_rescale_x.go:51 > AxisRescaleX datatype successfully parsed
+Nov 10 19:39:32.092007 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:32.092259 | INFO | a2l/group.go:91 > group subGroup successfully parsed
+Nov 10 19:39:32.092235 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.092270 | INFO | a2l/characteristic.go:232 > characteristic physUnit successfully parsed
+Nov 10 19:39:32.092302 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.092332 | INFO | a2l/mod_common.go:120 > modCommon comment successfully parsed
+Nov 10 19:39:32.092137 | INFO | a2l/memory_segment.go:78 > memorySegment memoryType successfully parsed
+Nov 10 19:39:32.092327 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:32.092036 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:32.092367 | INFO | a2l/memory_segment.go:88 > memorySegment address successfully parsed
+Nov 10 19:39:32.092377 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:32.092373 | INFO | a2l/compu_method.go:77 > compuMethod statusStringRef successfully parsed
+Nov 10 19:39:32.091854 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:32.092216 | INFO | a2l/fnc_values.go:39 > fncValues position successfully parsed
+Nov 10 19:39:32.092421 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:32.092239 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.092427 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:32.092449 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:32.092062 | INFO | a2l/measurement.go:172 > measurement ifData successfully parsed
+Nov 10 19:39:32.092279 | INFO | a2l/extended_limits.go:35 > extendedLimits lowerLimit successfully parsed
+Nov 10 19:39:32.092449 | INFO | calib_data_test.go:43 > finished parsing: project name=ASAP2_Example
+Nov 10 19:39:32.092477 | INFO | a2l/axis_rescale_x.go:81 > AxisRescaleX adressing successfully parsed
+Nov 10 19:39:32.092492 | INFO | a2l/memory_segment.go:54 > memorySegment name successfully parsed
+Nov 10 19:39:32.092312 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092508 | INFO | a2l/extended_limits.go:45 > extendedLimits upperLimit successfully parsed
+Nov 10 19:39:32.092491 | INFO | a2l/characteristic.go:122 > characteristic dependentCharacteristic successfully parsed
+Nov 10 19:39:32.092322 | INFO | a2l/module.go:709 > module group[bufGroup groupName] successfully parsed
+Nov 10 19:39:32.092521 | INFO | a2l/record_layout.go:152 > recordLayout axisRescalex successfully parsed
+Nov 10 19:39:32.091776 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:32.092552 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.092573 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:32.092586 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:32.092582 | INFO | a2l/module.go:749 > module recordLayout[bufRecordLayout name] successfully parsed
+Nov 10 19:39:32.092363 | INFO | a2l/deposit.go:29 > deposit mode successfully parsed
+Nov 10 19:39:32.092616 | INFO | a2l/measurement.go:269 > measurement datatype successfully parsed
+Nov 10 19:39:32.092617 | INFO | a2l/coeffs.go:53 > coeffs b successfully parsed
+Nov 10 19:39:32.091990 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:32.092645 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:32.092641 | INFO | a2l/record_layout.go:280 > recordLayout name successfully parsed
+Nov 10 19:39:32.092261 | INFO | a2l/axis_descr.go:176 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:32.092672 | INFO | a2l/ecu_address.go:23 > ecuAddress address successfully parsed
+Nov 10 19:39:32.092652 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.092096 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:32.092687 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:32.092683 | INFO | a2l/measurement.go:256 > measurement name successfully parsed
+Nov 10 19:39:32.092295 | INFO | a2l/axis_rescale_x.go:61 > AxisRescaleX maxNumberOfRescalePairs successfully parsed
+Nov 10 19:39:32.092700 | INFO | a2l/axis_descr.go:168 > axisDescr attribute successfully parsed
+Nov 10 19:39:32.092722 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.092473 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:32.092112 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:32.092291 | INFO | a2l/module.go:725 > module measurement[bufMeasurement name] successfully parsed
+Nov 10 19:39:32.092695 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.092742 | INFO | a2l/measurement.go:260 > measurement longIdentifier successfully parsed
+Nov 10 19:39:32.092748 | INFO | a2l/axis_descr.go:172 > axisDescr inputQuantity successfully parsed
+Nov 10 19:39:32.092761 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:32.092554 | INFO | a2l/formula.go:29 > formula formulaInv successfully parsed
+Nov 10 19:39:32.092769 | INFO | a2l/measurement.go:154 > measurement format successfully parsed
+Nov 10 19:39:32.092794 | INFO | a2l/characteristic.go:315 > characteristic conversion successfully parsed
+Nov 10 19:39:32.092169 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:32.092569 | INFO | a2l/characteristic.go:154 > characteristic extendedLimits successfully parsed
+Nov 10 19:39:32.092794 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092359 | INFO | a2l/format.go:24 > format formatString successfully parsed
+Nov 10 19:39:32.092827 | INFO | a2l/compu_vtab.go:78 > compuVtab inVal successfully parsed
+Nov 10 19:39:32.092863 | INFO | a2l/measurement.go:127 > measurement ecuAddress successfully parsed
+Nov 10 19:39:32.092844 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.092871 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.092890 | INFO | a2l/compu_vtab.go:81 > compuVtab inVal successfully parsed
+Nov 10 19:39:32.092914 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.092921 | INFO | a2l/discrete.go:16 > discrete value successfully parsed
+Nov 10 19:39:32.092931 | INFO | a2l/no_axis_pts_x.go:35 > noAxisPtsx position successfully parsed
+Nov 10 19:39:32.092436 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:32.091863 | INFO | a2l/memory_segment.go:58 > memorySegment longIdentifier successfully parsed
+Nov 10 19:39:32.092959 | INFO | a2l/characteristic.go:293 > characteristic type successfully parsed
+Nov 10 19:39:32.092969 | INFO | a2l/no_axis_pts_x.go:45 > noAxisPtsx datatype successfully parsed
+Nov 10 19:39:32.092948 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.092720 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:32.092983 | INFO | a2l/axis_rescale_x.go:71 > AxisRescaleX indexIncr successfully parsed
+Nov 10 19:39:32.092996 | INFO | a2l/characteristic.go:297 > characteristic address successfully parsed
+Nov 10 19:39:32.092701 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092756 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.093032 | INFO | a2l/characteristic.go:301 > characteristic deposit successfully parsed
+Nov 10 19:39:32.093027 | INFO | a2l/memory_segment.go:68 > memorySegment prgType successfully parsed
+Nov 10 19:39:32.092047 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:32.093045 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.092498 | INFO | a2l/module.go:661 > module compuMethod[bufCompuMethod name] successfully parsed
+Nov 10 19:39:32.093058 | INFO | a2l/characteristic.go:281 > characteristic name successfully parsed
+Nov 10 19:39:32.093082 | INFO | a2l/compu_vtab.go:85 > compuVtab outVal successfully parsed
+Nov 10 19:39:32.092784 | INFO | calib_data_test.go:44 > finished parsing: length of data in hex file: =137324
+Nov 10 19:39:32.092349 | INFO | a2l/display_identifier.go:24 > displayIdentifier displayName successfully parsed
+Nov 10 19:39:32.092828 | INFO | a2l/characteristic.go:325 > characteristic lowerLimit successfully parsed
+Nov 10 19:39:32.093096 | INFO | a2l/characteristic.go:285 > characteristic longIdentifier successfully parsed
+Nov 10 19:39:32.093114 | INFO | a2l/axis_rescale_x.go:81 > AxisRescaleX adressing successfully parsed
+Nov 10 19:39:32.092356 | INFO | a2l/phys_unit.go:24 > physUnit unit successfully parsed
+Nov 10 19:39:32.093123 | INFO | a2l/characteristic.go:138 > characteristic displayIdentifier successfully parsed
+Nov 10 19:39:32.093130 | WARN | calib_data_test.go:45 > time for parsing test files: 822
+Nov 10 19:39:32.092846 | INFO | a2l/mod_common.go:109 > modCommon deposit successfully parsed
+Nov 10 19:39:32.091961 | INFO | a2l/measurement.go:271 > measurement datatype successfully parsed
+Nov 10 19:39:32.093163 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
+Nov 10 19:39:32.092878 | INFO | a2l/characteristic.go:162 > characteristic format successfully parsed
+Nov 10 19:39:32.093160 | INFO | a2l/record_layout.go:152 > recordLayout axisRescalex successfully parsed
+Nov 10 19:39:32.092660 | INFO | a2l/characteristic.go:311 > characteristic maxDiff successfully parsed
+Nov 10 19:39:32.092143 | INFO | a2l/module.go:653 > module characteristic[bufCharacteristic name] successfully parsed
