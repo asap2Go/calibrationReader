@@ -23,31 +23,31 @@ forLoop:
 			var buf readOnly
 			buf, err = parseReadOnly(tok)
 			if err != nil {
-					log.Err(err).Msg("userRights readOnly could not be parsed")
+				log.Err(err).Msg("userRights readOnly could not be parsed")
 				break forLoop
 			}
 			ur.readOnly = buf
-				log.Info().Msg("userRights readOnly successfully parsed")
+			log.Info().Msg("userRights readOnly successfully parsed")
 		case beginRefGroupToken:
 			var buf refGroup
 			buf, err = parseRefGroup(tok)
 			if err != nil {
-					log.Err(err).Msg("userRights refGroup could not be parsed")
+				log.Err(err).Msg("userRights refGroup could not be parsed")
 				break forLoop
 			}
 			ur.refGroup = append(ur.refGroup, buf)
-				log.Info().Msg("userRights refGroup successfully parsed")
+			log.Info().Msg("userRights refGroup successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("userRights could not be parsed")
+				log.Err(err).Msg("userRights could not be parsed")
 				break forLoop
 			} else if tok.current() == endUserRightsToken {
 				break forLoop
 			} else if !ur.userLevelIdSet {
 				ur.userLevelId = tok.current()
 				ur.userLevelIdSet = true
-					log.Info().Msg("userRights userLevelId successfully parsed")
+				log.Info().Msg("userRights userLevelId successfully parsed")
 			}
 		}
 	}

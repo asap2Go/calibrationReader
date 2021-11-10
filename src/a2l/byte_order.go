@@ -17,14 +17,14 @@ func parseByteOrder(tok *tokenGenerator) (byteOrder, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("byteOrder could not be parsed")
+		log.Err(err).Msg("byteOrder could not be parsed")
 	} else if !bo.byteOrderSet {
 		bo.byteOrder, err = parseByteOrderEnum(tok)
 		if err != nil {
-				log.Err(err).Msg("byteOrder byteOrder could not be parsed")
+			log.Err(err).Msg("byteOrder byteOrder could not be parsed")
 		} else {
 			bo.byteOrderSet = true
-				log.Info().Msg("byteOrder byteOrder successfully parsed")
+			log.Info().Msg("byteOrder byteOrder successfully parsed")
 		}
 	}
 	return bo, err

@@ -17,11 +17,11 @@ func parseAxisPtsRef(tok *tokenGenerator) (axisPtsRef, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("axisPtsRef could not be parsed")
+		log.Err(err).Msg("axisPtsRef could not be parsed")
 	} else if !apr.axisPointsSet {
 		apr.axisPoints = tok.current()
 		apr.axisPointsSet = true
-			log.Info().Msg("axisPtsRef axisPoints successfully parsed")
+		log.Info().Msg("axisPtsRef axisPoints successfully parsed")
 	}
 	return apr, err
 }

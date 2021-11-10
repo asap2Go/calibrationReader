@@ -17,11 +17,11 @@ func parseSupplier(tok *tokenGenerator) (supplier, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("supplier could not be parsed")
+		log.Err(err).Msg("supplier could not be parsed")
 	} else if !s.manufacturerSet {
 		s.manufacturer = tok.current()
 		s.manufacturerSet = true
-			log.Info().Msg("supplier manufacturer successfully parsed")
+		log.Info().Msg("supplier manufacturer successfully parsed")
 	}
 	return s, err
 }

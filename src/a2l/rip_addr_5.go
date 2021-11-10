@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -21,28 +21,28 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("ripAddr5 could not be parsed")
+			log.Err(err).Msg("ripAddr5 could not be parsed")
 			break forLoop
 		} else if !ra5.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-					log.Err(err).Msg("ripAddr5 position could not be parsed")
+				log.Err(err).Msg("ripAddr5 position could not be parsed")
 				break forLoop
 			}
 			ra5.position = uint16(buf)
 			ra5.positionSet = true
-				log.Info().Msg("ripAddr5 position successfully parsed")
+			log.Info().Msg("ripAddr5 position successfully parsed")
 		} else if !ra5.datatypeSet {
 			var buf dataTypeEnum
 			buf, err = parseDataTypeEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("ripAddr5 datatype could not be parsed")
+				log.Err(err).Msg("ripAddr5 datatype could not be parsed")
 				break forLoop
 			}
 			ra5.datatype = buf
 			ra5.datatypeSet = true
-				log.Info().Msg("ripAddr5 datatype successfully parsed")
+			log.Info().Msg("ripAddr5 datatype successfully parsed")
 			break forLoop
 		}
 	}

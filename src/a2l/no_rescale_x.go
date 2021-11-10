@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -21,29 +21,29 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("noRescalex could not be parsed")
+			log.Err(err).Msg("noRescalex could not be parsed")
 			break forLoop
 		} else if !nrx.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-					log.Err(err).Msg("noRescalex position could not be parsed")
+				log.Err(err).Msg("noRescalex position could not be parsed")
 				break forLoop
 			}
 			nrx.position = uint16(buf)
 			nrx.positionSet = true
-				log.Info().Msg("noRescalex position successfully parsed")
+			log.Info().Msg("noRescalex position successfully parsed")
 			break forLoop
 		} else if !nrx.datatypeSet {
 			var buf dataTypeEnum
 			buf, err = parseDataTypeEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("noRescalex datatype could not be parsed")
+				log.Err(err).Msg("noRescalex datatype could not be parsed")
 				break forLoop
 			}
 			nrx.datatype = buf
 			nrx.datatypeSet = true
-				log.Info().Msg("noRescalex datatype successfully parsed")
+			log.Info().Msg("noRescalex datatype successfully parsed")
 		}
 	}
 	return nrx, err

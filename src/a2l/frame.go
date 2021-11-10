@@ -32,7 +32,7 @@ forLoop:
 				break forLoop
 			}
 			f.frameMeasurement = buf
-				log.Info().Msg("frame frameMeasurement successfully parsed")
+			log.Info().Msg("frame frameMeasurement successfully parsed")
 		case beginIfDataToken:
 			var buf IfData
 			buf, err = parseIfData(tok)
@@ -40,7 +40,7 @@ forLoop:
 				break forLoop
 			}
 			f.ifData = append(f.ifData, buf)
-				log.Info().Msg("frame ifData successfully parsed")
+			log.Info().Msg("frame ifData successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				break forLoop
@@ -54,7 +54,7 @@ forLoop:
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 16)
 				if err != nil {
-						log.Err(err).Msg("attribute scalingUnit could not be parsed")
+					log.Err(err).Msg("attribute scalingUnit could not be parsed")
 					break forLoop
 				}
 				f.scalingUnit = uint16(buf)
@@ -62,7 +62,7 @@ forLoop:
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 32)
 				if err != nil {
-						log.Err(err).Msg("attribute rate could not be parsed")
+					log.Err(err).Msg("attribute rate could not be parsed")
 					break forLoop
 				}
 				f.rate = uint32(buf)

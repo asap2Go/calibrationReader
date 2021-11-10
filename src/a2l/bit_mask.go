@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 )
 
 type bitMask struct {
@@ -16,11 +16,11 @@ func parseBitMask(tok *tokenGenerator) (bitMask, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("bitMask could not be parsed")
+		log.Err(err).Msg("bitMask could not be parsed")
 	} else if !bm.maskSet {
 		bm.mask = tok.current()
 		bm.maskSet = true
-			log.Info().Msg("bitMask mask successfully parsed")
+		log.Info().Msg("bitMask mask successfully parsed")
 	}
 	return bm, err
 }

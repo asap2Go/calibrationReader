@@ -17,11 +17,11 @@ func parseVarMeasurement(tok *tokenGenerator) (varMeasurement, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("varMeasurement could not be parsed")
+		log.Err(err).Msg("varMeasurement could not be parsed")
 	} else if !vm.nameSet {
 		vm.name = tok.current()
 		vm.nameSet = true
-			log.Info().Msg("varMeasurement name successfully parsed")
+		log.Info().Msg("varMeasurement name successfully parsed")
 	}
 	return vm, err
 }

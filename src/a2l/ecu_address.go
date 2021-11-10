@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 )
 
 type ecuAddress struct {
@@ -16,11 +16,11 @@ func parseEcuAddress(tok *tokenGenerator) (ecuAddress, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("ecuAddress could not be parsed")
+		log.Err(err).Msg("ecuAddress could not be parsed")
 	} else if !ea.addressSet {
 		ea.address = tok.current()
 		ea.addressSet = true
-			log.Info().Msg("ecuAddress address successfully parsed")
+		log.Info().Msg("ecuAddress address successfully parsed")
 	}
 	return ea, err
 }

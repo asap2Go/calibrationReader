@@ -19,11 +19,11 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("outMeasurement could not be parsed")
+			log.Err(err).Msg("outMeasurement could not be parsed")
 			break forLoop
 		} else if tok.current() == endOutMeasurementToken {
 			om.identifierSet = true
-				log.Info().Msg("outMeasurement identifier successfully parsed")
+			log.Info().Msg("outMeasurement identifier successfully parsed")
 			break forLoop
 		} else if !om.identifierSet {
 			om.identifier = append(om.identifier, tok.current())

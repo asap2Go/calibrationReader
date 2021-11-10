@@ -17,11 +17,11 @@ func parseVersion(tok *tokenGenerator) (version, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("version could not be parsed")
+		log.Err(err).Msg("version could not be parsed")
 	} else if !v.versionIdentifierSet {
 		v.versionIdentifier = tok.current()
 		v.versionIdentifierSet = true
-			log.Info().Msg("version versionIdentifier successfully parsed")
+		log.Info().Msg("version versionIdentifier successfully parsed")
 	}
 	return v, err
 }

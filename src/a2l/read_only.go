@@ -13,7 +13,7 @@ func parseReadOnly(tok *tokenGenerator) (readOnly, error) {
 	if !ro.valueSet {
 		ro.value = true
 		ro.valueSet = true
-			log.Info().Msg("readOnly value successfully parsed")
+		log.Info().Msg("readOnly value successfully parsed")
 	}
 	return ro, err
 }

@@ -19,11 +19,11 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("refGroup could not be parsed")
+			log.Err(err).Msg("refGroup could not be parsed")
 			break forLoop
 		} else if tok.current() == endRefGroupToken {
 			rg.identifierSet = true
-				log.Info().Msg("refGroup identifier successfully parsed")
+			log.Info().Msg("refGroup identifier successfully parsed")
 			break forLoop
 		} else if !rg.identifierSet {
 			rg.identifier = append(rg.identifier, tok.current())

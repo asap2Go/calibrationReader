@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -21,28 +21,28 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("noAxisPtsy could not be parsed")
+			log.Err(err).Msg("noAxisPtsy could not be parsed")
 			break forLoop
 		} else if !napy.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-					log.Err(err).Msg("noAxisPtsy position could not be parsed")
+				log.Err(err).Msg("noAxisPtsy position could not be parsed")
 				break forLoop
 			}
 			napy.position = uint16(buf)
 			napy.positionSet = true
-				log.Info().Msg("noAxisPtsy position successfully parsed")
+			log.Info().Msg("noAxisPtsy position successfully parsed")
 		} else if !napy.datatypeSet {
 			var buf dataTypeEnum
 			buf, err = parseDataTypeEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("noAxisPtsy datatype could not be parsed")
+				log.Err(err).Msg("noAxisPtsy datatype could not be parsed")
 				break forLoop
 			}
 			napy.datatype = buf
 			napy.datatypeSet = true
-				log.Info().Msg("noAxisPtsy datatype successfully parsed")
+			log.Info().Msg("noAxisPtsy datatype successfully parsed")
 			break forLoop
 		}
 	}

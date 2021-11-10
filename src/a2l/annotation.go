@@ -21,30 +21,30 @@ forLoop:
 		case annotationLabelToken:
 			an.annotationLabel, err = parseAnnotationLabel(tok)
 			if err != nil {
-					log.Err(err).Msg("annotation annotationLabel could not be parsed")
+				log.Err(err).Msg("annotation annotationLabel could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("annotation annotationLabel successfully parsed")
+			log.Info().Msg("annotation annotationLabel successfully parsed")
 		case annotationOriginToken:
 			an.annotationOrigin, err = parseAnnotationOrigin(tok)
 			if err != nil {
-					log.Err(err).Msg("annotation annotationOrigin could not be parsed")
+				log.Err(err).Msg("annotation annotationOrigin could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("annotation annotationOrigin successfully parsed")
+			log.Info().Msg("annotation annotationOrigin successfully parsed")
 		case beginAnnotationTextToken:
 			var buf annotationText
 			buf, err = parseAnnotationText(tok)
 			if err != nil {
-					log.Err(err).Msg("annotation annotationText could not be parsed")
+				log.Err(err).Msg("annotation annotationText could not be parsed")
 				break forLoop
 			}
 			an.annotationText = append(an.annotationText, buf)
-				log.Info().Msg("annotation annotationText successfully parsed")
+			log.Info().Msg("annotation annotationText successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("annotation could not be parsed")
+				log.Err(err).Msg("annotation could not be parsed")
 				break forLoop
 			} else if tok.current() == endAnnotationToken {
 				break forLoop

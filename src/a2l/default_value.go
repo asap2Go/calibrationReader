@@ -17,11 +17,11 @@ func parseDefaultValue(tok *tokenGenerator) (defaultValue, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("defaultValue could not be parsed")
+		log.Err(err).Msg("defaultValue could not be parsed")
 	} else if !dv.displayStringSet {
 		dv.displayString = tok.current()
 		dv.displayStringSet = true
-			log.Info().Msg("defaultValue displayString successfully parsed")
+		log.Info().Msg("defaultValue displayString successfully parsed")
 	}
 	return dv, err
 }

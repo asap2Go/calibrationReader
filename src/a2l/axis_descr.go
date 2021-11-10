@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -46,164 +46,164 @@ forLoop:
 			var buf annotation
 			buf, err = parseAnnotation(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr annotation could not be parsed")
+				log.Err(err).Msg("axisDescr annotation could not be parsed")
 				break forLoop
 			}
 			ad.annotation = append(ad.annotation, buf)
-				log.Info().Msg("axisDescr annotation successfully parsed")
+			log.Info().Msg("axisDescr annotation successfully parsed")
 		case axisPtsRefToken:
 			ad.axisPtsRef, err = parseAxisPtsRef(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr axisPtsRef could not be parsed")
+				log.Err(err).Msg("axisDescr axisPtsRef could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr axisPtsRef successfully parsed")
+			log.Info().Msg("axisDescr axisPtsRef successfully parsed")
 		case byteOrderToken:
 			ad.byteOrder, err = parseByteOrder(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr byteOrder could not be parsed")
+				log.Err(err).Msg("axisDescr byteOrder could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr byteOrder successfully parsed")
+			log.Info().Msg("axisDescr byteOrder successfully parsed")
 		case curveAxisRefToken:
 			ad.curveAxisRef, err = parseCurveAxisRef(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr curveAxisRef could not be parsed")
+				log.Err(err).Msg("axisDescr curveAxisRef could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr curveAxisRef successfully parsed")
+			log.Info().Msg("axisDescr curveAxisRef successfully parsed")
 		case depositToken:
 			ad.deposit, err = parseDeposit(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr deposit could not be parsed")
+				log.Err(err).Msg("axisDescr deposit could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr deposit successfully parsed")
+			log.Info().Msg("axisDescr deposit successfully parsed")
 		case extendedLimitsToken:
 			ad.extendedLimits, err = parseExtendedLimits(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr extendedLimits could not be parsed")
+				log.Err(err).Msg("axisDescr extendedLimits could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr extendedLimits successfully parsed")
+			log.Info().Msg("axisDescr extendedLimits successfully parsed")
 		case beginFixAxisParToken:
 			ad.fixAxisPar, err = parseFixAxisPar(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr fixAxisPar could not be parsed")
+				log.Err(err).Msg("axisDescr fixAxisPar could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr fixAxisPar successfully parsed")
+			log.Info().Msg("axisDescr fixAxisPar successfully parsed")
 		case fixAxisParDistToken:
 			ad.fixAxisParDist, err = parseFixAxisParDist(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr fixAxisParDist could not be parsed")
+				log.Err(err).Msg("axisDescr fixAxisParDist could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr fixAxisParDist successfully parsed")
+			log.Info().Msg("axisDescr fixAxisParDist successfully parsed")
 		case beginFixAxisParListToken:
 			var buf fixAxisParList
 			buf, err = parseFixAxisParList(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr fixAxisParList could not be parsed")
+				log.Err(err).Msg("axisDescr fixAxisParList could not be parsed")
 				break forLoop
 			}
 			ad.fixAxisParList = append(ad.fixAxisParList, buf)
-				log.Info().Msg("axisDescr fixAxisParList successfully parsed")
+			log.Info().Msg("axisDescr fixAxisParList successfully parsed")
 		case formatToken:
 			ad.format, err = parseFormat(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr format could not be parsed")
+				log.Err(err).Msg("axisDescr format could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr format successfully parsed")
+			log.Info().Msg("axisDescr format successfully parsed")
 		case maxGradToken:
 			ad.maxGrad, err = parseMaxGrad(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr maxGrad could not be parsed")
+				log.Err(err).Msg("axisDescr maxGrad could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr maxGrad successfully parsed")
+			log.Info().Msg("axisDescr maxGrad successfully parsed")
 		case monotonyToken:
 			ad.monotony, err = parseMonotony(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr monotony could not be parsed")
+				log.Err(err).Msg("axisDescr monotony could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr monotony successfully parsed")
+			log.Info().Msg("axisDescr monotony successfully parsed")
 		case physUnitToken:
 			ad.physUnit, err = parsePhysUnit(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr physUnit could not be parsed")
+				log.Err(err).Msg("axisDescr physUnit could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr physUnit successfully parsed")
+			log.Info().Msg("axisDescr physUnit successfully parsed")
 		case readOnlyToken:
 			ad.readOnly, err = parseReadOnly(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr readOnly could not be parsed")
+				log.Err(err).Msg("axisDescr readOnly could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr readOnly successfully parsed")
+			log.Info().Msg("axisDescr readOnly successfully parsed")
 		case stepSizeToken:
 			ad.stepSize, err = parseStepSize(tok)
 			if err != nil {
-					log.Err(err).Msg("axisDescr stepSize could not be parsed")
+				log.Err(err).Msg("axisDescr stepSize could not be parsed")
 				break forLoop
 			}
-				log.Info().Msg("axisDescr stepSize successfully parsed")
+			log.Info().Msg("axisDescr stepSize successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("asap2Version could not be parsed")
+				log.Err(err).Msg("asap2Version could not be parsed")
 				break forLoop
 			} else if tok.current() == endAxisDescrToken {
 				break forLoop
 			} else if !ad.attributeSet {
 				ad.attribute, err = parseAttributeEnum(tok)
 				if err != nil {
-						log.Err(err).Msg("axisDescr attribute could not be parsed")
+					log.Err(err).Msg("axisDescr attribute could not be parsed")
 					break forLoop
 				}
 				ad.attributeSet = true
-					log.Info().Msg("axisDescr attribute successfully parsed")
+				log.Info().Msg("axisDescr attribute successfully parsed")
 			} else if !ad.inputQuantitySet {
 				ad.inputQuantity = tok.current()
 				ad.inputQuantitySet = true
-					log.Info().Msg("axisDescr inputQuantity successfully parsed")
+				log.Info().Msg("axisDescr inputQuantity successfully parsed")
 			} else if !ad.conversionSet {
 				ad.conversion = tok.current()
 				ad.inputQuantitySet = true
-					log.Info().Msg("axisDescr inputQuantity successfully parsed")
+				log.Info().Msg("axisDescr inputQuantity successfully parsed")
 			} else if !ad.maxAxisPointsSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 16)
 				if err != nil {
-						log.Err(err).Msg("axisDescr maxAxisPoints could not be parsed")
+					log.Err(err).Msg("axisDescr maxAxisPoints could not be parsed")
 					break forLoop
 				}
 				ad.maxAxisPoints = uint16(buf)
 				ad.maxAxisPointsSet = true
-					log.Info().Msg("axisDescr maxAxisPoints successfully parsed")
+				log.Info().Msg("axisDescr maxAxisPoints successfully parsed")
 			} else if !ad.lowerLimitSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
-						log.Err(err).Msg("axisDescr lowerLimit could not be parsed")
+					log.Err(err).Msg("axisDescr lowerLimit could not be parsed")
 					break forLoop
 				}
 				ad.lowerLimit = buf
 				ad.lowerLimitSet = true
-					log.Info().Msg("axisDescr lowerLimit successfully parsed")
+				log.Info().Msg("axisDescr lowerLimit successfully parsed")
 			} else if !ad.upperLimitSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
-						log.Err(err).Msg("axisDescr upperLimit could not be parsed")
+					log.Err(err).Msg("axisDescr upperLimit could not be parsed")
 					break forLoop
 				}
 				ad.upperLimit = buf
 				ad.upperLimitSet = true
-					log.Info().Msg("axisDescr upperLimit successfully parsed")
+				log.Info().Msg("axisDescr upperLimit successfully parsed")
 			}
 		}
 	}

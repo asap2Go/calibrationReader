@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -17,16 +17,16 @@ func parseFixNoAxisPts4(tok *tokenGenerator) (fixNoAxisPts4, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("fixNoAxisPts4 could not be parsed")
+		log.Err(err).Msg("fixNoAxisPts4 could not be parsed")
 	} else if !fnap.numberOfAxisPointsSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
-				log.Err(err).Msg("fixNoAxisPts4 numberOfAxisPoints could not be parsed")
+			log.Err(err).Msg("fixNoAxisPts4 numberOfAxisPoints could not be parsed")
 		}
 		fnap.numberOfAxisPoints = uint16(buf)
 		fnap.numberOfAxisPointsSet = true
-			log.Info().Msg("fixNoAxisPts4 numberOfAxisPoints successfully parsed")
+		log.Info().Msg("fixNoAxisPts4 numberOfAxisPoints successfully parsed")
 	}
 	return fnap, err
 }

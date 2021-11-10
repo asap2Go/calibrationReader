@@ -17,11 +17,11 @@ func parseCpuType(tok *tokenGenerator) (cpuType, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("cpuType could not be parsed")
+		log.Err(err).Msg("cpuType could not be parsed")
 	} else if !ct.cpuSet {
 		ct.cpu = tok.current()
 		ct.cpuSet = true
-			log.Info().Msg("cpuType cpu successfully parsed")
+		log.Info().Msg("cpuType cpu successfully parsed")
 	}
 	return ct, err
 }

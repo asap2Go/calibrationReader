@@ -19,11 +19,11 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("subFunction could not be parsed")
+			log.Err(err).Msg("subFunction could not be parsed")
 			break forLoop
 		} else if tok.current() == endSubFunctionToken {
 			sf.identifierSet = true
-				log.Info().Msg("subFunction identifier successfully parsed")
+			log.Info().Msg("subFunction identifier successfully parsed")
 			break forLoop
 		} else if !sf.identifierSet {
 			sf.identifier = append(sf.identifier, tok.current())

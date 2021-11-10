@@ -17,11 +17,11 @@ func parseAnnotationOrigin(tok *tokenGenerator) (annotationOrigin, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("annotationOrigin could not be parsed")
+		log.Err(err).Msg("annotationOrigin could not be parsed")
 	} else if !ao.originSet {
 		ao.origin = tok.current()
 		ao.originSet = true
-			log.Info().Msg("annotationOrigin origin successfully parsed")
+		log.Info().Msg("annotationOrigin origin successfully parsed")
 	}
 	return ao, err
 }

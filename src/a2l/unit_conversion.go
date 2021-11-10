@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -21,28 +21,28 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("unitConversion could not be parsed")
+			log.Err(err).Msg("unitConversion could not be parsed")
 			break forLoop
 		} else if !uc.gradientSet {
 			var buf float64
 			buf, err = strconv.ParseFloat(tok.current(), 64)
 			if err != nil {
-					log.Err(err).Msg("unitConversion gradient could not be parsed")
+				log.Err(err).Msg("unitConversion gradient could not be parsed")
 				break forLoop
 			}
 			uc.gradient = buf
 			uc.gradientSet = true
-				log.Info().Msg("unitConversion gradient successfully parsed")
+			log.Info().Msg("unitConversion gradient successfully parsed")
 		} else if !uc.offsetSet {
 			var buf float64
 			buf, err = strconv.ParseFloat(tok.current(), 64)
 			if err != nil {
-					log.Err(err).Msg("unitConversion offset could not be parsed")
+				log.Err(err).Msg("unitConversion offset could not be parsed")
 				break forLoop
 			}
 			uc.offset = buf
 			uc.offsetSet = true
-				log.Info().Msg("unitConversion offset successfully parsed")
+			log.Info().Msg("unitConversion offset successfully parsed")
 			break forLoop
 		}
 	}

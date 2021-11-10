@@ -19,11 +19,11 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("defCharacteristic could not be parsed")
+			log.Err(err).Msg("defCharacteristic could not be parsed")
 			break forLoop
 		} else if tok.current() == endDefCharacteristicToken {
 			dc.identifierSet = true
-				log.Info().Msg("defCharacteristic identifier successfully parsed")
+			log.Info().Msg("defCharacteristic identifier successfully parsed")
 			break forLoop
 		} else if !dc.identifierSet {
 			dc.identifier = append(dc.identifier, tok.current())

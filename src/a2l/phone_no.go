@@ -17,11 +17,11 @@ func parsePhoneNo(tok *tokenGenerator) (phoneNo, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("phoneNo could not be parsed")
+		log.Err(err).Msg("phoneNo could not be parsed")
 	} else if !pn.telnumSet {
 		pn.telnum = tok.current()
 		pn.telnumSet = true
-			log.Info().Msg("phoneNo telnum successfully parsed")
+		log.Info().Msg("phoneNo telnum successfully parsed")
 	}
 	return pn, err
 }

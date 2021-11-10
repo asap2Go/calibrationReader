@@ -13,7 +13,7 @@ func parseDiscrete(tok *tokenGenerator) (discreteKeyword, error) {
 	if !d.valueSet {
 		d.value = true
 		d.valueSet = true
-			log.Info().Msg("discrete value successfully parsed")
+		log.Info().Msg("discrete value successfully parsed")
 	}
 	return d, err
 }

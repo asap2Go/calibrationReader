@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -17,16 +17,16 @@ func parseAlignmentFloat64Ieee(tok *tokenGenerator) (alignmentFloat64Ieee, error
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("alignmentFloat64Ieee could not be parsed")
+		log.Err(err).Msg("alignmentFloat64Ieee could not be parsed")
 	} else if !af64.alignmentBorderSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
-				log.Err(err).Msg("alignmentFloat64Ieee alignmentBorder could not be parsed")
+			log.Err(err).Msg("alignmentFloat64Ieee alignmentBorder could not be parsed")
 		}
 		af64.alignmentBorder = uint16(buf)
 		af64.alignmentBorderSet = true
-			log.Info().Msg("alignmentFloat64Ieee alignmentBorder successfully parsed")
+		log.Info().Msg("alignmentFloat64Ieee alignmentBorder successfully parsed")
 	}
 	return af64, err
 }

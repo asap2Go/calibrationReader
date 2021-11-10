@@ -17,11 +17,11 @@ func parseCustomer(tok *tokenGenerator) (customer, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("customer could not be parsed")
+		log.Err(err).Msg("customer could not be parsed")
 	} else if !c.customerSet {
 		c.customer = tok.current()
 		c.customerSet = true
-			log.Info().Msg("customer customer successfully parsed")
+		log.Info().Msg("customer customer successfully parsed")
 	}
 	return c, err
 }

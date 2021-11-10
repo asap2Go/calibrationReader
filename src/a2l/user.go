@@ -18,11 +18,11 @@ func parseUser(tok *tokenGenerator) (user, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("user could not be parsed")
+		log.Err(err).Msg("user could not be parsed")
 	} else if !u.userNameSet {
 		u.userName = tok.current()
 		u.userNameSet = true
-			log.Info().Msg("user userName successfully parsed")
+		log.Info().Msg("user userName successfully parsed")
 	}
 
 	return u, err

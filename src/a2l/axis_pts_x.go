@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -25,42 +25,42 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("axisPtsX could not be parsed")
+			log.Err(err).Msg("axisPtsX could not be parsed")
 			break forLoop
 		} else if !apX.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-					log.Err(err).Msg("axisPtsX position could not be parsed")
+				log.Err(err).Msg("axisPtsX position could not be parsed")
 				break forLoop
 			}
 			apX.position = uint16(buf)
 			apX.positionSet = true
-				log.Info().Msg("axisPtsX position successfully parsed")
+			log.Info().Msg("axisPtsX position successfully parsed")
 		} else if !apX.datatypeSet {
 			apX.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("axisPtsX datatype could not be parsed")
+				log.Err(err).Msg("axisPtsX datatype could not be parsed")
 				break forLoop
 			}
 			apX.datatypeSet = true
-				log.Info().Msg("axisPtsX datatype successfully parsed")
+			log.Info().Msg("axisPtsX datatype successfully parsed")
 		} else if !apX.indexIncrSet {
 			apX.indexIncr, err = parseIndexOrderEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("axisPtsX indexIncr could not be parsed")
+				log.Err(err).Msg("axisPtsX indexIncr could not be parsed")
 				break forLoop
 			}
 			apX.indexIncrSet = true
-				log.Info().Msg("axisPtsX indexIncr successfully parsed")
+			log.Info().Msg("axisPtsX indexIncr successfully parsed")
 		} else if !apX.addressingSet {
 			apX.addressing, err = parseAddrTypeEnum(tok)
 			if err != nil {
-					log.Err(err).Msg("axisPtsX addressing could not be parsed")
+				log.Err(err).Msg("axisPtsX addressing could not be parsed")
 				break forLoop
 			}
 			apX.addressingSet = true
-				log.Info().Msg("axisPtsX addressing successfully parsed")
+			log.Info().Msg("axisPtsX addressing successfully parsed")
 			break forLoop
 		}
 	}

@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -17,16 +17,16 @@ func parseStepSize(tok *tokenGenerator) (StepSize, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("stepSize could not be parsed")
+		log.Err(err).Msg("stepSize could not be parsed")
 	} else if !ss.stepSizeSet {
 		var buf float64
 		buf, err = strconv.ParseFloat(tok.current(), 64)
 		if err != nil {
-				log.Err(err).Msg("stepSize stepSize could not be parsed")
+			log.Err(err).Msg("stepSize stepSize could not be parsed")
 		}
 		ss.stepSize = buf
 		ss.stepSizeSet = true
-			log.Info().Msg("stepSize stepSize successfully parsed")
+		log.Info().Msg("stepSize stepSize successfully parsed")
 	}
 	return ss, err
 }

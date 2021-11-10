@@ -22,19 +22,19 @@ forLoop:
 			var buf formulaInv
 			buf, err = parseFormulaInv(tok)
 			if err != nil {
-					log.Err(err).Msg("formula formulaInv could not be parsed")
+				log.Err(err).Msg("formula formulaInv could not be parsed")
 				break forLoop
 			}
 			f.formulaInv = buf
-				log.Info().Msg("formula formulaInv successfully parsed")
+			log.Info().Msg("formula formulaInv successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("formula could not be parsed")
+				log.Err(err).Msg("formula could not be parsed")
 				break forLoop
 			} else if tok.current() == endFormulaToken {
 				f.fxSet = true
-					log.Info().Msg("formula fx successfully parsed")
+				log.Info().Msg("formula fx successfully parsed")
 				break forLoop
 			} else if !f.fxSet {
 				f.fx = append(f.fx, tok.current())

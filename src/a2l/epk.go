@@ -17,11 +17,11 @@ func parseEpk(tok *tokenGenerator) (epk, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("epk could not be parsed")
+		log.Err(err).Msg("epk could not be parsed")
 	} else if !e.identifierSet {
 		e.identifier = tok.current()
 		e.identifierSet = true
-			log.Info().Msg("epk identifier successfully parsed")
+		log.Info().Msg("epk identifier successfully parsed")
 	}
 	return e, err
 }

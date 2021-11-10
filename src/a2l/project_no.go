@@ -17,11 +17,11 @@ func parseProjectNo(tok *tokenGenerator) (projectNo, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("projectNo could not be parsed")
+		log.Err(err).Msg("projectNo could not be parsed")
 	} else if !pn.projectNumberSet {
 		pn.projectNumber = tok.current()
 		pn.projectNumberSet = true
-			log.Info().Msg("projectNo projectNumber successfully parsed")
+		log.Info().Msg("projectNo projectNumber successfully parsed")
 	}
 	return pn, err
 }

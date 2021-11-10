@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -17,16 +17,16 @@ func parseNumber(tok *tokenGenerator) (Number, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("number could not be parsed")
+		log.Err(err).Msg("number could not be parsed")
 	} else if !n.numberSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
-				log.Err(err).Msg("number number could not be parsed")
+			log.Err(err).Msg("number number could not be parsed")
 		}
 		n.number = uint16(buf)
 		n.numberSet = true
-			log.Info().Msg("number number successfully parsed")
+		log.Info().Msg("number number successfully parsed")
 	}
 	return n, err
 }

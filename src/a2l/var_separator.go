@@ -17,11 +17,11 @@ func parseVarSeparator(tok *tokenGenerator) (varSeparator, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("varSeparator could not be parsed")
+		log.Err(err).Msg("varSeparator could not be parsed")
 	} else if !vs.separatorSet {
 		vs.separator = tok.current()
 		vs.separatorSet = true
-			log.Info().Msg("varSeparator separator successfully parsed")
+		log.Info().Msg("varSeparator separator successfully parsed")
 	}
 	return vs, err
 }

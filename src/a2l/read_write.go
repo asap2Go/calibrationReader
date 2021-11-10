@@ -13,7 +13,7 @@ func parseReadWrite(tok *tokenGenerator) (readWriteKeyword, error) {
 	if !rw.valueSet {
 		rw.value = true
 		rw.valueSet = true
-			log.Info().Msg("readWrite value successfully parsed")
+		log.Info().Msg("readWrite value successfully parsed")
 	}
 	return rw, err
 }

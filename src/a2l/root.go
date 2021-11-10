@@ -13,7 +13,7 @@ func parseRoot(tok *tokenGenerator) (rootKeyword, error) {
 	if !r.valueSet {
 		r.value = true
 		r.valueSet = true
-			log.Info().Msg("root value successfully parsed")
+		log.Info().Msg("root value successfully parsed")
 	}
 	return r, err
 }

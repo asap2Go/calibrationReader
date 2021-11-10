@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -19,17 +19,17 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("fixAxisParList could not be parsed")
+			log.Err(err).Msg("fixAxisParList could not be parsed")
 			break forLoop
 		} else if tok.current() == endFixAxisParListToken {
 			fapl.axisPtsValueSet = true
-				log.Info().Msg("fixAxisParList axisPtsValue successfully parsed")
+			log.Info().Msg("fixAxisParList axisPtsValue successfully parsed")
 			break forLoop
 		} else if !fapl.axisPtsValueSet {
 			var buf float64
 			buf, err = strconv.ParseFloat(tok.current(), 64)
 			if err != nil {
-					log.Err(err).Msg("attribute axisPtsValue could not be parsed")
+				log.Err(err).Msg("attribute axisPtsValue could not be parsed")
 				break forLoop
 			}
 			fapl.axisPtsValue = append(fapl.axisPtsValue, buf)

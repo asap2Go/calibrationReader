@@ -17,11 +17,11 @@ func parseVarSelectionCharacteristic(tok *tokenGenerator) (varSelectionCharacter
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("varSelectionCharacteristic could not be parsed")
+		log.Err(err).Msg("varSelectionCharacteristic could not be parsed")
 	} else if !vsc.nameSet {
 		vsc.name = tok.current()
 		vsc.nameSet = true
-			log.Info().Msg("varSelectionCharacteristic name successfully parsed")
+		log.Info().Msg("varSelectionCharacteristic name successfully parsed")
 	}
 	return vsc, err
 }

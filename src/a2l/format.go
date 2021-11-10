@@ -17,11 +17,11 @@ func parseFormat(tok *tokenGenerator) (format, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("format could not be parsed")
+		log.Err(err).Msg("format could not be parsed")
 	} else if !f.formatStringSet {
 		f.formatString = tok.current()
 		f.formatStringSet = true
-			log.Info().Msg("format formatString successfully parsed")
+		log.Info().Msg("format formatString successfully parsed")
 	}
 	return f, err
 }

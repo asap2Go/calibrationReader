@@ -17,11 +17,11 @@ func parseCalibrationHandleText(tok *tokenGenerator) (calibrationHandleText, err
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("calibrationHandleText could not be parsed")
+		log.Err(err).Msg("calibrationHandleText could not be parsed")
 	} else if !cht.textSet {
 		cht.text = tok.current()
 		cht.textSet = true
-			log.Info().Msg("calibrationHandleText text successfully parsed")
+		log.Info().Msg("calibrationHandleText text successfully parsed")
 	}
 	return cht, err
 }

@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -17,16 +17,16 @@ func parseMaxGrad(tok *tokenGenerator) (MaxGrad, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("maxGrad could not be parsed")
+		log.Err(err).Msg("maxGrad could not be parsed")
 	} else if !mg.maxGradientSet {
 		var buf float64
 		buf, err = strconv.ParseFloat(tok.current(), 64)
 		if err != nil {
-				log.Err(err).Msg("maxGrad maxGradient could not be parsed")
+			log.Err(err).Msg("maxGrad maxGradient could not be parsed")
 		}
 		mg.maxGradient = buf
 		mg.maxGradientSet = true
-			log.Info().Msg("maxGrad maxGradient successfully parsed")
+		log.Info().Msg("maxGrad maxGradient successfully parsed")
 	}
 	return mg, err
 }

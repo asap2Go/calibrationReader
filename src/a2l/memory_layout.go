@@ -1,8 +1,8 @@
 package a2l
 
 import (
-	"github.com/rs/zerolog/log"
 	"errors"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -28,15 +28,15 @@ forLoop:
 			var buf IfData
 			buf, err = parseIfData(tok)
 			if err != nil {
-					log.Err(err).Msg("memoryLayout ifData could not be parsed")
+				log.Err(err).Msg("memoryLayout ifData could not be parsed")
 				break forLoop
 			}
 			ml.ifData = append(ml.ifData, buf)
-				log.Info().Msg("memoryLayout ifData successfully parsed")
+			log.Info().Msg("memoryLayout ifData successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("memoryLayout could not be parsed")
+				log.Err(err).Msg("memoryLayout could not be parsed")
 				break forLoop
 			} else if tok.current() == endMemoryLayoutToken {
 				break forLoop
@@ -44,17 +44,17 @@ forLoop:
 				var buf prgTypeEnum
 				buf, err = parsePrgTypeEnum(tok)
 				if err != nil {
-						log.Err(err).Msg("memoryLayout prgType could not be parsed")
+					log.Err(err).Msg("memoryLayout prgType could not be parsed")
 					break forLoop
 				}
 				ml.prgType = buf
 				ml.prgTypeSet = true
-					log.Info().Msg("memoryLayout prgType successfully parsed")
+				log.Info().Msg("memoryLayout prgType successfully parsed")
 			} else if !ml.addressSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 32)
 				if err != nil {
-						log.Err(err).Msg("attribute address could not be parsed")
+					log.Err(err).Msg("attribute address could not be parsed")
 					break forLoop
 				}
 				ml.address = uint32(buf)
@@ -63,7 +63,7 @@ forLoop:
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 32)
 				if err != nil {
-						log.Err(err).Msg("attribute size could not be parsed")
+					log.Err(err).Msg("attribute size could not be parsed")
 					break forLoop
 				}
 				ml.size = uint32(buf)

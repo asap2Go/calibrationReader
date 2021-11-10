@@ -17,11 +17,11 @@ func parseStatusStringRef(tok *tokenGenerator) (statusStringRef, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("statusStringRef could not be parsed")
+		log.Err(err).Msg("statusStringRef could not be parsed")
 	} else if !ssr.conversionTableSet {
 		ssr.conversionTable = tok.current()
 		ssr.conversionTableSet = true
-			log.Info().Msg("statusStringRef conversionTable successfully parsed")
+		log.Info().Msg("statusStringRef conversionTable successfully parsed")
 	}
 	return ssr, err
 }

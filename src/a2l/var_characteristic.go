@@ -24,24 +24,24 @@ forLoop:
 			var buf varAddress
 			buf, err = parseVarAddress(tok)
 			if err != nil {
-					log.Err(err).Msg("varCharacteristic varAddress could not be parsed")
+				log.Err(err).Msg("varCharacteristic varAddress could not be parsed")
 				break forLoop
 			}
 			vc.varAddress = append(vc.varAddress, buf)
-				log.Info().Msg("varCharacteristic varAddress successfully parsed")
+			log.Info().Msg("varCharacteristic varAddress successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-					log.Err(err).Msg("varCharacteristic could not be parsed")
+				log.Err(err).Msg("varCharacteristic could not be parsed")
 				break forLoop
 			} else if tok.current() == endVarCharacteristicToken {
 				vc.identCriterionNameSet = true
-					log.Info().Msg("varCharacteristic identCriterionName successfully parsed")
+				log.Info().Msg("varCharacteristic identCriterionName successfully parsed")
 				break forLoop
 			} else if !vc.nameSet {
 				vc.name = tok.current()
 				vc.nameSet = true
-					log.Info().Msg("varCharacteristic name successfully parsed")
+				log.Info().Msg("varCharacteristic name successfully parsed")
 			} else if !vc.identCriterionNameSet {
 				vc.identCriterionName = append(vc.identCriterionName, tok.current())
 			}

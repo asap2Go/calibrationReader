@@ -17,11 +17,11 @@ func parseRefMemorySegment(tok *tokenGenerator) (refMemorySegment, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("refMemorySegment: could not be parsed")
+		log.Err(err).Msg("refMemorySegment: could not be parsed")
 	} else if !rms.nameSet {
 		rms.name = tok.current()
 		rms.nameSet = true
-			log.Info().Msg("refMemorySegment name successfully parsed")
+		log.Info().Msg("refMemorySegment name successfully parsed")
 	}
 	return rms, err
 }

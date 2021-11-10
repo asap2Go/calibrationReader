@@ -19,11 +19,11 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("refMeasurement could not be parsed")
+			log.Err(err).Msg("refMeasurement could not be parsed")
 			break forLoop
 		} else if tok.current() == endRefMeasurementToken {
 			rm.identifierSet = true
-				log.Info().Msg("refMeasurement identifier successfully parsed")
+			log.Info().Msg("refMeasurement identifier successfully parsed")
 			break forLoop
 		} else if !rm.identifierSet {
 			rm.identifier = append(rm.identifier, tok.current())

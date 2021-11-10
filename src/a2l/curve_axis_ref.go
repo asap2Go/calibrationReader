@@ -17,11 +17,11 @@ func parseCurveAxisRef(tok *tokenGenerator) (curveAxisRef, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("curveAxisRef could not be parsed")
+		log.Err(err).Msg("curveAxisRef could not be parsed")
 	} else if !car.curveAxisSet {
 		car.curveAxis = tok.current()
 		car.curveAxisSet = true
-			log.Info().Msg("curveAxisRef curveAxis successfully parsed")
+		log.Info().Msg("curveAxisRef curveAxis successfully parsed")
 	}
 	return car, err
 }

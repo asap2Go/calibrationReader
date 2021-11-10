@@ -17,11 +17,11 @@ func parseAnnotationLabel(tok *tokenGenerator) (annotationLabel, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("annotationLabel could not be parsed")
+		log.Err(err).Msg("annotationLabel could not be parsed")
 	} else if !al.labelSet {
 		al.label = tok.current()
 		al.labelSet = true
-			log.Info().Msg("annotationLabel label successfully parsed")
+		log.Info().Msg("annotationLabel label successfully parsed")
 	}
 	return al, err
 }

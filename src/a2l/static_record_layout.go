@@ -13,7 +13,7 @@ func parseStaticRecordLayout(tok *tokenGenerator) (staticRecordLayoutKeyword, er
 	if !srl.valueSet {
 		srl.value = true
 		srl.valueSet = true
-			log.Info().Msg("staticRecordLayout value successfully parsed")
+		log.Info().Msg("staticRecordLayout value successfully parsed")
 	}
 	return srl, err
 }

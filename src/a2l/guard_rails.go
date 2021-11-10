@@ -17,11 +17,11 @@ func parseGuardRails(tok *tokenGenerator) (GuardRails, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-			log.Err(err).Msg("guardRails could not be parsed: unexpected end of file")
+		log.Err(err).Msg("guardRails could not be parsed: unexpected end of file")
 	} else if !gr.valueSet {
 		gr.value = true
 		gr.valueSet = true
-			log.Info().Msg("guardRails value successfully parsed")
+		log.Info().Msg("guardRails value successfully parsed")
 	}
 	return gr, err
 }

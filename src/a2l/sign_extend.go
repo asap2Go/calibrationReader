@@ -13,7 +13,7 @@ func parseSignExtend(tok *tokenGenerator) (SignExtend, error) {
 	if !se.valueSet {
 		se.value = true
 		se.valueSet = true
-			log.Info().Msg("signExtend value successfully parsed")
+		log.Info().Msg("signExtend value successfully parsed")
 	}
 	return se, err
 }

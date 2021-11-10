@@ -19,7 +19,7 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-				log.Err(err).Msg("annotationText could not be parsed")
+			log.Err(err).Msg("annotationText could not be parsed")
 			break forLoop
 		} else if tok.current() == endAnnotationTextToken {
 			at.annotationTextSet = true
