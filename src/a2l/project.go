@@ -30,6 +30,7 @@ forLoop:
 			log.Info().Msg("project header successfully parsed")
 		case beginModuleToken:
 			var buf module
+			//decision whether to parse the module multithreaded or not
 			if useMultithreading {
 				buf, err = parseModuleMultithreaded(tok)
 			} else {

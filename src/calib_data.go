@@ -13,11 +13,15 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//CalibrationData contains the parsed structs from the a2l as well as the byte data from the hex file
+//that are parsed by ReadCalibration()
 type CalibrationData struct {
 	a2l a2l.A2L
 	hex ihex32.Hex
 }
 
+//ReadCalibration takes filepaths to the a2l file and the hex file,
+//parses them in parallel and returns a CalibrationData struct
 func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, error) {
 	var err error
 	var cd CalibrationData
@@ -55,6 +59,7 @@ func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, e
 }
 
 //readA2L is a helper function intended to be run in a separate go routine to call the a2l parser
+//in order to be able to parse hex and a2l in parallel
 func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath string) {
 	defer wg.Done()
 	a, err := a2l.ParseFromFile(a2lFilePath)
@@ -70,6 +75,7 @@ func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath str
 }
 
 //readHex is a helper function intended to be run in a separate go routine to call the hex parser
+//in order to be able to parse hex and a2l in parallel
 func readHex(wg *sync.WaitGroup, ch chan ihex32.Hex, ce chan error, hexFilePath string) {
 	defer wg.Done()
 	h, err := ihex32.ParseFromFile(hexFilePath)

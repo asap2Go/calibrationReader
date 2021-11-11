@@ -16,6 +16,13 @@ type matrixDim struct {
 	zDimSet bool
 }
 
+//parseMatrixDim parses the matrix dimensions of higher order Characteristics.
+//this function is special because it is the only function that utilizes tokenizer.previous().
+//this is the case because matrixDim is not clearly defined in earlier a2l standards (e.g. 1.6.0).
+//therefore it is possible to describe a curve with "MATRIX_DIM 1" and "MATRIX_DIM 1 0 0".
+//so the parser checks whether the token is a keyword in which case it rolls back the tokenizer one value and exits
+//or if it finds a number that can be parsed.
+//if it could parse x, y and z dim it will exit normally.
 func parseMatrixDim(tok *tokenGenerator) (matrixDim, error) {
 	md := matrixDim{}
 	var err error
@@ -59,6 +66,7 @@ forLoop:
 			}
 			md.zDim = uint16(buf)
 			log.Info().Msg("matrixDim zDim successfully parsed")
+			break forLoop
 		}
 	}
 	return md, err

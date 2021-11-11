@@ -227,6 +227,10 @@ forLoop:
 	return myModule, err
 }
 
+//parseModuleMultithreaded is the parallel parsing version of parseModule.
+//it computes the start and the end of the module struct
+//and splits it up among numProc number of goroutines
+//which each execute a separate moduleMainLoop
 func parseModuleMultithreaded(tok *tokenGenerator) (module, error) {
 	//Bulk init of an average number of objects contained in a modern a2l-file.
 	log.Info().Msg("creating maps for module subtypes")
@@ -334,6 +338,9 @@ forLoop:
 
 }
 
+//collectChannelsMultithreaded uses anonymous function to collect the data sent by the goroutines running the moduleMainLoop.
+//usually the Select Collector is to be prefered as it is mostly faster and always easier on memory
+//as the additional goroutines spun up in collectChannelsMultithreaded seem to block the GC a lot
 func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan FRAME, cFunction chan function,
@@ -476,6 +483,8 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 	return myModule
 }
 
+//collectChannelsSelect uses a select statement to collect the data sent by the goroutines running the moduleMainLoop.
+//preferred method compared to MultithreadedCollector
 func collectChannelsSelect(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan FRAME, cFunction chan function,
@@ -550,6 +559,10 @@ forLoopSelect:
 	return myModule
 }
 
+//closeChannelsAfterParsing obviously closes all channels when the parser routines have finished
+//and wgParser.Wait() is over.
+//channels have to be closed in order for the collector to recognize when it is done
+//because no more data can be sent and all channels are empty
 func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts chan axisPts, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan FRAME, cFunction chan function,
@@ -579,6 +592,7 @@ func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts cha
 	log.Info().Msg("parsers finished, closed all channels")
 }
 
+//parseModuleMainLoop is used by the parseModuleMultithreaded function to run the module parser in individual goroutines
 func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	cA2ml chan a2ml, cAxisPts chan axisPts, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
