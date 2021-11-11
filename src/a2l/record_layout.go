@@ -37,9 +37,9 @@ type recordLayout struct {
 	fixNoAxisPts5        fixNoAxisPts5
 	fncValues            fncValues
 	identification       identification
-	noAxisPtsx           noAxisPtsX
-	noAxisPtsy           noAxisPtsY
-	noAxisPtsz           noAxisPtsZ
+	noAxisPtsX           noAxisPtsX
+	noAxisPtsY           noAxisPtsY
+	noAxisPtsZ           noAxisPtsZ
 	noAxisPts4           noAxisPts4
 	noAxisPts5           noAxisPts5
 	noRescalex           noRescaleX
@@ -79,193 +79,375 @@ forLoop:
 	for {
 		switch tok.next() {
 		case alignmentByteToken:
-			var buf alignmentByte
-			buf, err = parseAlignmentByte(tok)
+			rl.alignmentByte, err = parseAlignmentByte(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentByte could not be parsed")
 				break forLoop
 			}
-			rl.alignmentByte = buf
 			log.Info().Msg("recordLayout alignmentByte successfully parsed")
 		case alignmentFloat32IeeeToken:
-			var buf alignmentFloat32Ieee
-			buf, err = parseAlignmentFloat32Ieee(tok)
+			rl.alignmentFloat32Ieee, err = parseAlignmentFloat32Ieee(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentFloat32Ieee could not be parsed")
 				break forLoop
 			}
-			rl.alignmentFloat32Ieee = buf
 			log.Info().Msg("recordLayout alignmentFloat32Ieee successfully parsed")
 		case alignmentFloat64IeeeToken:
-			var buf alignmentFloat64Ieee
-			buf, err = parseAlignmentFloat64Ieee(tok)
+			rl.alignmentFloat64Ieee, err = parseAlignmentFloat64Ieee(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentFloat64Ieee could not be parsed")
 				break forLoop
 			}
-			rl.alignmentFloat64Ieee = buf
 			log.Info().Msg("recordLayout alignmentFloat64Ieee successfully parsed")
 		case alignmentInt64Token:
-			var buf alignmentInt64
-			buf, err = parseAlignmentInt64(tok)
+			rl.alignmentInt64, err = parseAlignmentInt64(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentInt64 could not be parsed")
 				break forLoop
 			}
-			rl.alignmentInt64 = buf
 			log.Info().Msg("recordLayout alignmentInt64 successfully parsed")
 		case alignmentLongToken:
-			var buf alignmentLong
-			buf, err = parseAlignmentLong(tok)
+			rl.alignmentLong, err = parseAlignmentLong(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentLong could not be parsed")
 				break forLoop
 			}
-			rl.alignmentLong = buf
 			log.Info().Msg("recordLayout alignmentLong successfully parsed")
 		case alignmentWordToken:
-			var buf alignmentWord
-			buf, err = parseAlignmentWord(tok)
+			rl.alignmentWord, err = parseAlignmentWord(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout alignmentWord could not be parsed")
 				break forLoop
 			}
-			rl.alignmentWord = buf
 			log.Info().Msg("recordLayout alignmentWord successfully parsed")
 		case axisPtsXToken:
-			var buf axisPtsX
-			buf, err = parseAxisPtsX(tok)
+			rl.axisPtsX, err = parseAxisPtsX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout axisPtsx could not be parsed")
 				break forLoop
 			}
-			rl.axisPtsX = buf
 			log.Info().Msg("recordLayout axisPtsx successfully parsed")
+		case axisPtsYToken:
+			rl.axisPtsY, err = parseAxisPtsY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisPtsY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisPtsY successfully parsed")
+		case axisPtsZToken:
+			rl.axisPtsZ, err = parseAxisPtsZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisPtsZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisPtsZ successfully parsed")
+		case axisPts4Token:
+			rl.axisPts4, err = parseAxisPts4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisPts4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisPts4 successfully parsed")
+		case axisPts5Token:
+			rl.axisPts5, err = parseAxisPts5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisPts5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisPts5 successfully parsed")
 		case axisRescaleXToken:
-			var buf axisRescaleX
-			buf, err = parseAxisRescaleX(tok)
+			rl.axisRescaleX, err = parseAxisRescaleX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout axisRescalex could not be parsed")
 				break forLoop
 			}
-			rl.axisRescaleX = buf
 			log.Info().Msg("recordLayout axisRescalex successfully parsed")
 		case distOpXToken:
-			var buf distOpX
-			buf, err = parseDistOpX(tok)
+			rl.distOpX, err = parseDistOpX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout distOpx could not be parsed")
 				break forLoop
 			}
-			rl.distOpX = buf
 			log.Info().Msg("recordLayout distOpx successfully parsed")
+		case distOpYToken:
+			rl.distOpY, err = parseDistOpY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout distOpY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout distOpY successfully parsed")
+		case distOpZToken:
+			rl.distOpZ, err = parseDistOpZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout distOpZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout distOpZ successfully parsed")
+		case distOp4Token:
+			rl.distOp4, err = parseDistOp4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout distOp4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout distOp4 successfully parsed")
+		case distOp5Token:
+			rl.distOp5, err = parseDistOp5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout distOp5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout distOp5 successfully parsed")
 		case fixNoAxisPtsXToken:
-			var buf fixNoAxisPtsX
-			buf, err = parseFixNoAxisPtsX(tok)
+			rl.fixNoAxisPtsX, err = parseFixNoAxisPtsX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout fixNoAxisPtsx could not be parsed")
 				break forLoop
 			}
-			rl.fixNoAxisPtsX = buf
 			log.Info().Msg("recordLayout fixNoAxisPtsx successfully parsed")
+		case fixNoAxisPtsYToken:
+			rl.fixNoAxisPtsY, err = parseFixNoAxisPtsY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout fixNoAxisPtsY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout fixNoAxisPtsY successfully parsed")
+		case fixNoAxisPtsZToken:
+			rl.fixNoAxisPtsZ, err = parseFixNoAxisPtsZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout fixNoAxisPtsZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout fixNoAxisPtsZ successfully parsed")
+		case fixNoAxisPts4Token:
+			rl.fixNoAxisPts4, err = parseFixNoAxisPts4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout fixNoAxisPts4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout fixNoAxisPts4 successfully parsed")
+		case fixNoAxisPts5Token:
+			rl.fixNoAxisPts5, err = parseFixNoAxisPts5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout fixNoAxisPts5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout fixNoAxisPts5 successfully parsed")
 		case fncValuesToken:
-			var buf fncValues
-			buf, err = parseFncValues(tok)
+			rl.fncValues, err = parseFncValues(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout fncValues could not be parsed")
 				break forLoop
 			}
-			rl.fncValues = buf
 			log.Info().Msg("recordLayout fncValues successfully parsed")
 		case identificationToken:
-			var buf identification
-			buf, err = parseIdentification(tok)
+			rl.identification, err = parseIdentification(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout identification could not be parsed")
 				break forLoop
 			}
-			rl.identification = buf
 			log.Info().Msg("recordLayout identification successfully parsed")
 		case noAxisPtsXToken:
-			var buf noAxisPtsX
-			buf, err = parseNoAxisPtsX(tok)
+			rl.noAxisPtsX, err = parseNoAxisPtsX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout noAxisPtsx could not be parsed")
 				break forLoop
 			}
-			rl.noAxisPtsx = buf
 			log.Info().Msg("recordLayout noAxisPtsx successfully parsed")
+		case noAxisPtsYToken:
+			rl.noAxisPtsY, err = parseNoAxisPtsY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noAxisPtsY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noAxisPtsY successfully parsed")
+		case noAxisPtsZToken:
+			rl.noAxisPtsZ, err = parseNoAxisPtsZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noAxisPtsZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noAxisPtsZ successfully parsed")
+		case noAxisPts4Token:
+			rl.noAxisPts4, err = parseNoAxisPts4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noAxisPts4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noAxisPts4 successfully parsed")
+		case noAxisPts5Token:
+			rl.noAxisPts5, err = parseNoAxisPts5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noAxisPts5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noAxisPts5 successfully parsed")
 		case noRescaleXToken:
-			var buf noRescaleX
-			buf, err = parseNoRescaleX(tok)
+			rl.noRescalex, err = parseNoRescaleX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout noRescalex could not be parsed")
 				break forLoop
 			}
-			rl.noRescalex = buf
 			log.Info().Msg("recordLayout noRescalex successfully parsed")
 		case offsetXToken:
-			var buf offsetX
-			buf, err = parseOffsetX(tok)
+			rl.offsetX, err = parseOffsetX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout offsetx could not be parsed")
 				break forLoop
 			}
-			rl.offsetX = buf
 			log.Info().Msg("recordLayout offsetx successfully parsed")
+		case offsetYToken:
+			rl.offsetY, err = parseOffsetY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout offsetY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout offsetY successfully parsed")
+		case offsetZToken:
+			rl.offsetZ, err = parseOffsetZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout offsetZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout offsetZ successfully parsed")
+		case offset4Token:
+			rl.offset4, err = parseOffset4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout offset4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout offset4 successfully parsed")
+		case offset5Token:
+			rl.offset5, err = parseOffset5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout offset5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout offset5 successfully parsed")
 		case reservedToken:
-			var buf reserved
-			buf, err = parseReserved(tok)
+			rl.reserved, err = parseReserved(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout reserved could not be parsed")
 				break forLoop
 			}
-			rl.reserved = buf
 			log.Info().Msg("recordLayout reserved successfully parsed")
 		case ripAddrWToken:
-			var buf ripAddrW
-			buf, err = parseRipAddrW(tok)
+			rl.ripAddrW, err = parseRipAddrW(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout ripAddrw could not be parsed")
 				break forLoop
 			}
-			rl.ripAddrW = buf
 			log.Info().Msg("recordLayout ripAddrw successfully parsed")
 		case ripAddrXToken:
-			var buf ripAddrX
-			buf, err = parseRipAddrX(tok)
+			rl.ripAddrX, err = parseRipAddrX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout ripAddrx could not be parsed")
 				break forLoop
 			}
-			rl.ripAddrX = buf
 			log.Info().Msg("recordLayout ripAddrx successfully parsed")
+		case ripAddrYToken:
+			rl.ripAddrY, err = parseRipAddrY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout ripAddrY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout ripAddrY successfully parsed")
+		case ripAddrZToken:
+			rl.ripAddrZ, err = parseRipAddrZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout ripAddrZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout ripAddrZ successfully parsed")
+		case ripAddr4Token:
+			rl.ripAddr4, err = parseRipAddr4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout ripAddr4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout ripAddr4 successfully parsed")
+		case ripAddr5Token:
+			rl.ripAddr5, err = parseRipAddr5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout ripAddr5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout ripAddr5 successfully parsed")
 		case srcAddrXToken:
-			var buf srcAddrX
-			buf, err = parseSrcAddrX(tok)
+			rl.srcAddrX, err = parseSrcAddrX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout srcAddrx could not be parsed")
 				break forLoop
 			}
-			rl.srcAddrX = buf
 			log.Info().Msg("recordLayout srcAddrx successfully parsed")
+		case srcAddrYToken:
+			rl.srcAddrY, err = parseSrcAddrY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout srcAddrY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout srcAddrY successfully parsed")
+		case srcAddrZToken:
+			rl.srcAddrZ, err = parseSrcAddrZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout srcAddrZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout srcAddrZ successfully parsed")
+		case srcAddr4Token:
+			rl.srcAddr4, err = parseSrcAddr4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout srcAddr4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout srcAddr4 successfully parsed")
+		case srcAddr5Token:
+			rl.srcAddr5, err = parseSrcAddr5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout srcAddr5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout srcAddr5 successfully parsed")
 		case shiftOpXToken:
-			var buf shiftOpX
-			buf, err = parseShiftOpX(tok)
+			rl.shiftOpX, err = parseShiftOpX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout shiftOpx could not be parsed")
 				break forLoop
 			}
-			rl.shiftOpX = buf
 			log.Info().Msg("recordLayout shiftOpx successfully parsed")
+		case shiftOpYToken:
+			rl.shiftOpY, err = parseShiftOpY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout shiftOpY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout shiftOpY successfully parsed")
+		case shiftOpZToken:
+			rl.shiftOpZ, err = parseShiftOpZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout shiftOpZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout shiftOpZ successfully parsed")
+		case shiftOp4Token:
+			rl.shiftOp4, err = parseShiftOp4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout shiftOp4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout shiftOp4 successfully parsed")
+		case shiftOp5Token:
+			rl.shiftOp5, err = parseShiftOp5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout shiftOp5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout shiftOp5 successfully parsed")
 		case staticRecordLayoutToken:
-			var buf staticRecordLayoutKeyword
-			buf, err = parseStaticRecordLayout(tok)
+			rl.staticRecordLayout, err = parseStaticRecordLayout(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout staticRecordLayout could not be parsed")
 				break forLoop
 			}
-			rl.staticRecordLayout = buf
 			log.Info().Msg("recordLayout staticRecordLayout successfully parsed")
 		default:
 			if tok.current() == emptyToken {

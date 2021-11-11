@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type memoryLayout struct {
@@ -41,13 +42,11 @@ forLoop:
 			} else if tok.current() == endMemoryLayoutToken {
 				break forLoop
 			} else if !ml.prgTypeSet {
-				var buf prgTypeEnum
-				buf, err = parsePrgTypeEnum(tok)
+				ml.prgType, err = parsePrgTypeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("memoryLayout prgType could not be parsed")
 					break forLoop
 				}
-				ml.prgType = buf
 				ml.prgTypeSet = true
 				log.Info().Msg("memoryLayout prgType successfully parsed")
 			} else if !ml.addressSet {

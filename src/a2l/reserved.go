@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type reserved struct {
@@ -34,13 +35,11 @@ forLoop:
 			r.positionSet = true
 			log.Info().Msg("reserved position successfully parsed")
 		} else if !r.dataSizeSet {
-			var buf dataSizeEnum
-			buf, err = parseDataSizeEnum(tok)
+			r.dataSize, err = parseDataSizeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("reserved dataSize could not be parsed")
 				break forLoop
 			}
-			r.dataSize = buf
 			r.dataSizeSet = true
 			log.Info().Msg("reserved dataSize successfully parsed")
 			break forLoop

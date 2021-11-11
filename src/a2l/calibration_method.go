@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type calibrationMethod struct {
@@ -26,10 +27,9 @@ forLoop:
 			if err != nil {
 				log.Err(err).Msg("calibrationMethod calibrationHandle could not be parsed")
 				break forLoop
-			} else {
-				cm.calibrationHandle = append(cm.calibrationHandle, buf)
-				log.Info().Msg("calibrationMethod calibrationHandle successfully parsed")
 			}
+			cm.calibrationHandle = append(cm.calibrationHandle, buf)
+			log.Info().Msg("calibrationMethod calibrationHandle successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
@@ -47,11 +47,10 @@ forLoop:
 				if err != nil {
 					log.Err(err).Msg("calibrationMethod version could not be parsed")
 					break forLoop
-				} else {
-					cm.version = uint32(buf)
-					cm.versionSet = true
-					log.Info().Msg("calibrationMethod version successfully parsed")
 				}
+				cm.version = uint32(buf)
+				cm.versionSet = true
+				log.Info().Msg("calibrationMethod version successfully parsed")
 			}
 		}
 	}

@@ -20,13 +20,11 @@ forLoop:
 	for {
 		switch tok.next() {
 		case readOnlyToken:
-			var buf readOnly
-			buf, err = parseReadOnly(tok)
+			ur.readOnly, err = parseReadOnly(tok)
 			if err != nil {
 				log.Err(err).Msg("userRights readOnly could not be parsed")
 				break forLoop
 			}
-			ur.readOnly = buf
 			log.Info().Msg("userRights readOnly successfully parsed")
 		case beginRefGroupToken:
 			var buf refGroup

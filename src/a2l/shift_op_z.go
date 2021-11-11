@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type shiftOpZ struct {
@@ -34,13 +35,11 @@ forLoop:
 			soz.positionSet = true
 			log.Info().Msg("shiftOpz position successfully parsed")
 		} else if !soz.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			soz.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("shiftOpz datatype could not be parsed")
 				break forLoop
 			}
-			soz.datatype = buf
 			soz.datatypeSet = true
 			log.Info().Msg("shiftOpz datatype successfully parsed")
 			break forLoop

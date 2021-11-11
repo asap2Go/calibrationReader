@@ -24,22 +24,18 @@ forLoop:
 	for {
 		switch tok.next() {
 		case varMeasurementToken:
-			var buf varMeasurement
-			buf, err = parseVarMeasurement(tok)
+			vc.varMeasurement, err = parseVarMeasurement(tok)
 			if err != nil {
 				log.Err(err).Msg("varCriterion varMeasurement could not be parsed")
 				break forLoop
 			}
-			vc.varMeasurement = buf
 			log.Info().Msg("varCriterion varMeasurement successfully parsed")
 		case varSelectionCharacteristicToken:
-			var buf varSelectionCharacteristic
-			buf, err = parseVarSelectionCharacteristic(tok)
+			vc.varSelectionCharacteristic, err = parseVarSelectionCharacteristic(tok)
 			if err != nil {
 				log.Err(err).Msg("varCriterion varSelectionCharacteristic could not be parsed")
 				break forLoop
 			}
-			vc.varSelectionCharacteristic = buf
 			log.Info().Msg("varCriterion varSelectionCharacteristic successfully parsed")
 		default:
 			if tok.current() == emptyToken {

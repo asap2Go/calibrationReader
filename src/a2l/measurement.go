@@ -63,103 +63,81 @@ forLoop:
 			m.annotation = append(m.annotation, buf)
 			log.Info().Msg("measurement annotation successfully parsed")
 		case arraySizeToken:
-			var buf arraySize
-			buf, err = parseArraySize(tok)
+			m.arraySize, err = parseArraySize(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement arraySize could not be parsed")
 				break forLoop
 			}
-			m.arraySize = buf
 			log.Info().Msg("measurement arraySize successfully parsed")
 		case bitMaskToken:
-			var buf bitMask
-			buf, err = parseBitMask(tok)
+			m.bitMask, err = parseBitMask(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement bitMask could not be parsed")
 				break forLoop
 			}
-			m.bitMask = buf
 			log.Info().Msg("measurement bitMask successfully parsed")
 		case beginBitOperationToken:
-			var buf bitOperation
-			buf, err = parseBitOperation(tok)
+			m.bitOperation, err = parseBitOperation(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement bitOperation could not be parsed")
 				break forLoop
 			}
-			m.bitOperation = buf
 			log.Info().Msg("measurement bitOperation successfully parsed")
 		case byteOrderToken:
-			var buf byteOrder
-			buf, err = parseByteOrder(tok)
+			m.byteOrder, err = parseByteOrder(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement byteOrder could not be parsed")
 				break forLoop
 			}
-			m.byteOrder = buf
 			log.Info().Msg("measurement byteOrder successfully parsed")
 		case discreteToken:
-			var buf discreteKeyword
-			buf, err = parseDiscrete(tok)
+			m.discrete, err = parseDiscrete(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement discrete could not be parsed")
 				break forLoop
 			}
-			m.discrete = buf
 			log.Info().Msg("measurement discrete successfully parsed")
 		case displayIdentifierToken:
-			var buf DisplayIdentifier
-			buf, err = parseDisplayIdentifier(tok)
+			m.displayIdentifier, err = parseDisplayIdentifier(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement displayIdentifier could not be parsed")
 				break forLoop
 			}
-			m.displayIdentifier = buf
 			log.Info().Msg("measurement displayIdentifier successfully parsed")
 		case ecuAddressToken:
-			var buf ecuAddress
-			buf, err = parseEcuAddress(tok)
+			m.ecuAddress, err = parseEcuAddress(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement ecuAddress could not be parsed")
 				break forLoop
 			}
-			m.ecuAddress = buf
 			log.Info().Msg("measurement ecuAddress successfully parsed")
 		case ecuAddressExtensionToken:
-			var buf ecuAddressExtension
-			buf, err = parseECUAddressExtension(tok)
+			m.ecuAddressExtension, err = parseECUAddressExtension(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement ecuAddressExtension could not be parsed")
 				break forLoop
 			}
-			m.ecuAddressExtension = buf
 			log.Info().Msg("measurement ecuAddressExtension successfully parsed")
 		case errorMaskToken:
-			var buf errorMask
-			buf, err = parseErrorMask(tok)
+			m.errorMask, err = parseErrorMask(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement errorMask could not be parsed")
 				break forLoop
 			}
-			m.errorMask = buf
 			log.Info().Msg("measurement errorMask successfully parsed")
 		case formatToken:
-			var buf format
-			buf, err = parseFormat(tok)
+			m.format, err = parseFormat(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement format could not be parsed")
 				break forLoop
 			}
-			m.format = buf
 			log.Info().Msg("measurement format successfully parsed")
 		case beginFunctionListToken:
-			var buf FunctionList
-			buf, err = parseFunctionList(tok)
+			m.functionList, err = parseFunctionList(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement functionList could not be parsed")
 				break forLoop
 			}
-			m.functionList = buf
 			log.Info().Msg("measurement functionList successfully parsed")
 		case beginIfDataToken:
 			var buf IfData
@@ -171,77 +149,61 @@ forLoop:
 			m.ifData = append(m.ifData, buf)
 			log.Info().Msg("measurement ifData successfully parsed")
 		case layoutToken:
-			var buf layout
-			buf, err = parseLayout(tok)
+			m.layout, err = parseLayout(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement layout could not be parsed")
 				break forLoop
 			}
-			m.layout = buf
 			log.Info().Msg("measurement layout successfully parsed")
 		case matrixDimToken:
-			var buf matrixDim
-			buf, err = parseMatrixDim(tok)
+			m.matrixDim, err = parseMatrixDim(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement matrixDim could not be parsed")
 				break forLoop
 			}
-			m.matrixDim = buf
 			log.Info().Msg("measurement matrixDim successfully parsed")
 			log.Info().Str("current token", tok.current()).Msg("measurement current token:")
 		case maxRefreshToken:
-			var buf MaxRefresh
-			buf, err = parseMaxRefresh(tok)
+			m.maxRefresh, err = parseMaxRefresh(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement maxRefresh could not be parsed")
 				break forLoop
 			}
-			m.maxRefresh = buf
 			log.Info().Msg("measurement maxRefresh successfully parsed")
 		case physUnitToken:
-			var buf physUnit
-			buf, err = parsePhysUnit(tok)
+			m.physUnit, err = parsePhysUnit(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement physUnit could not be parsed")
 				break forLoop
 			}
-			m.physUnit = buf
 			log.Info().Msg("measurement physUnit successfully parsed")
 		case readWriteToken:
-			var buf readWriteKeyword
-			buf, err = parseReadWrite(tok)
+			m.readWrite, err = parseReadWrite(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement readWrite could not be parsed")
 				break forLoop
 			}
-			m.readWrite = buf
 			log.Info().Msg("measurement readWrite successfully parsed")
 		case refMemorySegmentToken:
-			var buf refMemorySegment
-			buf, err = parseRefMemorySegment(tok)
+			m.refMemorySegment, err = parseRefMemorySegment(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement refMemorySegment could not be parsed")
 				break forLoop
 			}
-			m.refMemorySegment = buf
 			log.Info().Msg("measurement refMemorySegment successfully parsed")
 		case symbolLinkToken:
-			var buf symbolLink
-			buf, err = parseSymbolLink(tok)
+			m.symbolLink, err = parseSymbolLink(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement symbolLink could not be parsed")
 				break forLoop
 			}
-			m.symbolLink = buf
 			log.Info().Msg("measurement symbolLink successfully parsed")
 		case beginVirtualToken:
-			var buf virtual
-			buf, err = parseVirtual(tok)
+			m.virtual, err = parseVirtual(tok)
 			if err != nil {
 				log.Err(err).Msg("measurement virtual could not be parsed")
 				break forLoop
 			}
-			m.virtual = buf
 			log.Info().Msg("measurement virtual successfully parsed")
 		default:
 			if tok.current() == emptyToken {
@@ -259,13 +221,11 @@ forLoop:
 				m.longIdentifierSet = true
 				log.Info().Msg("measurement longIdentifier successfully parsed")
 			} else if !m.datatypeSet {
-				var buf dataTypeEnum
-				buf, err = parseDataTypeEnum(tok)
+				m.datatype, err = parseDataTypeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("measurement datatype could not be parsed")
 					break forLoop
 				}
-				m.datatype = buf
 				log.Info().Msg("measurement datatype successfully parsed")
 				m.datatypeSet = true
 				log.Info().Msg("measurement datatype successfully parsed")

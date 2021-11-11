@@ -19,12 +19,10 @@ func parseDeposit(tok *tokenGenerator) (Deposit, error) {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("deposit could not be parsed")
 	} else if !d.modeSet {
-		var buf ModeEnum
-		buf, err = parseModeEnum(tok)
+		d.mode, err = parseModeEnum(tok)
 		if err != nil {
 			log.Err(err).Msg("deposit could not be parsed")
 		}
-		d.mode = buf
 		d.modeSet = true
 		log.Info().Msg("deposit mode successfully parsed")
 	}

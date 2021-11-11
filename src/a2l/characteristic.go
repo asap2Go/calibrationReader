@@ -65,172 +65,152 @@ forLoop:
 			if err != nil {
 				log.Err(err).Msg("characteristic annotation could not be parsed")
 				break forLoop
-			} else {
-				c.annotation = append(c.annotation, buf)
-				log.Info().Msg("characteristic annotation successfully parsed")
 			}
+			c.annotation = append(c.annotation, buf)
+			log.Info().Msg("characteristic annotation successfully parsed")
 		case beginAxisDescrToken:
 			var buf axisDescr
 			buf, err = parseAxisDescr(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic axisDescr could not be parsed")
 				break forLoop
-			} else {
-				c.axisDescr = append(c.axisDescr, buf)
-				log.Info().Msg("characteristic axisDescr successfully parsed")
 			}
+			c.axisDescr = append(c.axisDescr, buf)
+			log.Info().Msg("characteristic axisDescr successfully parsed")
 		case bitMaskToken:
 			c.bitMask, err = parseBitMask(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic bitMask could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic bitMask successfully parsed")
 			}
+			log.Info().Msg("characteristic bitMask successfully parsed")
 		case byteOrderToken:
 			c.byteOrder, err = parseByteOrder(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic byteOrder could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic byteOrder successfully parsed")
 			}
+			log.Info().Msg("characteristic byteOrder successfully parsed")
 		case calibrationAccessToken:
 			c.calibrationAccess, err = parseCalibrationAccessEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic calibrationAccess could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic calibrationAccess successfully parsed")
 			}
+			log.Info().Msg("characteristic calibrationAccess successfully parsed")
 		case comparisonQuantityToken:
 			c.comparisonQuantity, err = parseComparisonQuantity(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic comparisonQuantity could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic comparisonQuantity successfully parsed")
 			}
+			log.Info().Msg("characteristic comparisonQuantity successfully parsed")
 		case beginDependentCharacteristicToken:
 			var buf DependentCharacteristic
 			buf, err = parseDependentCharacteristic(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic dependentCharacteristic could not be parsed")
 				break forLoop
-			} else {
-				c.dependentCharacteristic = append(c.dependentCharacteristic, buf)
-				log.Info().Msg("characteristic dependentCharacteristic successfully parsed")
 			}
+			c.dependentCharacteristic = append(c.dependentCharacteristic, buf)
+			log.Info().Msg("characteristic dependentCharacteristic successfully parsed")
 		case discreteToken:
 			c.discrete, err = parseDiscrete(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic discrete could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic discrete successfully parsed")
 			}
+			log.Info().Msg("characteristic discrete successfully parsed")
 		case displayIdentifierToken:
 			c.displayIdentifier, err = parseDisplayIdentifier(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic displayIdentifier could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic displayIdentifier successfully parsed")
 			}
+			log.Info().Msg("characteristic displayIdentifier successfully parsed")
 		case ecuAddressExtensionToken:
 			c.ecuAddressExtension, err = parseECUAddressExtension(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic ecuAddressExtension could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic ecuAddressExtension successfully parsed")
 			}
+			log.Info().Msg("characteristic ecuAddressExtension successfully parsed")
 		case extendedLimitsToken:
 			c.extendedLimits, err = parseExtendedLimits(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic bufExtendedLimits could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic extendedLimits successfully parsed")
 			}
+			log.Info().Msg("characteristic extendedLimits successfully parsed")
 		case formatToken:
 			c.format, err = parseFormat(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic format could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic format successfully parsed")
 			}
+			log.Info().Msg("characteristic format successfully parsed")
 		case beginFunctionListToken:
 			var buf FunctionList
 			buf, err = parseFunctionList(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic functionList could not be parsed")
 				break forLoop
-			} else {
-				c.functionList = append(c.functionList, buf)
-				log.Info().Msg("characteristic functionList successfully parsed")
 			}
+			c.functionList = append(c.functionList, buf)
+			log.Info().Msg("characteristic functionList successfully parsed")
 		case guardRailsToken:
 			c.guardRails, err = parseGuardRails(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic guardRails could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic guardRails successfully parsed")
 			}
+			log.Info().Msg("characteristic guardRails successfully parsed")
 		case beginIfDataToken:
 			var buf IfData
 			buf, err = parseIfData(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic ifData could not be parsed")
 				break forLoop
-			} else {
-				c.ifData = append(c.ifData, buf)
-				log.Info().Msg("characteristic ifData successfully parsed")
 			}
+			c.ifData = append(c.ifData, buf)
+			log.Info().Msg("characteristic ifData successfully parsed")
 		case beginMapListToken:
 			var buf MapList
 			buf, err = parseMapList(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic mapList could not be parsed")
 				break forLoop
-			} else {
-				c.mapList = append(c.mapList, buf)
-				log.Info().Msg("characteristic mapList successfully parsed")
 			}
+			c.mapList = append(c.mapList, buf)
+			log.Info().Msg("characteristic mapList successfully parsed")
 		case matrixDimToken:
 			c.matrixDim, err = parseMatrixDim(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic matrixDim could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic matrixDim successfully parsed")
 			}
+			log.Info().Msg("characteristic matrixDim successfully parsed")
 		case maxRefreshToken:
 			c.maxRefresh, err = parseMaxRefresh(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic maxRefresh could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic maxRefresh successfully parsed")
 			}
+			log.Info().Msg("characteristic maxRefresh successfully parsed")
 		case numberToken:
 			c.number, err = parseNumber(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic number could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic number successfully parsed")
 			}
+			log.Info().Msg("characteristic number successfully parsed")
 		case physUnitToken:
 			c.physUnit, err = parsePhysUnit(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic physUnit could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("characteristic physUnit successfully parsed")
 			}
+			log.Info().Msg("characteristic physUnit successfully parsed")
 		case readOnlyToken:
 			c.readOnly, err = parseReadOnly(tok)
 			if err != nil {

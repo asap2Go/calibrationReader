@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type ripAddrX struct {
@@ -34,13 +35,11 @@ forLoop:
 			rax.positionSet = true
 			log.Info().Msg("ripAddrx position successfully parsed")
 		} else if !rax.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			rax.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("ripAddrx datatype could not be parsed")
 				break forLoop
 			}
-			rax.datatype = buf
 			rax.datatypeSet = true
 			log.Info().Msg("ripAddrx datatype successfully parsed")
 			break forLoop

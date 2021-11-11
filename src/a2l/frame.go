@@ -26,12 +26,10 @@ forLoop:
 	for {
 		switch tok.next() {
 		case frameMeasurementToken:
-			var buf frameMeasurement
-			buf, err = parseFrameMeasurement(tok)
+			f.frameMeasurement, err = parseFrameMeasurement(tok)
 			if err != nil {
 				break forLoop
 			}
-			f.frameMeasurement = buf
 			log.Info().Msg("frame frameMeasurement successfully parsed")
 		case beginIfDataToken:
 			var buf IfData

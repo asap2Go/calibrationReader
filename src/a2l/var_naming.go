@@ -19,13 +19,10 @@ func parseVarNaming(tok *tokenGenerator) (varNaming, error) {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("varNaming could not be parsed")
 	} else if !vn.tagSet {
-		var buf tagEnum
-		buf, err = parseTagEnum(tok)
+		vn.tag, err = parseTagEnum(tok)
 		if err != nil {
 			log.Err(err).Msg("varNaming tag could not be parsed")
 		}
-		vn.tag = buf
-		log.Info().Msg("varNaming tag successfully parsed")
 		vn.tagSet = true
 		log.Info().Msg("varNaming tag successfully parsed")
 	}

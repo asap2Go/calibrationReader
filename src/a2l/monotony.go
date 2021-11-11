@@ -19,13 +19,10 @@ func parseMonotony(tok *tokenGenerator) (Monotony, error) {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("monotony could not be parsed")
 	} else if !m.monotonySet {
-		var buf MonotonyTypeEnum
-		buf, err = parseMonotonyTypeEnum(tok)
+		m.monotony, err = parseMonotonyTypeEnum(tok)
 		if err != nil {
 			log.Err(err).Msg("monotony monotony could not be parsed")
 		}
-		m.monotony = buf
-		log.Info().Msg("monotony monotony successfully parsed")
 		m.monotonySet = true
 		log.Info().Msg("monotony monotony successfully parsed")
 	}

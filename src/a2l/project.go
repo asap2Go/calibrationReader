@@ -22,13 +22,11 @@ forLoop:
 	for {
 		switch tok.next() {
 		case beginHeaderToken:
-			var buf header
-			buf, err = parseHeader(tok)
+			p.header, err = parseHeader(tok)
 			if err != nil {
 				log.Err(err).Msg("project header could not be parsed")
 				break forLoop
 			}
-			p.header = buf
 			log.Info().Msg("project header successfully parsed")
 		case beginModuleToken:
 			var buf module

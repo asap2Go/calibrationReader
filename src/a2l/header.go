@@ -20,22 +20,18 @@ forLoop:
 	for {
 		switch tok.next() {
 		case projectNoToken:
-			var buf projectNo
-			buf, err = parseProjectNo(tok)
+			h.projectNo, err = parseProjectNo(tok)
 			if err != nil {
 				log.Err(err).Msg("header projectNo could not be parsed")
 				break forLoop
 			}
-			h.projectNo = buf
 			log.Info().Msg("header projectNo successfully parsed")
 		case versionToken:
-			var buf version
-			buf, err = parseVersion(tok)
+			h.version, err = parseVersion(tok)
 			if err != nil {
 				log.Err(err).Msg("header version could not be parsed")
 				break forLoop
 			}
-			h.version = buf
 			log.Info().Msg("header version successfully parsed")
 		default:
 			if tok.current() == emptyToken {

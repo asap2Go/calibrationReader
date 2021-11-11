@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type distOp4 struct {
@@ -34,13 +35,11 @@ forLoop:
 			do.positionSet = true
 			log.Info().Msg("distOp4 position successfully parsed")
 		} else if !do.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			do.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("distOp4 datatype could not be parsed")
 				break forLoop
 			}
-			do.datatype = buf
 			do.datatypeSet = true
 			log.Info().Msg("distOp4 datatype successfully parsed")
 			break forLoop

@@ -23,25 +23,22 @@ forLoop:
 			if err != nil {
 				log.Err(err).Msg("bitOperation leftShift could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("bitOperation leftShift successfully parsed")
 			}
+			log.Info().Msg("bitOperation leftShift successfully parsed")
 		case rightShiftToken:
 			bo.rightShift, err = parseRightShift(tok)
 			if err != nil {
 				log.Err(err).Msg("bitOperation rightShift could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("bitOperation rightShift successfully parsed")
 			}
+			log.Info().Msg("bitOperation rightShift successfully parsed")
 		case signExtendToken:
 			bo.signExtend, err = parseSignExtend(tok)
 			if err != nil {
 				log.Err(err).Msg("bitOperation signExtend could not be parsed")
 				break forLoop
-			} else {
-				log.Info().Msg("bitOperation signExtend successfully parsed")
 			}
+			log.Info().Msg("bitOperation signExtend successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")

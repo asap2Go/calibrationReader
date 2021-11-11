@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type noAxisPtsZ struct {
@@ -34,13 +35,11 @@ forLoop:
 			napz.positionSet = true
 			log.Info().Msg("noAxisPtsz position successfully parsed")
 		} else if !napz.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			napz.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPtsz datatype could not be parsed")
 				break forLoop
 			}
-			napz.datatype = buf
 			napz.datatypeSet = true
 			log.Info().Msg("noAxisPtsz datatype successfully parsed")
 			break forLoop

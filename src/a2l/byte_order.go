@@ -22,10 +22,9 @@ func parseByteOrder(tok *tokenGenerator) (byteOrder, error) {
 		bo.byteOrder, err = parseByteOrderEnum(tok)
 		if err != nil {
 			log.Err(err).Msg("byteOrder byteOrder could not be parsed")
-		} else {
-			bo.byteOrderSet = true
-			log.Info().Msg("byteOrder byteOrder successfully parsed")
 		}
+		bo.byteOrderSet = true
+		log.Info().Msg("byteOrder byteOrder successfully parsed")
 	}
 	return bo, err
 }

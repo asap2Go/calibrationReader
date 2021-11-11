@@ -52,58 +52,46 @@ forLoop:
 			mp.calibrationMethod = append(mp.calibrationMethod, buf)
 			log.Info().Msg("modPar calibrationMethod successfully parsed")
 		case cpuTypeToken:
-			var buf cpuType
-			buf, err = parseCpuType(tok)
+			mp.cpuType, err = parseCpuType(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar cpuType could not be parsed")
 				break forLoop
 			}
-			mp.cpuType = buf
 			log.Info().Msg("modPar cpuType successfully parsed")
 		case customerToken:
-			var buf customer
-			buf, err = parseCustomer(tok)
+			mp.customer, err = parseCustomer(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar customer could not be parsed")
 				break forLoop
 			}
-			mp.customer = buf
 			log.Info().Msg("modPar customer successfully parsed")
 		case customerNoToken:
-			var buf customerNo
-			buf, err = parseCustomerNo(tok)
+			mp.customerNo, err = parseCustomerNo(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar customerNo could not be parsed")
 				break forLoop
 			}
-			mp.customerNo = buf
 			log.Info().Msg("modPar customerNo successfully parsed")
 		case ecuToken:
-			var buf ecu
-			buf, err = parseEcu(tok)
+			mp.ecu, err = parseEcu(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar ecu could not be parsed")
 				break forLoop
 			}
-			mp.ecu = buf
 			log.Info().Msg("modPar ecu successfully parsed")
 		case ecuCalibrationOffsetToken:
-			var buf ecuCalibrationOffset
-			buf, err = parseEcuCalibrationOffset(tok)
+			mp.ecuCalibrationOffset, err = parseEcuCalibrationOffset(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar ecuCalibrationOffset could not be parsed")
 				break forLoop
 			}
-			mp.ecuCalibrationOffset = buf
 			log.Info().Msg("modPar ecuCalibrationOffset successfully parsed")
 		case epkToken:
-			var buf epk
-			buf, err = parseEpk(tok)
+			mp.epk, err = parseEpk(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar epk could not be parsed")
 				break forLoop
 			}
-			mp.epk = buf
 			log.Info().Msg("modPar epk successfully parsed")
 		case beginMemoryLayoutToken:
 			var buf memoryLayout
@@ -124,31 +112,25 @@ forLoop:
 			mp.memorySegment = append(mp.memorySegment, buf)
 			log.Info().Msg("modPar memorySegment successfully parsed")
 		case noOfInterfacesToken:
-			var buf noOfInterfaces
-			buf, err = parseNoOfInterfaces(tok)
+			mp.noOfInterfaces, err = parseNoOfInterfaces(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar noOfInterfaces could not be parsed")
 				break forLoop
 			}
-			mp.noOfInterfaces = buf
 			log.Info().Msg("modPar noOfInterfaces successfully parsed")
 		case phoneNoToken:
-			var buf phoneNo
-			buf, err = parsePhoneNo(tok)
+			mp.phoneNo, err = parsePhoneNo(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar phoneNo could not be parsed")
 				break forLoop
 			}
-			mp.phoneNo = buf
 			log.Info().Msg("modPar phoneNo successfully parsed")
 		case supplierToken:
-			var buf supplier
-			buf, err = parseSupplier(tok)
+			mp.supplier, err = parseSupplier(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar supplier could not be parsed")
 				break forLoop
 			}
-			mp.supplier = buf
 			log.Info().Msg("modPar supplier successfully parsed")
 		case systemConstantToken:
 			var buf systemConstant
@@ -160,22 +142,18 @@ forLoop:
 			mp.systemConstant = append(mp.systemConstant, buf)
 			log.Info().Msg("modPar systemConstant successfully parsed")
 		case beginUserToken:
-			var buf user
-			buf, err = parseUser(tok)
+			mp.user, err = parseUser(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar user could not be parsed")
 				break forLoop
 			}
-			mp.user = buf
 			log.Info().Msg("modPar user successfully parsed")
 		case versionToken:
-			var buf version
-			buf, err = parseVersion(tok)
+			mp.version, err = parseVersion(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar version could not be parsed")
 				break forLoop
 			}
-			mp.version = buf
 			log.Info().Msg("modPar version successfully parsed")
 		default:
 			if tok.current() == emptyToken {

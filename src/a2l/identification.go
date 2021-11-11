@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type identification struct {
@@ -34,13 +35,11 @@ forLoop:
 			i.positionSet = true
 			log.Info().Msg("identification position successfully parsed")
 		} else if !i.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			i.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("identification position could not be parsed")
 				break forLoop
 			}
-			i.datatype = buf
 			i.datatypeSet = true
 			log.Info().Msg("identification datatype successfully parsed")
 			break forLoop

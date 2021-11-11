@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type noAxisPts5 struct {
@@ -34,13 +35,11 @@ forLoop:
 			nap5.positionSet = true
 			log.Info().Msg("noAxisPts5 position successfully parsed")
 		} else if !nap5.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			nap5.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPts5 datatype could not be parsed")
 				break forLoop
 			}
-			nap5.datatype = buf
 			nap5.datatypeSet = true
 			log.Info().Msg("noAxisPts5 datatype successfully parsed")
 			break forLoop

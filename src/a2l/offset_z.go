@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type offsetZ struct {
@@ -34,13 +35,11 @@ forLoop:
 			oz.positionSet = true
 			log.Info().Msg("offsetz position successfully parsed")
 		} else if !oz.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			oz.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("offsetz datatype could not be parsed")
 				break forLoop
 			}
-			oz.datatype = buf
 			oz.datatypeSet = true
 			log.Info().Msg("offsetz datatype successfully parsed")
 			break forLoop

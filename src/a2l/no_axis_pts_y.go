@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type noAxisPtsY struct {
@@ -34,13 +35,11 @@ forLoop:
 			napy.positionSet = true
 			log.Info().Msg("noAxisPtsy position successfully parsed")
 		} else if !napy.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			napy.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPtsy datatype could not be parsed")
 				break forLoop
 			}
-			napy.datatype = buf
 			napy.datatypeSet = true
 			log.Info().Msg("noAxisPtsy datatype successfully parsed")
 			break forLoop

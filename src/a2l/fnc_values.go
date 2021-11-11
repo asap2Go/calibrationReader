@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type fncValues struct {
@@ -38,33 +39,27 @@ forLoop:
 			fv.positionSet = true
 			log.Info().Msg("fncValues position successfully parsed")
 		} else if !fv.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			fv.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues datatype could not be parsed")
 				break forLoop
 			}
-			fv.datatype = buf
 			fv.datatypeSet = true
 			log.Info().Msg("fncValues datatype successfully parsed")
 		} else if !fv.indexModeSet {
-			var buf IndexModeEnum
-			buf, err = parseIndexModeEnum(tok)
+			fv.indexMode, err = parseIndexModeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues indexMode could not be parsed")
 				break forLoop
 			}
-			fv.indexMode = buf
 			fv.indexModeSet = true
 			log.Info().Msg("fncValues indexMode successfully parsed")
 		} else if !fv.addresstypeSet {
-			var buf AddrTypeEnum
-			buf, err = parseAddrTypeEnum(tok)
+			fv.addresstype, err = parseAddrTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues addresstype could not be parsed")
 				break forLoop
 			}
-			fv.addresstype = buf
 			fv.addresstypeSet = true
 			log.Info().Msg("fncValues addresstype successfully parsed")
 			break forLoop

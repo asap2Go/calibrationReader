@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type noRescaleZ struct {
@@ -34,13 +35,11 @@ forLoop:
 			nrz.positionSet = true
 			log.Info().Msg("noRescalez position successfully parsed")
 		} else if !nrz.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			nrz.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noRescalez datatype could not be parsed")
 				break forLoop
 			}
-			nrz.datatype = buf
 			nrz.datatypeSet = true
 			log.Info().Msg("noRescalez datatype successfully parsed")
 			break forLoop

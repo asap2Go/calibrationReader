@@ -32,7 +32,7 @@ forLoop:
 		} else if !vfc.criterionNameSet || !vfc.criterionValueSet {
 			vfc.criterionName = append(vfc.criterionName, tok.current())
 			if tok.next() != emptyToken {
-				vfc.criterionValue = append(vfc.criterionValue, tok.current())
+				vfc.criterionValue = append(vfc.criterionValue, tok.current()) //token is upated in the if condition above
 			} else {
 				err = errors.New("unexpected end of file")
 				log.Err(err).Msg("varForbiddenComb could not be parsed")

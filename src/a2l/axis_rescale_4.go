@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type axisRescale4 struct {
@@ -40,13 +41,11 @@ forLoop:
 			ar4.positionSet = true
 			log.Info().Msg("axisRescale4 position successfully parsed")
 		} else if !ar4.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			ar4.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescale4 datatype could not be parsed")
 				break forLoop
 			}
-			ar4.datatype = buf
 			ar4.datatypeSet = true
 			log.Info().Msg("axisRescale4 datatype successfully parsed")
 		} else if !ar4.maxNumberOfRescalePairsSet {
@@ -60,23 +59,19 @@ forLoop:
 			ar4.maxNumberOfRescalePairsSet = true
 			log.Info().Msg("axisRescale4 maxNumberOfRescalePairs successfully parsed")
 		} else if !ar4.indexIncrSet {
-			var buf IndexOrderEnum
-			buf, err = parseIndexOrderEnum(tok)
+			ar4.indexIncr, err = parseIndexOrderEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescale4 indexIncr could not be parsed")
 				break forLoop
 			}
-			ar4.indexIncr = buf
 			ar4.indexIncrSet = true
 			log.Info().Msg("axisRescale4 indexIncr successfully parsed")
 		} else if !ar4.adressingSet {
-			var buf AddrTypeEnum
-			buf, err = parseAddrTypeEnum(tok)
+			ar4.adressing, err = parseAddrTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescale4 adressing could not be parsed")
 				break forLoop
 			}
-			ar4.adressing = buf
 			ar4.adressingSet = true
 			log.Info().Msg("axisRescale4 adressing successfully parsed")
 			break forLoop

@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type srcAddr5 struct {
@@ -34,13 +35,11 @@ forLoop:
 			sa5.positionSet = true
 			log.Info().Msg("srcAddr5 position successfully parsed")
 		} else if !sa5.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			sa5.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("srcAddr5 datatype could not be parsed")
 				break forLoop
 			}
-			sa5.datatype = buf
 			sa5.datatypeSet = true
 			log.Info().Msg("srcAddr5 datatype successfully parsed")
 			break forLoop

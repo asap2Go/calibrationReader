@@ -57,33 +57,27 @@ forLoop:
 				ms.longIdentifierSet = true
 				log.Info().Msg("memorySegment longIdentifier successfully parsed")
 			} else if !ms.prgTypeSet {
-				var buf prgTypeEnum
-				buf, err = parsePrgTypeEnum(tok)
+				ms.prgType, err = parsePrgTypeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("memorySegment prgType could not be parsed")
 					break forLoop
 				}
-				ms.prgType = buf
 				ms.prgTypeSet = true
 				log.Info().Msg("memorySegment prgType successfully parsed")
 			} else if !ms.memoryTypeSet {
-				var buf memoryTypeEnum
-				buf, err = parseMemoryTypeEnum(tok)
+				ms.memoryType, err = parseMemoryTypeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("memorySegment memoryType could not be parsed")
 					break forLoop
 				}
-				ms.memoryType = buf
 				ms.memoryTypeSet = true
 				log.Info().Msg("memorySegment memoryType successfully parsed")
 			} else if !ms.attributeSet {
-				var buf attributeEnum
-				buf, err = parseAttributeEnum(tok)
+				ms.attribute, err = parseAttributeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("memorySegment attribute could not be parsed")
 					break forLoop
 				}
-				ms.attribute = buf
 				ms.attributeSet = true
 				log.Info().Msg("memorySegment address successfully parsed")
 			} else if !ms.addressSet {

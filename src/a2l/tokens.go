@@ -108,19 +108,51 @@ const alignmentInt64Token = "ALIGNMENT_INT64"
 const alignmentLongToken = "ALIGNMENT_LONG"
 const alignmentWordToken = "ALIGNMENT_WORD"
 const axisPtsXToken = "AXIS_PTS_X"
+const axisPtsYToken = "AXIS_PTS_Y"
+const axisPtsZToken = "AXIS_PTS_Z"
+const axisPts4Token = "AXIS_PTS_4"
+const axisPts5Token = "AXIS_PTS_5"
 const axisRescaleXToken = "AXIS_RESCALE_X"
 const distOpXToken = "DIST_OP_X"
+const distOpYToken = "DIST_OP_Y"
+const distOpZToken = "DIST_OP_Z"
+const distOp4Token = "DIST_OP_4"
+const distOp5Token = "DIST_OP_5"
 const fixNoAxisPtsXToken = "FIX_NO_AXIS_PTS_X"
+const fixNoAxisPtsYToken = "FIX_NO_AXIS_PTS_Y"
+const fixNoAxisPtsZToken = "FIX_NO_AXIS_PTS_Z"
+const fixNoAxisPts4Token = "FIX_NO_AXIS_PTS_4"
+const fixNoAxisPts5Token = "FIX_NO_AXIS_PTS_5"
 const fncValuesToken = "FNC_VALUES"
 const identificationToken = "IDENTIFICATION"
 const noAxisPtsXToken = "NO_AXIS_PTS_X"
+const noAxisPtsYToken = "NO_AXIS_PTS_Y"
+const noAxisPtsZToken = "NO_AXIS_PTS_Z"
+const noAxisPts4Token = "NO_AXIS_PTS_4"
+const noAxisPts5Token = "NO_AXIS_PTS_5"
 const noRescaleXToken = "NO_RESCALE_X"
 const offsetXToken = "OFFSET_X"
-const reservedToken = "RESERVED"
+const offsetYToken = "OFFSET_Y"
+const offsetZToken = "OFFSET_Z"
+const offset4Token = "OFFSET_4"
+const offset5Token = "OFFSET_5"
 const ripAddrWToken = "RIP_ADDR_W"
 const ripAddrXToken = "RIP_ADDR_X"
+const ripAddrYToken = "RIP_ADDR_Y"
+const ripAddrZToken = "RIP_ADDR_Z"
+const ripAddr4Token = "RIP_ADDR_4"
+const ripAddr5Token = "RIP_ADDR_5"
 const srcAddrXToken = "SRC_ADDR_X"
+const srcAddrYToken = "SRC_ADDR_Y"
+const srcAddrZToken = "SRC_ADDR_Z"
+const srcAddr4Token = "SRC_ADDR_4"
+const srcAddr5Token = "SRC_ADDR_5"
 const shiftOpXToken = "SHIFT_OP_X"
+const shiftOpYToken = "SHIFT_OP_Y"
+const shiftOpZToken = "SHIFT_OP_Z"
+const shiftOp4Token = "SHIFT_OP_4"
+const shiftOp5Token = "SHIFT_OP_5"
+const reservedToken = "RESERVED"
 const staticRecordLayoutToken = "STATIC_RECORD_LAYOUT"
 const beginDefCharacteristicToken = "/begin DEF_CHARACTERISTIC"
 const endDefCharacteristicToken = "/end DEF_CHARACTERISTIC"
@@ -577,4 +609,33 @@ var keywordList = []string{
 	notInEcuToken,
 	calibrationToken,
 	mapToken,
-	formToken}
+	formToken,
+	axisPtsYToken,
+	axisPtsZToken,
+	axisPts4Token,
+	axisPts5Token,
+	distOpYToken,
+	distOpZToken,
+	distOp4Token,
+	distOp5Token,
+	fixNoAxisPtsYToken,
+	fixNoAxisPtsZToken,
+	fixNoAxisPts4Token,
+	fixNoAxisPts5Token,
+	offsetYToken,
+	offsetZToken,
+	offset4Token,
+	offset5Token,
+	ripAddrYToken,
+	ripAddrZToken,
+	ripAddr4Token,
+	ripAddr5Token,
+	srcAddrYToken,
+	srcAddrZToken,
+	srcAddr4Token,
+	srcAddr5Token,
+	shiftOpYToken,
+	shiftOpZToken,
+	shiftOp4Token,
+	shiftOp5Token,
+}

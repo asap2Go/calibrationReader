@@ -49,13 +49,11 @@ forLoop:
 			vc.varForbiddenComb = append(vc.varForbiddenComb, buf)
 			log.Info().Msg("variantCoding varForbiddenComb successfully parsed")
 		case varNamingToken:
-			var buf varNaming
-			buf, err = parseVarNaming(tok)
+			vc.varNaming, err = parseVarNaming(tok)
 			if err != nil {
 				log.Err(err).Msg("variantCoding varNaming could not be parsed")
 				break forLoop
 			}
-			vc.varNaming = buf
 			log.Info().Msg("variantCoding varNaming successfully parsed")
 		default:
 			if tok.current() == emptyToken {
@@ -65,13 +63,11 @@ forLoop:
 			} else if tok.current() == endVariantCodingToken {
 				break forLoop
 			} else if !vc.varSeparatorSet {
-				var buf varSeparator
-				buf, err = parseVarSeparator(tok)
+				vc.varSeparator, err = parseVarSeparator(tok)
 				if err != nil {
 					log.Err(err).Msg("variantCoding varSeparator could not be parsed")
 					break forLoop
 				}
-				vc.varSeparator = buf
 				vc.varSeparatorSet = true
 				log.Info().Msg("variantCoding varSeparator successfully parsed")
 			}

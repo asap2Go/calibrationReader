@@ -19,13 +19,11 @@ forLoop:
 	for {
 		switch tok.next() {
 		case formulaInvToken:
-			var buf formulaInv
-			buf, err = parseFormulaInv(tok)
+			f.formulaInv, err = parseFormulaInv(tok)
 			if err != nil {
 				log.Err(err).Msg("formula formulaInv could not be parsed")
 				break forLoop
 			}
-			f.formulaInv = buf
 			log.Info().Msg("formula formulaInv successfully parsed")
 		default:
 			if tok.current() == emptyToken {

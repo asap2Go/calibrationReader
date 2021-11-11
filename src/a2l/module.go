@@ -50,35 +50,29 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	myModule.Units = make(map[string]unit, 1000)
 	myModule.userRights = make(map[string]userRights, 1000)
 	var err error
-	var bufA2ml a2ml
 	var bufAxisPts axisPts
 	var bufCharacteristic characteristic
 	var bufCompuMethod compuMethod
 	var bufCompuTab compuTab
 	var bufCompuVtab compuVTab
 	var bufCompuVtabRange compuVTabRange
-	var bufFrame FRAME
 	var bufFunction function
 	var bufGroup group
 	var bufIfData IfData
 	var bufMeasurement MEASUREMENT
-	var bufModCommon modCommon
-	var bufModPar modPar
 	var bufRecordLayout recordLayout
 	var bufUnit unit
 	var bufUserRights userRights
-	var bufVariantCoding variantCoding
 
 forLoop:
 	for {
 		switch tok.next() {
 		case beginA2mlToken:
-			bufA2ml, err = parseA2ML(tok)
+			myModule.a2ml, err = parseA2ML(tok)
 			if err != nil {
 				log.Err(err).Msg("module a2ml could not be parsed")
 				break forLoop
 			}
-			myModule.a2ml = bufA2ml
 			log.Info().Msg("module a2ml successfully parsed")
 		case beginAxisPtsToken:
 			bufAxisPts, err = parseAxisPts(tok)
@@ -129,12 +123,11 @@ forLoop:
 			myModule.CompuVTabRanges[bufCompuVtabRange.name] = bufCompuVtabRange
 			log.Info().Msg("module compuVtabRange successfully parsed")
 		case beginFrameToken:
-			bufFrame, err = parseFrame(tok)
+			myModule.frame, err = parseFrame(tok)
 			if err != nil {
 				log.Err(err).Msg("module frame could not be parsed")
 				break forLoop
 			}
-			myModule.frame = bufFrame
 			log.Info().Msg("module frame successfully parsed")
 		case beginFunctionToken:
 			bufFunction, err = parseFunction(tok)
@@ -169,20 +162,18 @@ forLoop:
 			myModule.Measurements[bufMeasurement.name] = bufMeasurement
 			log.Info().Msg("module measurement[bufMeasurement name] successfully parsed")
 		case beginModCommonToken:
-			bufModCommon, err = parseModCommon(tok)
+			myModule.ModCommon, err = parseModCommon(tok)
 			if err != nil {
 				log.Err(err).Msg("module modCommon could not be parsed")
 				break forLoop
 			}
-			myModule.ModCommon = bufModCommon
 			log.Info().Msg("module modCommon successfully parsed")
 		case beginModParToken:
-			bufModPar, err = parseModPar(tok)
+			myModule.ModPar, err = parseModPar(tok)
 			if err != nil {
 				log.Err(err).Msg("module modPar could not be parsed")
 				break forLoop
 			}
-			myModule.ModPar = bufModPar
 			log.Info().Msg("module modPar successfully parsed")
 		case beginRecordLayoutToken:
 			bufRecordLayout, err = parseRecordLayout(tok)
@@ -209,12 +200,11 @@ forLoop:
 			myModule.userRights[bufUserRights.userLevelId] = bufUserRights
 			log.Info().Msg("module userRights successfully parsed")
 		case beginVariantCodingToken:
-			bufVariantCoding, err = parseVariantCoding(tok)
+			myModule.variantCoding, err = parseVariantCoding(tok)
 			if err != nil {
 				log.Err(err).Msg("module variantCoding could not be parsed")
 				break forLoop
 			}
-			myModule.variantCoding = bufVariantCoding
 			log.Info().Msg("module variantCoding successfully parsed")
 		default:
 			if tok.current() == emptyToken {

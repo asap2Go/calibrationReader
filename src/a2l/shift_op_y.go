@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type shiftOpY struct {
@@ -13,7 +14,7 @@ type shiftOpY struct {
 	datatypeSet bool
 }
 
-func parseshiftOpY(tok *tokenGenerator) (shiftOpY, error) {
+func parseShiftOpY(tok *tokenGenerator) (shiftOpY, error) {
 	soy := shiftOpY{}
 	var err error
 forLoop:
@@ -34,13 +35,11 @@ forLoop:
 			soy.positionSet = true
 			log.Info().Msg("shiftOpY position successfully parsed")
 		} else if !soy.datatypeSet {
-			var buf dataTypeEnum
-			buf, err = parseDataTypeEnum(tok)
+			soy.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("shiftOpY datatype could not be parsed")
 				break forLoop
 			}
-			soy.datatype = buf
 			soy.datatypeSet = true
 			log.Info().Msg("shiftOpY datatype successfully parsed")
 			break forLoop
