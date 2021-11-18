@@ -7,14 +7,22 @@ import (
 	"sync"
 )
 
+//record stores the data of one line/record of an ihex32 file.
 type record struct {
-	rwm          sync.Mutex
-	byteCount    string
+	//rwm is used to coordinate multithreaded reading/writing when applying offsets or calculating checksums.
+	rwm sync.Mutex
+	//byteCount contains the hex string value that defines the number of data bytes contained in the record.
+	byteCount string
+	//addressField contains the lower 2 Byte of the 32Bit address. The higher 2 Byte are in the offset value.
 	addressField string
-	recordType   string
-	data         []string
-	checksum     string
-	offset       string
+	//recordType defines which kind of data is contained within the record (data, address offset, eof-marker, etc.).
+	recordType string
+	//data contains byteCount number of hex Strings, each representing a single byte (e.g. FF -> 255).
+	data []string
+	//checksum contains a single byte hex string with the checksum computed from the individual fields of the record.
+	checksum string
+	//offset contains the upper 2 Byte of the final adress value of a entry.
+	offset string
 }
 
 //parseRecord takes a line as string and fills the respective fields in the record struct.
@@ -46,7 +54,8 @@ func parseRecord(line string) (record, error) {
 
 }
 
-//addOffsets walks through all records and updates the offset-value in the records of type data. It stops when it finds a record that has already been updated by another goroutine
+//addOffsets walks through all records and updates the offset-value in the records of type data.
+//It stops when it finds a record that has already been updated by another goroutine.
 func addOffsets(wg *sync.WaitGroup, recs []record, start int) {
 	defer wg.Done()
 	firstRecordAfterNewOffset := false
@@ -72,7 +81,8 @@ forLoop:
 	}
 }
 
-//validateChecksumsRoutine calls the validateChecksum Method for each record it is given and sends false to a channel in case a checksum isn't valid.
+//validateChecksumsRoutine calls the validateChecksum Method for each record
+//it is given and sends false to a channel in case a checksum isn't valid.
 func validateChecksumsRoutine(wg *sync.WaitGroup, c chan bool, recs []record) {
 	defer wg.Done()
 	var csValid bool
@@ -158,7 +168,7 @@ func calcDataRoutine(c chan []dataByte, recs []record) {
 	close(c)
 }
 
-//calcDataEntries calculates all data entries with their final addresses
+//calcDataEntries calculates all data entries with their final addresses.
 func (r *record) calcDataEntries() ([]dataByte, error) {
 	var d []dataByte
 	var err error

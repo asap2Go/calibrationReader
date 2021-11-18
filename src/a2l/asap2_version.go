@@ -2,10 +2,15 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
+/*asap2Version upgrade number will be incremented if additional functionality is implemented to ASAM MCD-2 MC standard
+which has no effect on existing applications (compatible modifications).
+The version number will be incremented in case if incompatible modifications.
+The ASAP2_VERSION keyword is mandatory and expected before the keyword PROJECT.*/
 type asap2Version struct {
 	versionNo    uint16
 	versionNoSet bool

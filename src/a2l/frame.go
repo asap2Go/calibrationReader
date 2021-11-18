@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type FRAME struct {
+type frame struct {
 	name              string
 	nameSet           bool
 	longIdentifier    string
@@ -19,8 +19,8 @@ type FRAME struct {
 	ifData            []IfData
 }
 
-func parseFrame(tok *tokenGenerator) (FRAME, error) {
-	f := FRAME{}
+func parseFrame(tok *tokenGenerator) (frame, error) {
+	f := frame{}
 	var err error
 forLoop:
 	for {

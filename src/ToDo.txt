@@ -1,0 +1,4 @@
+-TypeDefAxis, TypeDefBlob, TypeDefMeasurement, TypeDefStructure, Instance und Transformer - Klassen fertig definieren.
+-Tokens für obiges eintragen.
+-Ab Blob weiter durch Standard gehen, Kommentare einbringen und a2l package updaten.
+-Anschließend auslesen der Characteristic Values aus der Hex implementieren

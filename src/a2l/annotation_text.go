@@ -6,6 +6,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//annotationText may represent a multi-line ASCII description text (voluminous description).
+//Its purpose is to be an application note which explains the function of an identifier for the calibration engineer.
 type annotationText struct {
 	annotationText    string
 	annotationTextSet bool

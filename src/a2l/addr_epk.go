@@ -2,11 +2,13 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type addrEpk struct {
+	//address contains the Address of the EPROM identifier
 	address    uint32
 	addressSet bool
 }

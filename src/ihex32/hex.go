@@ -15,12 +15,12 @@ import (
 var (
 	//numProc controls the number of goRoutines that are run for the parallel parts of the programm.
 	numProc = runtime.NumCPU() * 2
-	//validateChecksums controls whether checksum validation will be executed or skipped
-	//in case checksum validation encounters an incorrect checksum it will stop the parser and throw an error
+	//validateChecksums controls whether checksum validation will be executed or skipped.
+	//in case checksum validation encounters an incorrect checksum it will stop the parser and throw an error.
 	validateChecksums = true
-	//hexBytes is a hashmap used to do fast conversion from a hex-string to a byte value
-	//it is faster than using hex.decode for single byte values
-	//hex strings may contain either upper case or lower case letters
+	//hexBytes is a hashmap used to do fast conversion from a hex-string to a byte value.
+	//it is faster than using hex.decode for single byte values.
+	//hex strings may contain either upper case or lower case letters.
 	hexBytes = map[string]byte{
 		"00": byte(0), "01": byte(1), "02": byte(2), "03": byte(3), "04": byte(4),
 		"05": byte(5), "06": byte(6), "07": byte(7), "08": byte(8), "09": byte(9),
@@ -97,9 +97,10 @@ var (
 	}
 )
 
+//Hex is the main structure of the ihex32 parser containing bytes with 32bit adresses.
 type Hex struct {
-	//DataBytes is a map that has 32 bit addresses (uint32) as its keys
-	//and the corresponding value is the byte that is specified in the ihex32 at that address
+	//DataBytes is a map that has 32 bit addresses (uint32) as its keys.
+	//and the corresponding value is the byte that is specified in the ihex32 at that address.
 	DataBytes map[uint32]byte
 }
 
@@ -204,7 +205,7 @@ func parseHex(lines []string) (Hex, error) {
 	return h, nil
 }
 
-//readFileToString returns a string by reading a document from a given filepath
+//readFileToString returns a string by reading a document from a given filepath.
 func readFileToString(filepath string) (string, error) {
 	bytesString, err := os.ReadFile(filepath)
 	if err != nil {
@@ -215,7 +216,7 @@ func readFileToString(filepath string) (string, error) {
 	return text, err
 }
 
-//ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses
+//ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses.
 func ParseFromFile(filepath string) (Hex, error) {
 	h := Hex{}
 	var text string

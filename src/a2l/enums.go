@@ -77,6 +77,7 @@ func parseDataSizeEnum(tok *tokenGenerator) (dataSizeEnum, error) {
 	return d, err
 }
 
+//AddrTypeEnum defines which address width is necessary.
 type AddrTypeEnum string
 
 const (
@@ -84,7 +85,11 @@ const (
 	PBYTE             AddrTypeEnum = pbyteToken
 	PWORD             AddrTypeEnum = pwordToken
 	PLONG             AddrTypeEnum = plongToken
-	DIRECT            AddrTypeEnum = directToken
+	/*DIRECT: If an adjustable or measurable object is defined with indirect addressing
+	(ADDRESS_TYPE is not DIRECT) and if the used interface does not support indirect
+	addressing, it is the responsibility of the MC-System to dereference the object’s
+	address before accessing the data or configuring measurement lists.*/
+	DIRECT AddrTypeEnum = directToken
 )
 
 func parseAddrTypeEnum(tok *tokenGenerator) (AddrTypeEnum, error) {
@@ -159,13 +164,30 @@ type attributeEnum string
 
 const (
 	undefinedAttribute attributeEnum = emptyToken
-	curveAxis          attributeEnum = curveAxisToken
-	comAxis            attributeEnum = comAxisToken
-	fixAxis            attributeEnum = fixAxisToken
-	resAxis            attributeEnum = resAxisToken
-	stdAxis            attributeEnum = stdAxisToken
-	INTERN             attributeEnum = internToken
-	EXTERN             attributeEnum = externToken
+	/*curveAxis type uses a separate CURVE CHARACTERISTIC to rescale the axis.
+	The referenced CURVE is used to	lookup an axis index, and the index value is
+	used by the controller to determine the	operating point in the CURVE or MAP.*/
+	curveAxis attributeEnum = curveAxisToken
+	/*comAxis: Group axis points or description of the axis
+	points for deposit. For this variant of the	axis points the axis point values are
+	separated from the table values of the curve or map in the emulation memory and
+	must be described by a special AXIS_PTS	data record.
+	The reference to this record occurs with the keyword 'AXIS_PTS_REF'.*/
+	comAxis attributeEnum = comAxisToken
+	/*fixAxis is a curve or a map with virtual axis
+	points that are not deposited at EPROM.
+	The axis points can be calculated from parameters defined with keywords:
+	FIX_AXIS_PAR, FIX_AXIS_PAR_DIST	and FIX_AXIS_PAR_LIST.
+	The axis points	cannot be modified.*/
+	fixAxis attributeEnum = fixAxisToken
+	/*Rescale axis. For this variant of the axis
+	points the axis point values are separated from the table values of the curve or map in
+	the emulation memory and must be described by a special AXIS_PTS data
+	record. The reference to this record occurs	with the keyword 'AXIS_PTS_REF'.*/
+	resAxis attributeEnum = resAxisToken
+	stdAxis attributeEnum = stdAxisToken
+	INTERN  attributeEnum = internToken
+	EXTERN  attributeEnum = externToken
 )
 
 func parseAttributeEnum(tok *tokenGenerator) (attributeEnum, error) {

@@ -2,11 +2,16 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
+//arraySize marks a measurement object as an array of <Number> measurement values.
+//The keyword ARRAY_SIZE is covered by the keyword MATRIX_DIM.
+//It isrecommended to use the MATRIX_DIM instead of ARRAY_SIZE.
 type arraySize struct {
+	//Number of measurement values included in respective measurement object.
 	number    uint16
 	numberSet bool
 }

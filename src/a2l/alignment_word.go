@@ -2,11 +2,16 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
+//alignmentFloat32Ieee is necessary because in complex objects (maps and axis) the alignment of a value may not coincide with the bitwidth of a value.
+//This keyword is used to define the alignment in the case of words.
 type alignmentWord struct {
+	//alignmentBorder describes the border at which the value is aligned to, i.e.
+	//its memory address must be dividable by the value AlignmentBorder.
 	alignmentBorder    uint16
 	alignmentBorderSet bool
 }

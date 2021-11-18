@@ -6,6 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//annotationLabel is the label or title of the annotation
 type annotationLabel struct {
 	label    string
 	labelSet bool

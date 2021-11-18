@@ -9,7 +9,19 @@ const beginLineCommentToken = "//"
 const quotationMarkToken = "\""
 const slashToken = "/"
 
+TypeDefAxisTokens
+TypeDefBlobTokens
+TypeDefStructureTokens
+TypeDefCharacteristicTokens
+TypeDefMeasurementTokens
 //a2l tokens:
+const modelLinkToken = "MODEL_LINK"
+const beginBlobToken = "/begin BLOB"
+const endBlobToken = "/end BLOB"
+const addressTypeToken = "ADDRESS_TYPE"
+const arPrototypeOfToken = "AR_PROTOTYPE_OF"
+const endArComponentToken = "/end AR_COMPONENT"
+const beginArComponentToken = "/begin AR_COMPONENT"
 const beginVirtualCharacteristicToken = "/begin VIRTUAL_CHARACTERISTIC"
 const endVirtualCharacteristicToken = "/end VIRTUAL_CHARACTERISTIC"
 const calibrationHandleTextToken = "CALIBRATION_HANDLE_TEXT"
@@ -638,4 +650,11 @@ var keywordList = []string{
 	shiftOpZToken,
 	shiftOp4Token,
 	shiftOp5Token,
+	arPrototypeOfToken,
+	endArComponentToken,
+	beginArComponentToken,
+	addressTypeToken,
+	beginBlobToken,
+	endBlobToken,
+	modelLinkToken,
 }

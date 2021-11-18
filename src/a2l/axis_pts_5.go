@@ -2,11 +2,14 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type axisPts5 struct {
+	//position of the axis point values in the deposit structure(description of sequence of elements in the data record).
+	//If the Alternate option is used with FNC_VALUES, the position parameter determines the order of values and axis points.
 	position      uint16
 	positionSet   bool
 	datatype      dataTypeEnum

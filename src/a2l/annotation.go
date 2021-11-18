@@ -6,6 +6,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//annotation may represent a voluminous description.
+//Its purpose is to be e.g. an application note which explains the function of an identifier for the calibration engineer.
 type annotation struct {
 	annotationLabel  annotationLabel
 	annotationOrigin annotationOrigin

@@ -7,6 +7,7 @@ import (
 )
 
 type a2ml struct {
+	//formatSpecification contains the AML code for description of interface specific description data.
 	formatSpecification    string
 	formatSpecificationSet bool
 }

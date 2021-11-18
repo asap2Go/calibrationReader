@@ -6,6 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//annotationOrigin specifies the creator or creating system of the annotation
 type annotationOrigin struct {
 	origin    string
 	originSet bool

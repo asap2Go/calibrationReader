@@ -10,7 +10,8 @@ import (
 )
 
 var (
-	//useMultithreading enables multithreaded parsing of a2l-file. Will be deactivated if multiple modules are recognized
+	//useMultithreading enables multithreaded parsing of a2l-file.
+	//Will be deactivated if multiple modules are recognized.
 	useMultithreading = true
 	//numProc is used to set the amount of goroutines in case useMultithreading is true.
 	numProc = runtime.NumCPU() * 2
@@ -52,7 +53,7 @@ func ParseFromFile(filepath string) (A2L, error) {
 	return a, nil
 }
 
-//parseA2l handles the parsing of the a2l struct
+//parseA2l handles the parsing of the a2l struct.
 //as opposed to ParseFromFile which also handles creation of the tokenizer and file reading, etc.
 func parseA2l(tok *tokenGenerator) (A2L, error) {
 	a2l := A2L{}

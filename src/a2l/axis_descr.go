@@ -2,38 +2,83 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
+/*axisDescr is the Axis description within an adjustable object
+Note:
+With the 'input quantity' parameter a reference is made to a measurement object
+(MEASUREMENT). The MEASUREMENT keyword also specifies the
+'conversion', 'lower limit' and 'upper limit' parameters.
+It is expected that both conversions are equivalent, i.e. they must lead to the
+same result. The ‘upper limit’ and ‘lower limit’ parameters may be different.
+Note: The keywords FIX_AXIS_PAR, FIX_AXIS_PAR_DIST, DEPOSIT and
+FIX_AXIS_PAR_LIST are mutually exclusive, i.e. at most one of these keywords
+is allowed to be used at the same AXIS_DESCR record.
+Note: For the axis types COM_AXIS, RES_AXIS and CURVE_AXIS some attributes
+are defined twice: both at the AXIS_DESCR record and at the referenced
+AXIS_PTS resp. CHARACTERISTIC record. These redundant attributes are
+InputQuantity, Conversion, MaxAxisPoints, LowerLimit, UpperLimit and some
+optional parameters (e.g.: PHYS_UNIT). To support existing use cases where
+one common axis is used with different input quantities (e.g. multiple cylinders) it
+is recommended to ignore the redundant attributes defined at AXIS_PTS and use
+the values of the AXIS_DESCR record instead. Exeptions are MaxAxisPoints and
+MONOTONY which are used from AXIS_PTS.
+AXIS_DESCR and AXIS_PTS partially support the same keyword parameters. If
+a CHARACTERISTC (Curve, Map …) has an AXIS_DESCR of type COM_AXIS
+and refers to an AXIS_PTS, then the parameters from AXIS_DESCR shall take
+precedence. Exceptions to this rule are the parameters MaxAxisPoints,
+DEPOSIT, BYTE_ORDER and MONOTONY, which shall be taken from
+AXIS_PTS.
+Note:
+For the axis type COM_AXIS, it is necessary to have the same dimension for the
+axis object and for the referencing curve / map object. Theoretically it is possible
+to define the dimension both at the axis and at the curve resp. map – e.g. the
+corresponding record layouts can both contain the NO_AXIS_PTS_X component.
+It is recommended not to do so, but if the dimension is defined twice and if it is
+not equal, then application systems shall always use the dimension of the
+AXIS_PTS object.*/
 type axisDescr struct {
-	attribute        attributeEnum
-	attributeSet     bool
+	attribute    attributeEnum
+	attributeSet bool
+	/*inputQuantity references the data record for description of the input quantity (see MEASUREMENT).
+	If there is no input quantity assigned, parameter 'InputQuantity' should be set to "NO_INPUT_QUANTITY"
+	(measurement and calibration systems must be capable to treat this case).
+	Note: If the referenced input quantity is an element of an array or a component of a structure,
+	the identifier to be used for the reference shall be the name built according to rules described at INSTANCE.*/
 	inputQuantity    string
 	inputQuantitySet bool
-	conversion       string
-	conversionSet    bool
+	/*conversion references the relevant record of the description of the conversion method (see COMPU_METHOD).
+	If there is no conversion method, as in the case of CURVE_AXIS, the parameter ‘Conversion’
+	should be set to "NO_COMPU_METHOD" (measurement and calibration systems must be able to handle this case).*/
+	conversion    string
+	conversionSet bool
+	//maximum number of axis points
 	maxAxisPoints    uint16
 	maxAxisPointsSet bool
-	lowerLimit       float64
-	lowerLimitSet    bool
-	upperLimit       float64
-	upperLimitSet    bool
-	annotation       []annotation
-	axisPtsRef       axisPtsRef
-	byteOrder        byteOrder
-	curveAxisRef     curveAxisRef
-	deposit          Deposit
-	extendedLimits   ExtendedLimits
-	fixAxisPar       fixAxisPar
-	fixAxisParDist   fixAxisParDist
-	fixAxisParList   []fixAxisParList
-	format           format
-	maxGrad          MaxGrad
-	monotony         Monotony
-	physUnit         physUnit
-	readOnly         readOnly
-	stepSize         StepSize
+	//lowerLimit quantifies the plausible range of axis point values, lower limit
+	lowerLimit    float64
+	lowerLimitSet bool
+	//upperLimit quantifies the plausible range of axis point values, upper limit
+	upperLimit     float64
+	upperLimitSet  bool
+	annotation     []annotation
+	axisPtsRef     axisPtsRef
+	byteOrder      byteOrder
+	curveAxisRef   curveAxisRef
+	deposit        Deposit
+	extendedLimits ExtendedLimits
+	fixAxisPar     fixAxisPar
+	fixAxisParDist fixAxisParDist
+	fixAxisParList []fixAxisParList
+	format         format
+	maxGrad        MaxGrad
+	monotony       Monotony
+	physUnit       physUnit
+	readOnly       readOnly
+	stepSize       StepSize
 }
 
 func parseAxisDescr(tok *tokenGenerator) (axisDescr, error) {

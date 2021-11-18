@@ -2,29 +2,52 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
+/*AXIS_PTS and AXIS_DESCR define the same parameters.
+Which parameters are dominate is described at AXIS_DESCR.*/
 type axisPts struct {
-	name                string
-	nameSet             bool
-	longIdentifier      string
-	longIdentifierSet   bool
-	address             string //uint32
-	addressSet          bool
-	inputQuantity       string
-	inputQuantitySet    bool
-	depositIdent        string
-	depositIdentSet     bool
-	maxDiff             float64
-	maxDiffSet          bool
-	conversion          string
-	conversionSet       bool
-	maxAxisPoints       uint16
-	maxAxisPointsSet    bool
-	lowerLimit          float64
-	lowerLimitSet       bool
+	/*The name has to be unique within all measure and adjustable objects of the MODULE,
+	i.e. there must	not be another AXIS_PTS, MEASUREMENT, CHARACTERISTIC, BLOB or INSTANCE object
+	with an equal identifier in the same MODULE. Furthermore it is not allowed to have a structure
+	component with equal name in the MODULE. (Rules for building the full identifiers of structure
+	components: see at INSTANCE).*/
+	name              string
+	nameSet           bool
+	longIdentifier    string
+	longIdentifierSet bool
+	//address of the adjustable object in the emulation memory
+	address    string //uint32
+	addressSet bool
+	/*inputQuantity references the data record for description of the input	quantity (see MEASUREMENT).
+	If there is no input quantity assigned, parameter 'InputQuantity' should be set to "NO_INPUT_QUANTITY"
+	(measurement and calibration systems must be capable to treat this case).*/
+	inputQuantity    string
+	inputQuantitySet bool
+	//reference to the relevant data record for description of the record layout (see RECORD_LAYOUT)
+	depositIdent    string
+	depositIdentSet bool
+	/*Maximum difference of physical value recommended for parameter change within one calibration step.
+	If the difference in change exceeds this value, control	algorithms might fail.
+	The value 0 describes that there is	no limit.*/
+	maxDiff    float64
+	maxDiffSet bool
+	/*Reference to the relevant record of the description of the conversion method (see COMPU_METHOD).
+	If there is no conversion method, as in the case of CURVE_AXIS,
+	the parameter ‘Conversion’ should be set to "NO_COMPU_METHOD"
+	(measurement and calibration systems must be able to handle this case).*/
+	conversion    string
+	conversionSet bool
+	//maximum number of axis points
+	maxAxisPoints    uint16
+	maxAxisPointsSet bool
+	//plausible range of axis point values, lower limit
+	lowerLimit    float64
+	lowerLimitSet bool
+	//plausible range of axis point values, upper limit
 	upperLimit          float64
 	upperLimitSet       bool
 	annotation          []annotation
