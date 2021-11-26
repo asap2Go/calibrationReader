@@ -2,9 +2,32 @@ package a2l
 
 import "errors"
 
-/* enums used in several A2L Datatypes:
+//enums used in several A2L Datatypes:
 
- */
+type encodingEnum string
+
+const (
+	undefinedEncoding encodingEnum = emptyToken
+	UTF8              encodingEnum = "UTF8"
+	UTF16             encodingEnum = "UTF16"
+	UTF32             encodingEnum = "UTF32"
+)
+
+func parseEncodingEnum(tok *tokenGenerator) (encodingEnum, error) {
+	e := undefinedEncoding
+	var err error
+	switch tok.current() {
+	case "UTF8":
+		e = UTF8
+	case "UTF16":
+		e = UTF16
+	case "UTF32":
+		e = UTF32
+	default:
+		err = errors.New("incorrect value " + tok.current() + " for enum encoding")
+	}
+	return e, err
+}
 
 type dataTypeEnum string
 
@@ -516,6 +539,28 @@ func parseTagEnum(tok *tokenGenerator) (tagEnum, error) {
 		mt = NUMERIC
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum tag")
+	}
+	return mt, err
+}
+
+type triggerEnum string
+
+const (
+	undefinedTriggerEnum triggerEnum = emptyToken
+	OnChange             triggerEnum = onChangeToken
+	OnUserRequest        triggerEnum = onUserRequestToken
+)
+
+func parseTriggerEnum(tok *tokenGenerator) (triggerEnum, error) {
+	mt := undefinedTriggerEnum
+	var err error
+	switch tok.current() {
+	case onChangeToken:
+		mt = OnChange
+	case onUserRequestToken:
+		mt = OnUserRequest
+	default:
+		err = errors.New("incorrect value " + tok.current() + " for enum trigger")
 	}
 	return mt, err
 }

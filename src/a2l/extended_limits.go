@@ -2,19 +2,20 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
-type ExtendedLimits struct {
+type extendedLimits struct {
 	lowerLimit    float64
 	lowerLimitSet bool
 	upperLimit    float64
 	upperLimitSet bool
 }
 
-func parseExtendedLimits(tok *tokenGenerator) (ExtendedLimits, error) {
-	el := ExtendedLimits{}
+func parseExtendedLimits(tok *tokenGenerator) (extendedLimits, error) {
+	el := extendedLimits{}
 	var err error
 forLoop:
 	for {

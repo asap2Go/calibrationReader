@@ -6,13 +6,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type Deposit struct {
+type deposit struct {
 	mode    ModeEnum
 	modeSet bool
 }
 
-func parseDeposit(tok *tokenGenerator) (Deposit, error) {
-	d := Deposit{}
+func parseDeposit(tok *tokenGenerator) (deposit, error) {
+	d := deposit{}
 	var err error
 	tok.next()
 	if tok.current() == emptyToken {

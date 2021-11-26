@@ -9,12 +9,36 @@ const beginLineCommentToken = "//"
 const quotationMarkToken = "\""
 const slashToken = "/"
 
-TypeDefAxisTokens
-TypeDefBlobTokens
-TypeDefStructureTokens
-TypeDefCharacteristicTokens
-TypeDefMeasurementTokens
 //a2l tokens:
+const limitsToken = "LIMITS"
+const inputQuantityToken = "INPUT_QUANTITY"
+const conversionToken = "CONVERSION"
+const beginInstanceToken = "/begin INSTANCE"
+const endInstanceToken = "/end INSTANCE"
+const beginOverwriteToken = "/begin OVERWRITE"
+const endOverwriteToken = "/end OVERWRITE"
+const onChangeToken = "ON_CHANGE"
+const onUserRequestToken = "ON_USER_REQUEST"
+const beginTransformerToken = "/begin TRANSFORMER"
+const endTransformerToken = "/end TRANSFORMER"
+const beginTransformerInObjectsToken = "/begin TRANSFORMER_IN_OBJECTS"
+const endTransformerInObjectsToken = "/end TRANSFORMER_IN_OBJECTS"
+const beginTransformerOutObjectsToken = "/begin TRANSFORMER_OUT_OBJECTS"
+const endTransformerOutObjectsToken = "/end TRANSFORMER_OUT_OBJECTS"
+const consistentExchangeToken = "CONSISTENT_EXCHANGE"
+const beginStructureComponentToken = "/begin STRUCTURE_COMPONENT"
+const endStructureComponentToken = "/end STRUCTURE_COMPONENT"
+const symbolTypeLinkToken = "SYMBOL_TYPE_LINK"
+const beginTypeDefAxisToken = "/begin TYPEDEF_AXIS"
+const endTypeDefAxisToken = "/end TYPEDEF_AXIS"
+const beginTypeDefBlobToken = "/begin TYPEDEF_BLOB"
+const endTypeDefBlobToken = "/end TYPEDEF_BLOB"
+const beginTypeDefStructureToken = "/begin TYPEDEF_STRUCTURE"
+const endTypeDefStructureToken = "/end TYPEDEF_STRUCTURE"
+const beginTypeDefCharacteristicToken = "/begin TYPEDEF_CHARACTERISTIC"
+const endTypeDefCharacteristicToken = "/end TYPEDEF_CHARACTERISTIC"
+const beginTypeDefMeasurementToken = "/begin TYPEDEF_MEASUREMENT"
+const endTypeDefMeasurementToken = "/end TYPEDEF_MEASUREMENT"
 const modelLinkToken = "MODEL_LINK"
 const beginBlobToken = "/begin BLOB"
 const endBlobToken = "/end BLOB"
@@ -657,4 +681,33 @@ var keywordList = []string{
 	beginBlobToken,
 	endBlobToken,
 	modelLinkToken,
+	beginTypeDefAxisToken,
+	endTypeDefAxisToken,
+	beginTypeDefBlobToken,
+	endTypeDefBlobToken,
+	beginTypeDefStructureToken,
+	endTypeDefStructureToken,
+	beginTypeDefCharacteristicToken,
+	endTypeDefCharacteristicToken,
+	beginTypeDefMeasurementToken,
+	endTypeDefMeasurementToken,
+	limitsToken,
+	inputQuantityToken,
+	conversionToken,
+	beginInstanceToken,
+	endInstanceToken,
+	beginOverwriteToken,
+	endOverwriteToken,
+	onChangeToken,
+	onUserRequestToken,
+	beginTransformerToken,
+	endTransformerToken,
+	beginTransformerInObjectsToken,
+	endTransformerInObjectsToken,
+	beginTransformerOutObjectsToken,
+	endTransformerOutObjectsToken,
+	consistentExchangeToken,
+	beginStructureComponentToken,
+	endStructureComponentToken,
+	symbolTypeLinkToken,
 }

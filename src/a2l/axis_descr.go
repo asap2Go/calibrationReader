@@ -68,8 +68,8 @@ type axisDescr struct {
 	axisPtsRef     axisPtsRef
 	byteOrder      byteOrder
 	curveAxisRef   curveAxisRef
-	deposit        Deposit
-	extendedLimits ExtendedLimits
+	deposit        deposit
+	extendedLimits extendedLimits
 	fixAxisPar     fixAxisPar
 	fixAxisParDist fixAxisParDist
 	fixAxisParList []fixAxisParList
@@ -77,7 +77,7 @@ type axisDescr struct {
 	maxGrad        MaxGrad
 	monotony       Monotony
 	physUnit       physUnit
-	readOnly       readOnly
+	readOnly       readOnlyKeyword
 	stepSize       StepSize
 }
 

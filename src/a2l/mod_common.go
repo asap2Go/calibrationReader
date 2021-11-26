@@ -17,7 +17,7 @@ type modCommon struct {
 	alignmentWord        alignmentWord
 	byteOrder            byteOrder
 	dataSize             dataSize
-	deposit              Deposit
+	deposit              deposit
 }
 
 func parseModCommon(tok *tokenGenerator) (modCommon, error) {

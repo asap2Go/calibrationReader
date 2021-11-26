@@ -53,17 +53,17 @@ type axisPts struct {
 	annotation          []annotation
 	byteOrder           byteOrder
 	calibrationAccess   CalibrationAccessEnum
-	deposit             Deposit
+	deposit             deposit
 	displayIdentifier   DisplayIdentifier
 	ecuAddressExtension ecuAddressExtension
-	extendedLimits      ExtendedLimits
+	extendedLimits      extendedLimits
 	format              format
 	functionList        []FunctionList
 	guardRails          GuardRails
 	ifData              []IfData
 	monotony            Monotony
 	physUnit            physUnit
-	readOnly            readOnly
+	readOnly            readOnlyKeyword
 	refMemorySegment    refMemorySegment
 	stepSize            StepSize
 	symbolLink          symbolLink

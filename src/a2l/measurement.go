@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type MEASUREMENT struct {
+type measurement struct {
 	name                string
 	nameSet             bool
 	longIdentifier      string
@@ -47,8 +47,8 @@ type MEASUREMENT struct {
 	virtual             virtual
 }
 
-func parseMeasurement(tok *tokenGenerator) (MEASUREMENT, error) {
-	m := MEASUREMENT{}
+func parseMeasurement(tok *tokenGenerator) (measurement, error) {
+	m := measurement{}
 	var err error
 forLoop:
 	for {

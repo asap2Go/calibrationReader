@@ -2,13 +2,13 @@ package a2l
 
 import "github.com/rs/zerolog/log"
 
-type readOnly struct {
+type readOnlyKeyword struct {
 	value    bool
 	valueSet bool
 }
 
-func parseReadOnly(tok *tokenGenerator) (readOnly, error) {
-	ro := readOnly{}
+func parseReadOnly(tok *tokenGenerator) (readOnlyKeyword, error) {
+	ro := readOnlyKeyword{}
 	var err error
 	if !ro.valueSet {
 		ro.value = true

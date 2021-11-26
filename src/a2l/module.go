@@ -9,11 +9,6 @@ import (
 )
 
 /*ToDo:
-[-> INSTANCE]*
-[->TRANSFORMER]*
-[->TYPEDEF_AXIS]*
-[->TYPEDEF_BLOB]*
-[->TYPEDEF_CHARACTERISTIC]*
 [->TYPEDEF_MEASUREMENT]*
 [->TYPEDEF_STRUCTURE]*
 */
@@ -35,7 +30,7 @@ type module struct {
 	Groups                 map[string]group
 	ifData                 map[string]IfData
 	instances              map[string]instance
-	Measurements           map[string]MEASUREMENT
+	Measurements           map[string]measurement
 	ModCommon              modCommon
 	ModPar                 modPar
 	RecordLayouts          map[string]recordLayout
@@ -64,7 +59,7 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	myModule.Groups = make(map[string]group, 1000)
 	myModule.ifData = make(map[string]IfData, 1000)
 	myModule.instances = make(map[string]instance, 10)
-	myModule.Measurements = make(map[string]MEASUREMENT, 10000)
+	myModule.Measurements = make(map[string]measurement, 10000)
 	myModule.RecordLayouts = make(map[string]recordLayout, 1000)
 	myModule.transformers = make(map[string]transformer, 10)
 	myModule.typeDefAxis = make(map[string]typeDefAxis, 10)
@@ -86,14 +81,14 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	var bufGroup group
 	var bufIfData IfData
 	var bufInstance instance
-	var bufMeasurement MEASUREMENT
+	var bufMeasurement measurement
 	var bufRecordLayout recordLayout
-	var buftransformer transformer
-	var buftypeDefAxi typeDefAxis
-	var buftypeDefBlob typeDefBlob
-	var buftypeDefCharacteristic typeDefCharacteristic
-	var buftypeDefMeasurement typeDefMeasurement
-	var buftypeDefStructure typeDefStructure
+	var bufTransformer transformer
+	var bufTypeDefAxis typeDefAxis
+	var bufTypeDefBlob typeDefBlob
+	var bufTypeDefCharacteristic typeDefCharacteristic
+	var bufTypeDefMeasurement typeDefMeasurement
+	var bufTypeDefStructure typeDefStructure
 	var bufUnit unit
 	var bufUserRights userRights
 
@@ -194,6 +189,14 @@ forLoop:
 			}
 			myModule.ifData[bufIfData.name] = bufIfData
 			log.Info().Msg("module ifData successfully parsed")
+		case beginInstanceToken:
+			bufInstance, err = parseInstance(tok)
+			if err != nil {
+				log.Err(err).Msg("module instance could not be parsed")
+				break forLoop
+			}
+			myModule.instances[bufInstance.name] = bufInstance
+			log.Info().Msg("module instance successfully parsed")
 		case beginMeasurementToken:
 			bufMeasurement, err = parseMeasurement(tok)
 			if err != nil {
@@ -224,6 +227,54 @@ forLoop:
 			}
 			myModule.RecordLayouts[bufRecordLayout.name] = bufRecordLayout
 			log.Info().Msg("module recordLayout successfully parsed")
+		case beginTransformerToken:
+			bufTransformer, err = parseTransformer(tok)
+			if err != nil {
+				log.Err(err).Msg("module transformer could not be parsed")
+				break forLoop
+			}
+			myModule.transformers[bufTransformer.name] = bufTransformer
+			log.Info().Msg("module transformer successfully parsed")
+		case beginTypeDefAxisToken:
+			bufTypeDefAxis, err = parseTypeDefAxis(tok)
+			if err != nil {
+				log.Err(err).Msg("module typeDefAxis could not be parsed")
+				break forLoop
+			}
+			myModule.typeDefAxis[bufTypeDefAxis.name] = bufTypeDefAxis
+			log.Info().Msg("module typeDefAxis successfully parsed")
+		case beginTypeDefBlobToken:
+			bufTypeDefBlob, err = parseTypeDefBlob(tok)
+			if err != nil {
+				log.Err(err).Msg("module typeDefBlob could not be parsed")
+				break forLoop
+			}
+			myModule.typeDefBlobs[bufTypeDefBlob.name] = bufTypeDefBlob
+			log.Info().Msg("module typeDefBlob successfully parsed")
+		case beginTypeDefCharacteristicToken:
+			bufTypeDefCharacteristic, err = parseTypeDefCharacteristic(tok)
+			if err != nil {
+				log.Err(err).Msg("module typeDefCharacteristic could not be parsed")
+				break forLoop
+			}
+			myModule.typeDefCharacteristics[bufTypeDefCharacteristic.name] = bufTypeDefCharacteristic
+			log.Info().Msg("module typeDefCharacteristic successfully parsed")
+		case beginTypeDefMeasurementToken:
+			bufTypeDefMeasurement, err = parseTypeDefMeasurement(tok)
+			if err != nil {
+				log.Err(err).Msg("module typeDefMeasurement could not be parsed")
+				break forLoop
+			}
+			myModule.typeDefMeasurements[bufTypeDefMeasurement.name] = bufTypeDefMeasurement
+			log.Info().Msg("module typeDefMeasurement successfully parsed")
+		case beginTypeDefStructureToken:
+			bufTypeDefStructure, err = parseTypeDefStructure(tok)
+			if err != nil {
+				log.Err(err).Msg("module typeDefStructure could not be parsed")
+				break forLoop
+			}
+			myModule.typeDefStructures[bufTypeDefStructure.name] = bufTypeDefStructure
+			log.Info().Msg("module typeDefStructure successfully parsed")
 		case beginUnitToken:
 			bufUnit, err = parseUnit(tok)
 			if err != nil {
@@ -287,7 +338,7 @@ func parseModuleMultithreaded(tok *tokenGenerator) (module, error) {
 	myModule.Groups = make(map[string]group, 1000)
 	myModule.ifData = make(map[string]IfData, 1000)
 	myModule.instances = make(map[string]instance, 10)
-	myModule.Measurements = make(map[string]MEASUREMENT, 10000)
+	myModule.Measurements = make(map[string]measurement, 10000)
 	myModule.RecordLayouts = make(map[string]recordLayout, 1000)
 	myModule.transformers = make(map[string]transformer, 10)
 	myModule.typeDefAxis = make(map[string]typeDefAxis, 10)
@@ -331,7 +382,7 @@ forLoop:
 	cGroup := make(chan group, 100)
 	cIfData := make(chan IfData, 100)
 	cInstance := make(chan instance, 10)
-	cMeasurement := make(chan MEASUREMENT, 1000)
+	cMeasurement := make(chan measurement, 1000)
 	cModCommon := make(chan modCommon, 1)
 	cModPar := make(chan modPar, 1)
 	cRecordLayout := make(chan recordLayout, 100)
@@ -401,7 +452,7 @@ forLoop:
 func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
-	cGroup chan group, cIfData chan IfData, cMeasurement chan MEASUREMENT,
+	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
@@ -604,7 +655,7 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 func collectChannelsSelect(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
-	cGroup chan group, cIfData chan IfData, cMeasurement chan MEASUREMENT,
+	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
@@ -713,7 +764,7 @@ forLoopSelect:
 func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
-	cGroup chan group, cIfData chan IfData, cMeasurement chan MEASUREMENT,
+	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
@@ -755,7 +806,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
-	cGroup chan group, cIfData chan IfData, cMeasurement chan MEASUREMENT,
+	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
@@ -778,7 +829,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	var bufGroup group
 	var bufIfData IfData
 	var bufInstance instance
-	var bufMeasurement MEASUREMENT
+	var bufMeasurement measurement
 	var bufRecordLayout recordLayout
 	var bufTransformer transformer
 	var bufTypeDefAxis typeDefAxis
@@ -935,7 +986,7 @@ forLoop:
 			}
 			cRecordLayout <- bufRecordLayout
 			log.Info().Msg("module recordLayout successfully parsed")
-		case beginTransformer:
+		case beginTransformerToken:
 			bufTransformer, err = parseTransformer(&tg)
 			if err != nil {
 				log.Err(err).Msg("module transformer could not be parsed")

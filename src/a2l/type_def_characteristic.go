@@ -8,7 +8,7 @@ import (
 )
 
 type typeDefCharacteristic struct {
-	Name              string
+	name              string
 	nameSet           bool
 	LongIdentifier    string
 	longIdentifierSet bool
@@ -26,8 +26,8 @@ type typeDefCharacteristic struct {
 	bitMask           bitMask
 	byteOrder         byteOrder
 	discrete          discreteKeyword
-	encoding          encoding
-	extendedLimits    ExtendedLimits
+	encoding          encodingEnum
+	extendedLimits    extendedLimits
 	format            format
 	matrixDim         matrixDim
 	number            Number
@@ -72,7 +72,7 @@ forLoop:
 			}
 			log.Info().Msg("typeDefCharacteristic discrete successfully parsed")
 		case displayIdentifierToken:
-			tdc.encoding, err = parseEncoding(tok)
+			tdc.encoding, err = parseEncodingEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("typeDefCharacteristic encoding could not be parsed")
 				break forLoop
@@ -128,7 +128,7 @@ forLoop:
 			} else if tok.current() == endTypeDefCharacteristicToken {
 				break forLoop
 			} else if !tdc.nameSet {
-				tdc.Name = tok.current()
+				tdc.name = tok.current()
 				tdc.nameSet = true
 				log.Info().Msg("typeDefCharacteristic name successfully parsed")
 			} else if !tdc.longIdentifierSet {

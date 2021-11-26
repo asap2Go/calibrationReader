@@ -9,7 +9,7 @@ import (
 type userRights struct {
 	userLevelId    string
 	userLevelIdSet bool
-	readOnly       readOnly
+	readOnly       readOnlyKeyword
 	refGroup       []refGroup
 }
 

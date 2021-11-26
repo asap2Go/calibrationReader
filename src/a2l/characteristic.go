@@ -36,7 +36,7 @@ type characteristic struct {
 	discrete                discreteKeyword
 	displayIdentifier       DisplayIdentifier
 	ecuAddressExtension     ecuAddressExtension
-	extendedLimits          ExtendedLimits
+	extendedLimits          extendedLimits
 	format                  format
 	functionList            []FunctionList
 	guardRails              GuardRails
@@ -46,7 +46,7 @@ type characteristic struct {
 	maxRefresh              MaxRefresh
 	number                  Number
 	physUnit                physUnit
-	readOnly                readOnly
+	readOnly                readOnlyKeyword
 	refMemorySegment        refMemorySegment
 	stepSize                StepSize
 	symbolLink              symbolLink
