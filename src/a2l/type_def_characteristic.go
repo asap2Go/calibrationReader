@@ -14,6 +14,8 @@ type typeDefCharacteristic struct {
 	longIdentifierSet bool
 	Type              typeEnum
 	TypeSet           bool
+	recordLayout      string
+	recordLayoutSet   bool
 	maxDiff           float64
 	maxDiffSet        bool
 	conversion        string
@@ -143,6 +145,10 @@ forLoop:
 				}
 				tdc.TypeSet = true
 				log.Info().Msg("typeDefCharacteristic type successfully parsed")
+			} else if !tdc.recordLayoutSet {
+				tdc.recordLayout = tok.current()
+				tdc.recordLayoutSet = true
+				log.Info().Msg("typeDefCharacteristic recordLayout successfully parsed")
 			} else if !tdc.maxDiffSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)

@@ -18,6 +18,7 @@ type module struct {
 	longIdentifier         string
 	longIdentifierSet      bool
 	a2ml                   a2ml
+	errors                 []error
 	AxisPts                map[string]axisPts
 	blobs                  map[string]blob
 	Characteristics        map[string]characteristic
@@ -369,6 +370,7 @@ forLoop:
 		}
 	}
 	log.Info().Msg("creating channels")
+	cError := make(chan error, numProc)
 	cA2ml := make(chan a2ml, 1)
 	cAxisPts := make(chan axisPts, 100)
 	cBlob := make(chan blob, 5)
@@ -425,25 +427,28 @@ forLoop:
 		log.Info().Msg(("goroutine " + fmt.Sprint(i) + " starting index: " + fmt.Sprint(minIndex) + " until end at index: " + fmt.Sprint(maxIndex) + " of " + fmt.Sprint(endIndex)))
 		go parseModuleMainLoop(wgParsers, minIndex, maxIndex, cA2ml, cAxisPts, cBlob, cCharacteristic, cCompuMethod,
 			cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-			cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding)
+			cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
 	}
 	//Start Go Routine that monitors when the parsers are done and then closes the channels.
 	//this way the collectorroutines know when they're done.
 	go closeChannelsAfterParsing(wgParsers, cA2ml, cAxisPts, cBlob, cCharacteristic, cCompuMethod,
 		cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding)
+		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
 
 	//Select collector:
 	myModule = collectChannelsSelect(myModule, cA2ml, cAxisPts, cBlob, cCharacteristic, cCompuMethod,
 		cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding)
+		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
 	//Multithreaded collector:
 	/*myModule = collectChannelsMultithreaded(myModule, cA2ml, cAxisPts, cCharacteristic, cCompuMethod,
 	cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-	cModPar, cRecordLayout, cUnit, cUserRights, cVariantCoding)*/
+	cModPar, cRecordLayout, cUnit, cUserRights, cVariantCoding,cError)*/
 	tok.index = endIndex
+	if len(myModule.errors) > 0 {
+		err = myModule.errors[0]
+		log.Warn().Int("Number of errors", len(myModule.errors))
+	}
 	return myModule, err
-
 }
 
 //collectChannelsMultithreaded uses anonymous function to collect the data sent by the goroutines running the moduleMainLoop.
@@ -457,11 +462,18 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding) module {
+	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) module {
 
 	log.Info().Msg("spinning up collector routines")
 	wgCollectors := new(sync.WaitGroup)
-	wgCollectors.Add(18)
+	wgCollectors.Add(19)
+	go func(wg *sync.WaitGroup) {
+		defer wg.Done()
+		for elem := range cError {
+			myModule.errors = append(myModule.errors, elem)
+		}
+		log.Info().Msg("collected errors")
+	}(wgCollectors)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cA2ml {
@@ -660,11 +672,13 @@ func collectChannelsSelect(myModule module, cA2ml chan a2ml, cAxisPts chan axisP
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding) module {
+	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) module {
 
 	var c0Opn, c1Opn, c3Opn, c4Opn, c5Opn, c6Opn, c7Opn, c8Opn, c9Opn, c10Opn,
 		c11Opn, c12Opn, c13Opn, c14Opn, c15Opn, c16Opn, c17Opn, c18Opn, c19Opn, c20Opn,
-		c21Opn, c22Opn, c23Opn, c24Opn, c25Opn, c26Opn bool
+		c21Opn, c22Opn, c23Opn, c24Opn, c25Opn, c26Opn, c27Opn bool = true, true, true, true, true,
+		true, true, true, true, true, true, true, true, true, true, true, true, true,
+		true, true, true, true, true, true, true, true, true
 
 forLoopSelect:
 	select {
@@ -746,10 +760,13 @@ forLoopSelect:
 	case z, z2 := <-cTypeDefStructure:
 		myModule.typeDefStructures[z.name] = z
 		c26Opn = z2
+	case aa, aa2 := <-cError:
+		myModule.errors = append(myModule.errors, aa)
+		c27Opn = aa2
 	default:
 		if !(c0Opn || c1Opn || c3Opn || c4Opn || c5Opn || c6Opn || c7Opn || c8Opn || c9Opn || c10Opn ||
 			c11Opn || c12Opn || c13Opn || c14Opn || c15Opn || c16Opn || c17Opn || c18Opn || c19Opn ||
-			c20Opn || c21Opn || c22Opn || c23Opn || c24Opn || c25Opn || c26Opn) {
+			c20Opn || c21Opn || c22Opn || c23Opn || c24Opn || c25Opn || c26Opn || c27Opn) {
 			break forLoopSelect
 		}
 	}
@@ -769,9 +786,10 @@ func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts cha
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding) {
+	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) {
 	log.Info().Msg("waiting for the parsers to finish")
 	wg.Wait()
+	close(cError)
 	close(cA2ml)
 	close(cAxisPts)
 	close(cBlob)
@@ -811,7 +829,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding) {
+	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) {
 
 	defer wg.Done()
 
@@ -851,6 +869,7 @@ forLoop:
 			bufA2ml, err = parseA2ML(&tg)
 			if err != nil {
 				log.Err(err).Msg("module a2ml could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cA2ml <- bufA2ml
@@ -859,6 +878,7 @@ forLoop:
 			bufAxisPts, err = parseAxisPts(&tg)
 			if err != nil {
 				log.Err(err).Msg("module axisPts could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cAxisPts <- bufAxisPts
@@ -867,6 +887,7 @@ forLoop:
 			bufBlob, err = parseBlob(&tg)
 			if err != nil {
 				log.Err(err).Msg("module blob could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cBlob <- bufBlob
@@ -875,6 +896,7 @@ forLoop:
 			bufCharacteristic, err = parseCharacteristic(&tg)
 			if err != nil {
 				log.Err(err).Msg("module characteristic could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cCharacteristic <- bufCharacteristic
@@ -883,6 +905,7 @@ forLoop:
 			bufCompuMethod, err = parseCompuMethod(&tg)
 			if err != nil {
 				log.Err(err).Msg("module compuMethod could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cCompuMethod <- bufCompuMethod
@@ -891,6 +914,7 @@ forLoop:
 			bufCompuTab, err = parseCompuTab(&tg)
 			if err != nil {
 				log.Err(err).Msg("module compuTab could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cCompuTab <- bufCompuTab
@@ -899,6 +923,7 @@ forLoop:
 			bufCompuVtab, err = parseCompuVtab(&tg)
 			if err != nil {
 				log.Err(err).Msg("module compuVtab could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cCompuVtab <- bufCompuVtab
@@ -907,6 +932,7 @@ forLoop:
 			bufCompuVtabRange, err = parseCompuVtabRange(&tg)
 			if err != nil {
 				log.Err(err).Msg("module compuVtabRange could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cCompuVtabRange <- bufCompuVtabRange
@@ -916,6 +942,7 @@ forLoop:
 			bufFrame, err = parseFrame(&tg)
 			if err != nil {
 				log.Err(err).Msg("module frame could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cFrame <- bufFrame
@@ -924,6 +951,7 @@ forLoop:
 			bufFunction, err = parseFunction(&tg)
 			if err != nil {
 				log.Err(err).Msg("module function could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cFunction <- bufFunction
@@ -932,6 +960,7 @@ forLoop:
 			bufGroup, err = parseGroup(&tg)
 			if err != nil {
 				log.Err(err).Msg("module group could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cGroup <- bufGroup
@@ -940,6 +969,7 @@ forLoop:
 			bufIfData, err = parseIfData(&tg)
 			if err != nil {
 				log.Err(err).Msg("module ifData could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cIfData <- bufIfData
@@ -948,6 +978,7 @@ forLoop:
 			bufInstance, err = parseInstance(&tg)
 			if err != nil {
 				log.Err(err).Msg("module instance could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cInstance <- bufInstance
@@ -956,6 +987,7 @@ forLoop:
 			bufMeasurement, err = parseMeasurement(&tg)
 			if err != nil {
 				log.Err(err).Msg("module measurement could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cMeasurement <- bufMeasurement
@@ -965,6 +997,7 @@ forLoop:
 			bufModCommon, err = parseModCommon(&tg)
 			if err != nil {
 				log.Err(err).Msg("module modCommon could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cModCommon <- bufModCommon
@@ -974,6 +1007,7 @@ forLoop:
 			bufModPar, err = parseModPar(&tg)
 			if err != nil {
 				log.Err(err).Msg("module modPar could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cModPar <- bufModPar
@@ -982,6 +1016,7 @@ forLoop:
 			bufRecordLayout, err = parseRecordLayout(&tg)
 			if err != nil {
 				log.Err(err).Msg("module recordLayout could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cRecordLayout <- bufRecordLayout
@@ -990,6 +1025,7 @@ forLoop:
 			bufTransformer, err = parseTransformer(&tg)
 			if err != nil {
 				log.Err(err).Msg("module transformer could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTransformer <- bufTransformer
@@ -998,6 +1034,7 @@ forLoop:
 			bufTypeDefAxis, err = parseTypeDefAxis(&tg)
 			if err != nil {
 				log.Err(err).Msg("module typeDefAxis could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTypeDefAxis <- bufTypeDefAxis
@@ -1006,6 +1043,7 @@ forLoop:
 			bufTypeDefBlob, err = parseTypeDefBlob(&tg)
 			if err != nil {
 				log.Err(err).Msg("module typeDefBlob could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTypeDefBlob <- bufTypeDefBlob
@@ -1014,6 +1052,7 @@ forLoop:
 			bufTypeDefCharacteristic, err = parseTypeDefCharacteristic(&tg)
 			if err != nil {
 				log.Err(err).Msg("module typeDefCharacteristic could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTypeDefCharacteristic <- bufTypeDefCharacteristic
@@ -1022,6 +1061,7 @@ forLoop:
 			bufTypeDefMeasurement, err = parseTypeDefMeasurement(&tg)
 			if err != nil {
 				log.Err(err).Msg("module typeDefMeasurement could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTypeDefMeasurement <- bufTypeDefMeasurement
@@ -1030,6 +1070,7 @@ forLoop:
 			bufTypeDefStructure, err = parseTypeDefStructure(&tg)
 			if err != nil {
 				log.Err(err).Msg("module typeDefStructure could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cTypeDefStructure <- bufTypeDefStructure
@@ -1038,6 +1079,7 @@ forLoop:
 			bufUnit, err = parseUnit(&tg)
 			if err != nil {
 				log.Err(err).Msg("module unit could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cUnit <- bufUnit
@@ -1046,6 +1088,7 @@ forLoop:
 			bufUserRights, err = parseUserRights(&tg)
 			if err != nil {
 				log.Err(err).Msg("module userRights could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cUserRights <- bufUserRights
@@ -1055,6 +1098,7 @@ forLoop:
 			bufVariantCoding, err = parseVariantCoding(&tg)
 			if err != nil {
 				log.Err(err).Msg("module variantCoding could not be parsed")
+				cError <- err
 				break forLoop
 			}
 			cVariantCoding <- bufVariantCoding
@@ -1062,8 +1106,9 @@ forLoop:
 		default:
 			if tg.current() == emptyToken {
 				fmt.Println("empty_token")
-				err := errors.New("unexpected end of file")
+				err = errors.New("unexpected end of file")
 				log.Err(err).Msg("module could not be parsed")
+				cError <- err
 				break forLoop
 			} else if tg.current() == endModuleToken {
 				break forLoop

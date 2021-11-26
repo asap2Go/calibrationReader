@@ -10,12 +10,14 @@ import (
 )
 
 func BenchmarkReadCalibration(b *testing.B) {
+	var err error
+	var cd CalibrationData
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171_inflated.a2l"
+	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
 	for i := 0; i < b.N; i++ {
-		a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171_inflated.a2l"
-		hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
 		startTime := time.Now()
-		cd, err := ReadCalibration(a2lPath, hexPath)
+		cd, err = ReadCalibration(a2lPath, hexPath)
 		endTime := time.Now()
 		elapsed := endTime.Sub(startTime)
 		if err != nil {

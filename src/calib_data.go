@@ -46,7 +46,7 @@ func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, e
 	var firstErr error
 	if len(errChan) > 0 {
 		for e := range errChan {
-			if firstErr == nil {
+			if e != nil {
 				firstErr = e
 			}
 			log.Err(e).Msg("reader encountered an error:")

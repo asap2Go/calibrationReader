@@ -40,13 +40,13 @@ func ParseFromFile(filepath string) (A2L, error) {
 	}
 	var tg tokenGenerator
 	tg, _ = buildTokenGeneratorFromString(text)
-	log.Info().Msg("created tokenizer")
+	log.Info().Int("number of tokens", len(tokenList)).Msg("created tokenizer")
 	a, err = parseA2l(&tg)
 	if err != nil {
 		log.Err(err).Msg("failed parsing with error:")
 		return a, err
 	}
-	log.Info().Str("prject name", a.Project.Name).Msg("finished parsing:")
+	log.Info().Str("project name", a.Project.Name).Msg("finished parsing:")
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
 	log.Info().Msg("time for parsing file: " + fmt.Sprint(elapsed.Milliseconds()))

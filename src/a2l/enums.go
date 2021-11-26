@@ -250,7 +250,7 @@ const (
 func parseCalibrationAccessEnum(tok *tokenGenerator) (CalibrationAccessEnum, error) {
 	ca := undefinedCalibrationAccess
 	var err error
-	switch tok.current() {
+	switch tok.next() {
 	case calibrationToken:
 		ca = CALIBRATION
 	case noCalibrationToken:

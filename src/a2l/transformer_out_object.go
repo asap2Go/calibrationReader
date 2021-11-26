@@ -21,7 +21,7 @@ forLoop:
 			err = errors.New("unexpected end of file")
 			log.Err(err).Msg("transformerOutObject could not be parsed")
 			break forLoop
-		} else if tok.current() == endTransformerInObjectsToken {
+		} else if tok.current() == endTransformerOutObjectsToken {
 			tio.identifierSet = true
 			log.Info().Msg("transformerOutObject identifier successfully parsed")
 			break forLoop

@@ -3,12 +3,15 @@ package a2l
 import (
 	"errors"
 	"strings"
+	"sync/atomic"
 
 	"github.com/rs/zerolog/log"
 )
 
-var tokenList = make([]string, 2000000)
-var moduleCount int
+const expectedNumberOfTokens = 2000000
+
+var tokenList = make([]string, 0, expectedNumberOfTokens)
+var moduleCount uint32
 
 type tokenGenerator struct {
 	index int
@@ -38,23 +41,35 @@ func (tg *tokenGenerator) previous() {
 
 func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
 	//Split text file into lines and the lines into words separated by whitespace
-	var lineContents [][]string
+	var locTokens []chan []string
 	lines := strings.Split(str, "\n")
-	for _, l := range lines {
-		if strings.TrimSpace(l) != emptyToken {
-			lineContents = append(lineContents, strings.Fields(l))
+	for i := 0; i < numProc; i++ {
+		//calculate start and end for the slices each go routine is given to parse
+		start := (len(lines) / numProc) * i
+		end := start + (len(lines) / numProc)
+		if i+1 == numProc {
+			//integer divisions might round up or down, so we make sure that we get the "real" end here
+			end = len(lines)
+		}
+		c := make(chan []string, 1)
+		locTokens = append(locTokens, c)
+		go tokenBuilderRoutine(lines[start:end], c)
+	}
+	//collect token lists from channels
+	for _, c := range locTokens {
+		for t := range c {
+			tokenList = append(tokenList, t...)
 		}
 	}
-	tokenList = buildTokenList(lineContents)
+	tokenList = append(tokenList, emptyToken)
 	tg := tokenGenerator{}
 	tg.index = 0
-
 	/*Set multithreading flag in accordance with the number of modules
 	Currently there is no support for parsing multi-module files with multithreading enabled due to complexity reasons
 	and minimal benefit due to overhead of detecting module borders and parser coordination / channel creation.*/
 	if moduleCount > 1 {
 		useMultithreading = false
-		log.Info().Int("number of modules", moduleCount).Msg("multiple modules detected, parsing singlethreaded")
+		log.Info().Uint32("number of modules", moduleCount).Msg("multiple modules detected, parsing singlethreaded")
 	} else {
 		useMultithreading = true
 		log.Info().Msg("only one module detected, parsing multithreaded")
@@ -62,9 +77,21 @@ func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
 	return tg, nil
 }
 
+func tokenBuilderRoutine(lines []string, c chan []string) {
+	//initialize fields with the expected capacity of tokens it will have to hold in order to avoid reallocations
+	fields := make([][]string, 0, expectedNumberOfTokens/numProc)
+	for _, l := range lines {
+		if strings.TrimSpace(l) != emptyToken {
+			fields = append(fields, strings.Fields(l))
+		}
+	}
+	c <- buildTokenList(fields)
+	close(c)
+}
+
 func buildTokenList(str [][]string) []string {
 	var err error
-	var tl []string
+	tl := make([]string, 0, expectedNumberOfTokens/numProc)
 	currentOuterIndex := 0
 	currentInnerIndex := 0
 	firstRun := true
@@ -74,13 +101,15 @@ func buildTokenList(str [][]string) []string {
 		t, err = buildNextValidToken(&currentOuterIndex, &currentInnerIndex, str, firstRun)
 		firstRun = false
 		if err != nil {
-			tl = append(tl, emptyToken)
 			return tl
 		}
 		if t != emptyToken {
-			tl = append(tl, t)
+			if strings.Contains(t, "*/") {
+				tl = make([]string, 0, expectedNumberOfTokens/numProc)
+			} else {
+				tl = append(tl, t)
+			}
 		} else {
-			tl = append(tl, emptyToken)
 			return tl
 		}
 	}
@@ -119,7 +148,7 @@ start:
 			return emptyToken, err
 		}
 		return textInQuotationMarks, nil
-	} else if strings.Contains(t, slashToken) {
+	} else if strings.Contains(t, slashToken) && !strings.Contains(t, endMultilineCommentToken) {
 		twoWordedKeyword, err := getTwoWordedToken(currentOuterIndex, currentInnerIndex, str)
 		if err != nil {
 			return emptyToken, err
@@ -269,7 +298,8 @@ func getTwoWordedToken(currentOuterIndex *int, currentInnerIndex *int, str [][]s
 		twoWordedToken = twoWordedToken + spaceToken + t
 		if twoWordedToken == beginModuleToken {
 			//count the number of modules so the program can decide whether it is allowed to parse multithreaded.
-			moduleCount++
+			//atomic is used so several goroutines can update the variable
+			atomic.AddUint32(&moduleCount, 1)
 		}
 		return twoWordedToken, nil
 
