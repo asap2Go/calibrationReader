@@ -10,11 +10,12 @@ import (
 )
 
 func BenchmarkReadCalibration(b *testing.B) {
-	var err error
-	var cd CalibrationData
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	var cd CalibrationData
+	var err error
 	a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171_inflated.a2l"
-	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
+	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/Org_Files_Sortiert Damos/076906022P_5778_504903_P672_R4KG_EDC17CP20_2.39/076906022P_5778_504903_P672_R4KG_EDC17CP20_2.39.hex"
+	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		startTime := time.Now()
 		cd, err = ReadCalibration(a2lPath, hexPath)

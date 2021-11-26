@@ -8,9 +8,9 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const expectedNumberOfTokens = 2000000
+const expectedNumberOfTokens = 3000000
 
-var tokenList = make([]string, 0, expectedNumberOfTokens)
+var tokenList []string
 var moduleCount uint32
 
 type tokenGenerator struct {
@@ -42,6 +42,7 @@ func (tg *tokenGenerator) previous() {
 func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
 	//Split text file into lines and the lines into words separated by whitespace
 	var locTokens []chan []string
+	tokenList = make([]string, 0, expectedNumberOfTokens)
 	lines := strings.Split(str, "\n")
 	for i := 0; i < numProc; i++ {
 		//calculate start and end for the slices each go routine is given to parse

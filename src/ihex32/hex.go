@@ -174,7 +174,7 @@ func parseHex(lines []string) (Hex, error) {
 	//wait for the offset appending to finish:
 	wgOffset.Wait()
 
-	//calculate final data
+	//calculate final data structure
 	var locData []chan []dataByte
 	for i := 0; i < numProc; i++ {
 		//calculate start and end for the slices each go routine is given to calculate the final data from

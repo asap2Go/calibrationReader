@@ -30,17 +30,20 @@ type A2L struct {
 func ParseFromFile(filepath string) (A2L, error) {
 	var err error
 	var text string
+	var tg tokenGenerator
 	var a A2L
 
 	startTime := time.Now()
 	text, err = readFileToString(filepath)
 	if err != nil {
-		log.Err(err).Msg("a2l test-file could not be read:")
+		log.Err(err).Msg("a2l file could not be read:")
 		return a, err
 	}
-	var tg tokenGenerator
-	tg, _ = buildTokenGeneratorFromString(text)
-	log.Info().Int("number of tokens", len(tokenList)).Msg("created tokenizer")
+	tg, err = buildTokenGeneratorFromString(text)
+	if err != nil {
+		log.Err(err).Msg("could not create tokens from a2l file:")
+		return a, err
+	}
 	a, err = parseA2l(&tg)
 	if err != nil {
 		log.Err(err).Msg("failed parsing with error:")
@@ -50,6 +53,7 @@ func ParseFromFile(filepath string) (A2L, error) {
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
 	log.Info().Msg("time for parsing file: " + fmt.Sprint(elapsed.Milliseconds()))
+	log.Info().Msg("with " + fmt.Sprint(len(tokenList)) + " tokens")
 	return a, nil
 }
 
