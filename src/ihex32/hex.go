@@ -190,14 +190,14 @@ func parseHex(lines []string) (Hex, error) {
 	}
 	//collect data from channels
 	for _, c := range locData {
-		for r := range c {
-			for _, d := range r {
-				val, exists := h.DataBytes[d.address]
+		for rec := range c {
+			for _, data := range rec {
+				val, exists := h.DataBytes[data.address]
 				if exists {
-					err = errors.New("colliding address values at address " + fmt.Sprint(d.address) + " value1 " + fmt.Sprint(val) + " and value2 " + fmt.Sprint(d.value))
+					err = errors.New("colliding address values at address " + fmt.Sprint(data.address) + " value1 " + fmt.Sprint(val) + " and value2 " + fmt.Sprint(data.value))
 					return h, err
 				}
-				h.DataBytes[d.address] = d.value
+				h.DataBytes[data.address] = data.value
 			}
 		}
 	}
