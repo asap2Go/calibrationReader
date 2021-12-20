@@ -16,7 +16,7 @@ type structureComponent struct {
 	addressType      AddrTypeEnum
 	layout           layout
 	matrixDim        matrixDim
-	symbolTypeLink   string
+	symbolTypeLink   symbolTypeLink
 }
 
 func parseStructureComponent(tok *tokenGenerator) (structureComponent, error) {
@@ -47,8 +47,12 @@ forLoop:
 			}
 			log.Info().Msg("structureComponent matrixDim successfully parsed")
 		case symbolTypeLinkToken:
-			sc.symbolTypeLink = tok.current()
-			log.Info().Msg("structureComponent symbolTypeLink successfully parsed")
+			sc.symbolTypeLink, err = parseSymbolTypeLink(tok)
+			if err != nil {
+				log.Err(err).Msg("typeDefStructure symbolTypeLink could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("typeDefStructure symbolTypeLink successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")

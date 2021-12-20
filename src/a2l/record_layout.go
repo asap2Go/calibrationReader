@@ -10,6 +10,7 @@ type recordLayout struct {
 	name                 string
 	nameSet              bool
 	alignmentByte        alignmentByte
+	alignmentFloat16Ieee alignmentFloat16Ieee
 	alignmentFloat32Ieee alignmentFloat32Ieee
 	alignmentFloat64Ieee alignmentFloat64Ieee
 	alignmentInt64       alignmentInt64
@@ -42,7 +43,7 @@ type recordLayout struct {
 	noAxisPtsZ           noAxisPtsZ
 	noAxisPts4           noAxisPts4
 	noAxisPts5           noAxisPts5
-	noRescalex           noRescaleX
+	noRescaleX           noRescaleX
 	noRescaleY           noRescaleY
 	noRescaleZ           noRescaleZ
 	noRescale4           noRescale4
@@ -85,6 +86,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("recordLayout alignmentByte successfully parsed")
+		case alignmentFloat16IeeeToken:
+			rl.alignmentFloat16Ieee, err = parseAlignmentFloat16Ieee(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout alignmentFloat16Ieee could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout alignmentFloat16Ieee successfully parsed")
 		case alignmentFloat32IeeeToken:
 			rl.alignmentFloat32Ieee, err = parseAlignmentFloat32Ieee(tok)
 			if err != nil {
@@ -162,6 +170,34 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("recordLayout axisRescalex successfully parsed")
+		case axisRescaleYToken:
+			rl.axisRescaleY, err = parseAxisRescaleY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisRescaleY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisRescaleY successfully parsed")
+		case axisRescaleZToken:
+			rl.axisRescaleZ, err = parseAxisRescaleZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisRescaleZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisRescaleZ successfully parsed")
+		case axisRescale4Token:
+			rl.axisRescale4, err = parseAxisRescale4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisRescale4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisRescale4 successfully parsed")
+		case axisRescale5Token:
+			rl.axisRescale5, err = parseAxisRescale5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout axisRescale5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout axisRescale5 successfully parsed")
 		case distOpXToken:
 			rl.distOpX, err = parseDistOpX(tok)
 			if err != nil {
@@ -282,12 +318,40 @@ forLoop:
 			}
 			log.Info().Msg("recordLayout noAxisPts5 successfully parsed")
 		case noRescaleXToken:
-			rl.noRescalex, err = parseNoRescaleX(tok)
+			rl.noRescaleX, err = parseNoRescaleX(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout noRescalex could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("recordLayout noRescalex successfully parsed")
+		case noRescaleYToken:
+			rl.noRescaleY, err = parseNoRescaleY(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noRescaleY could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noRescaleY successfully parsed")
+		case noRescaleZToken:
+			rl.noRescaleZ, err = parseNoRescaleZ(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noRescaleZ could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noRescaleZ successfully parsed")
+		case noRescale4Token:
+			rl.noRescale4, err = parseNoRescale4(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noRescale4 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noRescale4 successfully parsed")
+		case noRescale5Token:
+			rl.noRescale5, err = parseNoRescale5(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout noRescale5 could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout noRescale5 successfully parsed")
 		case offsetXToken:
 			rl.offsetX, err = parseOffsetX(tok)
 			if err != nil {

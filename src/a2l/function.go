@@ -12,6 +12,7 @@ type function struct {
 	longIdentifier    string
 	longIdentifierSet bool
 	annotation        []annotation
+	arComponent       arComponent
 	defCharacteristic defCharacteristic
 	functionVersion   functionVersion
 	ifData            []IfData
@@ -37,6 +38,13 @@ forLoop:
 			}
 			f.annotation = append(f.annotation, buf)
 			log.Info().Msg("function annotation successfully parsed")
+		case beginArComponentToken:
+			f.arComponent, err = parseArComponent(tok)
+			if err != nil {
+				log.Err(err).Msg("functionVersion arComponent could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("function arComponent successfully parsed")
 		case beginDefCharacteristicToken:
 			f.defCharacteristic, err = parseDefCharacteristic(tok)
 			if err != nil {

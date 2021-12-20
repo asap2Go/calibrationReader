@@ -127,6 +127,16 @@ forLoop:
 				tda.conversion = tok.current()
 				tda.conversionSet = true
 				log.Info().Msg("typeDefAxis conversion successfully parsed")
+			} else if !tda.maxAxisPointsSet {
+				var buf uint64
+				buf, err = strconv.ParseUint(tok.current(), 10, 16)
+				if err != nil {
+					log.Err(err).Msg("typeDefAxis maxAxisPoints could not be parsed")
+					break forLoop
+				}
+				tda.maxAxisPoints = uint16(buf)
+				tda.maxAxisPointsSet = true
+				log.Info().Msg("typeDefAxis maxAxisPoints successfully parsed")
 			} else if !tda.lowerLimitSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)

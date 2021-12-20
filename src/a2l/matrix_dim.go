@@ -36,7 +36,7 @@ forLoop:
 		} else if isKeyword(tok.current()) {
 			log.Info().Str("current token", tok.current()).Msg("matrixDim detected keyword:")
 			tok.previous()
-			log.Info().Str("current token", tok.current()).Msg("matrixDim rolled back to:")
+			log.Info().Str("previous token", tok.current()).Msg("matrixDim rolled back to:")
 			break forLoop
 		} else if !md.xDimSet {
 			var buf uint64

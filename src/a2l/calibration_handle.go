@@ -2,13 +2,12 @@ package a2l
 
 import (
 	"errors"
-	"strconv"
 
 	"github.com/rs/zerolog/log"
 )
 
 type calibrationHandle struct {
-	handle                int32
+	handle                []uint32
 	handleSet             bool
 	calibrationHandleText calibrationHandleText
 }
@@ -32,16 +31,16 @@ forLoop:
 				log.Err(err).Msg("calibrationHandle could not be parsed")
 				break forLoop
 			} else if tok.current() == endCalibrationHandleToken {
+				ch.handleSet = true
 				break forLoop
 			} else if !ch.handleSet {
-				var buf int64
-				buf, err = strconv.ParseInt(tok.current(), 10, 32)
+				var buf uint32
+				buf, err = parseHexAddressToUint32(tok.current())
 				if err != nil {
 					log.Err(err).Msg("calibrationHandle handle could not be parsed")
 					break forLoop
 				}
-				ch.handle = int32(buf)
-				ch.handleSet = true
+				ch.handle = append(ch.handle, buf)
 				log.Info().Msg("calibrationHandle handle successfully parsed")
 			}
 		}

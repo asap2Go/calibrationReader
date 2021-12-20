@@ -138,6 +138,7 @@ const endRefCharacteristicToken = "/end REF_CHARACTERISTIC"
 const beginLocMeasurementToken = "/begin LOC_MEASUREMENT"
 const endLocMeasurementToken = "/end LOC_MEASUREMENT"
 const alignmentByteToken = "ALIGNMENT_BYTE"
+const alignmentFloat16IeeeToken = "ALIGNMENT_FLOAT16_IEEE"
 const alignmentFloat32IeeeToken = "ALIGNMENT_FLOAT32_IEEE"
 const alignmentFloat64IeeeToken = "ALIGNMENT_FLOAT64_IEEE"
 const alignmentInt64Token = "ALIGNMENT_INT64"
@@ -149,6 +150,10 @@ const axisPtsZToken = "AXIS_PTS_Z"
 const axisPts4Token = "AXIS_PTS_4"
 const axisPts5Token = "AXIS_PTS_5"
 const axisRescaleXToken = "AXIS_RESCALE_X"
+const axisRescaleYToken = "AXIS_RESCALE_Y"
+const axisRescaleZToken = "AXIS_RESCALE_Z"
+const axisRescale4Token = "AXIS_RESCALE_4"
+const axisRescale5Token = "AXIS_RESCALE_5"
 const distOpXToken = "DIST_OP_X"
 const distOpYToken = "DIST_OP_Y"
 const distOpZToken = "DIST_OP_Z"
@@ -167,6 +172,10 @@ const noAxisPtsZToken = "NO_AXIS_PTS_Z"
 const noAxisPts4Token = "NO_AXIS_PTS_4"
 const noAxisPts5Token = "NO_AXIS_PTS_5"
 const noRescaleXToken = "NO_RESCALE_X"
+const noRescaleYToken = "NO_RESCALE_Y"
+const noRescaleZToken = "NO_RESCALE_Z"
+const noRescale4Token = "NO_RESCALE_4"
+const noRescale5Token = "NO_RESCALE_5"
 const offsetXToken = "OFFSET_X"
 const offsetYToken = "OFFSET_Y"
 const offsetZToken = "OFFSET_Z"
@@ -468,6 +477,10 @@ var keywordList = []string{
 	identificationToken,
 	noAxisPtsXToken,
 	noRescaleXToken,
+	noRescaleYToken,
+	noRescaleZToken,
+	noRescale4Token,
+	noRescale5Token,
 	offsetXToken,
 	reservedToken,
 	ripAddrWToken,

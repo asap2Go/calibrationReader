@@ -26,7 +26,7 @@ type record struct {
 }
 
 //parseRecord takes a line as string and fills the respective fields in the record struct.
-func parseRecord(line string) (record, error) {
+func parseRecord(line string) (*record, error) {
 	r := record{}
 	if line[0] == beginLineToken[0] && len(line) >= 11 {
 		r.byteCount = line[1:3]
@@ -40,23 +40,23 @@ func parseRecord(line string) (record, error) {
 				r.offset = line[9:13]
 			} else {
 				err := errors.New("line is too short to parse extended address record")
-				return r, err
+				return &r, err
 			}
 		} else {
 			r.offset = "0000"
 		}
 		r.checksum = line[len(line)-2:]
-		return r, nil
+		return &r, nil
 	} else {
 		err := errors.New("entry has no begin line symbol or is too short")
-		return r, err
+		return &r, err
 	}
 
 }
 
 //addOffsets walks through all records and updates the offset-value in the records of type data.
 //It stops when it finds a record that has already been updated by another goroutine.
-func addOffsets(wg *sync.WaitGroup, recs []record, start int) {
+func addOffsets(wg *sync.WaitGroup, recs []*record, start int) {
 	defer wg.Done()
 	firstRecordAfterNewOffset := false
 	offs := "0000"
@@ -83,7 +83,7 @@ forLoop:
 
 //validateChecksumsRoutine calls the validateChecksum Method for each record
 //it is given and sends false to a channel in case a checksum isn't valid.
-func validateChecksumsRoutine(wg *sync.WaitGroup, c chan bool, recs []record) {
+func validateChecksumsRoutine(wg *sync.WaitGroup, c chan bool, recs []*record) {
 	defer wg.Done()
 	var csValid bool
 	var err error
@@ -151,7 +151,7 @@ func (r *record) validateChecksum() (bool, error) {
 	}
 }
 
-func calcDataRoutine(c chan []dataByte, recs []record) {
+func calcDataRoutine(c chan []dataByte, recs []*record) {
 	var d []dataByte
 	var ds []dataByte
 	var err error

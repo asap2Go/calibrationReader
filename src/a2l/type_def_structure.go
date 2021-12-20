@@ -16,39 +16,45 @@ type typeDefStructure struct {
 	sizeSet            bool
 	addressType        AddrTypeEnum
 	consistentExchange consistentExchangeKeyword
-	structureComponent structureComponent
-	symbolTypeLink     string
+	structureComponent []structureComponent
+	symbolTypeLink     symbolTypeLink
 }
 
 func parseTypeDefStructure(tok *tokenGenerator) (typeDefStructure, error) {
-	sc := typeDefStructure{}
+	tds := typeDefStructure{}
 	var err error
 forLoop:
 	for {
 		switch tok.next() {
 		case addressTypeToken:
-			sc.addressType, err = parseAddrTypeEnum(tok)
+			tds.addressType, err = parseAddrTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("typeDefStructure addressType could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("typeDefStructure addressType successfully parsed")
 		case consistentExchangeToken:
-			sc.consistentExchange, err = parseConsistentExchangeKeyword(tok)
+			tds.consistentExchange, err = parseConsistentExchangeKeyword(tok)
 			if err != nil {
 				log.Err(err).Msg("typeDefStructure consistentExchange could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("typeDefStructure consistentExchange successfully parsed")
 		case beginStructureComponentToken:
-			sc.structureComponent, err = parseStructureComponent(tok)
+			var buf structureComponent
+			buf, err = parseStructureComponent(tok)
 			if err != nil {
 				log.Err(err).Msg("typeDefStructure structureComponent could not be parsed")
 				break forLoop
 			}
+			tds.structureComponent = append(tds.structureComponent, buf)
 			log.Info().Msg("typeDefStructure typeDefStructure successfully parsed")
 		case symbolTypeLinkToken:
-			sc.symbolTypeLink = tok.current()
+			tds.symbolTypeLink, err = parseSymbolTypeLink(tok)
+			if err != nil {
+				log.Err(err).Msg("typeDefStructure symbolTypeLink could not be parsed")
+				break forLoop
+			}
 			log.Info().Msg("typeDefStructure symbolTypeLink successfully parsed")
 		default:
 			if tok.current() == emptyToken {
@@ -57,26 +63,26 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTypeDefStructureToken {
 				break forLoop
-			} else if !sc.nameSet {
-				sc.name = tok.current()
-				sc.nameSet = true
+			} else if !tds.nameSet {
+				tds.name = tok.current()
+				tds.nameSet = true
 				log.Info().Msg("typeDefStructure name successfully parsed")
-			} else if !sc.longIdentifierSet {
-				sc.longIdentifier = tok.current()
-				sc.longIdentifierSet = true
+			} else if !tds.longIdentifierSet {
+				tds.longIdentifier = tok.current()
+				tds.longIdentifierSet = true
 				log.Info().Msg("typeDefStructure typeDefName successfully parsed")
-			} else if !sc.sizeSet {
+			} else if !tds.sizeSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 32)
 				if err != nil {
 					log.Err(err).Msg("typeDefStructure address could not be parsed")
 					break forLoop
 				}
-				sc.size = uint32(buf)
-				sc.sizeSet = true
+				tds.size = uint32(buf)
+				tds.sizeSet = true
 				log.Info().Msg("typeDefStructure address successfully parsed")
 			}
 		}
 	}
-	return sc, err
+	return tds, err
 }

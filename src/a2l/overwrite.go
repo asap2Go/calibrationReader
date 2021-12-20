@@ -16,7 +16,6 @@ type overwrite struct {
 	extendedLimits extendedLimits
 	inputQuantity  string
 	format         format
-	formatSet      bool
 	limits         limits
 	monotony       Monotony
 	physUnit       physUnit

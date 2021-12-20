@@ -111,12 +111,12 @@ func parseHex(lines []string) (Hex, error) {
 
 	//the initial capacity of dataBytes and records should be enough to parse a 10MB file without reallocation
 	h.DataBytes = make(map[uint32]byte, 5000000)
-	recs := make([]record, 0, 200000)
+	recs := make([]*record, 0, 200000)
 
 	//locRecord contains slices of records that the individual parsers in the goroutines produced
 	//this way we can ensure that the order of the records remains correct
 	//because the positions of the return values are determined by the position of the channel within locRecord
-	var locRecord []chan []record
+	var locRecord []chan []*record
 	for i := 0; i < numProc; i++ {
 		//calculate start and end for the slices each go routine is given to parse
 		start := (len(lines) / numProc) * i
@@ -125,7 +125,7 @@ func parseHex(lines []string) (Hex, error) {
 			//integer divisions might round up or down, so we make sure that we get the "real" end here
 			end = len(lines)
 		}
-		c := make(chan []record, len(lines))
+		c := make(chan []*record, len(lines))
 		locRecord = append(locRecord, c)
 		go parseRecordRoutine(c, lines[start:end])
 	}
@@ -242,8 +242,8 @@ func ParseFromFile(filepath string) (Hex, error) {
 }
 
 //parseRecordRoutine calls the parseRecord method for each line given and return them via a channel.
-func parseRecordRoutine(c chan []record, lines []string) {
-	var recs []record
+func parseRecordRoutine(c chan []*record, lines []string) {
+	var recs []*record
 forLoop:
 	for _, l := range lines {
 		if len(l) >= 11 {
