@@ -36,6 +36,7 @@ func TestReadCalibration(t *testing.T) {
 	a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.a2l"
 	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
 	startTime := time.Now()
+	//read + parse a2l and hex
 	cd, err := ReadCalibration(a2lPath, hexPath)
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
@@ -46,5 +47,14 @@ func TestReadCalibration(t *testing.T) {
 		log.Info().Str("project name", cd.a2l.Project.Name).Msg("finished parsing")
 		log.Info().Int("length of data in hex file", len(cd.hex.DataBytes)).Msg("finished parsing")
 		log.Warn().Msg("time for parsing bench files: " + fmt.Sprint(elapsed.Milliseconds()))
+		startTime := time.Now()
+		//find object in a2l struct
+		obj := cd.getObjectsByIdent("ASAM.M.MATRIX_DIM_8_4_2.UBYTE.IDENTICAL")
+		if len(obj) == 0 {
+			t.Fatalf("unable to find known identifier")
+		}
+		endTime := time.Now()
+		elapsed := endTime.Sub(startTime)
+		log.Warn().Msg("time for finding identifier: " + fmt.Sprint(elapsed.Milliseconds()))
 	}
 }

@@ -12,7 +12,7 @@ type Project struct {
 	longIdentifier    string
 	longIdentifierSet bool
 	header            header
-	Module            []module
+	Modules           []module
 }
 
 func parseProject(tok *tokenGenerator) (Project, error) {
@@ -40,7 +40,7 @@ forLoop:
 				log.Err(err).Msg("project module could not be parsed")
 				break forLoop
 			}
-			p.Module = append(p.Module, buf)
+			p.Modules = append(p.Modules, buf)
 			log.Info().Msg("project module successfully parsed")
 		default:
 			if tok.current() == emptyToken {

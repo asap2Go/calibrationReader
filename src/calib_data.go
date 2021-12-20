@@ -16,11 +16,69 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//var identifiers objectIdentifiers
+
 //CalibrationData contains the parsed structs from the a2l as well as the byte data from the hex file
 //that are parsed by ReadCalibration()
 type CalibrationData struct {
 	a2l a2l.A2L
 	hex ihex32.Hex
+}
+
+func (cd *CalibrationData) getObjectsByIdent(ident string) []interface{} {
+	var calibrationObjects []interface{}
+	var buf interface{}
+	var exists bool
+	/*if !identifiers.isInitialized {
+		identifiers = buildObjectKeys(cd)
+	}*/
+	for _, m := range cd.a2l.Project.Modules {
+		buf, exists = m.AxisPts[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Characteristics[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuMethods[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuTabs[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuVTabs[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuVTabRanges[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Functions[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Groups[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Measurements[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.RecordLayouts[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Units[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+	}
+	return calibrationObjects
 }
 
 //ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -115,7 +173,7 @@ func configureLogger() error {
 	return nil
 }
 
-func parseHexAddressToUint32(str string) (uint32, error) {
+func parseHexAddressToUint32(str string, bigEndian bool) (uint32, error) {
 	var err error
 	var address uint32
 	var byteSlice []byte
@@ -132,18 +190,34 @@ func parseHexAddressToUint32(str string) (uint32, error) {
 	}
 	//convert bytes to uint32
 	if len(byteSlice) == 4 {
-		address = binary.BigEndian.Uint32(byteSlice)
-	} else if len(byteSlice) < 4 {
-		bufferSlice := make([]byte, 4, 4)
-		for i := len(byteSlice) - 1; i >= 0; i-- {
-			bufferSlice[i] = byteSlice[i]
+		if bigEndian {
+			//Big Endian
+			address = binary.BigEndian.Uint32(byteSlice)
+		} else {
+			//Little Endian
+			address = binary.LittleEndian.Uint32(byteSlice)
 		}
-		log.Info().Msg("padding adress value byteSlice with zero-bytes " + fmt.Sprint(byteSlice) + " -> " + fmt.Sprint(bufferSlice))
-		address = binary.BigEndian.Uint32(bufferSlice)
+	} else if len(byteSlice) < 4 {
+		bufferSlice := make([]byte, 4)
+		if bigEndian {
+			//Big Endian with padding
+			for i := len(byteSlice) - 1; i >= 0; i-- {
+				bufferSlice[i] = byteSlice[i]
+			}
+			log.Info().Msg("padding adress value byteSlice with zero-bytes " + fmt.Sprint(byteSlice) + " -> " + fmt.Sprint(bufferSlice))
+			address = binary.BigEndian.Uint32(bufferSlice)
+		} else {
+			//Little Endian with padding
+			for i := 0; i < len(byteSlice); i++ {
+				bufferSlice[i] = byteSlice[i]
+			}
+			log.Info().Msg("padding adress value byteSlice with zero-bytes " + fmt.Sprint(byteSlice) + " -> " + fmt.Sprint(bufferSlice))
+			address = binary.LittleEndian.Uint32(bufferSlice)
+		}
 	} else {
+		//unexpected hex value which is either too short or too long
 		err = errors.New("unexpected hex adress value " + str)
 		return 0, err
 	}
-
 	return address, err
 }

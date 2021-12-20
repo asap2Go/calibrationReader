@@ -9,7 +9,7 @@ import (
 )
 
 type module struct {
-	name                   string
+	Name                   string
 	nameSet                bool
 	longIdentifier         string
 	longIdentifierSet      bool
@@ -303,7 +303,7 @@ forLoop:
 			} else if tok.current() == endModuleToken {
 				break forLoop
 			} else if !myModule.nameSet {
-				myModule.name = tok.current()
+				myModule.Name = tok.current()
 				myModule.nameSet = true
 				log.Info().Msg("module name successfully parsed")
 			} else if !myModule.longIdentifierSet {
@@ -355,7 +355,7 @@ forLoop:
 			log.Err(err).Msg("module could not be parsed")
 			break forLoop
 		} else if !myModule.nameSet {
-			myModule.name = tok.current()
+			myModule.Name = tok.current()
 			myModule.nameSet = true
 			log.Info().Msg("module name successfully parsed")
 		} else if !myModule.longIdentifierSet {
