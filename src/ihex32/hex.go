@@ -136,6 +136,14 @@ func parseHex(lines []string) (Hex, error) {
 		}
 	}
 
+	//apply offsets to all records
+	wgOffset := new(sync.WaitGroup)
+	wgOffset.Add(numProc)
+	for i := 0; i < numProc; i++ {
+		start := (len(recs) / numProc) * i
+		go addOffsets(wgOffset, recs, start)
+	}
+
 	if validateChecksums {
 		//start validation of all checksums
 		wgChecksum := new(sync.WaitGroup)
@@ -164,14 +172,8 @@ func parseHex(lines []string) (Hex, error) {
 			}
 		}
 	}
-	//apply offsets to all records
-	wgOffset := new(sync.WaitGroup)
-	wgOffset.Add(numProc)
-	for i := 0; i < numProc; i++ {
-		start := (len(recs) / numProc) * i
-		go addOffsets(wgOffset, recs, start)
-	}
-	//wait for the offset appending to finish:
+
+	//wait for the offset appending to finish. This usually takes longer than checksum calculation, so we run it in parallel:
 	wgOffset.Wait()
 
 	//calculate final data structure

@@ -7,14 +7,14 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type characteristic struct {
+type Characteristic struct {
 	Name                    string
 	nameSet                 bool
 	LongIdentifier          string
 	longIdentifierSet       bool
 	Type                    typeEnum
 	TypeSet                 bool
-	address                 string
+	Address                 string
 	addressSet              bool
 	deposit                 string
 	depositSet              bool
@@ -53,8 +53,8 @@ type characteristic struct {
 	virtualCharacteristic   []VirtualCharacteristic
 }
 
-func parseCharacteristic(tok *tokenGenerator) (characteristic, error) {
-	c := characteristic{}
+func parseCharacteristic(tok *tokenGenerator) (Characteristic, error) {
+	c := Characteristic{}
 	var err error
 forLoop:
 	for {
@@ -272,9 +272,10 @@ forLoop:
 				c.TypeSet = true
 				log.Info().Msg("characteristic type successfully parsed")
 			} else if !c.addressSet {
-				c.address = tok.current()
+				log.Info().Msg("Trying to convert to address: " + tok.current())
+				c.Address = tok.current()
 				c.addressSet = true
-				log.Info().Msg("characteristic address successfully parsed")
+				log.Info().Msg("characteristic Address successfully parsed")
 			} else if !c.depositSet {
 				c.deposit = tok.current()
 				c.depositSet = true

@@ -8,10 +8,13 @@ import (
 )
 
 type fncValues struct {
-	position       uint16
-	positionSet    bool
-	datatype       dataTypeEnum
-	datatypeSet    bool
+	//position of table values (function values) in the deposit structure (description of sequence of elements in the data record).
+	position    uint16
+	positionSet bool
+	//data type of the table values
+	datatype    dataTypeEnum
+	datatypeSet bool
+	//for characteristic maps, this attribute is used to describe how the 2-dimensional table values are mapped onto the 1-dimensional address space
 	indexMode      indexModeEnum
 	indexModeSet   bool
 	addresstype    addrTypeEnum

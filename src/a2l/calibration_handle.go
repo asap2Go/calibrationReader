@@ -7,7 +7,7 @@ import (
 )
 
 type calibrationHandle struct {
-	handle                []uint32
+	handle                []string
 	handleSet             bool
 	calibrationHandleText calibrationHandleText
 }
@@ -34,13 +34,7 @@ forLoop:
 				ch.handleSet = true
 				break forLoop
 			} else if !ch.handleSet {
-				var buf uint32
-				buf, err = parseHexAddressToUint32(tok.current())
-				if err != nil {
-					log.Err(err).Msg("calibrationHandle handle could not be parsed")
-					break forLoop
-				}
-				ch.handle = append(ch.handle, buf)
+				ch.handle = append(ch.handle, tok.current())
 				log.Info().Msg("calibrationHandle handle successfully parsed")
 			}
 		}

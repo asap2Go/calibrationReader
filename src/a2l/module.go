@@ -17,7 +17,7 @@ type module struct {
 	errors                 []error
 	AxisPts                map[string]axisPts
 	blobs                  map[string]blob
-	Characteristics        map[string]characteristic
+	Characteristics        map[string]Characteristic
 	CompuMethods           map[string]compuMethod
 	CompuTabs              map[string]compuTab
 	CompuVTabs             map[string]compuVTab
@@ -47,7 +47,7 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	myModule := module{}
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
-	myModule.Characteristics = make(map[string]characteristic, 10000)
+	myModule.Characteristics = make(map[string]Characteristic, 10000)
 	myModule.CompuMethods = make(map[string]compuMethod, 1000)
 	myModule.CompuTabs = make(map[string]compuTab, 1000)
 	myModule.CompuVTabs = make(map[string]compuVTab, 1000)
@@ -69,7 +69,7 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	var err error
 	var bufAxisPts axisPts
 	var bufBlob blob
-	var bufCharacteristic characteristic
+	var bufCharacteristic Characteristic
 	var bufCompuMethod compuMethod
 	var bufCompuTab compuTab
 	var bufCompuVtab compuVTab
@@ -326,7 +326,7 @@ func parseModuleMultithreaded(tok *tokenGenerator) (module, error) {
 	myModule := module{}
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
-	myModule.Characteristics = make(map[string]characteristic, 10000)
+	myModule.Characteristics = make(map[string]Characteristic, 10000)
 	myModule.CompuMethods = make(map[string]compuMethod, 1000)
 	myModule.CompuTabs = make(map[string]compuTab, 1000)
 	myModule.CompuVTabs = make(map[string]compuVTab, 1000)
@@ -370,7 +370,7 @@ forLoop:
 	cA2ml := make(chan a2ml, 1)
 	cAxisPts := make(chan axisPts, 100)
 	cBlob := make(chan blob, 5)
-	cCharacteristic := make(chan characteristic, 1000)
+	cCharacteristic := make(chan Characteristic, 1000)
 	cCompuMethod := make(chan compuMethod, 100)
 	cCompuTab := make(chan compuTab, 100)
 	cCompuVtab := make(chan compuVTab, 100)
@@ -447,7 +447,7 @@ forLoop:
 //collectChannelsMultithreaded uses anonymous function to collect the data sent by the goroutines running the moduleMainLoop.
 //usually the Select Collector is to be prefered as it is mostly faster and always easier on memory
 //as the additional goroutines spun up in collectChannelsMultithreaded seem to block the GC a lot
-func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
+func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
@@ -658,7 +658,7 @@ func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts ch
 //and wgParser.Wait() is over.
 //channels have to be closed in order for the collector to recognize when it is done
 //because no more data can be sent and all channels are empty
-func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
+func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
@@ -701,7 +701,7 @@ func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts cha
 
 //parseModuleMainLoop is used by the parseModuleMultithreaded function to run the module parser in individual goroutines
 func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
-	cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
+	cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
@@ -718,7 +718,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	var err error
 	var bufAxisPts axisPts
 	var bufBlob blob
-	var bufCharacteristic characteristic
+	var bufCharacteristic Characteristic
 	var bufCompuMethod compuMethod
 	var bufCompuTab compuTab
 	var bufCompuVtab compuVTab

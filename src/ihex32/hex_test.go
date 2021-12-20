@@ -37,6 +37,6 @@ func BenchmarkParseFromFile(b *testing.B) {
 		}
 		endTime := time.Now()
 		elapsed := endTime.Sub(startTime)
-		log.Warn().Msg("time for parsing file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
+		log.Warn().Msg("time for parsing hex bench file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 	}
 }
