@@ -18,10 +18,10 @@ type blob struct {
 	addressSet          bool
 	size                uint32
 	sizeSet             bool
-	addressType         AddrTypeEnum
+	addressType         addrTypeEnum
 	addressTypeSet      bool
 	annotation          []annotation
-	calibrationAccess   CalibrationAccessEnum
+	calibrationAccess   calibrationAccessEnum
 	displayIdentifier   DisplayIdentifier
 	ecuAddressExtension ecuAddressExtension
 	IfData              []IfData

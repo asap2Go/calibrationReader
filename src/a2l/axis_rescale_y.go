@@ -44,9 +44,9 @@ type axisRescaleY struct {
 	datatypeSet                bool
 	maxNumberOfRescalePairs    uint16
 	maxNumberOfRescalePairsSet bool
-	indexIncr                  IndexOrderEnum
+	indexIncr                  indexOrderEnum
 	indexIncrSet               bool
-	adressing                  AddrTypeEnum
+	adressing                  addrTypeEnum
 	adressingSet               bool
 }
 

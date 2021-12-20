@@ -1,5 +1,3 @@
--TypeDefAxis, TypeDefBlob, TypeDefMeasurement, TypeDefStructure, Instance und Transformer - Klassen fertig definieren.
--Tokens für obiges eintragen.
--arComponent Verwendung finden
+-Tokens neu sortieren und KeyWord Liste neu afubauen.
 -Ab Blob weiter durch Standard gehen, Kommentare einbringen und a2l package updaten.
 -Anschließend auslesen der Characteristic Values aus der Hex implementieren

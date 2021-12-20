@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type compuTab struct {
@@ -11,7 +12,7 @@ type compuTab struct {
 	nameSet             bool
 	longIdentifier      string
 	longIdentifierSet   bool
-	conversionType      ConversionTypeEnum
+	conversionType      conversionTypeEnum
 	conversionTypeSet   bool
 	numberValuePairs    uint16
 	numberValuePairsSet bool

@@ -7,7 +7,7 @@ import (
 )
 
 type deposit struct {
-	mode    ModeEnum
+	mode    modeEnum
 	modeSet bool
 }
 

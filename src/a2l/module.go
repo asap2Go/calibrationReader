@@ -8,10 +8,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-/*ToDo:
-[->TYPEDEF_MEASUREMENT]*
-[->TYPEDEF_STRUCTURE]*
-*/
 type module struct {
 	name                   string
 	nameSet                bool
@@ -435,14 +431,11 @@ forLoop:
 		cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
 		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
 
-	//Select collector:
-	myModule = collectChannelsSelect(myModule, cA2ml, cAxisPts, cBlob, cCharacteristic, cCompuMethod,
+	//Multithreaded collector for the channels:
+	collectChannelsMultithreaded(&myModule, cA2ml, cAxisPts, cBlob, cCharacteristic, cCompuMethod,
 		cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic, cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
-	//Multithreaded collector:
-	/*myModule = collectChannelsMultithreaded(myModule, cA2ml, cAxisPts, cCharacteristic, cCompuMethod,
-	cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
-	cModPar, cRecordLayout, cUnit, cUserRights, cVariantCoding,cError)*/
+		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic,
+		cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
 	tok.index = endIndex
 	if len(myModule.errors) > 0 {
 		err = myModule.errors[0]
@@ -454,7 +447,7 @@ forLoop:
 //collectChannelsMultithreaded uses anonymous function to collect the data sent by the goroutines running the moduleMainLoop.
 //usually the Select Collector is to be prefered as it is mostly faster and always easier on memory
 //as the additional goroutines spun up in collectChannelsMultithreaded seem to block the GC a lot
-func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
+func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
@@ -462,11 +455,11 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) module {
+	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) {
 
 	log.Info().Msg("spinning up collector routines")
 	wgCollectors := new(sync.WaitGroup)
-	wgCollectors.Add(19)
+	wgCollectors.Add(27)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cError {
@@ -659,122 +652,9 @@ func collectChannelsMultithreaded(myModule module, cA2ml chan a2ml, cAxisPts cha
 	log.Info().Msg("waiting for collectors to finish")
 	wgCollectors.Wait()
 	log.Info().Msg("all collectors finished")
-	return myModule
 }
 
-//collectChannelsSelect uses a select statement to collect the data sent by the goroutines running the moduleMainLoop.
-//preferred method compared to MultithreadedCollector
-func collectChannelsSelect(myModule module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan characteristic,
-	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
-	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
-	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
-	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
-	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
-	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
-	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
-	cUnit chan unit, cUserRights chan userRights, cVariantCoding chan variantCoding, cError chan error) module {
-
-	var c0Opn, c1Opn, c3Opn, c4Opn, c5Opn, c6Opn, c7Opn, c8Opn, c9Opn, c10Opn,
-		c11Opn, c12Opn, c13Opn, c14Opn, c15Opn, c16Opn, c17Opn, c18Opn, c19Opn, c20Opn,
-		c21Opn, c22Opn, c23Opn, c24Opn, c25Opn, c26Opn, c27Opn bool = true, true, true, true, true,
-		true, true, true, true, true, true, true, true, true, true, true, true, true,
-		true, true, true, true, true, true, true, true, true
-
-forLoopSelect:
-	select {
-	case a, a2 := <-cA2ml:
-		myModule.a2ml = a
-		c0Opn = a2
-	case b, b2 := <-cAxisPts:
-		myModule.AxisPts[b.name] = b
-		c1Opn = b2
-	case c, c2 := <-cCharacteristic:
-		myModule.Characteristics[c.Name] = c
-		c3Opn = c2
-	case d, d2 := <-cCompuMethod:
-		myModule.CompuMethods[d.name] = d
-		c4Opn = d2
-	case e, e2 := <-cCompuTab:
-		myModule.CompuTabs[e.name] = e
-		c5Opn = e2
-	case f, f2 := <-cCompuVtab:
-		myModule.CompuVTabs[f.name] = f
-		c6Opn = f2
-	case g, g2 := <-cCompuVtabRange:
-		myModule.CompuVTabRanges[g.name] = g
-		c7Opn = g2
-	case h, h2 := <-cFrame:
-		myModule.frame = h
-		c8Opn = h2
-	case i, i2 := <-cFunction:
-		myModule.Functions[i.name] = i
-		c9Opn = i2
-	case j, j2 := <-cGroup:
-		myModule.Groups[j.groupName] = j
-		c10Opn = j2
-	case k, k2 := <-cIfData:
-		myModule.ifData[k.name] = k
-		c11Opn = k2
-	case l, l2 := <-cMeasurement:
-		myModule.Measurements[l.name] = l
-		c12Opn = l2
-	case m, m2 := <-cModCommon:
-		myModule.ModCommon = m
-		c13Opn = m2
-	case n, n2 := <-cModPar:
-		myModule.ModPar = n
-		c14Opn = n2
-	case o, o2 := <-cRecordLayout:
-		myModule.RecordLayouts[o.name] = o
-		c15Opn = o2
-	case p, p2 := <-cUnit:
-		myModule.Units[p.name] = p
-		c16Opn = p2
-	case q, q2 := <-cUserRights:
-		myModule.userRights[q.userLevelId] = q
-		c17Opn = q2
-	case r, r2 := <-cVariantCoding:
-		myModule.variantCoding = r
-		c18Opn = r2
-	case s, s2 := <-cBlob:
-		myModule.blobs[s.name] = s
-		c19Opn = s2
-	case t, t2 := <-cInstance:
-		myModule.instances[t.name] = t
-		c20Opn = t2
-	case u, u2 := <-cTransformer:
-		myModule.transformers[u.name] = u
-		c21Opn = u2
-	case v, v2 := <-cTypeDefAxis:
-		myModule.typeDefAxis[v.name] = v
-		c22Opn = v2
-	case w, w2 := <-cTypeDefBlob:
-		myModule.typeDefBlobs[w.name] = w
-		c23Opn = w2
-	case x, x2 := <-cTypeDefCharacteristic:
-		myModule.typeDefCharacteristics[x.name] = x
-		c24Opn = x2
-	case y, y2 := <-cTypeDefMeasurement:
-		myModule.typeDefMeasurements[y.name] = y
-		c25Opn = y2
-	case z, z2 := <-cTypeDefStructure:
-		myModule.typeDefStructures[z.name] = z
-		c26Opn = z2
-	case aa, aa2 := <-cError:
-		myModule.errors = append(myModule.errors, aa)
-		c27Opn = aa2
-	default:
-		if !(c0Opn || c1Opn || c3Opn || c4Opn || c5Opn || c6Opn || c7Opn || c8Opn || c9Opn || c10Opn ||
-			c11Opn || c12Opn || c13Opn || c14Opn || c15Opn || c16Opn || c17Opn || c18Opn || c19Opn ||
-			c20Opn || c21Opn || c22Opn || c23Opn || c24Opn || c25Opn || c26Opn || c27Opn) {
-			break forLoopSelect
-		}
-	}
-	log.Info().Msg("collected all channels")
-	return myModule
-}
-
-//closeChannelsAfterParsing obviously closes all channels when the parser routines have finished
+//closeChannelsAfterParsing closes all channels when the parser routines have finished
 //and wgParser.Wait() is over.
 //channels have to be closed in order for the collector to recognize when it is done
 //because no more data can be sent and all channels are empty

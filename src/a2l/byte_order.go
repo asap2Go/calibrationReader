@@ -7,7 +7,7 @@ import (
 )
 
 type byteOrder struct {
-	byteOrder    ByteOrderEnum
+	byteOrder    byteOrderEnum
 	byteOrderSet bool
 }
 

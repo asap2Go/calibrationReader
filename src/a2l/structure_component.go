@@ -13,7 +13,7 @@ type structureComponent struct {
 	typeDefNameSet   bool
 	addressOffset    string //uint32
 	addressOffsetSet bool
-	addressType      AddrTypeEnum
+	addressType      addrTypeEnum
 	layout           layout
 	matrixDim        matrixDim
 	symbolTypeLink   symbolTypeLink

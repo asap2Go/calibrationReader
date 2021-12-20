@@ -7,7 +7,7 @@ import (
 )
 
 type layout struct {
-	indexMode    IndexModeEnum
+	indexMode    indexModeEnum
 	indexModeSet bool
 }
 

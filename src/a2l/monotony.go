@@ -7,7 +7,7 @@ import (
 )
 
 type Monotony struct {
-	monotony    MonotonyTypeEnum
+	monotony    monotonyTypeEnum
 	monotonySet bool
 }
 

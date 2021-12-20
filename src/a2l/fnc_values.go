@@ -12,9 +12,9 @@ type fncValues struct {
 	positionSet    bool
 	datatype       dataTypeEnum
 	datatypeSet    bool
-	indexMode      IndexModeEnum
+	indexMode      indexModeEnum
 	indexModeSet   bool
-	addresstype    AddrTypeEnum
+	addresstype    addrTypeEnum
 	addresstypeSet bool
 }
 

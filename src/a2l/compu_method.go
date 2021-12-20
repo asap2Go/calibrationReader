@@ -11,7 +11,7 @@ type compuMethod struct {
 	nameSet           bool
 	longIdentifier    string
 	longIdentifierSet bool
-	conversionType    ConversionTypeEnum
+	conversionType    conversionTypeEnum
 	conversionTypeSet bool
 	format            string
 	formatSet         bool

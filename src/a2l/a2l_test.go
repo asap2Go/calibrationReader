@@ -20,7 +20,7 @@ func TestParseFromFile(t *testing.T) {
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
 	log.Info().Str("project name", a.Project.Name).Msg("finished parsing:")
-	log.Info().Msg("time for parsing test file: " + fmt.Sprint(elapsed.Milliseconds()))
+	log.Info().Msg("time for parsing test file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 }
 
 func BenchmarkParseFromFile(b *testing.B) {
@@ -36,6 +36,6 @@ func BenchmarkParseFromFile(b *testing.B) {
 		endTime := time.Now()
 		elapsed := endTime.Sub(startTime)
 		log.Info().Str("project name", a.Project.Name).Msg("finished parsing:")
-		log.Warn().Msg("time for parsing test file: " + fmt.Sprint(elapsed.Milliseconds()))
+		log.Warn().Msg("time for parsing test file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 	}
 }

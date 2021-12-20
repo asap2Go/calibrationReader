@@ -14,7 +14,7 @@ type typeDefStructure struct {
 	longIdentifierSet  bool
 	size               uint32
 	sizeSet            bool
-	addressType        AddrTypeEnum
+	addressType        addrTypeEnum
 	consistentExchange consistentExchangeKeyword
 	structureComponent []structureComponent
 	symbolTypeLink     symbolTypeLink

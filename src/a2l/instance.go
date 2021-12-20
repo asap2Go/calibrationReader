@@ -15,9 +15,9 @@ type instance struct {
 	typeDefNameSet      bool
 	address             string
 	addressSet          bool
-	addressType         AddrTypeEnum
+	addressType         addrTypeEnum
 	annotation          []annotation
-	calibrationAccess   CalibrationAccessEnum
+	calibrationAccess   calibrationAccessEnum
 	displayIdentifier   DisplayIdentifier
 	ecuAddressExtension ecuAddressExtension
 	ifData              []IfData

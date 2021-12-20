@@ -100,22 +100,22 @@ func parseDataSizeEnum(tok *tokenGenerator) (dataSizeEnum, error) {
 	return d, err
 }
 
-//AddrTypeEnum defines which address width is necessary.
-type AddrTypeEnum string
+//addrTypeEnum defines which address width is necessary.
+type addrTypeEnum string
 
 const (
-	undefinedAddrtype AddrTypeEnum = emptyToken
-	PBYTE             AddrTypeEnum = pbyteToken
-	PWORD             AddrTypeEnum = pwordToken
-	PLONG             AddrTypeEnum = plongToken
+	undefinedAddrtype addrTypeEnum = emptyToken
+	PBYTE             addrTypeEnum = pbyteToken
+	PWORD             addrTypeEnum = pwordToken
+	PLONG             addrTypeEnum = plongToken
 	/*DIRECT: If an adjustable or measurable object is defined with indirect addressing
 	(ADDRESS_TYPE is not DIRECT) and if the used interface does not support indirect
 	addressing, it is the responsibility of the MC-System to dereference the object’s
 	address before accessing the data or configuring measurement lists.*/
-	DIRECT AddrTypeEnum = directToken
+	DIRECT addrTypeEnum = directToken
 )
 
-func parseAddrTypeEnum(tok *tokenGenerator) (AddrTypeEnum, error) {
+func parseAddrTypeEnum(tok *tokenGenerator) (addrTypeEnum, error) {
 	a := undefinedAddrtype
 	var err error
 	switch tok.current() {
@@ -133,17 +133,17 @@ func parseAddrTypeEnum(tok *tokenGenerator) (AddrTypeEnum, error) {
 	return a, err
 }
 
-type ByteOrderEnum string
+type byteOrderEnum string
 
 const (
-	undefinedByteorder ByteOrderEnum = emptyToken
-	littleEndian       ByteOrderEnum = littleEndianToken
-	bigEndian          ByteOrderEnum = bigEndianToken
-	msbLast            ByteOrderEnum = msbLastToken
-	msbFirst           ByteOrderEnum = msbFirstToken
+	undefinedByteorder byteOrderEnum = emptyToken
+	littleEndian       byteOrderEnum = littleEndianToken
+	bigEndian          byteOrderEnum = bigEndianToken
+	msbLast            byteOrderEnum = msbLastToken
+	msbFirst           byteOrderEnum = msbFirstToken
 )
 
-func parseByteOrderEnum(tok *tokenGenerator) (ByteOrderEnum, error) {
+func parseByteOrderEnum(tok *tokenGenerator) (byteOrderEnum, error) {
 	b := undefinedByteorder
 	var err error
 	switch tok.current() {
@@ -161,15 +161,15 @@ func parseByteOrderEnum(tok *tokenGenerator) (ByteOrderEnum, error) {
 	return b, err
 }
 
-type IndexOrderEnum string
+type indexOrderEnum string
 
 const (
-	undefinedIndexorder IndexOrderEnum = emptyToken
-	indexIncr           IndexOrderEnum = indexIncrToken
-	indexDecr           IndexOrderEnum = indexDecrToken
+	undefinedIndexorder indexOrderEnum = emptyToken
+	indexIncr           indexOrderEnum = indexIncrToken
+	indexDecr           indexOrderEnum = indexDecrToken
 )
 
-func parseIndexOrderEnum(tok *tokenGenerator) (IndexOrderEnum, error) {
+func parseIndexOrderEnum(tok *tokenGenerator) (indexOrderEnum, error) {
 	i := undefinedIndexorder
 	var err error
 	switch tok.current() {
@@ -237,17 +237,17 @@ func parseAttributeEnum(tok *tokenGenerator) (attributeEnum, error) {
 	return a, err
 }
 
-type CalibrationAccessEnum string
+type calibrationAccessEnum string
 
 const (
-	undefinedCalibrationAccess CalibrationAccessEnum = emptyToken
-	CALIBRATION                CalibrationAccessEnum = calibrationToken
-	noCalibration              CalibrationAccessEnum = noCalibrationToken
-	notInMcdSystem             CalibrationAccessEnum = notInMcdSystemToken
-	offlineCalibration         CalibrationAccessEnum = offlineCalibrationToken
+	undefinedCalibrationAccess calibrationAccessEnum = emptyToken
+	CALIBRATION                calibrationAccessEnum = calibrationToken
+	noCalibration              calibrationAccessEnum = noCalibrationToken
+	notInMcdSystem             calibrationAccessEnum = notInMcdSystemToken
+	offlineCalibration         calibrationAccessEnum = offlineCalibrationToken
 )
 
-func parseCalibrationAccessEnum(tok *tokenGenerator) (CalibrationAccessEnum, error) {
+func parseCalibrationAccessEnum(tok *tokenGenerator) (calibrationAccessEnum, error) {
 	ca := undefinedCalibrationAccess
 	var err error
 	switch tok.next() {
@@ -311,20 +311,20 @@ func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
 	return t, err
 }
 
-type ConversionTypeEnum string
+type conversionTypeEnum string
 
 const (
-	undefinedConversionType ConversionTypeEnum = emptyToken
-	IDENTICAL               ConversionTypeEnum = identicalToken
-	FORM                    ConversionTypeEnum = formToken
-	LINEAR                  ConversionTypeEnum = linearToken
-	ratFunc                 ConversionTypeEnum = ratFuncToken
-	tabIntp                 ConversionTypeEnum = tabIntpToken
-	tabNointp               ConversionTypeEnum = tabNointpToken
-	tabVerb                 ConversionTypeEnum = tabVerbToken
+	undefinedConversionType conversionTypeEnum = emptyToken
+	IDENTICAL               conversionTypeEnum = identicalToken
+	FORM                    conversionTypeEnum = formToken
+	LINEAR                  conversionTypeEnum = linearToken
+	ratFunc                 conversionTypeEnum = ratFuncToken
+	tabIntp                 conversionTypeEnum = tabIntpToken
+	tabNointp               conversionTypeEnum = tabNointpToken
+	tabVerb                 conversionTypeEnum = tabVerbToken
 )
 
-func parseConversionTypeEnum(tok *tokenGenerator) (ConversionTypeEnum, error) {
+func parseConversionTypeEnum(tok *tokenGenerator) (conversionTypeEnum, error) {
 	ct := undefinedConversionType
 	var err error
 	switch tok.current() {
@@ -348,18 +348,18 @@ func parseConversionTypeEnum(tok *tokenGenerator) (ConversionTypeEnum, error) {
 	return ct, err
 }
 
-type IndexModeEnum string
+type indexModeEnum string
 
 const (
-	undefinedIndexMode IndexModeEnum = emptyToken
-	alternateCurves    IndexModeEnum = alternateCurvesToken
-	alternateWithX     IndexModeEnum = alternateWithXToken
-	alternateWithY     IndexModeEnum = alternateWithYToken
-	columnDir          IndexModeEnum = columnDirToken
-	rowDir             IndexModeEnum = rowDirToken
+	undefinedIndexMode indexModeEnum = emptyToken
+	alternateCurves    indexModeEnum = alternateCurvesToken
+	alternateWithX     indexModeEnum = alternateWithXToken
+	alternateWithY     indexModeEnum = alternateWithYToken
+	columnDir          indexModeEnum = columnDirToken
+	rowDir             indexModeEnum = rowDirToken
 )
 
-func parseIndexModeEnum(tok *tokenGenerator) (IndexModeEnum, error) {
+func parseIndexModeEnum(tok *tokenGenerator) (indexModeEnum, error) {
 	im := undefinedIndexMode
 	var err error
 	switch tok.current() {
@@ -379,15 +379,15 @@ func parseIndexModeEnum(tok *tokenGenerator) (IndexModeEnum, error) {
 	return im, err
 }
 
-type ModeEnum string
+type modeEnum string
 
 const (
-	undefinedMode ModeEnum = emptyToken
-	ABSOLUTE      ModeEnum = absoluteToken
-	DIFFERENCE    ModeEnum = differenceToken
+	undefinedMode modeEnum = emptyToken
+	ABSOLUTE      modeEnum = absoluteToken
+	DIFFERENCE    modeEnum = differenceToken
 )
 
-func parseModeEnum(tok *tokenGenerator) (ModeEnum, error) {
+func parseModeEnum(tok *tokenGenerator) (modeEnum, error) {
 	m := undefinedMode
 	var err error
 	switch tok.current() {
@@ -487,20 +487,20 @@ func parseMemoryTypeEnum(tok *tokenGenerator) (memoryTypeEnum, error) {
 	return mt, err
 }
 
-type MonotonyTypeEnum string
+type monotonyTypeEnum string
 
 const (
-	undefinedMonotonyType MonotonyTypeEnum = emptyToken
-	monDecrease           MonotonyTypeEnum = monDecreaseToken
-	monIncrease           MonotonyTypeEnum = monIncreaseToken
-	strictDecrease        MonotonyTypeEnum = strictDecreaseToken
-	strictIncrease        MonotonyTypeEnum = strictIncreaseToken
-	MONOTONOUS            MonotonyTypeEnum = monotonousToken
-	strictMon             MonotonyTypeEnum = strictMonToken
-	notMon                MonotonyTypeEnum = notMonToken
+	undefinedMonotonyType monotonyTypeEnum = emptyToken
+	monDecrease           monotonyTypeEnum = monDecreaseToken
+	monIncrease           monotonyTypeEnum = monIncreaseToken
+	strictDecrease        monotonyTypeEnum = strictDecreaseToken
+	strictIncrease        monotonyTypeEnum = strictIncreaseToken
+	MONOTONOUS            monotonyTypeEnum = monotonousToken
+	strictMon             monotonyTypeEnum = strictMonToken
+	notMon                monotonyTypeEnum = notMonToken
 )
 
-func parseMonotonyTypeEnum(tok *tokenGenerator) (MonotonyTypeEnum, error) {
+func parseMonotonyTypeEnum(tok *tokenGenerator) (monotonyTypeEnum, error) {
 	mt := undefinedMonotonyType
 	var err error
 	switch tok.current() {

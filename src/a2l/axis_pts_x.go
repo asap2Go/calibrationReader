@@ -14,9 +14,9 @@ type axisPtsX struct {
 	positionSet   bool
 	datatype      dataTypeEnum
 	datatypeSet   bool
-	indexIncr     IndexOrderEnum
+	indexIncr     indexOrderEnum
 	indexIncrSet  bool
-	addressing    AddrTypeEnum
+	addressing    addrTypeEnum
 	addressingSet bool
 }
 

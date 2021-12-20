@@ -52,7 +52,7 @@ type axisPts struct {
 	upperLimitSet       bool
 	annotation          []annotation
 	byteOrder           byteOrder
-	calibrationAccess   CalibrationAccessEnum
+	calibrationAccess   calibrationAccessEnum
 	deposit             deposit
 	displayIdentifier   DisplayIdentifier
 	ecuAddressExtension ecuAddressExtension

@@ -30,7 +30,7 @@ type characteristic struct {
 	axisDescr               []axisDescr
 	bitMask                 bitMask
 	byteOrder               byteOrder
-	calibrationAccess       CalibrationAccessEnum
+	calibrationAccess       calibrationAccessEnum
 	comparisonQuantity      comparisonQuantity
 	dependentCharacteristic []DependentCharacteristic
 	discrete                discreteKeyword
