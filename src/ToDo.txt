@@ -1,4 +1,5 @@
+-Auslesen der Characteristic Values aus der Hex implementieren
 -ihex32 und srec19 zusammenführen.
 -Tokens neu sortieren und KeyWord Liste neu aufbauen.
 -Ab Blob weiter durch Standard gehen, Kommentare einbringen und a2l package updaten.
--Anschließend auslesen der Characteristic Values aus der Hex implementieren
+-evtl. GUI erstellen
