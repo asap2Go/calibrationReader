@@ -13,8 +13,8 @@ func BenchmarkReadCalibration(b *testing.B) {
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 	var cd CalibrationData
 	var err error
-	a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171_inflated.a2l"
-	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/Org_Files_Sortiert Damos/076906022P_5778_504903_P672_R4KG_EDC17CP20_2.39/076906022P_5778_504903_P672_R4KG_EDC17CP20_2.39.hex"
+	a2lPath := "testing/ASAP2_Demo_V171.a2l"
+	hexPath := "testing/ASAP2_Demo_V171.hex"
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		startTime := time.Now()
@@ -33,8 +33,8 @@ func BenchmarkReadCalibration(b *testing.B) {
 
 func TestReadCalibration(t *testing.T) {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	a2lPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.a2l"
-	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
+	a2lPath := "testing/ASAP2_Demo_V171.a2l"
+	hexPath := "testing/ASAP2_Demo_V171.hex"
 	startTime := time.Now()
 	//read + parse a2l and hex
 	cd, err := ReadCalibration(a2lPath, hexPath)

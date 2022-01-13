@@ -12,7 +12,7 @@ import (
 
 func TestParseFromFile(t *testing.T) {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
+	hexPath := "testing/ASAP2_Demo_V171.hex"
 	h, err := ParseFromFile(hexPath)
 	if err == nil {
 		if len(h) != 137324 {
@@ -29,7 +29,7 @@ func BenchmarkParseFromFile(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		startTime := time.Now()
-		hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/Org_Files_Sortiert Damos/4F9910401E_0070_399807_P788_C3UM_EDC17CP14_2.42/4F9910401E_0070_399807_P788_C3UM.hex"
+		hexPath := "testing/ASAP2_Demo_V171.hex"
 		h, err := ParseFromFile(hexPath)
 		if err != nil {
 			log.Err(err).Msg("failed parsing with error:")
