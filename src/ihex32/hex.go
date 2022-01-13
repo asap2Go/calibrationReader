@@ -14,7 +14,7 @@ import (
 
 var (
 	//numProc controls the number of goRoutines that are run for the parallel parts of the programm.
-	numProc = runtime.NumCPU() * 2
+	numProc = runtime.NumCPU()
 	//validateChecksums controls whether checksum validation will be executed or skipped.
 	//in case checksum validation encounters an incorrect checksum it will stop the parser and throw an error.
 	validateChecksums = true
@@ -97,20 +97,13 @@ var (
 	}
 )
 
-//Hex is the main structure of the ihex32 parser containing bytes with 32bit adresses.
-type Hex struct {
-	//DataBytes is a map that has 32 bit addresses (uint32) as its keys.
-	//and the corresponding value is the byte that is specified in the ihex32 at that address.
-	DataBytes map[uint32]byte
-}
-
 //parseHex parses a hex-file given as an slice of strings and return a hex struct containing the data in byte form with all the addresses attached.
-func parseHex(lines []string) (Hex, error) {
-	var h Hex
+func parseHex(lines []string) (map[uint32]byte, error) {
+	var h map[uint32]byte
 	var err error
 
 	//the initial capacity of dataBytes and records should be enough to parse a 10MB file without reallocation
-	h.DataBytes = make(map[uint32]byte, 5000000)
+	h = make(map[uint32]byte, 5000000)
 	recs := make([]*record, 0, 200000)
 
 	//locRecord contains slices of records that the individual parsers in the goroutines produced
@@ -194,12 +187,12 @@ func parseHex(lines []string) (Hex, error) {
 	for _, c := range locData {
 		for rec := range c {
 			for _, data := range rec {
-				val, exists := h.DataBytes[data.address]
+				val, exists := h[data.address]
 				if exists {
 					err = errors.New("colliding address values at address " + fmt.Sprint(data.address) + " value1 " + fmt.Sprint(val) + " and value2 " + fmt.Sprint(data.value))
 					return h, err
 				}
-				h.DataBytes[data.address] = data.value
+				h[data.address] = data.value
 			}
 		}
 	}
@@ -219,8 +212,8 @@ func readFileToString(filepath string) (string, error) {
 }
 
 //ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses.
-func ParseFromFile(filepath string) (Hex, error) {
-	h := Hex{}
+func ParseFromFile(filepath string) (map[uint32]byte, error) {
+	var h map[uint32]byte
 	var text string
 	var err error
 
