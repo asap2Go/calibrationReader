@@ -1,15 +1,18 @@
 package main
 
 import (
-	"asap2Go/calibrationReader/a2l"
-	"asap2Go/calibrationReader/ihex32"
-	"asap2Go/calibrationReader/srec19"
 	"errors"
 	"fmt"
 	"os"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/asap2Go/calibrationReader/a2l"
+
+	"github.com/asap2Go/calibrationReader/ihex32"
+
+	"github.com/asap2Go/calibrationReader/srec19"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
