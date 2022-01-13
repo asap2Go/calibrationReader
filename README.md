@@ -1,4 +1,6 @@
 # calibrationReader
+[![Go Report Card](https://goreportcard.com/badge/github.com/asap2Go/calibrationReader)](https://goreportcard.com/report/github.com/asap2Go/calibrationReader)
+
  reads characteristics information from a2l and fills it with the data from a hex file.
  At least that is the plan. 
  Currently it can parse a2l-files as well as the corresponding IntelHex32 or Motorola S19 files. 
