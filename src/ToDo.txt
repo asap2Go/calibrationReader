@@ -1,4 +1,4 @@
--Auslesen der Characteristic Values aus der Hex implementieren
--Tokens neu sortieren und KeyWord Liste neu aufbauen.
--Ab Blob weiter durch Standard gehen, Kommentare einbringen und a2l package updaten.
--evtl. GUI erstellen
+-Implement methods for axis_pts, axis_descr, record_layout and fnc_values to get the values for a Characteristic
+-Sort Tokens and tokenList
+-Add comments in a2l package documenting the function and context of the individual objects (continuing from "blob.go")
+-Create GUI similar to ETAS' A2L-Clip or other tools(?)

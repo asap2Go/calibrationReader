@@ -4,8 +4,6 @@ import (
 	"asap2Go/calibrationReader/a2l"
 	"asap2Go/calibrationReader/ihex32"
 	"asap2Go/calibrationReader/srec19"
-	"encoding/binary"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"os"
@@ -191,53 +189,4 @@ func configureLogger() error {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMicro
 	log.Logger = zerolog.New(zerolog.MultiLevelWriter(fileWriter, consoleWriter)).With().Timestamp().Caller().Logger()
 	return nil
-}
-
-func parseHexAddressToUint32(str string, bigEndian bool) (uint32, error) {
-	var err error
-	var address uint32
-	var byteSlice []byte
-	str = strings.ReplaceAll(str, "0x", "")
-	if str == "0" {
-		log.Info().Str("virutal zero adress in A2L detected", str)
-		//Used to catch virtual addresses calculations in some Measurements objects.
-		return 0, err
-	}
-	byteSlice, err = hex.DecodeString(str)
-	if err != nil {
-		log.Err(err)
-		return 0, err
-	}
-	//convert bytes to uint32
-	if len(byteSlice) == 4 {
-		if bigEndian {
-			//Big Endian
-			address = binary.BigEndian.Uint32(byteSlice)
-		} else {
-			//Little Endian
-			address = binary.LittleEndian.Uint32(byteSlice)
-		}
-	} else if len(byteSlice) < 4 {
-		bufferSlice := make([]byte, 4)
-		if bigEndian {
-			//Big Endian with padding
-			for i := len(byteSlice) - 1; i >= 0; i-- {
-				bufferSlice[i] = byteSlice[i]
-			}
-			log.Info().Msg("padding adress value byteSlice with zero-bytes " + fmt.Sprint(byteSlice) + " -> " + fmt.Sprint(bufferSlice))
-			address = binary.BigEndian.Uint32(bufferSlice)
-		} else {
-			//Little Endian with padding
-			for i := 0; i < len(byteSlice); i++ {
-				bufferSlice[i] = byteSlice[i]
-			}
-			log.Info().Msg("padding adress value byteSlice with zero-bytes " + fmt.Sprint(byteSlice) + " -> " + fmt.Sprint(bufferSlice))
-			address = binary.LittleEndian.Uint32(bufferSlice)
-		}
-	} else {
-		//unexpected hex value which is either too short or too long
-		err = errors.New("unexpected hex adress value " + str)
-		return 0, err
-	}
-	return address, err
 }

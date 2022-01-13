@@ -1,4 +1,4 @@
-# github.com/rs/zerolog v1.26.0
+# github.com/rs/zerolog v1.26.1
 ## explicit
 github.com/rs/zerolog
 github.com/rs/zerolog/internal/cbor
