@@ -15,7 +15,7 @@ func TestParseFromFile(t *testing.T) {
 	hexPath := "/home/user0/Desktop/asap2Go/calibrationReader/testing/ASAP2_Demo_V171.hex"
 	h, err := ParseFromFile(hexPath)
 	if err == nil {
-		if len(h.DataBytes) != 137324 {
+		if len(h) != 137324 {
 			err = errors.New("wrong length of dataset")
 			t.Fatalf("failed parsing with error: %s.", err)
 		}
@@ -33,7 +33,7 @@ func BenchmarkParseFromFile(b *testing.B) {
 		h, err := ParseFromFile(hexPath)
 		if err != nil {
 			log.Err(err).Msg("failed parsing with error:")
-			log.Info().Msg("length of data in hex file: " + fmt.Sprint(len(h.DataBytes)))
+			log.Info().Msg("length of data in hex file: " + fmt.Sprint(len(h)))
 		}
 		endTime := time.Now()
 		elapsed := endTime.Sub(startTime)

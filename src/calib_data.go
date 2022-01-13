@@ -3,6 +3,7 @@ package main
 import (
 	"asap2Go/calibrationReader/a2l"
 	"asap2Go/calibrationReader/ihex32"
+	"asap2Go/calibrationReader/srec19"
 	"encoding/binary"
 	"encoding/hex"
 	"errors"
@@ -22,7 +23,7 @@ import (
 //that are parsed by ReadCalibration()
 type CalibrationData struct {
 	a2l a2l.A2L
-	hex ihex32.Hex
+	hex map[uint32]byte
 }
 
 func (cd *CalibrationData) getObjectsByIdent(ident string) []interface{} {
@@ -88,7 +89,7 @@ func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, e
 	var cd CalibrationData
 	var errChan = make(chan error, 2)
 	var a2lChan = make(chan a2l.A2L, 1)
-	var hexChan = make(chan ihex32.Hex, 1)
+	var hexChan = make(chan map[uint32]byte, 1)
 	wgReaders := new(sync.WaitGroup)
 
 	err = configureLogger()
@@ -137,18 +138,37 @@ func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath str
 
 //readHex is a helper function intended to be run in a separate go routine to call the hex parser
 //in order to be able to parse hex and a2l in parallel
-func readHex(wg *sync.WaitGroup, ch chan ihex32.Hex, ce chan error, hexFilePath string) {
+func readHex(wg *sync.WaitGroup, ch chan map[uint32]byte, ce chan error, hexFilePath string) {
 	defer wg.Done()
-	h, err := ihex32.ParseFromFile(hexFilePath)
-	if err != nil {
+	if strings.Contains(strings.ToLower(hexFilePath), ".hex") {
+		h, err := ihex32.ParseFromFile(hexFilePath)
+		if err != nil {
+			log.Err(err).Msg("could not parse hex:")
+			ce <- err
+			close(ch)
+		} else {
+			ch <- h
+			close(ch)
+			log.Info().Msg("parsed hex file")
+		}
+	} else if strings.Contains(strings.ToLower(hexFilePath), ".s19") {
+		h, err := srec19.ParseFromFile(hexFilePath)
+		if err != nil {
+			log.Err(err).Msg("could not parse hex:")
+			ce <- err
+			close(ch)
+		} else {
+			ch <- h
+			close(ch)
+			log.Info().Msg("parsed hex file")
+		}
+	} else {
+		err := errors.New("unsupported hex file type")
 		log.Err(err).Msg("could not parse hex:")
 		ce <- err
 		close(ch)
-	} else {
-		ch <- h
-		close(ch)
-		log.Info().Msg("parsed hex file")
 	}
+
 }
 
 //configureLogger adds a file logger, resets previous log file and does some formatting
