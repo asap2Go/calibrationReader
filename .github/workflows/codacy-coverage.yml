@@ -25,4 +25,6 @@ jobs:
       run: go install github.com/mattn/goveralls@latest
     
     - name: Send Coverage Codacy
-      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report \ --force-coverage-parser go -r covprofile --project-token ${{ secrets.CODACY_PROJECT_TOKEN }}
+      env: 
+        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report \ --force-coverage-parser go -r covprofile --project-token env.CODACY_PROJECT_TOKEN
