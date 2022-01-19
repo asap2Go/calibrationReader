@@ -5,6 +5,8 @@
 
 [![Go](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml)
 
+[![CodeQL](https://github.com/asap2Go/calibrationReader/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/codeql-analysis.yml)
+
 [![Coverage Status](https://coveralls.io/repos/github/asap2Go/calibrationReader/badge.svg?branch=main)](https://coveralls.io/github/asap2Go/calibrationReader?branch=main)
 
  reads characteristics information from a2l and fills it with the data from a hex file.
