@@ -27,6 +27,9 @@ jobs:
     - name: TestRace
       run: go test -bench=. -benchtime=10s  -test.parallel 1 -race -v
 
+    - name: SetupLicenseServer
+      run: go install github.com/google/go-licenses
+
     - name: CreateLicenses
       run: go-licenses save "github.com/asap2Go/calibrationReader" --save_path "./licenses" --force
 
