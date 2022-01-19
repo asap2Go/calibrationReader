@@ -27,4 +27,4 @@ jobs:
     - name: Send Coverage Codacy
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.codacy }}
-      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report \ --force-coverage-parser go -r covprofile
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report \ --force-coverage-parser go -r covprofile --project-token CODACY_PROJECT_TOKEN
