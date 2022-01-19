@@ -1,6 +1,8 @@
 # Security Policy
 There is no string exectution, buffer overflows (go is garbage collected) or the like.
-So most attack vectors should be closed. In Case you find a vulnerability, then please contact me with the information below.
+So most attack vectors should be closed. 
+Additionally all dependancy are monitored and CodeQL is enabled to check for common errors on every push.
+In Case you find a vulnerability, then please contact me with the information below.
 
 ## Supported Versions
 Only the newest version is relevant. 
