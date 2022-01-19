@@ -1,4 +1,5 @@
 # calibrationReader
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a04b25d2e7bb40ce8edbb323fd53c5e0)](https://app.codacy.com/gh/asap2Go/calibrationReader?utm_source=github.com&utm_medium=referral&utm_content=asap2Go/calibrationReader&utm_campaign=Badge_Grade_Settings)
 [![Go Report Card](https://goreportcard.com/badge/github.com/asap2Go/calibrationReader)](https://goreportcard.com/report/github.com/asap2Go/calibrationReader)
 
 [![Go](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml)
