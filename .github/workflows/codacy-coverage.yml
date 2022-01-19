@@ -1,4 +1,4 @@
-name: codacy-coverage
+name: Codacy Coverage Report
 
 on:
   push:
