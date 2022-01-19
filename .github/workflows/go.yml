@@ -22,4 +22,13 @@ jobs:
       run: go build -v ./...
 
     - name: Test
-      run: go test -v ./... -race
+      run: go test ./... -v
+    
+    - name: TestRace
+      run: go test -bench=. -benchtime=10s  -test.parallel 1 -race -v
+
+    - name: CreateLicenses
+      run: go-licenses save "github.com/asap2Go/calibrationReader" --save_path "./licenses" --force
+
+    - name: CheckLicenses
+      run: go-licenses check "github.com/asap2Go/calibrationReader" 
