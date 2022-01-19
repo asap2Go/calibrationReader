@@ -9,6 +9,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/asap2Go/calibrationReader/badge.svg?branch=main)](https://coveralls.io/github/asap2Go/calibrationReader?branch=main)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/12a206a67d5e4789943701f757b49f6d)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&utm_medium=referral&utm_content=asap2Go/calibrationReader&utm_campaign=Badge_Coverage)
+
  reads characteristics information from a2l and fills it with the data from a hex file.
  At least that is the plan. 
  Currently it can parse a2l-files as well as the corresponding IntelHex32 or Motorola S19 files. 
