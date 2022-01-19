@@ -1,7 +1,7 @@
 # calibrationReader
 [![Go Report Card](https://goreportcard.com/badge/github.com/asap2Go/calibrationReader)](https://goreportcard.com/report/github.com/asap2Go/calibrationReader)
 
-[![Go](https://github.com/asap2Go/calibrationReader/actions/workflows/go.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/go.yml)
+[![Go](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml)
 
 [![Coverage Status](https://coveralls.io/repos/github/asap2Go/calibrationReader/badge.svg?branch=main)](https://coveralls.io/github/asap2Go/calibrationReader?branch=main)
 
