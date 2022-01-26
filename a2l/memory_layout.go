@@ -10,11 +10,11 @@ import (
 type memoryLayout struct {
 	prgType    prgTypeEnum
 	prgTypeSet bool
-	address    uint32
+	address    string
 	addressSet bool
-	size       uint32
+	size       string
 	sizeSet    bool
-	offset     string
+	offset     []int32
 	offsetSet  bool
 	ifData     []IfData
 }
@@ -50,26 +50,23 @@ forLoop:
 				ml.prgTypeSet = true
 				log.Info().Msg("memoryLayout prgType successfully parsed")
 			} else if !ml.addressSet {
-				var buf uint64
-				buf, err = strconv.ParseUint(tok.current(), 10, 32)
-				if err != nil {
-					log.Err(err).Msg("attribute address could not be parsed")
-					break forLoop
-				}
-				ml.address = uint32(buf)
+				ml.address = tok.current()
 				ml.addressSet = true
 			} else if !ml.sizeSet {
-				var buf uint64
-				buf, err = strconv.ParseUint(tok.current(), 10, 32)
-				if err != nil {
-					log.Err(err).Msg("attribute size could not be parsed")
-					break forLoop
-				}
-				ml.size = uint32(buf)
+				ml.size = tok.current()
 				ml.sizeSet = true
 			} else if !ml.offsetSet {
-				ml.offset = tok.current()
-				ml.offsetSet = true
+				var buf int64
+				buf, err = strconv.ParseInt(tok.current(), 10, 32)
+				if err != nil {
+					log.Err(err).Msg("shiftOp4 position could not be parsed")
+					break forLoop
+				}
+				ml.offset = append(ml.offset, int32(buf))
+				if len(ml.offset) == 5 {
+					ml.offsetSet = true
+				}
+				log.Info().Msg("shiftOp4 position successfully parsed")
 			}
 		}
 	}

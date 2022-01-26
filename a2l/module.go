@@ -436,10 +436,11 @@ forLoop:
 		cCompuTab, cCompuVtab, cCompuVtabRange, cFrame, cFunction, cGroup, cIfData, cMeasurement, cModCommon,
 		cModPar, cRecordLayout, cInstance, cTransformer, cTypeDefAxis, cTypeDefBlob, cTypeDefCharacteristic,
 		cTypeDefMeasurement, cTypeDefStructure, cUnit, cUserRights, cVariantCoding, cError)
+
 	tok.index = endIndex
 	if len(myModule.errors) > 0 {
 		err = myModule.errors[0]
-		log.Warn().Int("Number of errors", len(myModule.errors))
+		log.Warn().Int("Number of errors", len(myModule.errors)).Msg("error while parsing module in parallel")
 	}
 	return myModule, err
 }

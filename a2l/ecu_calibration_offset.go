@@ -2,12 +2,12 @@ package a2l
 
 import (
 	"errors"
+
 	"github.com/rs/zerolog/log"
-	"strconv"
 )
 
 type ecuCalibrationOffset struct {
-	offset    int32
+	offset    string
 	offsetSet bool
 }
 
@@ -19,12 +19,7 @@ func parseEcuCalibrationOffset(tok *tokenGenerator) (ecuCalibrationOffset, error
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("ecuCalibrationOffset could not be parsed")
 	} else if !eco.offsetSet {
-		var buf int64
-		buf, err = strconv.ParseInt(tok.current(), 10, 32)
-		if err != nil {
-			log.Err(err).Msg("ecuCalibrationOffset offset could not be parsed")
-		}
-		eco.offset = int32(buf)
+		eco.offset = tok.current()
 		eco.offsetSet = true
 		log.Info().Msg("ecuCalibrationOffset offset successfully parsed")
 	}

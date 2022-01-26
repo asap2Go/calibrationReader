@@ -11,7 +11,7 @@ import (
 
 func TestParseFromFile(t *testing.T) {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	a2lPath := "testing/ASAP2_Demo_V171.a2l"
+	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	startTime := time.Now()
 	a, err := ParseFromFile(a2lPath)
 	if err != nil {
@@ -27,7 +27,7 @@ func BenchmarkParseFromFile(b *testing.B) {
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		a2lPath := "testing/ASAP2_Demo_V171.a2l"
+		a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 		startTime := time.Now()
 		a, err := ParseFromFile(a2lPath)
 		if err != nil {

@@ -16,7 +16,7 @@ type bitOperation struct {
 	//Number of positions to right shift data, zeros will be shifted in from the left.
 	rightShift RightShift
 	//Gives a sign extension of sign bit for measurement data.
-	signExtend SignExtend
+	signExtend SignExtendKeyword
 }
 
 func parseBitOperation(tok *tokenGenerator) (bitOperation, error) {

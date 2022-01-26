@@ -41,6 +41,9 @@ func (tg *tokenGenerator) previous() {
 }
 
 func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
+	//initialize moduleCount to zero
+	moduleCount = 0
+
 	//remove unprintable chars at the start and end of the a2l file
 	str = strings.TrimFunc(str, func(r rune) bool {
 		return !unicode.IsGraphic(r)
@@ -111,8 +114,15 @@ func buildTokenList(str [][]string) []string {
 		}
 		if t != emptyToken {
 			if strings.Contains(t, "*/") {
+				//make sure that the goroutine did not start in the middle of a multiline comment
+				//if so then delete all previous tokens as they are part of the comment
 				tl = make([]string, 0, expectedNumberOfTokens/numProc)
 			} else {
+				if t == beginModuleToken {
+					//count the number of modules so the program can decide whether it is allowed to parse multithreaded.
+					//atomic is used so several goroutines can update the variable
+					atomic.AddUint32(&moduleCount, 1)
+				}
 				tl = append(tl, t)
 			}
 		} else {
@@ -302,11 +312,6 @@ func getTwoWordedToken(currentOuterIndex *int, currentInnerIndex *int, str [][]s
 			return emptyToken, err
 		}
 		twoWordedToken = twoWordedToken + spaceToken + t
-		if twoWordedToken == beginModuleToken {
-			//count the number of modules so the program can decide whether it is allowed to parse multithreaded.
-			//atomic is used so several goroutines can update the variable
-			atomic.AddUint32(&moduleCount, 1)
-		}
 		return twoWordedToken, nil
 
 	} else {

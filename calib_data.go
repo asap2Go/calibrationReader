@@ -18,69 +18,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-//var identifiers objectIdentifiers
-
 //CalibrationData contains the parsed structs from the a2l as well as the byte data from the hex file
 //that are parsed by ReadCalibration()
 type CalibrationData struct {
 	a2l a2l.A2L
 	hex map[uint32]byte
-}
-
-func (cd *CalibrationData) getObjectsByIdent(ident string) []interface{} {
-	var calibrationObjects []interface{}
-	var buf interface{}
-	var exists bool
-	/*if !identifiers.isInitialized {
-		identifiers = buildObjectKeys(cd)
-	}*/
-	for _, m := range cd.a2l.Project.Modules {
-		buf, exists = m.AxisPts[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Characteristics[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuMethods[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuTabs[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuVTabs[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuVTabRanges[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Functions[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Groups[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Measurements[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.RecordLayouts[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Units[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-	}
-	return calibrationObjects
 }
 
 //ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -192,4 +134,58 @@ func configureLogger() error {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMicro
 	log.Logger = zerolog.New(zerolog.MultiLevelWriter(fileWriter, consoleWriter)).With().Timestamp().Caller().Logger()
 	return nil
+}
+
+func (cd *CalibrationData) getObjectsByIdent(ident string) []interface{} {
+	var calibrationObjects []interface{}
+	var buf interface{}
+	var exists bool
+
+	for _, m := range cd.a2l.Project.Modules {
+		buf, exists = m.AxisPts[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Characteristics[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuMethods[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuTabs[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuVTabs[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.CompuVTabRanges[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Functions[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Groups[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Measurements[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.RecordLayouts[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+		buf, exists = m.Units[ident]
+		if exists {
+			calibrationObjects = append(calibrationObjects, buf)
+		}
+	}
+	return calibrationObjects
 }

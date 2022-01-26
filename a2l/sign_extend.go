@@ -2,13 +2,13 @@ package a2l
 
 import "github.com/rs/zerolog/log"
 
-type SignExtend struct {
+type SignExtendKeyword struct {
 	value    bool
 	valueSet bool
 }
 
-func parseSignExtend(tok *tokenGenerator) (SignExtend, error) {
-	se := SignExtend{}
+func parseSignExtend(tok *tokenGenerator) (SignExtendKeyword, error) {
+	se := SignExtendKeyword{}
 	var err error
 	if !se.valueSet {
 		se.value = true

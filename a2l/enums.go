@@ -241,7 +241,7 @@ type calibrationAccessEnum string
 
 const (
 	undefinedCalibrationAccess calibrationAccessEnum = emptyToken
-	CALIBRATION                calibrationAccessEnum = calibrationToken
+	calibration                calibrationAccessEnum = calibrationToken
 	noCalibration              calibrationAccessEnum = noCalibrationToken
 	notInMcdSystem             calibrationAccessEnum = notInMcdSystemToken
 	offlineCalibration         calibrationAccessEnum = offlineCalibrationToken
@@ -252,7 +252,7 @@ func parseCalibrationAccessEnum(tok *tokenGenerator) (calibrationAccessEnum, err
 	var err error
 	switch tok.next() {
 	case calibrationToken:
-		ca = CALIBRATION
+		ca = calibration
 	case noCalibrationToken:
 		ca = noCalibration
 	case notInMcdSystemToken:
@@ -269,15 +269,15 @@ type typeEnum string
 
 const (
 	undefinedType typeEnum = emptyToken
-	ASCII         typeEnum = asciiToken
-	CURVE         typeEnum = curveToken
-	MAP           typeEnum = mapToken
-	CUBOID        typeEnum = cuboidToken
+	Ascii         typeEnum = asciiToken
+	Curve         typeEnum = curveToken
+	Map           typeEnum = mapToken
+	Cuboid        typeEnum = cuboidToken
 	cube4         typeEnum = cube4Token
 	cube5         typeEnum = cube5Token
-	valBlk        typeEnum = valBlkToken
-	VALUE         typeEnum = valueToken
-	DERIVED       typeEnum = derivedToken
+	ValBlk        typeEnum = valBlkToken
+	Value         typeEnum = valueToken
+	derived       typeEnum = derivedToken
 	extendedSi    typeEnum = extendedSiToken
 )
 
@@ -286,23 +286,23 @@ func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
 	var err error
 	switch tok.current() {
 	case asciiToken:
-		t = ASCII
+		t = Ascii
 	case curveToken:
-		t = CURVE
+		t = Curve
 	case mapToken:
-		t = MAP
+		t = Map
 	case cuboidToken:
-		t = CUBOID
+		t = Cuboid
 	case cube4Token:
 		t = cube4
 	case cube5Token:
 		t = cube5
 	case valBlkToken:
-		t = valBlk
+		t = ValBlk
 	case valueToken:
-		t = VALUE
+		t = Value
 	case derivedToken:
-		t = DERIVED
+		t = derived
 	case extendedSiToken:
 		t = extendedSi
 	default:
@@ -315,13 +315,13 @@ type conversionTypeEnum string
 
 const (
 	undefinedConversionType conversionTypeEnum = emptyToken
-	IDENTICAL               conversionTypeEnum = identicalToken
-	FORM                    conversionTypeEnum = formToken
-	LINEAR                  conversionTypeEnum = linearToken
-	ratFunc                 conversionTypeEnum = ratFuncToken
-	tabIntp                 conversionTypeEnum = tabIntpToken
-	tabNointp               conversionTypeEnum = tabNointpToken
-	tabVerb                 conversionTypeEnum = tabVerbToken
+	Identical               conversionTypeEnum = identicalToken
+	Form                    conversionTypeEnum = formToken
+	Linear                  conversionTypeEnum = linearToken
+	RatFunc                 conversionTypeEnum = ratFuncToken
+	TabIntp                 conversionTypeEnum = tabIntpToken
+	TabNointp               conversionTypeEnum = tabNointpToken
+	TabVerb                 conversionTypeEnum = tabVerbToken
 )
 
 func parseConversionTypeEnum(tok *tokenGenerator) (conversionTypeEnum, error) {
@@ -329,19 +329,19 @@ func parseConversionTypeEnum(tok *tokenGenerator) (conversionTypeEnum, error) {
 	var err error
 	switch tok.current() {
 	case identicalToken:
-		ct = IDENTICAL
+		ct = Identical
 	case formToken:
-		ct = FORM
+		ct = Form
 	case linearToken:
-		ct = LINEAR
+		ct = Linear
 	case ratFuncToken:
-		ct = ratFunc
+		ct = RatFunc
 	case tabIntpToken:
-		ct = tabIntp
+		ct = TabIntp
 	case tabNointpToken:
-		ct = tabNointp
+		ct = TabNointp
 	case tabVerbToken:
-		ct = tabVerb
+		ct = TabVerb
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum conversionType")
 	}
@@ -355,8 +355,8 @@ const (
 	alternateCurves    indexModeEnum = alternateCurvesToken
 	alternateWithX     indexModeEnum = alternateWithXToken
 	alternateWithY     indexModeEnum = alternateWithYToken
-	columnDir          indexModeEnum = columnDirToken
-	rowDir             indexModeEnum = rowDirToken
+	ColumnDir          indexModeEnum = columnDirToken
+	RowDir             indexModeEnum = rowDirToken
 )
 
 func parseIndexModeEnum(tok *tokenGenerator) (indexModeEnum, error) {
@@ -370,9 +370,9 @@ func parseIndexModeEnum(tok *tokenGenerator) (indexModeEnum, error) {
 	case alternateWithYToken:
 		im = alternateWithY
 	case columnDirToken:
-		im = columnDir
+		im = ColumnDir
 	case rowDirToken:
-		im = rowDir
+		im = RowDir
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum indexMode")
 	}
@@ -383,8 +383,8 @@ type modeEnum string
 
 const (
 	undefinedMode modeEnum = emptyToken
-	ABSOLUTE      modeEnum = absoluteToken
-	DIFFERENCE    modeEnum = differenceToken
+	Absolute      modeEnum = absoluteToken
+	Difference    modeEnum = differenceToken
 )
 
 func parseModeEnum(tok *tokenGenerator) (modeEnum, error) {
@@ -392,9 +392,9 @@ func parseModeEnum(tok *tokenGenerator) (modeEnum, error) {
 	var err error
 	switch tok.current() {
 	case absoluteToken:
-		m = ABSOLUTE
+		m = Absolute
 	case differenceToken:
-		m = DIFFERENCE
+		m = Difference
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum mode")
 	}
@@ -409,13 +409,13 @@ const (
 	prgData              prgTypeEnum = prgDataToken
 	prgReserved          prgTypeEnum = prgReservedToken
 	calibrationVariables prgTypeEnum = calibrationVariablesToken
-	CODE                 prgTypeEnum = codeToken
-	DATA                 prgTypeEnum = dataToken
+	code                 prgTypeEnum = codeToken
+	data                 prgTypeEnum = dataToken
 	excludeFromFlash     prgTypeEnum = excludeFromFlashToken
 	offlineData          prgTypeEnum = offlineDataToken
-	RESERVED2            prgTypeEnum = reservedToken
-	SERAM                prgTypeEnum = seramToken
-	VARIABLES            prgTypeEnum = variablesToken
+	reserved2            prgTypeEnum = reservedToken
+	seram                prgTypeEnum = seramToken
+	variables            prgTypeEnum = variablesToken
 )
 
 func parsePrgTypeEnum(tok *tokenGenerator) (prgTypeEnum, error) {
@@ -431,19 +431,19 @@ func parsePrgTypeEnum(tok *tokenGenerator) (prgTypeEnum, error) {
 	case calibrationVariablesToken:
 		pt = calibrationVariables
 	case codeToken:
-		pt = CODE
+		pt = code
 	case dataToken:
-		pt = DATA
+		pt = data
 	case excludeFromFlashToken:
 		pt = excludeFromFlash
 	case offlineDataToken:
 		pt = offlineData
 	case reservedToken:
-		pt = RESERVED2
+		pt = reserved2
 	case seramToken:
-		pt = SERAM
+		pt = seram
 	case variablesToken:
-		pt = VARIABLES
+		pt = variables
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum prgType")
 	}
@@ -454,12 +454,12 @@ type memoryTypeEnum string
 
 const (
 	undefinedMemoryType memoryTypeEnum = emptyToken
-	EEPROM              memoryTypeEnum = eepromToken
-	EPROM               memoryTypeEnum = epromToken
-	FLASH               memoryTypeEnum = flashToken
-	RAM                 memoryTypeEnum = ramToken
-	ROM                 memoryTypeEnum = romToken
-	REGISTER            memoryTypeEnum = registerToken
+	eeprom              memoryTypeEnum = eepromToken
+	eprom               memoryTypeEnum = epromToken
+	flash               memoryTypeEnum = flashToken
+	ram                 memoryTypeEnum = ramToken
+	rom                 memoryTypeEnum = romToken
+	register            memoryTypeEnum = registerToken
 	notInEcu            memoryTypeEnum = notInEcuToken
 )
 
@@ -468,17 +468,17 @@ func parseMemoryTypeEnum(tok *tokenGenerator) (memoryTypeEnum, error) {
 	var err error
 	switch tok.current() {
 	case eepromToken:
-		mt = EEPROM
+		mt = eeprom
 	case epromToken:
-		mt = EPROM
+		mt = eprom
 	case flashToken:
-		mt = FLASH
+		mt = flash
 	case ramToken:
-		mt = RAM
+		mt = ram
 	case romToken:
-		mt = ROM
+		mt = rom
 	case registerToken:
-		mt = REGISTER
+		mt = register
 	case notInEcuToken:
 		mt = notInEcu
 	default:
@@ -495,7 +495,7 @@ const (
 	monIncrease           monotonyTypeEnum = monIncreaseToken
 	strictDecrease        monotonyTypeEnum = strictDecreaseToken
 	strictIncrease        monotonyTypeEnum = strictIncreaseToken
-	MONOTONOUS            monotonyTypeEnum = monotonousToken
+	monotonous            monotonyTypeEnum = monotonousToken
 	strictMon             monotonyTypeEnum = strictMonToken
 	notMon                monotonyTypeEnum = notMonToken
 )
@@ -513,7 +513,7 @@ func parseMonotonyTypeEnum(tok *tokenGenerator) (monotonyTypeEnum, error) {
 	case strictIncreaseToken:
 		mt = strictIncrease
 	case monotonousToken:
-		mt = MONOTONOUS
+		mt = monotonous
 	case strictMonToken:
 		mt = strictMon
 	case notMonToken:
@@ -528,7 +528,7 @@ type tagEnum string
 
 const (
 	undefinedTag tagEnum = emptyToken
-	NUMERIC      tagEnum = numericToken
+	numeric      tagEnum = numericToken
 )
 
 func parseTagEnum(tok *tokenGenerator) (tagEnum, error) {
@@ -536,7 +536,7 @@ func parseTagEnum(tok *tokenGenerator) (tagEnum, error) {
 	var err error
 	switch tok.current() {
 	case numericToken:
-		mt = NUMERIC
+		mt = numeric
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum tag")
 	}
@@ -547,8 +547,8 @@ type triggerEnum string
 
 const (
 	undefinedTriggerEnum triggerEnum = emptyToken
-	OnChange             triggerEnum = onChangeToken
-	OnUserRequest        triggerEnum = onUserRequestToken
+	onChange             triggerEnum = onChangeToken
+	onUserRequest        triggerEnum = onUserRequestToken
 )
 
 func parseTriggerEnum(tok *tokenGenerator) (triggerEnum, error) {
@@ -556,9 +556,9 @@ func parseTriggerEnum(tok *tokenGenerator) (triggerEnum, error) {
 	var err error
 	switch tok.current() {
 	case onChangeToken:
-		mt = OnChange
+		mt = onChange
 	case onUserRequestToken:
-		mt = OnUserRequest
+		mt = onUserRequest
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum trigger")
 	}

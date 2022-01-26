@@ -2,12 +2,12 @@ package a2l
 
 import (
 	"errors"
+
 	"github.com/rs/zerolog/log"
-	"strconv"
 )
 
 type varAddress struct {
-	address    []uint32
+	address    []string
 	addressSet bool
 }
 
@@ -26,13 +26,7 @@ forLoop:
 			log.Info().Msg("varAddress address successfully parsed")
 			break forLoop
 		} else if !va.addressSet {
-			var buf uint64
-			buf, err = strconv.ParseUint(tok.current(), 10, 32)
-			if err != nil {
-				log.Err(err).Msg("varAddress address could not be parsed")
-				break forLoop
-			}
-			va.address = append(va.address, uint32(buf))
+			va.address = append(va.address, tok.current())
 		}
 	}
 	return va, err

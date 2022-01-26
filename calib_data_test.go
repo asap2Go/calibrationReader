@@ -11,14 +11,12 @@ import (
 
 func BenchmarkReadCalibration(b *testing.B) {
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
-	var cd CalibrationData
-	var err error
-	a2lPath := "testing/ASAP2_Demo_V171.a2l"
+	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	hexPath := "testing/ASAP2_Demo_V171.hex"
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		startTime := time.Now()
-		cd, err = ReadCalibration(a2lPath, hexPath)
+		cd, err := ReadCalibration(a2lPath, hexPath)
 		endTime := time.Now()
 		elapsed := endTime.Sub(startTime)
 		if err != nil {
@@ -28,12 +26,13 @@ func BenchmarkReadCalibration(b *testing.B) {
 			log.Info().Int("length of data in hex file", len(cd.hex)).Msg("finished parsing")
 			log.Warn().Msg("time for parsing test files: " + fmt.Sprint(elapsed.Milliseconds()))
 		}
+		cd, err = CalibrationData{}, nil
 	}
 }
 
 func TestReadCalibration(t *testing.T) {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	a2lPath := "testing/ASAP2_Demo_V171.a2l"
+	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	hexPath := "testing/ASAP2_Demo_V171.hex"
 	startTime := time.Now()
 	//read + parse a2l and hex

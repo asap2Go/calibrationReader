@@ -22,10 +22,6 @@ type recordLayout struct {
 	axisPts4             axisPts4
 	axisPts5             axisPts5
 	axisRescaleX         axisRescaleX
-	axisRescaleY         axisRescaleY
-	axisRescaleZ         axisRescaleZ
-	axisRescale4         axisRescale4
-	axisRescale5         axisRescale5
 	distOpX              distOpX
 	distOpY              distOpY
 	distOpZ              distOpZ
@@ -71,6 +67,7 @@ type recordLayout struct {
 	shiftOp4             shiftOp4
 	shiftOp5             shiftOp5
 	staticRecordLayout   staticRecordLayoutKeyword
+	staticAddressOffsets staticAddressOffsetsKeyword
 }
 
 func parseRecordLayout(tok *tokenGenerator) (recordLayout, error) {
@@ -170,34 +167,6 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("recordLayout axisRescalex successfully parsed")
-		case axisRescaleYToken:
-			rl.axisRescaleY, err = parseAxisRescaleY(tok)
-			if err != nil {
-				log.Err(err).Msg("recordLayout axisRescaleY could not be parsed")
-				break forLoop
-			}
-			log.Info().Msg("recordLayout axisRescaleY successfully parsed")
-		case axisRescaleZToken:
-			rl.axisRescaleZ, err = parseAxisRescaleZ(tok)
-			if err != nil {
-				log.Err(err).Msg("recordLayout axisRescaleZ could not be parsed")
-				break forLoop
-			}
-			log.Info().Msg("recordLayout axisRescaleZ successfully parsed")
-		case axisRescale4Token:
-			rl.axisRescale4, err = parseAxisRescale4(tok)
-			if err != nil {
-				log.Err(err).Msg("recordLayout axisRescale4 could not be parsed")
-				break forLoop
-			}
-			log.Info().Msg("recordLayout axisRescale4 successfully parsed")
-		case axisRescale5Token:
-			rl.axisRescale5, err = parseAxisRescale5(tok)
-			if err != nil {
-				log.Err(err).Msg("recordLayout axisRescale5 could not be parsed")
-				break forLoop
-			}
-			log.Info().Msg("recordLayout axisRescale5 successfully parsed")
 		case distOpXToken:
 			rl.distOpX, err = parseDistOpX(tok)
 			if err != nil {
@@ -513,6 +482,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("recordLayout staticRecordLayout successfully parsed")
+		case staticAddressOffsetsToken:
+			rl.staticAddressOffsets, err = parseStaticAddressOffsets(tok)
+			if err != nil {
+				log.Err(err).Msg("recordLayout staticAddressOffsets could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("recordLayout staticAddressOffsets successfully parsed")
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")

@@ -272,7 +272,6 @@ forLoop:
 				c.TypeSet = true
 				log.Info().Msg("characteristic type successfully parsed")
 			} else if !c.addressSet {
-				log.Info().Msg("Trying to convert to address: " + tok.current())
 				c.Address = tok.current()
 				c.addressSet = true
 				log.Info().Msg("characteristic Address successfully parsed")

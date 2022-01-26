@@ -10,6 +10,7 @@ const quotationMarkToken = "\""
 const slashToken = "/"
 
 //a2l tokens:
+const staticAddressOffsetsToken = "STATIC_ADDRESS_OFFSETS"
 const limitsToken = "LIMITS"
 const inputQuantityToken = "INPUT_QUANTITY"
 const conversionToken = "CONVERSION"
@@ -724,4 +725,5 @@ var keywordList = []string{
 	beginStructureComponentToken,
 	endStructureComponentToken,
 	symbolTypeLinkToken,
+	staticAddressOffsetsToken,
 }
