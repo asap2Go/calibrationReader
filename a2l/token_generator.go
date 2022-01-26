@@ -4,6 +4,7 @@ import (
 	"errors"
 	"strings"
 	"sync/atomic"
+	"unicode"
 
 	"github.com/rs/zerolog/log"
 )
@@ -40,6 +41,10 @@ func (tg *tokenGenerator) previous() {
 }
 
 func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
+	//remove unprintable chars at the start and end of the a2l file
+	str = strings.TrimFunc(str, func(r rune) bool {
+		return !unicode.IsGraphic(r)
+	})
 	//Split text file into lines and the lines into words separated by whitespace
 	var locTokens []chan []string
 	tokenList = make([]string, 0, expectedNumberOfTokens)

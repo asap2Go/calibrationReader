@@ -63,7 +63,8 @@ func parseA2l(tok *tokenGenerator) (A2L, error) {
 	var err error
 forLoop:
 	for {
-		switch tok.next() {
+		log.Info().Msg(tok.current())
+		switch tok.current() {
 		case asap2VersionToken:
 			a2l.Asap2Version, err = parseASAP2Version(tok)
 			if err != nil {
@@ -92,6 +93,7 @@ forLoop:
 				break forLoop
 			}
 		}
+		tok.next()
 	}
 	return a2l, err
 }
