@@ -2,6 +2,7 @@ package a2l
 
 import (
 	"errors"
+	"strconv"
 	"strings"
 	"sync/atomic"
 	"unicode"
@@ -140,8 +141,18 @@ func buildNextValidToken(currentOuterIndex *int, currentInnerIndex *int, str [][
 			return emptyToken, err
 		}
 	} else {
-		t = str[*currentOuterIndex][*currentInnerIndex]
-		firstRun = false
+		if *currentOuterIndex < len(str) {
+			if *currentInnerIndex < len(str[*currentOuterIndex]) {
+				t = str[*currentOuterIndex][*currentInnerIndex]
+				firstRun = false
+			} else {
+				err = errors.New("index out of bounds with inner index " + strconv.Itoa(*currentInnerIndex) + " of " + strconv.Itoa(len(str[*currentOuterIndex])))
+				return emptyToken, err
+			}
+		} else {
+			err = errors.New("index out of bounds with outer index " + strconv.Itoa((*currentOuterIndex)) + " of " + strconv.Itoa(len(str)))
+			return emptyToken, err
+		}
 	}
 start:
 	if t == emptyToken {
