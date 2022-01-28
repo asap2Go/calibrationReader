@@ -1,14 +1,8 @@
 # calibrationReader
-[![Go Report Card](https://goreportcard.com/badge/github.com/asap2Go/calibrationReader)](https://goreportcard.com/report/github.com/asap2Go/calibrationReader)
-
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/12a206a67d5e4789943701f757b49f6d)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=asap2Go/calibrationReader&amp;utm_campaign=Badge_Grade)
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/asap2Go/calibrationReader)](https://goreportcard.com/report/github.com/asap2Go/calibrationReader)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/12a206a67d5e4789943701f757b49f6d)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=asap2Go/calibrationReader&amp;utm_campaign=Badge_Grade)
 [![Go](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/go-build-test-and-license.yml)
-
 [![CodeQL](https://github.com/asap2Go/calibrationReader/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/asap2Go/calibrationReader/actions/workflows/codeql-analysis.yml)
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/12a206a67d5e4789943701f757b49f6d)](https://www.codacy.com/gh/asap2Go/calibrationReader/dashboard?utm_source=github.com&utm_medium=referral&utm_content=asap2Go/calibrationReader&utm_campaign=Badge_Coverage)
-
 [![Go Reference](https://pkg.go.dev/badge/github.com/asap2Go/calibrationReader.svg)](https://pkg.go.dev/github.com/asap2Go/calibrationReader)
 
  reads characteristics information from a2l and fills it with the data from a hex file.
