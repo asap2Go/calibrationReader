@@ -131,7 +131,7 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("axisDescr extendedLimits successfully parsed")
-		case beginFixAxisParToken:
+		case fixAxisParToken:
 			ad.fixAxisPar, err = parseFixAxisPar(tok)
 			if err != nil {
 				log.Err(err).Msg("axisDescr fixAxisPar could not be parsed")
