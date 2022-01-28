@@ -21,25 +21,11 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Test
-      run: go test ./... -race -v -covermode atomic -coverprofile=covprofile ./...
-    
-    - name: Install goveralls
-      run: go install github.com/mattn/goveralls@latest
-    
-    - name: Send Coverage
-      env:
-        COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: goveralls -coverprofile=covprofile -service=github
-
     - name: Test RaceConditions Extended
       run: go test -bench=. -benchtime=10s  -test.parallel 1 -race -v
 
     - name: Setup License Server
       run: go install github.com/google/go-licenses@latest
-
-    - name: Create Licenses
-      run: go-licenses save "github.com/asap2Go/calibrationReader" --save_path "/home/runner/work/calibrationReader/licenses" --force
 
     - name: Check Licenses
       run: go-licenses check "github.com/asap2Go/calibrationReader" 
