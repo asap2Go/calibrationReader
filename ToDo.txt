@@ -1,4 +1,5 @@
 -Implement methods for axis_pts, axis_descr, record_layout and fnc_values to get the values for a Characteristic
 -Sort Tokens and tokenList
 -Add comments in a2l package documenting the function and context of the individual objects (continuing from "blob.go")
+-Add Fuzzing with Go 1.18
 -Create GUI similar to ETAS' A2L-Clip or other tools(?)
