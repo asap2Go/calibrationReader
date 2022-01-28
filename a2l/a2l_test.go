@@ -23,7 +23,7 @@ func TestParseFromFile(t *testing.T) {
 	log.Info().Msg("time for parsing a2l test file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 }
 
-func FuzzParseFromFile(f *testing.F) {
+/*func FuzzParseFromFile(f *testing.F) {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	text, _ := readFileToString(a2lPath)
@@ -38,9 +38,8 @@ func FuzzParseFromFile(f *testing.F) {
 		if err != nil {
 			log.Err(err).Msg("failed parsing " + a.Project.Name + " with error:")
 		}
-
 	})
-}
+}*/
 
 func BenchmarkParseFromFile(b *testing.B) {
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
