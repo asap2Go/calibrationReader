@@ -2643,7 +2643,7 @@ A2ML_VERSION 1 31
       ALIGNMENT_BYTE 1
       ALIGNMENT_WORD 2
       ALIGNMENT_LONG 4
-      ALIGNMENT_INT 64 
+      ALIGNMENT_INT64 4
       ALIGNMENT_FLOAT16_IEEE 2
       ALIGNMENT_FLOAT32_IEEE 4
       ALIGNMENT_FLOAT64_IEEE 4
@@ -2858,6 +2858,18 @@ A2ML_VERSION 1 31
   /end MEMORY_LAYOUT
   SYSTEM_CONSTANT "CONTROLLERx constant1" "0.33"
   SYSTEM_CONSTANT "CONTROLLERx constant2" "2.79"
+  /begin CALIBRATION_METHOD
+    „InCircuit“
+    2
+    /begin CALIBRATION_HANDLE
+      0x10000 /* start address of pointer table */
+      0x200 /* length of pointer table */
+      0x4 /* size of one pointer table entry */
+      0x10000 /* start address of flash section */
+      0x10000 /* length of flash section */
+      CALIBRATION_HANDLE_TEXT "YourTextHere"
+    /end CALIBRATION_HANDLE
+  /end CALIBRATION_METHOD
 /end MOD_PAR
 
 
@@ -5164,7 +5176,7 @@ A2ML_VERSION 1 31
 
     /begin FUNCTION FunctionScalar ""
       FUNCTION_VERSION "BG5.0815"
-      begin AR_COMPONENT "testComponent"
+      /begin AR_COMPONENT "testComponent"
         AR_PROTOTYPE_OF "DerivedFromTestComponent"
       /end AR_COMPONENT
 
@@ -6224,6 +6236,8 @@ A2ML_VERSION 1 31
       MODEL_LINK "ML.ASAM.C.SCALAR.FLOAT32.IDENTICAL.TRANSFORMER_BLOB_OUT_4"
     /end CHARACTERISTIC
 
+
+
     /begin TRANSFORMER TestTransformerBlob
       "1.1.0.0"                             // Version info
       "TransformerTestV171.dll"             // Name of the 32bit DLL
@@ -6352,3 +6366,4 @@ A2ML_VERSION 1 31
 
   /end MODULE
 /end PROJECT
+

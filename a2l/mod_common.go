@@ -10,6 +10,7 @@ type modCommon struct {
 	comment              string
 	commentSet           bool
 	alignmentByte        alignmentByte
+	alignmentFloat16Ieee alignmentFloat16Ieee
 	alignmentFloat32Ieee alignmentFloat32Ieee
 	alignmentFloat64Ieee alignmentFloat64Ieee
 	alignmentInt64       alignmentInt64
@@ -33,6 +34,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentByte successfully parsed")
+		case alignmentFloat16IeeeToken:
+			mc.alignmentFloat16Ieee, err = parseAlignmentFloat16Ieee(tok)
+			if err != nil {
+				log.Err(err).Msg("modCommon alignmentFloat16Ieee could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("modCommon alignmentFloat16Ieee successfully parsed")
 		case alignmentFloat32IeeeToken:
 			mc.alignmentFloat32Ieee, err = parseAlignmentFloat32Ieee(tok)
 			if err != nil {
