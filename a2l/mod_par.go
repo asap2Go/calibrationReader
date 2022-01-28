@@ -141,7 +141,7 @@ forLoop:
 			}
 			mp.systemConstant = append(mp.systemConstant, buf)
 			log.Info().Msg("modPar systemConstant successfully parsed")
-		case beginUserToken:
+		case userToken:
 			mp.user, err = parseUser(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar user could not be parsed")

@@ -96,7 +96,6 @@ const beginTypeDefStructureToken = "/begin TYPEDEF_STRUCTURE"
 const beginTypeToken = "/begin TYPE"
 const beginUnitToken = "/begin UNIT"
 const beginUserRightsToken = "/begin USER_RIGHTS"
-const beginUserToken = "/begin USER"
 const beginVarAddressToken = "/begin VAR_ADDRESS"
 const beginVarCharacteristicToken = "/begin VAR_CHARACTERISTIC"
 const beginVarCriterionToken = "/begin VAR_CRITERION"
@@ -213,7 +212,6 @@ const endTypeDefStructureToken = "/end TYPEDEF_STRUCTURE"
 const endTypeToken = "/end TYPE"
 const endUnitToken = "/end UNIT"
 const endUserRightsToken = "/end USER_RIGHTS"
-const endUserToken = "/end USER"
 const endVarAddressToken = "/end VAR_ADDRESS"
 const endVarCharacteristicToken = "/end VAR_CHARACTERISTIC"
 const endVarCriterionToken = "/end VAR_CRITERION"
@@ -363,6 +361,7 @@ const tabVerbToken = "TAB_VERB"
 const ubyteToken = "UBYTE"
 const ulongToken = "ULONG"
 const unitConversionToken = "UNIT_CONVERSION"
+const userToken = "USER"
 const uwordToken = "UWORD"
 const valBlkToken = "VAL_BLK"
 const valueToken = "VALUE"
@@ -467,7 +466,6 @@ var keywordMap = map[string]uint8{
 	"/begin TYPE":                     0,
 	"/begin UNIT":                     0,
 	"/begin USER_RIGHTS":              0,
-	"/begin USER":                     0,
 	"/begin VAR_ADDRESS":              0,
 	"/begin VAR_CHARACTERISTIC":       0,
 	"/begin VAR_CRITERION":            0,
@@ -650,6 +648,7 @@ var keywordMap = map[string]uint8{
 	"SYMBOL_TYPE_LINK":                0,
 	"SYSTEM_CONSTANT":                 0,
 	"UNIT_CONVERSION":                 0,
+	"USER":                            0,
 	"VAR_MEASUREMENT":                 0,
 	"VAR_NAMING":                      0,
 	"VAR_SELECTION_CHARACTERISTIC":    0,

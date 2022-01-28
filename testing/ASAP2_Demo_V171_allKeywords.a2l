@@ -2817,14 +2817,14 @@ A2ML_VERSION 1 31
 
 /begin MOD_PAR
   " " 
-  VERSION "Test version of 01.02.1994"
+  VERSION "Test version of 01.01.2022"
   ADDR_EPK 0x45678
   EPK "EPROM identifier test"
-  SUPPLIER "M&K GmbH Chemnitz"
-  CUSTOMER "LANZ-Landmaschinen"
+  SUPPLIER "TIER1_0"
+  CUSTOMER "OEM_0"
   CUSTOMER_NO "0123456789"
   USER "A.N.Wender"
-  PHONE_NO "09951 56456"
+  PHONE_NO "99999 99999"
   ECU "Engine control"
   ECU_CALIBRATION_OFFSET 0x1000
   CPU_TYPE "Motorola 0815"
