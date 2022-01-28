@@ -276,11 +276,7 @@ const noAxisPtsYToken = "NO_AXIS_PTS_Y"
 const noAxisPtsZToken = "NO_AXIS_PTS_Z"
 const noCalibrationToken = "NO_CALIBRATION"
 const noOfInterfacesToken = "NO_OF_INTERFACES"
-const noRescale4Token = "NO_RESCALE_4"
-const noRescale5Token = "NO_RESCALE_5"
 const noRescaleXToken = "NO_RESCALE_X"
-const noRescaleYToken = "NO_RESCALE_Y"
-const noRescaleZToken = "NO_RESCALE_Z"
 const notInEcuToken = "NOT_IN_ECU"
 const notInMcdSystemToken = "NOT_IN_MCD_SYSTEM"
 const notMonToken = "NOT_MON"
@@ -602,11 +598,7 @@ var keywordMap = map[string]uint8{
 	"NO_AXIS_PTS_Y":                   0,
 	"NO_AXIS_PTS_Z":                   0,
 	"NO_OF_INTERFACES":                0,
-	"NO_RESCALE_4":                    0,
-	"NO_RESCALE_5":                    0,
 	"NO_RESCALE_X":                    0,
-	"NO_RESCALE_Y":                    0,
-	"NO_RESCALE_Z":                    0,
 	"NUMBER":                          0,
 	"OFFSET_4":                        0,
 	"OFFSET_5":                        0,
