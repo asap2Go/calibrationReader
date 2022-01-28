@@ -4158,6 +4158,7 @@ A2ML_VERSION 1 31
         CM.IDENTICAL                                       /* shall be the same computation as used with the input quantity */  
         8 
         -128 127
+        MAX_GRAD 100.0
       /end AXIS_DESCR
       EXTENDED_LIMITS -32268 32267                         /* extended range to test an overflow for the dependent calculation */
       FORMAT "%8.3"
@@ -4691,7 +4692,7 @@ A2ML_VERSION 1 31
         ASAM.C.MAP.COM_AXIS.FIX_AXIS_3 
         ASAM.C.MAP.COM_AXIS.FIX_AXIS_4
       /end MAP_LIST
-      MAX_GRAD 100.0
+      MAX_REFRESH 100 5
     /end CHARACTERISTIC
 
 
@@ -6154,7 +6155,6 @@ A2ML_VERSION 1 31
       0x812000                              // start address
       16                                    // number of bytes in blob
       CALIBRATION_ACCESS  NO_CALIBRATION    // Inhibit the user from calibrating it
-      MAX_REFRESH 100 5
     /end BLOB
 
     /begin CHARACTERISTIC ASAM.C.SCALAR.UINT16.IDENTICAL.TRANSFORMER_BLOB_OUT_WAITTIME
