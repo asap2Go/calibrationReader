@@ -19,6 +19,9 @@ func parseAnnotationOrigin(tok *tokenGenerator) (annotationOrigin, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("annotationOrigin could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("annotationOrigin could not be parsed")
 	} else if !ao.originSet {
 		ao.origin = tok.current()
 		ao.originSet = true

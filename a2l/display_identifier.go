@@ -18,6 +18,9 @@ func parseDisplayIdentifier(tok *tokenGenerator) (DisplayIdentifier, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("displayIdentifier could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("displayIdentifier could not be parsed")
 	} else if !di.displayNameSet {
 		di.displayName = tok.current()
 		di.displayNameSet = true

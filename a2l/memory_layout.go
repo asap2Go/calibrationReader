@@ -41,6 +41,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endMemoryLayoutToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("memoryLayout could not be parsed")
+				break forLoop
 			} else if !ml.prgTypeSet {
 				ml.prgType, err = parsePrgTypeEnum(tok)
 				if err != nil {

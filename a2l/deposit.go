@@ -18,6 +18,9 @@ func parseDeposit(tok *tokenGenerator) (deposit, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("deposit could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("deposit could not be parsed")
 	} else if !d.modeSet {
 		d.mode, err = parseModeEnum(tok)
 		if err != nil {

@@ -60,6 +60,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endStructureComponentToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("structureComponent could not be parsed")
+				break forLoop
 			} else if !sc.nameSet {
 				sc.name = tok.current()
 				sc.nameSet = true

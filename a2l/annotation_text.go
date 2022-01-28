@@ -26,6 +26,10 @@ forLoop:
 		} else if tok.current() == endAnnotationTextToken {
 			at.annotationTextSet = true
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("annotationText could not be parsed")
+			break forLoop
 		} else if !at.annotationTextSet {
 			at.annotationText = at.annotationText + spaceToken + tok.current()
 		}

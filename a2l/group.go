@@ -86,6 +86,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endGroupToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("group could not be parsed")
+				break forLoop
 			} else if !g.groupNameSet {
 				g.groupName = tok.current()
 				g.groupNameSet = true

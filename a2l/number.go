@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type Number struct {
@@ -17,6 +18,9 @@ func parseNumber(tok *tokenGenerator) (Number, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
+		log.Err(err).Msg("number could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("number could not be parsed")
 	} else if !n.numberSet {
 		var buf uint64

@@ -24,6 +24,10 @@ forLoop:
 			err = errors.New("unexpected end of file")
 			log.Err(err).Msg("offset4 could not be parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("offset4 could not be parsed")
+			break forLoop
 		} else if !o4.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)

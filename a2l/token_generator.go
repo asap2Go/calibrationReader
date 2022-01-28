@@ -289,16 +289,10 @@ func moveToNextRawValue(currentOuterIndex *int, currentInnerIndex *int, str [][]
 //this is necessary because not every version of the a2l standard has a clear rule about how many dimensions should be expected
 //or are necessary to define ("1 0 0" and "1" are both valid descriptions for a curve)
 func isKeyword(str string) bool {
-	isFound := false
 	//look whether the given string is contained in the list of
 	//valid a2l tokens as defined in tokens.go
-	for i := 0; i < len(keywordList); i++ {
-		if str == keywordList[i] {
-			isFound = true
-			break
-		}
-	}
-	return isFound
+	_, exists := keywordMap[str]
+	return exists
 }
 
 //getTwoWordedToken handles keywords that contain a / like e.g. "/begin CHARACTERISTIC"

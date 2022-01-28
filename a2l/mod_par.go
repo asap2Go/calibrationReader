@@ -162,6 +162,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endModParToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("modPar could not be parsed")
+				break forLoop
 			} else if !mp.commentSet {
 				mp.comment = tok.current()
 				mp.commentSet = true

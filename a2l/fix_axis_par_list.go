@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type fixAxisParList struct {
@@ -24,6 +25,10 @@ forLoop:
 		} else if tok.current() == endFixAxisParListToken {
 			fapl.axisPtsValueSet = true
 			log.Info().Msg("fixAxisParList axisPtsValue successfully parsed")
+			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("fixAxisParList could not be parsed")
 			break forLoop
 		} else if !fapl.axisPtsValueSet {
 			var buf float64

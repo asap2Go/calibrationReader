@@ -43,6 +43,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endCompuVtabToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("compuVTab could not be parsed")
+				break forLoop
 			} else if !cvt.nameSet {
 				cvt.name = tok.current()
 				cvt.nameSet = true

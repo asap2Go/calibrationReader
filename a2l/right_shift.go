@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type RightShift struct {
@@ -17,6 +18,9 @@ func parseRightShift(tok *tokenGenerator) (RightShift, error) {
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
+		log.Err(err).Msg("rightShift could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("rightShift could not be parsed")
 	} else if !rs.bitcountSet {
 		var buf uint64

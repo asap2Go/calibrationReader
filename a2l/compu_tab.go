@@ -51,6 +51,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endCompuTabToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("compuTab could not be parsed")
+				break forLoop
 			} else if !ct.nameSet {
 				ct.name = tok.current()
 				ct.nameSet = true

@@ -25,6 +25,10 @@ forLoop:
 			l.nameSet = true
 			log.Info().Msg("mapList name successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("mapList could not be parsed")
+			break forLoop
 		} else if !l.nameSet {
 			l.name = append(l.name, tok.current())
 		}

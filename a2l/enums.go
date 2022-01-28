@@ -41,6 +41,7 @@ const (
 	SLONG             dataTypeEnum = slongToken
 	aUint64           dataTypeEnum = aUint64Token
 	aInt64            dataTypeEnum = aInt64Token
+	float16Ieee       dataTypeEnum = float16IeeeToken
 	float32Ieee       dataTypeEnum = float32IeeeToken
 	float64Ieee       dataTypeEnum = float64IeeeToken
 )
@@ -65,6 +66,8 @@ func parseDataTypeEnum(tok *tokenGenerator) (dataTypeEnum, error) {
 		d = aUint64
 	case aInt64Token:
 		d = aInt64
+	case float16IeeeToken:
+		d = float16Ieee
 	case float32IeeeToken:
 		d = float32Ieee
 	case float64IeeeToken:
@@ -108,6 +111,7 @@ const (
 	PBYTE             addrTypeEnum = pbyteToken
 	PWORD             addrTypeEnum = pwordToken
 	PLONG             addrTypeEnum = plongToken
+	PLONGLONG         addrTypeEnum = plonLongToken
 	/*DIRECT: If an adjustable or measurable object is defined with indirect addressing
 	(ADDRESS_TYPE is not DIRECT) and if the used interface does not support indirect
 	addressing, it is the responsibility of the MC-System to dereference the object’s
@@ -141,6 +145,8 @@ const (
 	bigEndian          byteOrderEnum = bigEndianToken
 	msbLast            byteOrderEnum = msbLastToken
 	msbFirst           byteOrderEnum = msbFirstToken
+	msbFirstMswLast    byteOrderEnum = msbFirstMswLastToken
+	msbLastMswFirst    byteOrderEnum = msbFirstMswLastToken
 )
 
 func parseByteOrderEnum(tok *tokenGenerator) (byteOrderEnum, error) {

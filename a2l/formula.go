@@ -34,6 +34,10 @@ forLoop:
 				f.fxSet = true
 				log.Info().Msg("formula fx successfully parsed")
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("formula could not be parsed")
+				break forLoop
 			} else if !f.fxSet {
 				f.fx = append(f.fx, tok.current())
 			}

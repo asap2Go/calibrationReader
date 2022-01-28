@@ -25,6 +25,10 @@ forLoop:
 			tio.identifierSet = true
 			log.Info().Msg("transformerInObject identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("transformerInObject could not be parsed")
+			break forLoop
 		} else if !tio.identifierSet {
 			tio.identifier = append(tio.identifier, tok.current())
 		}

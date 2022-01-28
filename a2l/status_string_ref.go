@@ -18,6 +18,9 @@ func parseStatusStringRef(tok *tokenGenerator) (statusStringRef, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("statusStringRef could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("statusStringRef could not be parsed")
 	} else if !ssr.conversionTableSet {
 		ssr.conversionTable = tok.current()
 		ssr.conversionTableSet = true

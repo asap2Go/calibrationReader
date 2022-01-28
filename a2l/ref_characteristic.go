@@ -25,6 +25,10 @@ forLoop:
 			rc.identifierSet = true
 			log.Info().Msg("refCharacteristic identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("refCharacteristic could not be parsed")
+			break forLoop
 		} else if !rc.identifierSet {
 			rc.identifier = append(rc.identifier, tok.current())
 		}

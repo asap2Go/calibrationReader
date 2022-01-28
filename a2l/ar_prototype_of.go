@@ -17,9 +17,13 @@ type arPrototypeOf struct {
 func parseArPrototypeOf(tok *tokenGenerator) (arPrototypeOf, error) {
 	apo := arPrototypeOf{}
 	var err error
+	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
-		log.Err(err).Msg("arComponent could not be parsed")
+		log.Err(err).Msg("arPrototypeOf could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("arPrototypeOf could not be parsed")
 	} else if !apo.nameSet {
 		apo.name = tok.current()
 		apo.nameSet = true

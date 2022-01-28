@@ -25,6 +25,10 @@ forLoop:
 			im.identifierSet = true
 			log.Info().Msg("inMeasurement identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("inMeasurement could not be parsed")
+			break forLoop
 		} else if !im.identifierSet {
 			im.identifier = append(im.identifier, tok.current())
 		}

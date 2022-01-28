@@ -1,6 +1,7 @@
 package a2l
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"runtime"
@@ -90,6 +91,10 @@ forLoop:
 		default:
 			if tok.current() == emptyToken {
 				log.Info().Msg("a2l parsed")
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("a2l could not be parsed")
 				break forLoop
 			}
 		}

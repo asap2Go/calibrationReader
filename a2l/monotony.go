@@ -18,6 +18,9 @@ func parseMonotony(tok *tokenGenerator) (Monotony, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("monotony could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("monotony could not be parsed")
 	} else if !m.monotonySet {
 		m.monotony, err = parseMonotonyTypeEnum(tok)
 		if err != nil {

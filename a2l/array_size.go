@@ -23,6 +23,9 @@ func parseArraySize(tok *tokenGenerator) (arraySize, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("arraySize could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("arraySize could not be parsed")
 	} else if !as.numberSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)

@@ -18,6 +18,9 @@ func parsePhoneNo(tok *tokenGenerator) (phoneNo, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("phoneNo could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("phoneNo could not be parsed")
 	} else if !pn.telnumSet {
 		pn.telnum = tok.current()
 		pn.telnumSet = true

@@ -24,6 +24,10 @@ forLoop:
 			err = errors.New("unexpected end of file")
 			log.Err(err).Msg("symbolLink could not be parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("symbolLink could not be parsed")
+			break forLoop
 		} else if !sl.symbolNameSet {
 			sl.symbolName = tok.current()
 			sl.symbolNameSet = true

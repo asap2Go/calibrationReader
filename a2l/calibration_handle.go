@@ -33,6 +33,10 @@ forLoop:
 			} else if tok.current() == endCalibrationHandleToken {
 				ch.handleSet = true
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("calibrationHandle could not be parsed")
+				break forLoop
 			} else if !ch.handleSet {
 				ch.handle = append(ch.handle, tok.current())
 				log.Info().Msg("calibrationHandle handle successfully parsed")

@@ -48,6 +48,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endMemorySegmentToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("memorySegment could not be parsed")
+				break forLoop
 			} else if !ms.nameSet {
 				ms.name = tok.current()
 				ms.nameSet = true

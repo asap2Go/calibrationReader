@@ -75,6 +75,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endOverwriteToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("overwrite could not be parsed")
+				break forLoop
 			} else if !o.nameSet {
 				o.name = tok.current()
 				o.nameSet = true

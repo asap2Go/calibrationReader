@@ -37,6 +37,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTypeDefBlobToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("typeDefBlob could not be parsed")
+				break forLoop
 			} else if !tdb.nameSet {
 				tdb.name = tok.current()
 				tdb.nameSet = true

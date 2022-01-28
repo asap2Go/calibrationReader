@@ -54,6 +54,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endUnitToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("unit could not be parsed")
+				break forLoop
 			} else if !u.nameSet {
 				u.name = tok.current()
 				u.nameSet = true

@@ -53,6 +53,9 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endBitOperationToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("bitOperation could not be parsed")
 			}
 		}
 	}

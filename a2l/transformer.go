@@ -55,6 +55,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTransformerToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("transformer could not be parsed")
+				break forLoop
 			} else if !t.nameSet {
 				t.name = tok.current()
 				t.nameSet = true

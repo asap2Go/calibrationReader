@@ -23,6 +23,9 @@ func parseAlignmentFloat16Ieee(tok *tokenGenerator) (alignmentFloat16Ieee, error
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("alignmentFloat16Ieee could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("alignmentFloat16Ieee could not be parsed")
 	} else if !af16.alignmentBorderSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)

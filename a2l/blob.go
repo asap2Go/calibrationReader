@@ -114,6 +114,10 @@ forLoop:
 					b.addressType = DIRECT
 				}
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("blob could not be parsed")
+				break forLoop
 			} else if !b.nameSet {
 				b.name = tok.current()
 				b.nameSet = true

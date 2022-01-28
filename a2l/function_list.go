@@ -25,6 +25,10 @@ forLoop:
 			fl.nameSet = true
 			log.Info().Msg("functionList name successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("functionList could not be parsed")
+			break forLoop
 		} else if !fl.nameSet {
 			fl.name = append(fl.name, tok.current())
 		}

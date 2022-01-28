@@ -18,6 +18,9 @@ func parseEcu(tok *tokenGenerator) (ecu, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("ecu could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("ecu could not be parsed")
 	} else if !e.controlUnitSet {
 		e.controlUnit = tok.current()
 		e.controlUnitSet = true

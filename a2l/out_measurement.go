@@ -25,6 +25,10 @@ forLoop:
 			om.identifierSet = true
 			log.Info().Msg("outMeasurement identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("outMeasurement could not be parsed")
+			break forLoop
 		} else if !om.identifierSet {
 			om.identifier = append(om.identifier, tok.current())
 		}

@@ -29,6 +29,10 @@ forLoop:
 			log.Info().Msg("varForbiddenComb criterionName successfully parsed")
 			log.Info().Msg("varForbiddenComb criterionValue successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("varForbiddenComb could not be parsed")
+			break forLoop
 		} else if !vfc.criterionNameSet || !vfc.criterionValueSet {
 			vfc.criterionName = append(vfc.criterionName, tok.current())
 			if tok.next() != emptyToken {

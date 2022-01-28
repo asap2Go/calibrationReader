@@ -59,9 +59,10 @@ type axisPts struct {
 	extendedLimits      extendedLimits
 	format              format
 	functionList        []FunctionList
-	guardRails          GuardRails
+	guardRails          guardRailsKeyword
 	ifData              []IfData
 	monotony            Monotony
+	modelLink           modelLink
 	physUnit            physUnit
 	readOnly            readOnlyKeyword
 	refMemorySegment    refMemorySegment
@@ -158,6 +159,13 @@ forLoop:
 			}
 			ap.ifData = append(ap.ifData, buf)
 			log.Info().Msg("axisPts ifData successfully parsed")
+		case modelLinkToken:
+			ap.modelLink, err = parseModelLink(tok)
+			if err != nil {
+				log.Err(err).Msg("axisPts modelLink could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("axisPts modelLink successfully parsed")
 		case monotonyToken:
 			ap.monotony, err = parseMonotony(tok)
 			if err != nil {
@@ -206,6 +214,10 @@ forLoop:
 				log.Err(err).Msg("axisPts could not be parsed")
 				break forLoop
 			} else if tok.current() == endAxisPtsToken {
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("axisPts could not be parsed")
 				break forLoop
 			} else if !ap.nameSet {
 				ap.name = tok.current()

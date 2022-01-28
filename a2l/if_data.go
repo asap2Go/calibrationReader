@@ -27,6 +27,10 @@ forLoop:
 			id.dataSet = true
 			log.Info().Msg("ifData data successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("ifData could not be parsed")
+			break forLoop
 		} else if !id.nameSet {
 			id.name = tok.current()
 			id.nameSet = true

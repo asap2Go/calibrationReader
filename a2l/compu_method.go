@@ -82,6 +82,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endCompuMethodToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("compuMethod could not be parsed")
+				break forLoop
 			} else if !cm.nameSet {
 				cm.name = tok.current()
 				cm.nameSet = true

@@ -38,6 +38,9 @@ func parseBitMask(tok *tokenGenerator) (bitMask, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("bitMask could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("bitMask could not be parsed")
 	} else if !bm.maskSet {
 		bm.mask = tok.current()
 		bm.maskSet = true

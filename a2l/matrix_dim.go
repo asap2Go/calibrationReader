@@ -34,6 +34,7 @@ forLoop:
 			log.Err(err).Msg("matrixDim could not be parsed")
 			break forLoop
 		} else if isKeyword(tok.current()) {
+			//see above comment
 			log.Info().Str("current token", tok.current()).Msg("matrixDim detected keyword:")
 			tok.previous()
 			log.Info().Str("previous token", tok.current()).Msg("matrixDim rolled back to:")

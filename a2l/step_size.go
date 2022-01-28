@@ -19,6 +19,9 @@ func parseStepSize(tok *tokenGenerator) (StepSize, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("stepSize could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("stepSize could not be parsed")
 	} else if !ss.stepSizeSet {
 		var buf float64
 		buf, err = strconv.ParseFloat(tok.current(), 64)

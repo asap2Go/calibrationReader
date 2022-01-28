@@ -104,6 +104,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endModCommonToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("modCommon could not be parsed")
+				break forLoop
 			} else if !mc.commentSet {
 				mc.comment = tok.current()
 				mc.commentSet = true

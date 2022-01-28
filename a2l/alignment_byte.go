@@ -23,6 +23,9 @@ func parseAlignmentByte(tok *tokenGenerator) (alignmentByte, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("alignmentByte could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("alignmentByte could not be parsed")
 	} else if !ab.alignmentBorderSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)

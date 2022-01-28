@@ -130,6 +130,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endInstanceToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("instance could not be parsed")
+				break forLoop
 			} else if !i.nameSet {
 				i.name = tok.current()
 				i.nameSet = true

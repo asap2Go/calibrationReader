@@ -112,6 +112,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTypeDefMeasurementToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("typeDefMeasurement could not be parsed")
+				break forLoop
 			} else if !tdm.nameSet {
 				tdm.name = tok.current()
 				tdm.nameSet = true

@@ -27,6 +27,10 @@ forLoop:
 			dc.characteristicSet = true
 			log.Info().Msg("dependentCharacteristic characteristic successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("dependentCharacteristic could not be parsed")
+			break forLoop
 		} else if !dc.formulaSet {
 			dc.formula = tok.current()
 			dc.formulaSet = true

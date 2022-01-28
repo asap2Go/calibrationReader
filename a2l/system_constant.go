@@ -23,6 +23,10 @@ forLoop:
 			err = errors.New("unexpected end of file")
 			log.Err(err).Msg("systemConstant: " + sc.name + " could not be parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("systemConstant could not be parsed")
+			break forLoop
 		} else if !sc.nameSet {
 			sc.name = tok.current()
 			sc.nameSet = true

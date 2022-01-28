@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type compuVTabRange struct {
@@ -38,9 +39,13 @@ forLoop:
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-				log.Err(err).Msg("compuTab could not be parsed")
+				log.Err(err).Msg("compuVTabRange could not be parsed")
 				break forLoop
 			} else if tok.current() == endCompuVtabRangeToken {
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("compuVTabRange could not be parsed")
 				break forLoop
 			} else if !cvr.nameSet {
 				cvr.name = tok.current()

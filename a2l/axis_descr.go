@@ -199,9 +199,13 @@ forLoop:
 		default:
 			if tok.current() == emptyToken {
 				err = errors.New("unexpected end of file")
-				log.Err(err).Msg("asap2Version could not be parsed")
+				log.Err(err).Msg("axisDescr could not be parsed")
 				break forLoop
 			} else if tok.current() == endAxisDescrToken {
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("axisDescr could not be parsed")
 				break forLoop
 			} else if !ad.attributeSet {
 				ad.attribute, err = parseAttributeEnum(tok)

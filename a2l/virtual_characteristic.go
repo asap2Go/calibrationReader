@@ -27,6 +27,10 @@ forLoop:
 			vc.characteristicSet = true
 			log.Info().Msg("virtualCharacteristic characteristic successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("virtualCharacteristic could not be parsed")
+			break forLoop
 		} else if !vc.formulaSet {
 			vc.formula = tok.current()
 			vc.formulaSet = true

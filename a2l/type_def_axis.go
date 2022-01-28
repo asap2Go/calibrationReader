@@ -97,6 +97,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTypeDefAxisToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("typeDefAxis could not be parsed")
+				break forLoop
 			} else if !tda.nameSet {
 				tda.name = tok.current()
 				tda.nameSet = true

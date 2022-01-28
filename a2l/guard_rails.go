@@ -6,15 +6,14 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type GuardRails struct {
+type guardRailsKeyword struct {
 	value    bool
 	valueSet bool
 }
 
-func parseGuardRails(tok *tokenGenerator) (GuardRails, error) {
-	gr := GuardRails{}
+func parseGuardRails(tok *tokenGenerator) (guardRailsKeyword, error) {
+	gr := guardRailsKeyword{}
 	var err error
-	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("guardRails could not be parsed: unexpected end of file")

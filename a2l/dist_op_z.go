@@ -24,6 +24,10 @@ forLoop:
 			err = errors.New("unexpected end of file")
 			log.Err(err).Msg("distOpz could not be parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("distOpZ could not be parsed")
+			break forLoop
 		} else if !doz.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)

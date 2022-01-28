@@ -25,6 +25,10 @@ forLoop:
 			sg.identifierSet = true
 			log.Info().Msg("subGroup identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("subGroup could not be parsed")
+			break forLoop
 		} else if !sg.identifierSet {
 			sg.identifier = append(sg.identifier, tok.current())
 		}

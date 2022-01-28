@@ -129,6 +129,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endTypeDefCharacteristicToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("typeDefCharacteristic could not be parsed")
+				break forLoop
 			} else if !tdc.nameSet {
 				tdc.name = tok.current()
 				tdc.nameSet = true

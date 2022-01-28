@@ -18,6 +18,9 @@ func parsePhysUnit(tok *tokenGenerator) (physUnit, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("physUnit could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("physUnit could not be parsed")
 	} else if !pu.unitSet {
 		pu.unit = tok.current()
 		pu.unitSet = true

@@ -50,6 +50,10 @@ forLoop:
 				break forLoop
 			} else if tok.current() == endAnnotationToken {
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("annotation could not be parsed")
+				break forLoop
 			}
 		}
 	}

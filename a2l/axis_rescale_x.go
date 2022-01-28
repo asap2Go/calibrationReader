@@ -59,52 +59,56 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-			log.Err(err).Msg("AxisRescaleX could not be parsed")
+			log.Err(err).Msg("axisRescaleX could not be parsed")
+			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("axisRescaleX could not be parsed")
 			break forLoop
 		} else if !arX.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-				log.Err(err).Msg("AxisRescaleX position could not be parsed")
+				log.Err(err).Msg("axisRescaleX position could not be parsed")
 				break forLoop
 			}
 			arX.position = uint16(buf)
 			arX.positionSet = true
-			log.Info().Msg("AxisRescaleX position successfully parsed")
+			log.Info().Msg("axisRescaleX position successfully parsed")
 		} else if !arX.datatypeSet {
 			arX.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
-				log.Err(err).Msg("AxisRescaleX datatype could not be parsed")
+				log.Err(err).Msg("axisRescaleX datatype could not be parsed")
 				break forLoop
 			}
 			arX.datatypeSet = true
-			log.Info().Msg("AxisRescaleX datatype successfully parsed")
+			log.Info().Msg("axisRescaleX datatype successfully parsed")
 		} else if !arX.maxNumberOfRescalePairsSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-				log.Err(err).Msg("AxisRescaleX maxNumberOfRescalePairs could not be parsed")
+				log.Err(err).Msg("axisRescaleX maxNumberOfRescalePairs could not be parsed")
 				break forLoop
 			}
 			arX.maxNumberOfRescalePairs = uint16(buf)
 			arX.maxNumberOfRescalePairsSet = true
-			log.Info().Msg("AxisRescaleX maxNumberOfRescalePairs successfully parsed")
+			log.Info().Msg("axisRescaleX maxNumberOfRescalePairs successfully parsed")
 		} else if !arX.indexIncrSet {
 			arX.indexIncr, err = parseIndexOrderEnum(tok)
 			if err != nil {
-				log.Err(err).Msg("AxisRescaleX indexIncr could not be parsed")
+				log.Err(err).Msg("axisRescaleX indexIncr could not be parsed")
 				break forLoop
 			}
 			arX.indexIncrSet = true
-			log.Info().Msg("AxisRescaleX indexIncr successfully parsed")
+			log.Info().Msg("axisRescaleX indexIncr successfully parsed")
 		} else if !arX.adressingSet {
 			arX.adressing, err = parseAddrTypeEnum(tok)
 			if err != nil {
-				log.Err(err).Msg("AxisRescaleX adressing could not be parsed")
+				log.Err(err).Msg("axisRescaleX adressing could not be parsed")
 				break forLoop
 			}
 			arX.adressingSet = true
-			log.Info().Msg("AxisRescaleX adressing successfully parsed")
+			log.Info().Msg("axisRescaleX adressing successfully parsed")
 			break forLoop
 		}
 	}

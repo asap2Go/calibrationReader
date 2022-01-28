@@ -25,6 +25,10 @@ forLoop:
 			rm.identifierSet = true
 			log.Info().Msg("refMeasurement identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("refMeasurement could not be parsed")
+			break forLoop
 		} else if !rm.identifierSet {
 			rm.identifier = append(rm.identifier, tok.current())
 		}

@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type unitConversion struct {
@@ -21,6 +22,10 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
+			log.Err(err).Msg("unitConversion could not be parsed")
+			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("unitConversion could not be parsed")
 			break forLoop
 		} else if !uc.gradientSet {

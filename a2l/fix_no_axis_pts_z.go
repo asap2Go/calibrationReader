@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type fixNoAxisPtsZ struct {
@@ -18,6 +19,9 @@ func parseFixNoAxisPtsZ(tok *tokenGenerator) (fixNoAxisPtsZ, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("fixNoAxisPtsz could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("fixNoAxisPtsZ could not be parsed")
 	} else if !fnapz.numberOfAxisPointsSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)

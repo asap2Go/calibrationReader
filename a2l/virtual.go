@@ -25,6 +25,10 @@ forLoop:
 			v.measuringChannelSet = true
 			log.Info().Msg("virtual measuringChannel successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("virtual could not be parsed")
+			break forLoop
 		} else if !v.measuringChannelSet {
 			v.measuringChannel = append(v.measuringChannel, tok.current())
 		}

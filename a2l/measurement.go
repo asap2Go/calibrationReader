@@ -40,6 +40,7 @@ type measurement struct {
 	layout              layout
 	matrixDim           matrixDim
 	maxRefresh          MaxRefresh
+	modelLink           modelLink
 	physUnit            physUnit
 	readWrite           readWriteKeyword
 	refMemorySegment    refMemorySegment
@@ -170,6 +171,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("measurement maxRefresh successfully parsed")
+		case modelLinkToken:
+			m.modelLink, err = parseModelLink(tok)
+			if err != nil {
+				log.Err(err).Msg("measurement modelLink could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("measurement modelLink successfully parsed")
 		case physUnitToken:
 			m.physUnit, err = parsePhysUnit(tok)
 			if err != nil {
@@ -211,6 +219,10 @@ forLoop:
 				log.Err(err).Msg("measurement could not be parsed")
 				break forLoop
 			} else if tok.current() == endMeasurementToken {
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("measurement could not be parsed")
 				break forLoop
 			} else if !m.nameSet {
 				m.name = tok.current()

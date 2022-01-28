@@ -18,6 +18,9 @@ func parseFunctionVersion(tok *tokenGenerator) (functionVersion, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("functionVersion could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("functionVersion could not be parsed")
 	} else if !fv.versionIdentifierSet {
 		fv.versionIdentifier = tok.current()
 		fv.versionIdentifierSet = true

@@ -22,26 +22,30 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-			log.Err(err).Msg("srcAddrx could not be parsed")
+			log.Err(err).Msg("srcAddrX could not be parsed")
+			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("srcAddrX could not be parsed")
 			break forLoop
 		} else if !sax.positionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
-				log.Err(err).Msg("srcAddrx position could not be parsed")
+				log.Err(err).Msg("srcAddrX position could not be parsed")
 				break forLoop
 			}
 			sax.position = uint16(buf)
 			sax.positionSet = true
-			log.Info().Msg("srcAddrx position successfully parsed")
+			log.Info().Msg("srcAddrX position successfully parsed")
 		} else if !sax.datatypeSet {
 			sax.datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
-				log.Err(err).Msg("srcAddrx datatype could not be parsed")
+				log.Err(err).Msg("srcAddrX datatype could not be parsed")
 				break forLoop
 			}
 			sax.datatypeSet = true
-			log.Info().Msg("srcAddrx datatype successfully parsed")
+			log.Info().Msg("srcAddrX datatype successfully parsed")
 			break forLoop
 		}
 	}

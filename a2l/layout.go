@@ -18,6 +18,9 @@ func parseLayout(tok *tokenGenerator) (layout, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("layout could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("layout could not be parsed")
 	} else if !l.indexModeSet {
 		l.indexMode, err = parseIndexModeEnum(tok)
 		if err != nil {

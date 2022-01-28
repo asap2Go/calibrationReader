@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type ecuAddressExtension struct {
@@ -17,6 +18,9 @@ func parseECUAddressExtension(tok *tokenGenerator) (ecuAddressExtension, error) 
 	tok.next()
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
+		log.Err(err).Msg("ecuAddressExtension could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("ecuAddressExtension could not be parsed")
 	} else if !eae.extensionSet {
 		var buf int64

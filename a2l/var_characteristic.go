@@ -38,6 +38,10 @@ forLoop:
 				vc.identCriterionNameSet = true
 				log.Info().Msg("varCharacteristic identCriterionName successfully parsed")
 				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("varCharacteristic could not be parsed")
+				break forLoop
 			} else if !vc.nameSet {
 				vc.name = tok.current()
 				vc.nameSet = true

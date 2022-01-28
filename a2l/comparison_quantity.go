@@ -18,6 +18,9 @@ func parseComparisonQuantity(tok *tokenGenerator) (comparisonQuantity, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("comparisonQuantity name could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("comparisonQuantity name could not be parsed")
 	} else if !cq.nameSet {
 		cq.name = tok.current()
 		cq.nameSet = true

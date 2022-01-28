@@ -39,11 +39,12 @@ type Characteristic struct {
 	extendedLimits          extendedLimits
 	format                  format
 	functionList            []FunctionList
-	guardRails              GuardRails
+	guardRails              guardRailsKeyword
 	ifData                  []IfData
 	mapList                 []MapList
 	matrixDim               matrixDim
 	maxRefresh              MaxRefresh
+	modelLink               modelLink
 	number                  Number
 	physUnit                physUnit
 	readOnly                readOnlyKeyword
@@ -197,6 +198,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("characteristic maxRefresh successfully parsed")
+		case modelLinkToken:
+			c.modelLink, err = parseModelLink(tok)
+			if err != nil {
+				log.Err(err).Msg("measurement modelLink could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("measurement modelLink successfully parsed")
 		case numberToken:
 			c.number, err = parseNumber(tok)
 			if err != nil {
@@ -254,6 +262,10 @@ forLoop:
 				log.Err(err).Msg("characteristic could not be parsed")
 				break forLoop
 			} else if tok.current() == endCharacteristicToken {
+				break forLoop
+			} else if isKeyword(tok.current()) {
+				err = errors.New("unexpected token " + tok.current())
+				log.Err(err).Msg("characteristic could not be parsed")
 				break forLoop
 			} else if !c.nameSet {
 				c.Name = tok.current()

@@ -2,8 +2,9 @@ package a2l
 
 import (
 	"errors"
-	"github.com/rs/zerolog/log"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 type noOfInterfaces struct {
@@ -18,6 +19,9 @@ func parseNoOfInterfaces(tok *tokenGenerator) (noOfInterfaces, error) {
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("noOfInterfaces could not be parsed: unexpected end of file")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("noOfInterfaces could not be parsed")
 	} else if !noi.numSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)

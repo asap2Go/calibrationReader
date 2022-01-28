@@ -25,6 +25,10 @@ forLoop:
 		} else if tok.current() == endA2mlToken {
 			a2ml.formatSpecificationSet = true
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("a2ml could not be parsed")
+			break forLoop
 		} else if !a2ml.formatSpecificationSet {
 			a2ml.formatSpecification = a2ml.formatSpecification + spaceToken + tok.current()
 		}

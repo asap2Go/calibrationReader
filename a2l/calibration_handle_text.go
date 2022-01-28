@@ -18,6 +18,9 @@ func parseCalibrationHandleText(tok *tokenGenerator) (calibrationHandleText, err
 	if tok.current() == emptyToken {
 		err = errors.New("unexpected end of file")
 		log.Err(err).Msg("calibrationHandleText could not be parsed")
+	} else if isKeyword(tok.current()) {
+		err = errors.New("unexpected token " + tok.current())
+		log.Err(err).Msg("calibrationHandleText could not be parsed")
 	} else if !cht.textSet {
 		cht.text = tok.current()
 		cht.textSet = true

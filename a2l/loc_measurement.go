@@ -25,6 +25,10 @@ forLoop:
 			lm.identifierSet = true
 			log.Info().Msg("locMeasurement identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("locMeasurement could not be parsed")
+			break forLoop
 		} else if !lm.identifierSet {
 			lm.identifier = append(lm.identifier, tok.current())
 		}

@@ -3454,7 +3454,7 @@ A2ML_VERSION 1 31
       "Scalar measurement with Bitmask for a single bit"
       UWORD CM.IDENTICAL 0 0 0 1
       BIT_MASK 0x0008
-      begin BIT_OPERATION
+      /begin BIT_OPERATION
         RIGHT_SHIFT 0
       /end BIT_OPERATION
       ECU_ADDRESS 0x13A20

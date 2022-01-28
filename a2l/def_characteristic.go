@@ -25,6 +25,10 @@ forLoop:
 			dc.identifierSet = true
 			log.Info().Msg("defCharacteristic identifier successfully parsed")
 			break forLoop
+		} else if isKeyword(tok.current()) {
+			err = errors.New("unexpected token " + tok.current())
+			log.Err(err).Msg("defCharacteristic could not be parsed")
+			break forLoop
 		} else if !dc.identifierSet {
 			dc.identifier = append(dc.identifier, tok.current())
 		}
