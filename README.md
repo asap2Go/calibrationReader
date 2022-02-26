@@ -20,10 +20,10 @@
  All datastructures that are directly below a module within the a2l data structure hierarchy are accessible through maps by their identifiers.
  
  To access System Constants:
- sc, exists := cd.a2l.Project.Module[indexOfModuleInProject].SystemConstants["NameOfSystemConstant"]
+ sc, exists := cd.a2l.Project.Modules[indexOfModuleInProject].SystemConstants["NameOfSystemConstant"]
  
  To access Characteristics:
- c, exists := cd.a2l.Project.Module[indexOfModuleInProject].Characteristics["NameOfCharacteristic"]
+ c, exists := cd.a2l.Project.Modules[indexOfModuleInProject].Characteristics["NameOfCharacteristic"]
  
  and so on. 
  
