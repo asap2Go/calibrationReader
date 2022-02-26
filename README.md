@@ -23,7 +23,7 @@
  sc, exists := cd.a2l.Project.Module[indexOfModuleInProject].SystemConstants["NameOfSystemConstant"]
  
  To access Characteristics:
- c, exists := cd.a2l.Project.Module[indexOfModuleInProject].Characteristics["NameOfCharacteristic]
+ c, exists := cd.a2l.Project.Module[indexOfModuleInProject].Characteristics["NameOfCharacteristic"]
  
  and so on. 
  
