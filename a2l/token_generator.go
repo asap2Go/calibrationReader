@@ -115,13 +115,15 @@ func buildTokenList(str [][]string) []string {
 		}
 		if t != emptyToken {
 			if strings.Contains(t, "*/") {
-				//make sure that the goroutine did not start in the middle of a multiline comment
-				//if so then delete all previous tokens as they are part of the comment
+				//make sure that the goroutine did not start in the middle of a multiline comment.
+				//if so then delete all previous tokens as they are part of the comment.
+				//the buildNextValidToken routine only checks for the start of a multiline comment.
+				//so the delimiter of such a comment would end up here.
 				tl = make([]string, 0, expectedNumberOfTokens/numProc)
 			} else {
 				if t == beginModuleToken {
 					//count the number of modules so the program can decide whether it is allowed to parse multithreaded.
-					//atomic is used so several goroutines can update the variable
+					//atomic is used so several goroutines can update the variable.
 					atomic.AddUint32(&moduleCount, 1)
 				}
 				tl = append(tl, t)
@@ -157,6 +159,34 @@ func buildNextValidToken(currentOuterIndex *int, currentInnerIndex *int, str [][
 start:
 	if t == emptyToken {
 		return emptyToken, errors.New("reached eof")
+	} else if strings.Contains(t, quotationMarkToken) {
+		qtp := strings.Index(t, quotationMarkToken)
+		lcp := strings.Index(t, beginLineCommentToken)
+		mlcp := strings.Index(t, beginMultilineCommentToken)
+		if mlcp != -1 && mlcp < qtp {
+			//if the beginning of a multiline comment is present and its position is before the quotation mark, then skip the comment
+			t, err = skipMultilineComment(currentOuterIndex, currentInnerIndex, str)
+			if err != nil {
+				return emptyToken, err
+			}
+			goto start //if you use recursion then defer will stack up until you finally return and then jump x number of valid tokens.
+		} else if lcp != -1 && lcp < qtp {
+			//if the a line comment is present and its position is before the quotation mark, then skip the comment
+			t, err = skipLineComment(currentOuterIndex, currentInnerIndex, str)
+			if err != nil {
+				return emptyToken, err
+			}
+			goto start //if you use recursion then defer will stack up until you finally return and then jump x number of valid tokens.
+		} else {
+			//the quoatation mark is before the comment chars, so they override the comment function.
+			//This might seem strange but this is how most a2l creators work.
+			//therefore the text in quoatation marks is parsed and not partially skipped.
+			textInQuotationMarks, err := getTextInQuotationMarks(currentOuterIndex, currentInnerIndex, str)
+			if err != nil {
+				return emptyToken, err
+			}
+			return textInQuotationMarks, nil
+		}
 	} else if strings.Contains(t, beginLineCommentToken) {
 		t, err = skipLineComment(currentOuterIndex, currentInnerIndex, str)
 		if err != nil {
@@ -169,12 +199,6 @@ start:
 			return emptyToken, err
 		}
 		goto start //if you use recursion then defer will stack up until you finally return and then jump x number of valid tokens.
-	} else if strings.Contains(t, quotationMarkToken) {
-		textInQuotationMarks, err := getTextInQuotationMarks(currentOuterIndex, currentInnerIndex, str)
-		if err != nil {
-			return emptyToken, err
-		}
-		return textInQuotationMarks, nil
 	} else if strings.Contains(t, slashToken) && !strings.Contains(t, endMultilineCommentToken) {
 		twoWordedKeyword, err := getTwoWordedToken(currentOuterIndex, currentInnerIndex, str)
 		if err != nil {

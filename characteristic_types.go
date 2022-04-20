@@ -14,8 +14,8 @@ type AsciiCharacteristic struct {
 	value          string
 }
 
-func (*AsciiCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *AsciiCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type CurveCharacteristic struct {
@@ -23,8 +23,8 @@ type CurveCharacteristic struct {
 	value          [][]interface{}
 }
 
-func (*CurveCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *CurveCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type CuboidCharacteristic struct {
@@ -32,8 +32,8 @@ type CuboidCharacteristic struct {
 	value          [][][]interface{}
 }
 
-func (*CuboidCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *CuboidCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type Cube4Characteristic struct {
@@ -41,8 +41,8 @@ type Cube4Characteristic struct {
 	value          [][][][]interface{}
 }
 
-func (*Cube4Characteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *Cube4Characteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type Cube5Characteristic struct {
@@ -50,8 +50,8 @@ type Cube5Characteristic struct {
 	value          [][][][][]interface{}
 }
 
-func (*Cube5Characteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *Cube5Characteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type ValBlkCharacteristic struct {
@@ -59,8 +59,8 @@ type ValBlkCharacteristic struct {
 	value          []interface{}
 }
 
-func (*ValBlkCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *ValBlkCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type ValueCharacteristic struct {
@@ -68,8 +68,8 @@ type ValueCharacteristic struct {
 	value          interface{}
 }
 
-func (*ValueCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *ValueCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type DerivedCharacteristic struct {
@@ -77,8 +77,8 @@ type DerivedCharacteristic struct {
 	value          interface{}
 }
 
-func (*DerivedCharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *DerivedCharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }
 
 type extendedSICharacteristic struct {
@@ -86,6 +86,6 @@ type extendedSICharacteristic struct {
 	value          interface{}
 }
 
-func (*extendedSICharacteristic) getValue(*map[uint32]byte) interface{} {
-	return ""
+func (t *extendedSICharacteristic) getValue(*map[uint32]byte) interface{} {
+	return t.value
 }

@@ -11,10 +11,13 @@ import (
 )
 
 var (
-	//useMultithreading enables multithreaded parsing of a2l-file.
-	//Will be deactivated if multiple modules are recognized.
+	//useMultithreading generally enables multithreaded parsing of a2l-file.
+	//will be automatically deactivated if the tokenizer recognizes that multiple modules are present.
+	//deactivate for debugging.
 	useMultithreading = true
 	//numProc is used to set the amount of goroutines in case useMultithreading is true.
+	//numProc = runtime.NumCPU() * 2 has proven to be reliably fast for different cpu models.
+	//factors above 4 will generally lead to severe performance degredation due to channel and locking overhead.
 	numProc = runtime.NumCPU() * 2
 )
 
@@ -35,21 +38,25 @@ func ParseFromFile(filepath string) (A2L, error) {
 	var a A2L
 
 	startTime := time.Now()
+	//read a2l file from a text file
 	text, err = readFileToString(filepath)
 	if err != nil {
 		log.Err(err).Msg("a2l file could not be read:")
 		return a, err
 	}
+	//divide a2l file into individual tokens
 	tg, err = buildTokenGeneratorFromString(text)
 	if err != nil {
 		log.Err(err).Msg("could not create tokens from a2l file:")
 		return a, err
 	}
+	//then parse the tokens created by the tokenizer
 	a, err = parseA2l(&tg)
 	if err != nil {
 		log.Err(err).Msg("failed parsing with error:")
 		return a, err
 	}
+
 	log.Info().Str("project name", a.Project.Name).Msg("finished parsing:")
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
@@ -64,7 +71,6 @@ func parseA2l(tok *tokenGenerator) (A2L, error) {
 	var err error
 forLoop:
 	for {
-		log.Info().Msg(tok.current())
 		switch tok.current() {
 		case asap2VersionToken:
 			a2l.Asap2Version, err = parseASAP2Version(tok)
