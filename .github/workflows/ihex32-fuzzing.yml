@@ -1,4 +1,4 @@
-name: Build, Test and License
+name: iHex32 Fuzzing
 
 on:
   push:
@@ -19,4 +19,5 @@ jobs:
         go-version: 1.18
 
     - name: Run A2L Fuzzing
+      run: cd ihex32
       run: go test -fuzz=./ihex32/FuzzParseHex -v

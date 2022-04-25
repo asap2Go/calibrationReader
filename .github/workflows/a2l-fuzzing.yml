@@ -1,4 +1,4 @@
-name: Build, Test and License
+name: A2L Fuzzing
 
 on:
   push:
@@ -18,5 +18,6 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Run Fuzzing Tests
+    - name: Run A2L Fuzzing
+      run: cd a2l
       run: go test -fuzz=./a2l/FuzzParseA2L -v

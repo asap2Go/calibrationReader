@@ -1,4 +1,4 @@
-name: Build, Test and License
+name: SREC19 Fuzzing
 
 on:
   push:
