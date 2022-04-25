@@ -19,5 +19,4 @@ jobs:
         go-version: 1.18
 
     - name: Run A2L Fuzzing
-      run: cd ihex32
-      run: go test -fuzz=./ihex32/FuzzParseHex -fuzztime=30s -v
+      run: go test ./ihex32 -fuzz=FuzzParseHex -fuzztime=30s -v

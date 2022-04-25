@@ -19,5 +19,4 @@ jobs:
         go-version: 1.18
 
     - name: Run A2L Fuzzing
-      run: cd srec19
-      run: go test -fuzz=./srec19/FuzzParseHex -fuzztime=30s -v
+      run: go test ./srec19 -fuzz=FuzzParseHex -fuzztime=30s -v
