@@ -20,4 +20,4 @@ jobs:
 
     - name: Run A2L Fuzzing
       run: cd ihex32
-      run: go test -fuzz=./ihex32/FuzzParseHex -v
+      run: go test -fuzz=./ihex32/FuzzParseHex -fuzztime=30s -v

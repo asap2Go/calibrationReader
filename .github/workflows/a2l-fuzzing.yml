@@ -20,4 +20,4 @@ jobs:
 
     - name: Run A2L Fuzzing
       run: cd a2l
-      run: go test -fuzz=./a2l/FuzzParseA2L -v
+      run: go test -fuzz=./a2l/FuzzParseA2L -fuzztime=30s -v
