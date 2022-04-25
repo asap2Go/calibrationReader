@@ -3,6 +3,8 @@ package srec19
 import (
 	"errors"
 	"fmt"
+	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -11,6 +13,7 @@ import (
 )
 
 func TestParseFromFile(t *testing.T) {
+	configureLogger()
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	hexPath := "testing/ASAP2_Demo_V171.s19"
 	h, err := ParseFromFile(hexPath)
@@ -24,7 +27,31 @@ func TestParseFromFile(t *testing.T) {
 	}
 }
 
+func FuzzParseHex(f *testing.F) {
+	configureLogger()
+	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	hexPath := "testing/ASAP2_Demo_V171.s19"
+	text, _ := readFileToString(hexPath)
+	f.Add(text)
+
+	f.Fuzz(func(t *testing.T, orig string) {
+		//split the text into lines
+		lines := strings.Split(orig, "\r\n")
+		if len(lines) == 1 {
+			//in case unix line terminator is used.
+			lines = strings.Split(orig, "\n")
+		}
+		_, err := parseHex(lines)
+		if err != nil && err.Error() != "invalid checksums detected" {
+			log.Err(err).Msg("could not parse hex-file")
+			log.Err(err).Msg(orig)
+			t.Error()
+		}
+	})
+}
+
 func BenchmarkParseFromFile(b *testing.B) {
+	configureLogger()
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
@@ -39,4 +66,26 @@ func BenchmarkParseFromFile(b *testing.B) {
 		elapsed := endTime.Sub(startTime)
 		log.Warn().Msg("time for parsing srec19 bench file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 	}
+}
+
+//configureLogger adds a file logger, resets previous log file and does some formatting
+func configureLogger() error {
+	var err error
+	var file *os.File
+	file, err = os.Create("srec19_test.log")
+	if err != nil {
+		log.Error().Err(err).Msg("could not create calibration reader log-file")
+		return err
+	}
+	fileWriter := zerolog.ConsoleWriter{Out: file, NoColor: true, TimeFormat: time.StampMicro}
+	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.StampMicro}
+	consoleWriter.FormatLevel = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("| %s |", i))
+	}
+	fileWriter.FormatLevel = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("| %s |", i))
+	}
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMicro
+	log.Logger = zerolog.New(zerolog.MultiLevelWriter(fileWriter, consoleWriter)).With().Timestamp().Caller().Logger()
+	return nil
 }
