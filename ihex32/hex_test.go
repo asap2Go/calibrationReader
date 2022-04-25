@@ -27,7 +27,7 @@ func TestParseFromFile(t *testing.T) {
 	}
 }
 
-func FuzzParseFromFile(f *testing.F) {
+func FuzzParseHex(f *testing.F) {
 	configureLogger()
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 	hexPath := "testing/ASAP2_Demo_V171.hex"
