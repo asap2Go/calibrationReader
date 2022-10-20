@@ -32,17 +32,38 @@ func FuzzParseA2L(f *testing.F) {
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	text, _ := readFileToString(a2lPath)
 	f.Add(text)
+	var errList []error
 
 	f.Fuzz(func(t *testing.T, orig string) {
 		tg, err := buildTokenGeneratorFromString(orig)
 		if err != nil {
-			log.Err(err).Msg("could not create tokens from a2l file")
-			log.Err(err).Msg(orig)
+			exists := false
+			for _, e := range errList {
+				if err == e {
+					exists = true
+					break
+				}
+			}
+			if !exists {
+				errList = append(errList, err)
+				log.Err(err).Msg("could not create tokens from a2l file")
+				log.Err(err).Msg(orig)
+			}
 		}
 		a, err := parseA2l(&tg)
 		if err != nil {
-			log.Err(err).Msg("failed parsing " + a.Project.Name + " with error:")
-			log.Err(err).Msg(orig)
+			exists := false
+			for _, e := range errList {
+				if err == e {
+					exists = true
+					break
+				}
+			}
+			if !exists {
+				errList = append(errList, err)
+				log.Err(err).Msg("failed parsing " + a.Project.Name + " with error:")
+				//dumps the a2l file into the log: log.Err(err).Msg(orig)
+			}
 		}
 	})
 }
@@ -65,7 +86,7 @@ func BenchmarkParseFromFile(b *testing.B) {
 	}
 }
 
-//configureLogger adds a file logger, resets previous log file and does some formatting
+// configureLogger adds a file logger, resets previous log file and does some formatting
 func configureLogger() error {
 	var err error
 	var file *os.File

@@ -367,9 +367,9 @@ const variablesToken = "VARIABLES"
 const versionToken = "VERSION"
 const wordToken = "WORD"
 
-//keywordMap is used in the isKeyword-Funtion.
-//Its usage is to efficiently check whether a token is also a keyword.
-//Note: enum values and Standalone Keywords like "READ_ONLY" are excluded here.
+// keywordMap is used in the isKeyword-Funtion.
+// Its usage is to efficiently check whether a token is also a keyword.
+// Note: enum values and Standalone Keywords like "READ_ONLY" are excluded here.
 var keywordMap = map[string]uint8{
 	"A2ML_VERSION":                    0,
 	"ADDR_EPK":                        0,
@@ -609,7 +609,6 @@ var keywordMap = map[string]uint8{
 	"PROJECT_NO":                      0,
 	"REF_MEMORY_SEGMENT":              0,
 	"REF_UNIT":                        0,
-	"RESERVED":                        0,
 	"RIGHT_SHIFT":                     0,
 	"RIP_ADDR_4":                      0,
 	"RIP_ADDR_5":                      0,

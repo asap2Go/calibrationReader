@@ -49,6 +49,10 @@ func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
 	str = strings.TrimFunc(str, func(r rune) bool {
 		return !unicode.IsGraphic(r)
 	})
+
+	//replace escaped quotation marks
+	str = strings.ReplaceAll(str, `\"`, `'`)
+
 	//Split text file into lines and the lines into words separated by whitespace
 	var locTokens []chan []string
 	tokenList = make([]string, 0, expectedNumberOfTokens)
@@ -114,7 +118,8 @@ func buildTokenList(str [][]string) []string {
 			return tl
 		}
 		if t != emptyToken {
-			if strings.Contains(t, "*/") {
+			if strings.Contains(t, "*/") && !strings.Contains(t, "*/") {
+				log.Warn().Msg("Triggered reset! at token: " + t)
 				//make sure that the goroutine did not start in the middle of a multiline comment.
 				//if so then delete all previous tokens as they are part of the comment.
 				//the buildNextValidToken routine only checks for the start of a multiline comment.
@@ -210,7 +215,7 @@ start:
 	}
 }
 
-//skipLineComment if a "//" is detected the token generator moves to the next line (currentOuterIndex++)
+// skipLineComment if a "//" is detected the token generator moves to the next line (currentOuterIndex++)
 func skipLineComment(currentOuterIndex *int, currentInnerIndex *int, str [][]string) (string, error) {
 	if strings.Contains(str[*currentOuterIndex][*currentInnerIndex], beginLineCommentToken) {
 		//move to the next line and reset inner index to 0 (first word in new line)
@@ -227,8 +232,8 @@ func skipLineComment(currentOuterIndex *int, currentInnerIndex *int, str [][]str
 	}
 }
 
-//skipLineComment if a "/*" is detected then token generator gets the next token until a "*/" is reached.
-//it will then return the next raw value token after the comment
+// skipLineComment if a "/*" is detected then token generator gets the next token until a "*/" is reached.
+// it will then return the next raw value token after the comment
 func skipMultilineComment(currentOuterIndex *int, currentInnerIndex *int, str [][]string) (string, error) {
 	var err error
 	t := str[*currentOuterIndex][*currentInnerIndex]
@@ -289,10 +294,10 @@ func getTextInQuotationMarks(currentOuterIndex *int, currentInnerIndex *int, str
 	}
 }
 
-//moveToNextRawValue returns back the next valid, white space separated value.
-//in case the line ends it restarts on the next line
-//in case there are no lines left and no words within the last line it will return an empty token
-//which is used to signal the parser that the eof has been reached.
+// moveToNextRawValue returns back the next valid, white space separated value.
+// in case the line ends it restarts on the next line
+// in case there are no lines left and no words within the last line it will return an empty token
+// which is used to signal the parser that the eof has been reached.
 func moveToNextRawValue(currentOuterIndex *int, currentInnerIndex *int, str [][]string) (string, error) {
 	//If there are still tokens left in the current line
 	if len(str[*currentOuterIndex])-1 > *currentInnerIndex && len(str[*currentOuterIndex]) > 0 {
@@ -320,9 +325,9 @@ func moveToNextRawValue(currentOuterIndex *int, currentInnerIndex *int, str [][]
 	}
 }
 
-//isKeyword is used in the matrixDim parser to detected when there are no dimensions left to parse
-//this is necessary because not every version of the a2l standard has a clear rule about how many dimensions should be expected
-//or are necessary to define ("1 0 0" and "1" are both valid descriptions for a curve)
+// isKeyword is used in the matrixDim parser to detected when there are no dimensions left to parse
+// this is necessary because not every version of the a2l standard has a clear rule about how many dimensions should be expected
+// or are necessary to define ("1 0 0" and "1" are both valid descriptions for a curve)
 func isKeyword(str string) bool {
 	//look whether the given string is contained in the list of
 	//valid a2l tokens as defined in tokens.go
@@ -330,7 +335,7 @@ func isKeyword(str string) bool {
 	return exists
 }
 
-//getTwoWordedToken handles keywords that contain a / like e.g. "/begin CHARACTERISTIC"
+// getTwoWordedToken handles keywords that contain a / like e.g. "/begin CHARACTERISTIC"
 func getTwoWordedToken(currentOuterIndex *int, currentInnerIndex *int, str [][]string) (string, error) {
 	var err error
 	t := str[*currentOuterIndex][*currentInnerIndex]

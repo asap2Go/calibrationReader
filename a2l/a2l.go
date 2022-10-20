@@ -21,16 +21,16 @@ var (
 	numProc = runtime.NumCPU() * 2
 )
 
-//A2L is the main struct returned by the a2l package.
-//it contains all datatypes parsed from the .a2l file
+// A2L is the main struct returned by the a2l package.
+// it contains all datatypes parsed from the .a2l file
 type A2L struct {
 	Asap2Version asap2Version
 	A2mlVersion  a2mlVersion
 	Project      Project
 }
 
-//ParseFromFile is the main exported function to be called from a2l package.
-//it takes an .a2l file and parses it
+// ParseFromFile is the main exported function to be called from a2l package.
+// it takes an .a2l file and parses it
 func ParseFromFile(filepath string) (A2L, error) {
 	var err error
 	var text string
@@ -64,8 +64,8 @@ func ParseFromFile(filepath string) (A2L, error) {
 	return a, nil
 }
 
-//parseA2l handles the parsing of the a2l struct.
-//as opposed to ParseFromFile which also handles creation of the tokenizer and file reading, etc.
+// parseA2l handles the parsing of the a2l struct.
+// as opposed to ParseFromFile which also handles creation of the tokenizer and file reading, etc.
 func parseA2l(tok *tokenGenerator) (A2L, error) {
 	a2l := A2L{}
 	var err error
@@ -109,7 +109,7 @@ forLoop:
 	return a2l, err
 }
 
-//readFileToString opens and reads a file, then returns a string value
+// readFileToString opens and reads a file, then returns a string value
 func readFileToString(filepath string) (string, error) {
 	bytesString, err := os.ReadFile(filepath)
 	if err != nil {

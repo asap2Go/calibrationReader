@@ -1,4 +1,4 @@
-﻿ASAP2_VERSION 1 71
+ASAP2_VERSION 1 71
 A2ML_VERSION 1 31
 /begin PROJECT ASAP2_Example ""
 
@@ -2859,7 +2859,7 @@ A2ML_VERSION 1 31
   SYSTEM_CONSTANT "CONTROLLERx constant1" "0.33"
   SYSTEM_CONSTANT "CONTROLLERx constant2" "2.79"
   /begin CALIBRATION_METHOD
-    „InCircuit“
+    â€žInCircuitâ€œ
     2
     /begin CALIBRATION_HANDLE
       0x10000 /* start address of pointer table */
@@ -2870,6 +2870,8 @@ A2ML_VERSION 1 31
       CALIBRATION_HANDLE_TEXT "YourTextHere"
     /end CALIBRATION_HANDLE
   /end CALIBRATION_METHOD
+  SYSTEM_CONSTANT "CONTROLLERx constant3" "0                  /*blabalsdjkkasld as dsa d*/"
+  SYSTEM_CONSTANT "CONTROLLERx constant4" "0"  
 /end MOD_PAR
 
 
@@ -5729,8 +5731,8 @@ A2ML_VERSION 1 31
       NO_COMPU_METHOD
       10
       0
-      25
-    /end TYPEDEF_AXIS
+	    25
+	/end TYPEDEF_AXIS
 
     /begin INSTANCE
       Instance1

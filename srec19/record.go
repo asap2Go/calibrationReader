@@ -26,7 +26,7 @@ type record struct {
 func parseRecord(line string) (*record, error) {
 	r := record{}
 	r.recordType = line[1:2]
-	if line[0] == beginLineToken[0] && r.recordType == "3" {
+	if line[0] == beginLineToken[0] && r.recordType == "3" && len(line) >= 12 {
 		r.byteCount = line[2:4]
 		r.addressField = line[4:12]
 		for i := 12; i < len(line)-3; i += 2 {

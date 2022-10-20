@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -32,6 +33,7 @@ func FuzzParseHex(f *testing.F) {
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 	hexPath := "testing/ASAP2_Demo_V171.s19"
 	text, _ := readFileToString(hexPath)
+	var errList []error
 	f.Add(text)
 
 	f.Fuzz(func(t *testing.T, orig string) {
@@ -41,11 +43,21 @@ func FuzzParseHex(f *testing.F) {
 			//in case unix line terminator is used.
 			lines = strings.Split(orig, "\n")
 		}
-		_, err := parseHex(lines)
-		if err != nil && err.Error() != "invalid checksums detected" {
-			log.Err(err).Msg("could not parse hex-file")
-			log.Err(err).Msg(orig)
-			t.Error()
+		h, err := parseHex(lines)
+		if err != nil {
+			exists := false
+			for _, e := range errList {
+				if err == e {
+					exists = true
+					break
+				}
+			}
+			if !exists {
+				errList = append(errList, err)
+				fmt.Println(len(h))
+				log.Err(err).Msg("could not parse s19-file with length " + strconv.Itoa(len(h)))
+				log.Err(err).Msg(orig)
+			}
 		}
 	})
 }
