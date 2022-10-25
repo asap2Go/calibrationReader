@@ -97,7 +97,7 @@ var (
 	}
 )
 
-//parseHex parses a hex-file given as an slice of strings and return a hex struct containing the data in byte form with all the addresses attached.
+// parseHex parses a hex-file given as an slice of strings and return a hex struct containing the data in byte form with all the addresses attached.
 func parseHex(lines []string) (map[uint32]byte, error) {
 	var h map[uint32]byte
 	var err error
@@ -200,7 +200,7 @@ func parseHex(lines []string) (map[uint32]byte, error) {
 	return h, nil
 }
 
-//readFileToString returns a string by reading a document from a given filepath.
+// readFileToString returns a string by reading a document from a given filepath.
 func readFileToString(filepath string) (string, error) {
 	bytesString, err := os.ReadFile(filepath)
 	if err != nil {
@@ -211,7 +211,7 @@ func readFileToString(filepath string) (string, error) {
 	return text, err
 }
 
-//ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses.
+// ParseFromFile parses a hex file from a given filepath and return a hex struct containing all data as bytes with their addresses.
 func ParseFromFile(filepath string) (map[uint32]byte, error) {
 	var h map[uint32]byte
 	var text string
@@ -236,7 +236,7 @@ func ParseFromFile(filepath string) (map[uint32]byte, error) {
 	return h, nil
 }
 
-//parseRecordRoutine calls the parseRecord method for each line given and return them via a channel.
+// parseRecordRoutine calls the parseRecord method for each line given and return them via a channel.
 func parseRecordRoutine(c chan []*record, lines []string) {
 	var recs []*record
 forLoop:
@@ -254,7 +254,7 @@ forLoop:
 	close(c)
 }
 
-//hexToByte converts a two character hexString to a single byte. fails if input is too long or not valid hex.
+// hexToByte converts a two character hexString to a single byte. fails if input is too long or not valid hex.
 func hexToByte(str string) (byte, error) {
 	var err error
 	var b byte
@@ -267,7 +267,7 @@ func hexToByte(str string) (byte, error) {
 	return b, err
 }
 
-//hexToByteSlice converts at least a four character hexString to a slice of several bytes. fails if input is too short or not valid hex.
+// hexToByteSlice converts at least a four character hexString to a slice of several bytes. fails if input is too short or not valid hex.
 func hexToByteSlice(hexVal string) ([]byte, error) {
 	decoded, err := hex.DecodeString(hexVal)
 	if err != nil {

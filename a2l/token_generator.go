@@ -5,7 +5,6 @@ import (
 	"strconv"
 	"strings"
 	"sync/atomic"
-	"unicode"
 
 	"github.com/rs/zerolog/log"
 )
@@ -44,11 +43,6 @@ func (tg *tokenGenerator) previous() {
 func buildTokenGeneratorFromString(str string) (tokenGenerator, error) {
 	//initialize moduleCount to zero
 	moduleCount = 0
-
-	//remove unprintable chars at the start and end of the a2l file
-	str = strings.TrimFunc(str, func(r rune) bool {
-		return !unicode.IsGraphic(r)
-	})
 
 	//replace escaped quotation marks
 	str = strings.ReplaceAll(str, `\"`, `'`)

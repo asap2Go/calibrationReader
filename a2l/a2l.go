@@ -4,8 +4,11 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"regexp"
 	"runtime"
+	"strings"
 	"time"
+	"unicode"
 
 	"github.com/rs/zerolog/log"
 )
@@ -18,7 +21,7 @@ var (
 	//numProc is used to set the amount of goroutines in case useMultithreading is true.
 	//numProc = runtime.NumCPU() * 2 has proven to be reliably fast for different cpu models.
 	//factors above 4 will generally lead to severe performance degredation due to channel and locking overhead.
-	numProc = runtime.NumCPU() * 2
+	numProc = runtime.NumCPU()
 )
 
 // A2L is the main struct returned by the a2l package.
@@ -115,6 +118,19 @@ func readFileToString(filepath string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	text := string(bytesString)
-	return text, nil
+	cleanedStr := cleanBytesString(bytesString)
+	return cleanedStr, nil
+}
+
+func cleanBytesString(bs []byte) string {
+	//remove escaped characters
+	re := regexp.MustCompile(`\\.`)
+	escapedBytesString := re.ReplaceAll(bs, []byte("$1"))
+	//convert byte array to string
+	str := string(escapedBytesString)
+	//remove unprintable chars at the start and end of the a2l file
+	str = strings.TrimFunc(str, func(r rune) bool {
+		return !unicode.IsGraphic(r)
+	})
+	return str
 }
