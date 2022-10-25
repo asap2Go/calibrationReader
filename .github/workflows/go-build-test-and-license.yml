@@ -22,7 +22,7 @@ jobs:
       run: go build -v ./...
 
     - name: Test RaceConditions Extended
-      run: go test -bench=. -benchtime=10s  -test.parallel 1 -race -v
+      run: go test -bench=. -benchtime=100s  -test.parallel 1 -race -v
 
     - name: Setup License Server
       run: go install github.com/google/go-licenses@latest
