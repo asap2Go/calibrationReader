@@ -19,4 +19,4 @@ jobs:
         go-version: 1.18
 
     - name: Run A2L Fuzzing
-      run: go test ./a2l -fuzz=FuzzParseA2l -fuzztime=30s -v
+      run: go test ./a2l -fuzz=FuzzParseA2l -fuzztime=60s -v
