@@ -37,11 +37,11 @@ and so on.
 To access a specific memory location in the hex-file (contains a single byte):
 `b, exists := calibrationData.hex[12345]`
  
-##  Disclaimer:
+##  Disclaimer
 I am a mechanical engineer, so any code you see might not be up to the standards of true/correct/modern/acceptable software development ;)
 Feedback is always appreciated.
 
-## Dependencies and Licensing:
+## Dependencies and Licensing
 The only dependency outside the go standard library is currently zerolog.
 The package is - and will always be - released under MIT license.
 Feel free to do with it what you want :)
