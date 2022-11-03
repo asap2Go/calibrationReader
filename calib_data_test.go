@@ -22,8 +22,8 @@ func BenchmarkReadCalibration(b *testing.B) {
 		if err != nil {
 			log.Err(err).Msg("failed reading calibration")
 		} else {
-			log.Info().Str("project name", cd.a2l.Project.Name).Msg("finished parsing")
-			log.Info().Int("length of data in hex file", len(cd.hex)).Msg("finished parsing")
+			log.Info().Str("project name", cd.A2l.Project.Name).Msg("finished parsing")
+			log.Info().Int("length of data in hex file", len(cd.Hex)).Msg("finished parsing")
 			log.Warn().Msg("time for parsing bench files: " + fmt.Sprint(elapsed.Milliseconds()))
 		}
 		cd, err = CalibrationData{}, nil
@@ -43,8 +43,8 @@ func TestReadCalibration(t *testing.T) {
 		log.Err(err).Msg("failed reading calibration")
 		t.Fatalf("failed parsing with error: %s.", err)
 	} else {
-		log.Info().Str("project name", cd.a2l.Project.Name).Msg("finished parsing")
-		log.Info().Int("length of data in hex file", len(cd.hex)).Msg("finished parsing")
+		log.Info().Str("project name", cd.A2l.Project.Name).Msg("finished parsing")
+		log.Info().Int("length of data in hex file", len(cd.Hex)).Msg("finished parsing")
 		log.Warn().Msg("time for parsing test files: " + fmt.Sprint(elapsed.Milliseconds()))
 		startTime := time.Now()
 		//find object in a2l struct

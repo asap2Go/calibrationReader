@@ -22,7 +22,7 @@ type modPar struct {
 	noOfInterfaces       noOfInterfaces
 	phoneNo              phoneNo
 	supplier             supplier
-	systemConstant       []systemConstant
+	SystemConstants      map[string]systemConstant
 	user                 user
 	version              version
 }
@@ -139,7 +139,7 @@ forLoop:
 				log.Err(err).Msg("modPar systemConstant could not be parsed")
 				break forLoop
 			}
-			mp.systemConstant = append(mp.systemConstant, buf)
+			mp.SystemConstants[buf.name] = buf
 			log.Info().Msg("modPar systemConstant successfully parsed")
 		case userToken:
 			mp.user, err = parseUser(tok)
