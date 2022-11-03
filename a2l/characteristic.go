@@ -8,27 +8,29 @@ import (
 )
 
 type Characteristic struct {
-	Name                    string
-	nameSet                 bool
-	LongIdentifier          string
-	longIdentifierSet       bool
-	Type                    typeEnum
-	TypeSet                 bool
-	Address                 string
-	addressSet              bool
-	deposit                 string
-	depositSet              bool
-	maxDiff                 float64
-	maxDiffSet              bool
-	conversion              string
-	conversionSet           bool
-	lowerLimit              float64
-	lowerLimitSet           bool
-	upperLimit              float64
-	upperLimitSet           bool
-	annotation              []annotation
-	axisDescr               []axisDescr
-	bitMask                 bitMask
+	Name              string
+	nameSet           bool
+	LongIdentifier    string
+	longIdentifierSet bool
+	Type              typeEnum
+	TypeSet           bool
+	Address           string
+	addressSet        bool
+	//Deposit is the identifier of the corresponding record layout
+	Deposit       string
+	DepositSet    bool
+	maxDiff       float64
+	maxDiffSet    bool
+	conversion    string
+	conversionSet bool
+	lowerLimit    float64
+	lowerLimitSet bool
+	upperLimit    float64
+	upperLimitSet bool
+	annotation    []annotation
+	axisDescr     []axisDescr
+	bitMask       bitMask
+	//byteOrder can be used to overwrite the standard byte order defined in mod par
 	byteOrder               byteOrder
 	calibrationAccess       calibrationAccessEnum
 	comparisonQuantity      comparisonQuantity
@@ -287,9 +289,9 @@ forLoop:
 				c.Address = tok.current()
 				c.addressSet = true
 				log.Info().Msg("characteristic Address successfully parsed")
-			} else if !c.depositSet {
-				c.deposit = tok.current()
-				c.depositSet = true
+			} else if !c.DepositSet {
+				c.Deposit = tok.current()
+				c.DepositSet = true
 				log.Info().Msg("characteristic deposit successfully parsed")
 			} else if !c.maxDiffSet {
 				var buf float64

@@ -8,17 +8,28 @@ import (
 )
 
 type fncValues struct {
-	//position of table values (function values) in the deposit structure (description of sequence of elements in the data record).
-	position    uint16
-	positionSet bool
+	//Position of table values (function values) in the deposit structure (description of sequence of elements in the data record).
+	Position    uint16
+	PositionSet bool
 	//data type of the table values
-	datatype    dataTypeEnum
-	datatypeSet bool
-	//for characteristic maps, this attribute is used to describe how the 2-dimensional table values are mapped onto the 1-dimensional address space
-	indexMode      indexModeEnum
-	indexModeSet   bool
-	addresstype    addrTypeEnum
-	addresstypeSet bool
+	Datatype    dataTypeEnum
+	DatatypeSet bool
+	//for characteristic maps, curves and value blocks, this field is used to describe how the 2-dimensional table values are mapped onto the 1-dimensional address space
+	IndexMode    indexModeEnum
+	IndexModeSet bool
+	/*addressing of the table values:
+	Enumeration for description of the addressing of table
+	values or axis point values:
+	PBYTE:	The relevant memory location has a 1 byte pointer
+			to this table value or axis point value.
+	PWORD:	The relevant memory location has a 2 byte pointer
+			to this table value or axis point value.
+	PLONG:	The relevant memory location has a 4 byte pointer
+			to this table value or axis point value.
+	DIRECT:	The relevant memory location has the first table value
+			or axis point value, all others follow with incrementing address. */
+	Addresstype    addrTypeEnum
+	AddresstypeSet bool
 }
 
 func parseFncValues(tok *tokenGenerator) (fncValues, error) {
@@ -35,39 +46,39 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("fncValues could not be parsed")
 			break forLoop
-		} else if !fv.positionSet {
+		} else if !fv.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("fncValues position could not be parsed")
 				break forLoop
 			}
-			fv.position = uint16(buf)
-			fv.positionSet = true
+			fv.Position = uint16(buf)
+			fv.PositionSet = true
 			log.Info().Msg("fncValues position successfully parsed")
-		} else if !fv.datatypeSet {
-			fv.datatype, err = parseDataTypeEnum(tok)
+		} else if !fv.DatatypeSet {
+			fv.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues datatype could not be parsed")
 				break forLoop
 			}
-			fv.datatypeSet = true
+			fv.DatatypeSet = true
 			log.Info().Msg("fncValues datatype successfully parsed")
-		} else if !fv.indexModeSet {
-			fv.indexMode, err = parseIndexModeEnum(tok)
+		} else if !fv.IndexModeSet {
+			fv.IndexMode, err = parseIndexModeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues indexMode could not be parsed")
 				break forLoop
 			}
-			fv.indexModeSet = true
+			fv.IndexModeSet = true
 			log.Info().Msg("fncValues indexMode successfully parsed")
-		} else if !fv.addresstypeSet {
-			fv.addresstype, err = parseAddrTypeEnum(tok)
+		} else if !fv.AddresstypeSet {
+			fv.Addresstype, err = parseAddrTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("fncValues addresstype could not be parsed")
 				break forLoop
 			}
-			fv.addresstypeSet = true
+			fv.AddresstypeSet = true
 			log.Info().Msg("fncValues addresstype successfully parsed")
 			break forLoop
 		}

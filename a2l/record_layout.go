@@ -32,7 +32,7 @@ type recordLayout struct {
 	fixNoAxisPtsZ        fixNoAxisPtsZ
 	fixNoAxisPts4        fixNoAxisPts4
 	fixNoAxisPts5        fixNoAxisPts5
-	fncValues            fncValues
+	FncValues            fncValues
 	identification       identification
 	noAxisPtsX           noAxisPtsX
 	noAxisPtsY           noAxisPtsY
@@ -234,7 +234,7 @@ forLoop:
 			}
 			log.Info().Msg("recordLayout fixNoAxisPts5 successfully parsed")
 		case fncValuesToken:
-			rl.fncValues, err = parseFncValues(tok)
+			rl.FncValues, err = parseFncValues(tok)
 			if err != nil {
 				log.Err(err).Msg("recordLayout fncValues could not be parsed")
 				break forLoop

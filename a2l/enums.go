@@ -275,16 +275,24 @@ type typeEnum string
 
 const (
 	undefinedType typeEnum = emptyToken
-	Ascii         typeEnum = asciiToken
-	Curve         typeEnum = curveToken
-	Map           typeEnum = mapToken
-	Cuboid        typeEnum = cuboidToken
-	cube4         typeEnum = cube4Token
-	cube5         typeEnum = cube5Token
-	ValBlk        typeEnum = valBlkToken
-	Value         typeEnum = valueToken
-	derived       typeEnum = derivedToken
-	extendedSi    typeEnum = extendedSiToken
+	//String value in ASCII format.
+	ASCII typeEnum = asciiToken
+	//Curve Datatype of a characteristic is like an array for the y axis plus an axis description on the x axis
+	Curve typeEnum = curveToken
+	//Map defines a two dimensional array
+	Map typeEnum = mapToken
+	//Cuboid defines a three dimensional array mostly represented as an array of Maps
+	Cuboid typeEnum = cuboidToken
+	//The cuboid is stored as an array of maps with incremented or decremented Z coordinates. Rarely used
+	cube4 typeEnum = cube4Token
+	//The CUBE_5 is stored as an array of CUBE_4 with incremented or decremented Z5 coordinates. Rarely used
+	cube5 typeEnum = cube5Token
+	//Value Block is a a array with one, two or up to three dimensions.
+	ValBlk typeEnum = valBlkToken
+	//Value is used in characteristics that only have one value like e.g. "1.0"
+	Value      typeEnum = valueToken
+	derived    typeEnum = derivedToken
+	extendedSi typeEnum = extendedSiToken
 )
 
 func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
@@ -292,7 +300,7 @@ func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
 	var err error
 	switch tok.current() {
 	case asciiToken:
-		t = Ascii
+		t = ASCII
 	case curveToken:
 		t = Curve
 	case mapToken:
@@ -321,13 +329,15 @@ type conversionTypeEnum string
 
 const (
 	undefinedConversionType conversionTypeEnum = emptyToken
-	Identical               conversionTypeEnum = identicalToken
-	Form                    conversionTypeEnum = formToken
-	Linear                  conversionTypeEnum = linearToken
-	RatFunc                 conversionTypeEnum = ratFuncToken
-	TabIntp                 conversionTypeEnum = tabIntpToken
-	TabNointp               conversionTypeEnum = tabNointpToken
-	TabVerb                 conversionTypeEnum = tabVerbToken
+	//Identical defines a OneToOne conversion from hex to decimal
+	Identical conversionTypeEnum = identicalToken
+	Form      conversionTypeEnum = formToken
+	Linear    conversionTypeEnum = linearToken
+	RatFunc   conversionTypeEnum = ratFuncToken
+	TabIntp   conversionTypeEnum = tabIntpToken
+	TabNointp conversionTypeEnum = tabNointpToken
+	//Tab Verb is a table to convert numeric values into strings. e.g.: 1 -> "True"
+	TabVerb conversionTypeEnum = tabVerbToken
 )
 
 func parseConversionTypeEnum(tok *tokenGenerator) (conversionTypeEnum, error) {
@@ -358,11 +368,51 @@ type indexModeEnum string
 
 const (
 	undefinedIndexMode indexModeEnum = emptyToken
-	alternateCurves    indexModeEnum = alternateCurvesToken
-	alternateWithX     indexModeEnum = alternateWithXToken
-	alternateWithY     indexModeEnum = alternateWithYToken
-	ColumnDir          indexModeEnum = columnDirToken
-	RowDir             indexModeEnum = rowDirToken
+	/* curves which share a common axis are deposited in columns;
+	each row of memory contains values for all the shared axis curves
+	at a given axis breakpoint.
+	Required in order to represent characteristics which correspond to
+	arrays of structures in ECU program code.*/
+	AlternateCurves indexModeEnum = alternateCurvesToken
+	/*AlternateWithX defines that values of a map are
+	stored in columns and the columns of table values alternate with the
+	respective X-coordinates. A map of format
+	 9 8 7
+	[0 1 2
+	 3 4 5
+	 6 7 8]
+	could be stored within the hex file as an array of format
+	[9,0,3,6,8,1,4,7,7,2,5,8]
+	The order of axis points and table values can be defined differently
+	by the position statement in the FNC_VALUE
+	In case of a curve the values of x-Axis and values alternate.*/
+	AlternateWithX indexModeEnum = alternateWithXToken
+	/*AlternateWithY defines that values of a map are
+	deposited in rows, the rows of table values alternate with the
+	respective Y-coordinates. A map of format
+	9 [0 1 2
+	8  3 4 5
+	7  6 7 8]
+	could be within the hex file as an array of format
+	[9,0,1,2,8,3,4,5,7,6,7,8]
+	The order of axis points and table values can be defined differently
+	by the position statement in the FNC_VALUE
+	Only applicable to maps*/
+	AlternateWithY indexModeEnum = alternateWithYToken
+	/*Column Direction defines that values of a map
+	[0 1 2
+	 3 4 5
+	 6 7 8]
+	are stored within the hex file as an array of format
+	[0,3,6,1,4,7,2,5,8]	*/
+	ColumnDir indexModeEnum = columnDirToken
+	/*Row Direction defines that values of a map
+	[0 1 2
+	 3 4 5
+	 6 7 8]
+	are stored within the hex file as an array of format
+	[0,1,2,3,4,5,6,7,8]	*/
+	RowDir indexModeEnum = rowDirToken
 )
 
 func parseIndexModeEnum(tok *tokenGenerator) (indexModeEnum, error) {
@@ -370,11 +420,11 @@ func parseIndexModeEnum(tok *tokenGenerator) (indexModeEnum, error) {
 	var err error
 	switch tok.current() {
 	case alternateCurvesToken:
-		im = alternateCurves
+		im = AlternateCurves
 	case alternateWithXToken:
-		im = alternateWithX
+		im = AlternateWithX
 	case alternateWithYToken:
-		im = alternateWithY
+		im = AlternateWithY
 	case columnDirToken:
 		im = ColumnDir
 	case rowDirToken:
