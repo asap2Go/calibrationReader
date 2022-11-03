@@ -29,6 +29,7 @@ type modPar struct {
 
 func parseModPar(tok *tokenGenerator) (modPar, error) {
 	mp := modPar{}
+	mp.SystemConstants = make(map[string]systemConstant, 2000)
 	var err error
 forLoop:
 	for {
