@@ -29,8 +29,9 @@ import (
 // CalibrationData contains the parsed structs from the a2l as well as the byte data from the hex file
 // that are parsed by ReadCalibration()
 type CalibrationData struct {
-	A2l a2l.A2L
-	Hex map[uint32]byte
+	A2l         a2l.A2L
+	ModuleIndex uint8
+	Hex         map[uint32]byte
 }
 
 // ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -38,6 +39,7 @@ type CalibrationData struct {
 func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, error) {
 	var err error
 	var cd CalibrationData
+	cd.ModuleIndex = 0
 	var errChan = make(chan error, 2)
 	var a2lChan = make(chan a2l.A2L, 1)
 	var hexChan = make(chan map[uint32]byte, 1)

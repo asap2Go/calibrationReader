@@ -22,14 +22,14 @@ type modPar struct {
 	noOfInterfaces       noOfInterfaces
 	phoneNo              phoneNo
 	supplier             supplier
-	SystemConstants      map[string]systemConstant
+	SystemConstants      map[string]SystemConstant
 	user                 user
 	version              version
 }
 
 func parseModPar(tok *tokenGenerator) (modPar, error) {
 	mp := modPar{}
-	mp.SystemConstants = make(map[string]systemConstant, 2000)
+	mp.SystemConstants = make(map[string]SystemConstant, 2000)
 	var err error
 forLoop:
 	for {
@@ -134,7 +134,7 @@ forLoop:
 			}
 			log.Info().Msg("modPar supplier successfully parsed")
 		case systemConstantToken:
-			var buf systemConstant
+			var buf SystemConstant
 			buf, err = parseSystemConstant(tok)
 			if err != nil {
 				log.Err(err).Msg("modPar systemConstant could not be parsed")

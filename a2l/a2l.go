@@ -1,6 +1,7 @@
 package a2l
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -30,6 +31,23 @@ type A2L struct {
 	Asap2Version asap2Version
 	A2mlVersion  a2mlVersion
 	Project      Project
+}
+
+// toHashMap recursively generates a HashMap of all structs and their values in the a2l struct
+// potentially useful if goPy is used to build a python library of calibrationReader
+func (a *A2L) toHashMap() (map[string]interface{}, error) {
+	var m map[string]interface{}
+	bytes, err := json.Marshal(a)
+	if err != nil {
+		log.Err(err).Msg("could not serialize a2l struct into json")
+		return m, err
+	}
+	err = json.Unmarshal(bytes, &m)
+	if err != nil {
+		log.Err(err).Msg("could not deserialize json into hashmap")
+		return m, err
+	}
+	return m, err
 }
 
 // ParseFromFile is the main exported function to be called from a2l package.

@@ -7,7 +7,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-/*a2mlVersion exists in order to declare what kind of BLOBs should be generated from
+/*
+a2mlVersion exists in order to declare what kind of BLOBs should be generated from
 the AML parts. Since ASAP2 version 1.3.1 a specification for the storage layout of the
 BLOBs exist. The keyword is optional. When the keyword is omitted, or the version
 number is below 1.3.1 then the old BLOB format is used. When the A2ML version number
@@ -17,13 +18,14 @@ The A2ML version can be expressed by two numerals:
 - UpgradeNo
 where ‘VersionNo’ represents the main version number and ‘UpgradeNo’ the upgrade
 number (fractional part of version number).
-This keyword will not be interpreted semantically anymore.*/
+This keyword will not be interpreted semantically anymore.
+*/
 type a2mlVersion struct {
-	//versionNo contains the Version number of AML part
-	versionNo    uint16
+	//VersionNo contains the Version number of AML part
+	VersionNo    uint16
 	versionNoSet bool
-	//upgradeNo contains the Upgrade number of AML part
-	upgradeNo    uint16
+	//UpgradeNo contains the Upgrade number of AML part
+	UpgradeNo    uint16
 	upgradeNoSet bool
 }
 
@@ -48,7 +50,7 @@ forLoop:
 				log.Err(err).Msg("a2mlVersion versionNo could not be parsed")
 				break forLoop
 			}
-			av.versionNo = uint16(buf)
+			av.VersionNo = uint16(buf)
 			av.versionNoSet = true
 			log.Info().Msg("a2mlVersion versionNo successfully parsed")
 		} else if !av.upgradeNoSet {
@@ -58,7 +60,7 @@ forLoop:
 				log.Err(err).Msg("a2mlVersion upgradeNo could not be parsed")
 				break forLoop
 			}
-			av.upgradeNo = uint16(buf)
+			av.UpgradeNo = uint16(buf)
 			av.upgradeNoSet = true
 			log.Info().Msg("a2mlVersion upgradeNo successfully parsed")
 			break forLoop

@@ -6,15 +6,15 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type systemConstant struct {
+type SystemConstant struct {
 	name     string
 	nameSet  bool
 	value    string
 	valueSet bool
 }
 
-func parseSystemConstant(tok *tokenGenerator) (systemConstant, error) {
-	sc := systemConstant{}
+func parseSystemConstant(tok *tokenGenerator) (SystemConstant, error) {
+	sc := SystemConstant{}
 	var err error
 forLoop:
 	for {
