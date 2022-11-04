@@ -7,10 +7,10 @@ import (
 )
 
 type SystemConstant struct {
-	name     string
-	nameSet  bool
-	value    string
-	valueSet bool
+	Name     string
+	NameSet  bool
+	Value    string
+	ValueSet bool
 }
 
 func parseSystemConstant(tok *tokenGenerator) (SystemConstant, error) {
@@ -21,19 +21,19 @@ forLoop:
 		tok.next()
 		if tok.current() == emptyToken {
 			err = errors.New("unexpected end of file")
-			log.Err(err).Msg("systemConstant: " + sc.name + " could not be parsed")
+			log.Err(err).Msg("systemConstant: " + sc.Name + " could not be parsed")
 			break forLoop
 		} else if isKeyword(tok.current()) {
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("systemConstant could not be parsed")
 			break forLoop
-		} else if !sc.nameSet {
-			sc.name = tok.current()
-			sc.nameSet = true
+		} else if !sc.NameSet {
+			sc.Name = tok.current()
+			sc.NameSet = true
 			log.Info().Msg("systemConstant name successfully parsed")
-		} else if !sc.valueSet {
-			sc.value = tok.current()
-			sc.valueSet = true
+		} else if !sc.ValueSet {
+			sc.Value = tok.current()
+			sc.ValueSet = true
 			log.Info().Msg("systemConstant value successfully parsed")
 			break forLoop
 		}

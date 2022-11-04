@@ -140,7 +140,7 @@ forLoop:
 				log.Err(err).Msg("modPar systemConstant could not be parsed")
 				break forLoop
 			}
-			mp.SystemConstants[buf.name] = buf
+			mp.SystemConstants[buf.Name] = buf
 			log.Info().Msg("modPar systemConstant successfully parsed")
 		case userToken:
 			mp.user, err = parseUser(tok)

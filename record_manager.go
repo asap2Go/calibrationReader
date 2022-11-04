@@ -18,6 +18,21 @@ func (cd *CalibrationData) getSystemConstant(ident string) (a2l.SystemConstant, 
 	return s, nil
 }
 
+func (cd *CalibrationData) getSystemConstantValue(ident string) (string, error) {
+	sc, err := cd.getSystemConstant(ident)
+	if err != nil {
+		log.Err(err).Msg("could not get value of system constant")
+		return "", err
+	}
+	var val string
+	if !sc.ValueSet {
+		err = errors.New("no value defined in system constant " + sc.Name)
+		log.Err(err).Msg("could not get value of system constant")
+		return "", err
+	}
+	return val, nil
+}
+
 func (cd *CalibrationData) getCharacteristicValueBinary(c a2l.Characteristic) (interface{}, error) {
 	var err error
 	rl, err := cd.getRecordLayout(c)
