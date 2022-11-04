@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type recordLayout struct {
+type RecordLayout struct {
 	name                 string
 	nameSet              bool
 	alignmentByte        alignmentByte
@@ -32,7 +32,7 @@ type recordLayout struct {
 	fixNoAxisPtsZ        fixNoAxisPtsZ
 	fixNoAxisPts4        fixNoAxisPts4
 	fixNoAxisPts5        fixNoAxisPts5
-	FncValues            fncValues
+	FncValues            FncValues
 	identification       identification
 	noAxisPtsX           noAxisPtsX
 	noAxisPtsY           noAxisPtsY
@@ -66,8 +66,8 @@ type recordLayout struct {
 	staticAddressOffsets staticAddressOffsetsKeyword
 }
 
-func parseRecordLayout(tok *tokenGenerator) (recordLayout, error) {
-	rl := recordLayout{}
+func parseRecordLayout(tok *tokenGenerator) (RecordLayout, error) {
+	rl := RecordLayout{}
 	var err error
 forLoop:
 	for {

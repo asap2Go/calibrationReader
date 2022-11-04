@@ -30,7 +30,7 @@ type module struct {
 	Measurements           map[string]measurement
 	ModCommon              modCommon
 	ModPar                 modPar
-	RecordLayouts          map[string]recordLayout
+	RecordLayouts          map[string]RecordLayout
 	transformers           map[string]transformer
 	typeDefAxis            map[string]typeDefAxis
 	typeDefBlobs           map[string]typeDefBlob
@@ -57,7 +57,7 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	myModule.ifData = make(map[string]IfData, 1000)
 	myModule.instances = make(map[string]instance, 10)
 	myModule.Measurements = make(map[string]measurement, 10000)
-	myModule.RecordLayouts = make(map[string]recordLayout, 1000)
+	myModule.RecordLayouts = make(map[string]RecordLayout, 1000)
 	myModule.transformers = make(map[string]transformer, 10)
 	myModule.typeDefAxis = make(map[string]typeDefAxis, 10)
 	myModule.typeDefBlobs = make(map[string]typeDefBlob, 10)
@@ -79,7 +79,7 @@ func parseModule(tok *tokenGenerator) (module, error) {
 	var bufIfData IfData
 	var bufInstance instance
 	var bufMeasurement measurement
-	var bufRecordLayout recordLayout
+	var bufRecordLayout RecordLayout
 	var bufTransformer transformer
 	var bufTypeDefAxis typeDefAxis
 	var bufTypeDefBlob typeDefBlob
@@ -340,7 +340,7 @@ func parseModuleMultithreaded(tok *tokenGenerator) (module, error) {
 	myModule.ifData = make(map[string]IfData, 1000)
 	myModule.instances = make(map[string]instance, 10)
 	myModule.Measurements = make(map[string]measurement, 10000)
-	myModule.RecordLayouts = make(map[string]recordLayout, 1000)
+	myModule.RecordLayouts = make(map[string]RecordLayout, 1000)
 	myModule.transformers = make(map[string]transformer, 10)
 	myModule.typeDefAxis = make(map[string]typeDefAxis, 10)
 	myModule.typeDefBlobs = make(map[string]typeDefBlob, 10)
@@ -387,7 +387,7 @@ forLoop:
 	cMeasurement := make(chan measurement, 1000)
 	cModCommon := make(chan modCommon, 1)
 	cModPar := make(chan modPar, 1)
-	cRecordLayout := make(chan recordLayout, 100)
+	cRecordLayout := make(chan RecordLayout, 100)
 	cTransformer := make(chan transformer, 10)
 	cTypeDefAxis := make(chan typeDefAxis, 10)
 	cTypeDefBlob := make(chan typeDefBlob, 10)
@@ -456,7 +456,7 @@ func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts ch
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
-	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
+	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
@@ -667,7 +667,7 @@ func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts cha
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
-	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
+	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
@@ -710,7 +710,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
-	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan recordLayout,
+	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
 	cTypeDefBlob chan typeDefBlob, cTypeDefCharacteristic chan typeDefCharacteristic,
 	cTypeDefMeasurement chan typeDefMeasurement, cTypeDefStructure chan typeDefStructure,
@@ -733,7 +733,7 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	var bufIfData IfData
 	var bufInstance instance
 	var bufMeasurement measurement
-	var bufRecordLayout recordLayout
+	var bufRecordLayout RecordLayout
 	var bufTransformer transformer
 	var bufTypeDefAxis typeDefAxis
 	var bufTypeDefBlob typeDefBlob

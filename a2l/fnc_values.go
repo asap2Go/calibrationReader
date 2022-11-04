@@ -7,17 +7,20 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type fncValues struct {
+// FncValues defines the way the data of a specific record layout is stored within the hex file.
+type FncValues struct {
 	//Position of table values (function values) in the deposit structure (description of sequence of elements in the data record).
 	Position    uint16
 	PositionSet bool
-	//data type of the table values
+	//Datatype of the table values
 	Datatype    dataTypeEnum
 	DatatypeSet bool
-	//for characteristic maps, curves and value blocks, this field is used to describe how the 2-dimensional table values are mapped onto the 1-dimensional address space
+	/*IndexMode for characteristic maps, curves and value blocks,
+	this field is used to describe how the 2-dimensional table values
+	are mapped onto the 1-dimensional address space*/
 	IndexMode    indexModeEnum
 	IndexModeSet bool
-	/*addressing of the table values:
+	/*Addresstype defines the addressing of the table values:
 	Enumeration for description of the addressing of table
 	values or axis point values:
 	PBYTE:	The relevant memory location has a 1 byte pointer
@@ -32,8 +35,8 @@ type fncValues struct {
 	AddresstypeSet bool
 }
 
-func parseFncValues(tok *tokenGenerator) (fncValues, error) {
-	fv := fncValues{}
+func parseFncValues(tok *tokenGenerator) (FncValues, error) {
+	fv := FncValues{}
 	var err error
 forLoop:
 	for {
