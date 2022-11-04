@@ -144,7 +144,7 @@ func configureLogger() error {
 	return nil
 }
 
-func (cd *CalibrationData) getObjectsByIdent(ident string) []interface{} {
+func (cd *CalibrationData) getObjectByIdent(ident string) []interface{} {
 	var calibrationObjects []interface{}
 	var buf interface{}
 	var exists bool

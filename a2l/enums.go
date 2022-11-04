@@ -146,7 +146,7 @@ const (
 	msbLast            byteOrderEnum = msbLastToken
 	msbFirst           byteOrderEnum = msbFirstToken
 	msbFirstMswLast    byteOrderEnum = msbFirstMswLastToken
-	msbLastMswFirst    byteOrderEnum = msbFirstMswLastToken
+	msbLastMswFirst    byteOrderEnum = msbLastMswFirstToken
 )
 
 func parseByteOrderEnum(tok *tokenGenerator) (byteOrderEnum, error) {
@@ -161,6 +161,10 @@ func parseByteOrderEnum(tok *tokenGenerator) (byteOrderEnum, error) {
 		b = msbLast
 	case msbFirstToken:
 		b = msbFirst
+	case msbFirstMswLastToken:
+		b = msbFirstMswLast
+	case msbLastMswFirstToken:
+		b = msbLastMswFirst
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum byteorder")
 	}

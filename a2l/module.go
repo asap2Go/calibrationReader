@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type module struct {
+type Module struct {
 	Name                   string
 	nameSet                bool
 	longIdentifier         string
@@ -42,9 +42,9 @@ type module struct {
 	variantCoding          variantCoding
 }
 
-func parseModule(tok *tokenGenerator) (module, error) {
+func parseModule(tok *tokenGenerator) (Module, error) {
 	//Bulk init of an average number of objects contained in a modern a2l-file.
-	myModule := module{}
+	myModule := Module{}
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
 	myModule.Characteristics = make(map[string]Characteristic, 10000)
@@ -222,7 +222,7 @@ forLoop:
 				log.Err(err).Msg("module recordLayout could not be parsed")
 				break forLoop
 			}
-			myModule.RecordLayouts[bufRecordLayout.name] = bufRecordLayout
+			myModule.RecordLayouts[bufRecordLayout.Name] = bufRecordLayout
 			log.Info().Msg("module recordLayout successfully parsed")
 		case beginTransformerToken:
 			bufTransformer, err = parseTransformer(tok)
@@ -324,10 +324,10 @@ forLoop:
 // it computes the start and the end of the module struct
 // and splits it up among numProc number of goroutines
 // which each execute a separate moduleMainLoop
-func parseModuleMultithreaded(tok *tokenGenerator) (module, error) {
+func parseModuleMultithreaded(tok *tokenGenerator) (Module, error) {
 	//Bulk init of an average number of objects contained in a modern a2l-file.
 	log.Info().Msg("creating maps for module subtypes")
-	myModule := module{}
+	myModule := Module{}
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
 	myModule.Characteristics = make(map[string]Characteristic, 10000)
@@ -452,7 +452,7 @@ forLoop:
 // collectChannelsMultithreaded uses anonymous function to collect the data sent by the goroutines running the moduleMainLoop.
 // usually the Select Collector is to be prefered as it is mostly faster and always easier on memory
 // as the additional goroutines spun up in collectChannelsMultithreaded seem to block the GC a lot
-func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
+func collectChannelsMultithreaded(myModule *Module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
 	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
 	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
@@ -580,7 +580,7 @@ func collectChannelsMultithreaded(myModule *module, cA2ml chan a2ml, cAxisPts ch
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cRecordLayout {
-			myModule.RecordLayouts[elem.name] = elem
+			myModule.RecordLayouts[elem.Name] = elem
 		}
 		log.Info().Msg("collected recordLayouts")
 	}(wgCollectors)

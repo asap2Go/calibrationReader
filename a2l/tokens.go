@@ -28,11 +28,7 @@ const axisPtsRefToken = "AXIS_PTS_REF"
 const axisPtsXToken = "AXIS_PTS_X"
 const axisPtsYToken = "AXIS_PTS_Y"
 const axisPtsZToken = "AXIS_PTS_Z"
-const axisRescale4Token = "AXIS_RESCALE_4"
-const axisRescale5Token = "AXIS_RESCALE_5"
 const axisRescaleXToken = "AXIS_RESCALE_X"
-const axisRescaleYToken = "AXIS_RESCALE_Y"
-const axisRescaleZToken = "AXIS_RESCALE_Z"
 const beginA2mlToken = "/begin A2ML"
 const beginAnnotationTextToken = "/begin ANNOTATION_TEXT"
 const beginAnnotationToken = "/begin ANNOTATION"
@@ -43,7 +39,6 @@ const beginBitOperationToken = "/begin BIT_OPERATION"
 const beginBlobToken = "/begin BLOB"
 const beginCalibrationHandleToken = "/begin CALIBRATION_HANDLE"
 const beginCalibrationMethodToken = "/begin CALIBRATION_METHOD"
-const beginCalibrationToken = "/begin CALIBRATION"
 const beginCharacteristicToken = "/begin CHARACTERISTIC"
 const beginCompuMethodToken = "/begin COMPU_METHOD"
 const beginCompuTabToken = "/begin COMPU_TAB"
@@ -52,8 +47,6 @@ const beginCompuVtabToken = "/begin COMPU_VTAB"
 const beginDefCharacteristicToken = "/begin DEF_CHARACTERISTIC"
 const beginDependentCharacteristicToken = "/begin DEPENDENT_CHARACTERISTIC"
 const beginFixAxisParListToken = "/begin FIX_AXIS_PAR_LIST"
-const beginFixAxisToken = "/begin FIX_AXIS"
-const beginFormToken = "/begin FORM"
 const beginFormulaToken = "/begin FORMULA"
 const beginFrameToken = "/begin FRAME"
 const beginFunctionListToken = "/begin FUNCTION_LIST"
@@ -66,7 +59,6 @@ const beginInstanceToken = "/begin INSTANCE"
 const beginLineCommentToken = "//"
 const beginLocMeasurementToken = "/begin LOC_MEASUREMENT"
 const beginMapListToken = "/begin MAP_LIST"
-const beginMapToken = "/begin MAP"
 const beginMeasurementToken = "/begin MEASUREMENT"
 const beginMemoryLayoutToken = "/begin MEMORY_LAYOUT"
 const beginMemorySegmentToken = "/begin MEMORY_SEGMENT"
@@ -92,7 +84,6 @@ const beginTypeDefBlobToken = "/begin TYPEDEF_BLOB"
 const beginTypeDefCharacteristicToken = "/begin TYPEDEF_CHARACTERISTIC"
 const beginTypeDefMeasurementToken = "/begin TYPEDEF_MEASUREMENT"
 const beginTypeDefStructureToken = "/begin TYPEDEF_STRUCTURE"
-const beginTypeToken = "/begin TYPE"
 const beginUnitToken = "/begin UNIT"
 const beginUserRightsToken = "/begin USER_RIGHTS"
 const beginVarAddressToken = "/begin VAR_ADDRESS"
@@ -159,7 +150,6 @@ const endBitOperationToken = "/end BIT_OPERATION"
 const endBlobToken = "/end BLOB"
 const endCalibrationHandleToken = "/end CALIBRATION_HANDLE"
 const endCalibrationMethodToken = "/end CALIBRATION_METHOD"
-const endCalibrationToken = "/end CALIBRATION"
 const endCharacteristicToken = "/end CHARACTERISTIC"
 const endCompuMethodToken = "/end COMPU_METHOD"
 const endCompuTabToken = "/end COMPU_TAB"
@@ -168,8 +158,6 @@ const endCompuVtabToken = "/end COMPU_VTAB"
 const endDefCharacteristicToken = "/end DEF_CHARACTERISTIC"
 const endDependentCharacteristicToken = "/end DEPENDENT_CHARACTERISTIC"
 const endFixAxisParListToken = "/end FIX_AXIS_PAR_LIST"
-const endFixAxisToken = "/end FIX_AXIS"
-const endFormToken = "/end FORM"
 const endFormulaToken = "/end FORMULA"
 const endFrameToken = "/end FRAME"
 const endFunctionListToken = "/end FUNCTION_LIST"
@@ -181,7 +169,6 @@ const endInMeasurementToken = "/end IN_MEASUREMENT"
 const endInstanceToken = "/end INSTANCE"
 const endLocMeasurementToken = "/end LOC_MEASUREMENT"
 const endMapListToken = "/end MAP_LIST"
-const endMapToken = "/end MAP"
 const endMeasurementToken = "/end MEASUREMENT"
 const endMemoryLayoutToken = "/end MEMORY_LAYOUT"
 const endMemorySegmentToken = "/end MEMORY_SEGMENT"
@@ -207,7 +194,6 @@ const endTypeDefBlobToken = "/end TYPEDEF_BLOB"
 const endTypeDefCharacteristicToken = "/end TYPEDEF_CHARACTERISTIC"
 const endTypeDefMeasurementToken = "/end TYPEDEF_MEASUREMENT"
 const endTypeDefStructureToken = "/end TYPEDEF_STRUCTURE"
-const endTypeToken = "/end TYPE"
 const endUnitToken = "/end UNIT"
 const endUserRightsToken = "/end USER_RIGHTS"
 const endVarAddressToken = "/end VAR_ADDRESS"
@@ -395,11 +381,7 @@ var keywordMap = map[string]uint8{
 	"AXIS_PTS_X":                      0,
 	"AXIS_PTS_Y":                      0,
 	"AXIS_PTS_Z":                      0,
-	"AXIS_RESCALE_4":                  0,
-	"AXIS_RESCALE_5":                  0,
 	"AXIS_RESCALE_X":                  0,
-	"AXIS_RESCALE_Y":                  0,
-	"AXIS_RESCALE_Z":                  0,
 	"/begin A2ML":                     0,
 	"/begin ANNOTATION_TEXT":          0,
 	"/begin ANNOTATION":               0,
@@ -410,7 +392,6 @@ var keywordMap = map[string]uint8{
 	"/begin BLOB":                     0,
 	"/begin CALIBRATION_HANDLE":       0,
 	"/begin CALIBRATION_METHOD":       0,
-	"/begin CALIBRATION":              0,
 	"/begin CHARACTERISTIC":           0,
 	"/begin COMPU_METHOD":             0,
 	"/begin COMPU_TAB":                0,
@@ -420,8 +401,6 @@ var keywordMap = map[string]uint8{
 	"/begin DEPENDENT_CHARACTERISTIC": 0,
 	"/begin FIX_AXIS_PAR_LIST":        0,
 	"/begin FIX_AXIS_PAR":             0,
-	"/begin FIX_AXIS":                 0,
-	"/begin FORM":                     0,
 	"/begin FORMULA":                  0,
 	"/begin FRAME":                    0,
 	"/begin FUNCTION_LIST":            0,
@@ -433,7 +412,6 @@ var keywordMap = map[string]uint8{
 	"/begin INSTANCE":                 0,
 	"/begin LOC_MEASUREMENT":          0,
 	"/begin MAP_LIST":                 0,
-	"/begin MAP":                      0,
 	"/begin MEASUREMENT":              0,
 	"/begin MEMORY_LAYOUT":            0,
 	"/begin MEMORY_SEGMENT":           0,
@@ -458,7 +436,6 @@ var keywordMap = map[string]uint8{
 	"/begin TYPEDEF_CHARACTERISTIC":   0,
 	"/begin TYPEDEF_MEASUREMENT":      0,
 	"/begin TYPEDEF_STRUCTURE":        0,
-	"/begin TYPE":                     0,
 	"/begin UNIT":                     0,
 	"/begin USER_RIGHTS":              0,
 	"/begin VAR_ADDRESS":              0,
@@ -507,7 +484,6 @@ var keywordMap = map[string]uint8{
 	"/end BLOB":                       0,
 	"/end CALIBRATION_HANDLE":         0,
 	"/end CALIBRATION_METHOD":         0,
-	"/end CALIBRATION":                0,
 	"/end CHARACTERISTIC":             0,
 	"/end COMPU_METHOD":               0,
 	"/end COMPU_TAB":                  0,
@@ -517,8 +493,6 @@ var keywordMap = map[string]uint8{
 	"/end DEPENDENT_CHARACTERISTIC":   0,
 	"/end FIX_AXIS_PAR_LIST":          0,
 	"/end FIX_AXIS_PAR":               0,
-	"/end FIX_AXIS":                   0,
-	"/end FORM":                       0,
 	"/end FORMULA":                    0,
 	"/end FRAME":                      0,
 	"/end FUNCTION_LIST":              0,
@@ -530,7 +504,6 @@ var keywordMap = map[string]uint8{
 	"/end INSTANCE":                   0,
 	"/end LOC_MEASUREMENT":            0,
 	"/end MAP_LIST":                   0,
-	"/end MAP":                        0,
 	"/end MEASUREMENT":                0,
 	"/end MEMORY_LAYOUT":              0,
 	"/end MEMORY_SEGMENT":             0,
@@ -555,7 +528,6 @@ var keywordMap = map[string]uint8{
 	"/end TYPEDEF_CHARACTERISTIC":     0,
 	"/end TYPEDEF_MEASUREMENT":        0,
 	"/end TYPEDEF_STRUCTURE":          0,
-	"/end TYPE":                       0,
 	"/end UNIT":                       0,
 	"/end USER_RIGHTS":                0,
 	"/end USER":                       0,

@@ -48,7 +48,7 @@ func TestReadCalibration(t *testing.T) {
 		log.Warn().Msg("time for parsing test files: " + fmt.Sprint(elapsed.Milliseconds()))
 		startTime := time.Now()
 		//find object in a2l struct
-		obj := cd.getObjectsByIdent("ASAM.M.MATRIX_DIM_8_4_2.UBYTE.IDENTICAL")
+		obj := cd.getObjectByIdent("ASAM.M.MATRIX_DIM_8_4_2.UBYTE.IDENTICAL")
 		if len(obj) == 0 {
 			t.Fatalf("unable to find known identifier")
 		}

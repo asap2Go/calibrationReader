@@ -12,7 +12,7 @@ type Project struct {
 	longIdentifier    string
 	longIdentifierSet bool
 	header            header
-	Modules           []module
+	Modules           []Module
 }
 
 func parseProject(tok *tokenGenerator) (Project, error) {
@@ -29,7 +29,7 @@ forLoop:
 			}
 			log.Info().Msg("project header successfully parsed")
 		case beginModuleToken:
-			var buf module
+			var buf Module
 			//decision whether to parse the module multithreaded or not
 			if useMultithreading {
 				buf, err = parseModuleMultithreaded(tok)
