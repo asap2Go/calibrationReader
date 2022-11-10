@@ -48,7 +48,7 @@
 
  To access a specific memory location in the hex-file (contains a single byte):
 
- `b, exists := calibrationData.hex[12345]`
+ `b, exists := calibrationData.Hex[12345]`
  
 ##  Disclaimer
  I am a mechanical engineer, so any code you see might not be up to the standards of true/correct/modern/acceptable software development ;)
