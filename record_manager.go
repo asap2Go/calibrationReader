@@ -74,3 +74,63 @@ func (cd *CalibrationData) getRecordLayout(c a2l.Characteristic) (a2l.RecordLayo
 	}
 	return rl, nil
 }
+
+// getObjectByIdent returns an object with a given identifier that is defined within the a2l
+// not all datastructures are checked. Only the most relevant ones
+func (cd *CalibrationData) getObjectByIdent(ident string) []interface{} {
+	var calibrationObjects []interface{}
+	var buf interface{}
+	var exists bool
+
+	m := cd.A2l.Project.Modules[cd.ModuleIndex]
+
+	buf, exists = m.AxisPts[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.Characteristics[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.CompuMethods[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.CompuTabs[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.CompuVTabs[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.CompuVTabRanges[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.Functions[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.Groups[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.Measurements[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.RecordLayouts[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.ModPar.SystemConstants[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	buf, exists = m.Units[ident]
+	if exists {
+		calibrationObjects = append(calibrationObjects, buf)
+	}
+	return calibrationObjects
+}

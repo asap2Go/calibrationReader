@@ -188,6 +188,7 @@ func parseHex(lines []string) (map[uint32]byte, error) {
 		for rec := range c {
 			for _, data := range rec {
 				val, exists := h[data.address]
+				//make sure no addresses are defined twice which would indicate a severe error
 				if exists {
 					err = errors.New("colliding address values at address " + fmt.Sprint(data.address) + " value1 " + fmt.Sprint(val) + " and value2 " + fmt.Sprint(data.value))
 					return h, err

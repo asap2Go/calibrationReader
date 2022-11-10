@@ -29,9 +29,14 @@ import (
 // CalibrationData contains the parsed structs from the a2l as well as the byte data from the hex file
 // that are parsed by ReadCalibration()
 type CalibrationData struct {
-	A2l         a2l.A2L
+	//A2L defines the Metadata for a given ECU-Project and its corresponding hex file
+	A2l a2l.A2L
+	//ModuleIndex defines which module within the a2l file is being used. Default is 0
 	ModuleIndex uint8
-	Hex         map[uint32]byte
+	//Hex contains the flashable data for the ecu.
+	//it is being simplified as a map that can be accessed by an address
+	//represented by an integer and returns a byte as value.
+	Hex map[uint32]byte
 }
 
 // ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -39,35 +44,52 @@ type CalibrationData struct {
 func ReadCalibration(a2lFilePath string, hexFilePath string) (CalibrationData, error) {
 	var err error
 	var cd CalibrationData
+	//set ModuleIndex to zero as default as it covers 99% of use cases.
 	cd.ModuleIndex = 0
+
+	//set up channels for concurrent parsing of a2l and hex file as well as for the communication of potential parsing errors.
 	var errChan = make(chan error, 2)
 	var a2lChan = make(chan a2l.A2L, 1)
 	var hexChan = make(chan map[uint32]byte, 1)
+
+	//wait group to determine when both parsers have finished
 	wgReaders := new(sync.WaitGroup)
 
+	//initialize logging
 	err = configureLogger()
 	if err != nil {
 		log.Err(err).Msg("could not create logger:")
 		return cd, err
 	}
+	//Log Level per Default is warning as info and debug lead to excessive log files
+	//and should only be used for debugging.
+	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+
+	//start concurrent parsers as individual go routines
 	wgReaders.Add(2)
 	go readA2L(wgReaders, a2lChan, errChan, a2lFilePath)
 	go readHex(wgReaders, hexChan, errChan, hexFilePath)
-
+	//and wait until they're done
 	wgReaders.Wait()
+	//error channel is closed here while the other two channels are closed in the goroutines that use them exclusively.
+	//this is safe because the a2l and hex channels are closed after a potential error message has been sent via the error channel.
+	//meaning the waitgroup wgReaders blocks until all sending operations on the error channel are over.
 	close(errChan)
 
 	//check if any errors have occured within the readers
+	//only the first error is returned
+
 	var firstErr error
 	if len(errChan) > 0 {
 		for e := range errChan {
 			if e != nil {
 				firstErr = e
 			}
-			log.Err(e).Msg("reader encountered an error:")
+			log.Err(e).Msg("parser encountered an error:")
 		}
 		return cd, firstErr
 	}
+	//in case no errors occured then read from the closed channels
 	cd.A2l = <-a2lChan
 	cd.Hex = <-hexChan
 	return cd, nil
@@ -80,11 +102,11 @@ func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath str
 	a, err := a2l.ParseFromFile(a2lFilePath)
 	if err != nil {
 		log.Err(err).Msg("could not parse a2l:")
-		ce <- err
+		ce <- err //send an error via channel to signal it to the main thread
 		close(ca)
 	} else {
 		ca <- a
-		close(ca)
+		close(ca) //send the successfully parsed a2l structure to the main thread
 		log.Info().Msg("parsed a2l file")
 	}
 }
@@ -93,32 +115,38 @@ func readA2L(wg *sync.WaitGroup, ca chan a2l.A2L, ce chan error, a2lFilePath str
 // in order to be able to parse hex and a2l in parallel
 func readHex(wg *sync.WaitGroup, ch chan map[uint32]byte, ce chan error, hexFilePath string) {
 	defer wg.Done()
+
+	//check whether the hex or the s19 parser needs to be used.
+	//probably improve this by putting the determination logic into a single unified hex parsing package
+
+	//intel hex
 	if strings.Contains(strings.ToLower(hexFilePath), ".hex") {
 		h, err := ihex32.ParseFromFile(hexFilePath)
 		if err != nil {
 			log.Err(err).Msg("could not parse hex:")
-			ce <- err
+			ce <- err //send an error via channel to signal it to the main thread
 			close(ch)
 		} else {
-			ch <- h
+			ch <- h //send the successfully parsed hex map to the main thread
 			close(ch)
 			log.Info().Msg("parsed hex file")
 		}
+		//Motorola S19
 	} else if strings.Contains(strings.ToLower(hexFilePath), ".s19") {
 		h, err := srec19.ParseFromFile(hexFilePath)
 		if err != nil {
 			log.Err(err).Msg("could not parse hex:")
-			ce <- err
+			ce <- err //send an error via channel to signal it to the main thread
 			close(ch)
 		} else {
-			ch <- h
+			ch <- h //send the successfully parsed hex map to the main thread
 			close(ch)
 			log.Info().Msg("parsed hex file")
 		}
 	} else {
 		err := errors.New("unsupported hex file type")
 		log.Err(err).Msg("could not parse hex:")
-		ce <- err
+		ce <- err //send an error via channel to signal it to the main thread
 		close(ch)
 	}
 
@@ -144,58 +172,4 @@ func configureLogger() error {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMicro
 	log.Logger = zerolog.New(zerolog.MultiLevelWriter(fileWriter, consoleWriter)).With().Timestamp().Caller().Logger()
 	return nil
-}
-
-func (cd *CalibrationData) getObjectByIdent(ident string) []interface{} {
-	var calibrationObjects []interface{}
-	var buf interface{}
-	var exists bool
-
-	for _, m := range cd.A2l.Project.Modules {
-		buf, exists = m.AxisPts[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Characteristics[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuMethods[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuTabs[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuVTabs[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.CompuVTabRanges[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Functions[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Groups[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Measurements[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.RecordLayouts[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-		buf, exists = m.Units[ident]
-		if exists {
-			calibrationObjects = append(calibrationObjects, buf)
-		}
-	}
-	return calibrationObjects
 }

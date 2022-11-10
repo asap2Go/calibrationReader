@@ -6,10 +6,11 @@ import (
 	"sync"
 )
 
-//record stores the data of one line/record of an ihex32 file.
+// record stores the data of one line/record of an ihex32 file.
 type record struct {
 	//rwm is used to coordinate multithreaded reading/writing when applying offsets or calculating checksums.
-	rwm sync.Mutex
+	//not used in s19 because no offsets need to be applied.
+	//rwm sync.Mutex
 	//byteCount contains the hex string value that defines the number of data bytes contained in the record, including address & checksum.
 	byteCount string
 	//addressField contains the 4 Byte of the 32Bit address.
@@ -22,7 +23,7 @@ type record struct {
 	checksum string
 }
 
-//parseRecord takes a line as string and fills the respective fields in the record struct.
+// parseRecord takes a line as string and fills the respective fields in the record struct.
 func parseRecord(line string) (*record, error) {
 	r := record{}
 	r.recordType = line[1:2]
@@ -41,8 +42,8 @@ func parseRecord(line string) (*record, error) {
 
 }
 
-//validateChecksumsRoutine calls the validateChecksum Method for each record
-//it is given and sends false to a channel in case a checksum isn't valid.
+// validateChecksumsRoutine calls the validateChecksum Method for each record
+// it is given and sends false to a channel in case a checksum isn't valid.
 func validateChecksumsRoutine(wg *sync.WaitGroup, c chan bool, recs []*record) {
 	defer wg.Done()
 	var csValid bool
@@ -57,7 +58,7 @@ forLoop:
 	}
 }
 
-//validateChecksum computes a checksum for a single record
+// validateChecksum computes a checksum for a single record
 func (r *record) validateChecksum() (bool, error) {
 	//sum is intended to overflow if necessary. the checksum is valid if the least significant byte of the sum equals FF / 255.
 	//therefore we can ignore all higher bytes and just look at the least significant byte / this uint8.
@@ -134,7 +135,7 @@ func calcDataRoutine(c chan []dataByte, recs []*record) {
 	close(c)
 }
 
-//calcDataEntries calculates all data entries with their final addresses.
+// calcDataEntries calculates all data entries with their final addresses.
 func (r *record) calcDataEntries() ([]dataByte, error) {
 	var dataBytes []dataByte
 	var err error
