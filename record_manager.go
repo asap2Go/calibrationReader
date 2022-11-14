@@ -75,9 +75,9 @@ func (cd *CalibrationData) getRecordLayout(c *a2l.Characteristic) (*a2l.RecordLa
 	return &rl, nil
 }
 
-// getObjectByIdent returns an object with a given identifier that is defined within the a2l
+// GetObjectByIdent returns an object with a given identifier that is defined within the a2l
 // not all datastructures are checked. Only the most relevant ones
-func (cd *CalibrationData) getObjectByIdent(ident string) []interface{} {
+func (cd *CalibrationData) GetObjectByIdent(ident string) []interface{} {
 	var calibrationObjects []interface{}
 	var buf interface{}
 	var exists bool

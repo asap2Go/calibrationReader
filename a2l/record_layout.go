@@ -963,7 +963,6 @@ forLooP:
 		} else {
 			break forLooP
 		}
-
 	}
 	return absPos, err
 }
