@@ -12,7 +12,7 @@ type typeDefMeasurement struct {
 	nameSet           bool
 	longIdentifier    string
 	longIdentifierSet bool
-	datatype          dataTypeEnum
+	datatype          DataTypeEnum
 	datatypeSet       bool
 	conversion        string
 	conversionSet     bool

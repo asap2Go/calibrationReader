@@ -7,7 +7,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-/*Description of rescaling the axis values of an adjustable object. A rescale axis consists
+/*
+Description of rescaling the axis values of an adjustable object. A rescale axis consists
 mainly of a number of rescaling axis points pairs (axis i , virtual i ) which describe a rescale
 mapping between the axis points and a virtual axis that is used for the access of the table
 function values deposited in the control unit. Between two pairs the mapping is linear.
@@ -36,12 +37,13 @@ For the second execution there are virtual 3 – virtual 2 / D = 2 iterations wi
 axis 2 )/(virtual 3 – virtual 2 ) = 116/64. Consequently
 X 7 = 100 + (192 – 192) * 116/64 = 100 and
 X 8 = 100 + (224 – 192) * 116/64 = 158.
-Also X 1 = axis 1 = 0 and X 9 = axis 3 = 216.*/
+Also X 1 = axis 1 = 0 and X 9 = axis 3 = 216.
+*/
 type axisRescaleX struct {
 	//position of the rescale axis point value pairs in the deposit structure (description of sequence of elements in the data record).
 	position                   uint16
 	positionSet                bool
-	datatype                   dataTypeEnum
+	datatype                   DataTypeEnum
 	datatypeSet                bool
 	maxNumberOfRescalePairs    uint16
 	maxNumberOfRescalePairsSet bool

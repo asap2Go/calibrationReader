@@ -22,7 +22,7 @@ var (
 	//numProc is used to set the amount of goroutines in case useMultithreading is true.
 	//numProc = runtime.NumCPU() * 1 has proven to be reliably fast for different cpu models.
 	//factors above 4 will generally lead to severe performance degredation due to channel and locking overhead.
-	numProc = runtime.NumCPU()
+	numProc = runtime.NumCPU() * 2
 )
 
 // A2L is the main struct returned by the a2l package.

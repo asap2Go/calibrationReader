@@ -2,6 +2,7 @@ package a2l
 
 import (
 	"errors"
+	"sort"
 
 	"github.com/rs/zerolog/log"
 )
@@ -476,4 +477,455 @@ forLoop:
 		}
 	}
 	return rl, err
+}
+
+/*
+getRecordLayoutRelativePositions determines in which order the individual fields of record layout are listed.
+it does so by storing the position in a map with uint16 as key and the name of the field as string value.
+this is mainly a helper function used to get the absolute positions.
+Could be implemented far more elegantly.
+e.g.
+/begin RECORD_LAYOUT DAMOS_KF
+//field				//position		//datatype
+FNC_VALUES			7 				SWORD 		COLUMN_DIR DIRECT
+AXIS_PTS_X 			3 				SWORD 		INDEX_INCR DIRECT
+AXIS_PTS_Y 			6 				UBYTE 		INDEX_INCR DIRECT
+NO_AXIS_PTS_X 		2 				UBYTE
+NO_AXIS_PTS_Y 		5 				UBYTE
+SRC_ADDR_X 			1
+SRC_ADDR_Y 			4
+ALIGNMENT_BYTE 		2
+/end RECORD_LAYOUT
+*/
+func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, error) {
+	//most record layouts do not define more than 5 fields
+	const expectedFields = 5
+	var err error
+	order := make(map[uint16]string, expectedFields)
+
+	if rl.AxisPts4.positionSet {
+		field, exists := order[rl.AxisPts4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPts4")
+			return order, err
+		}
+		order[rl.AxisPts4.position] = "AxisPts4"
+	}
+
+	if rl.AxisPts5.positionSet {
+		field, exists := order[rl.AxisPts5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPts5")
+			return order, err
+		}
+		order[rl.AxisPts5.position] = "AxisPts5"
+	}
+
+	if rl.AxisPtsX.positionSet {
+		field, exists := order[rl.AxisPtsX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsX")
+			return order, err
+		}
+		order[rl.AxisPtsX.position] = "AxisPtsX"
+	}
+
+	if rl.AxisPtsY.positionSet {
+		field, exists := order[rl.AxisPtsY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsY")
+			return order, err
+		}
+		order[rl.AxisPtsY.position] = "AxisPtsY"
+	}
+
+	if rl.AxisPtsZ.positionSet {
+		field, exists := order[rl.AxisPtsZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsZ")
+			return order, err
+		}
+		order[rl.AxisPtsZ.position] = "AxisPtsZ"
+	}
+
+	if rl.AxisRescaleX.positionSet {
+		field, exists := order[rl.AxisRescaleX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisRescaleX")
+			return order, err
+		}
+		order[rl.AxisRescaleX.position] = "AxisRescaleX"
+	}
+
+	if rl.DistOp4.positionSet {
+		field, exists := order[rl.DistOp4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp4")
+			return order, err
+		}
+		order[rl.DistOp4.position] = "DistOp4"
+	}
+
+	if rl.DistOp5.positionSet {
+		field, exists := order[rl.DistOp5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp5")
+			return order, err
+		}
+		order[rl.DistOp5.position] = "DistOp5"
+	}
+
+	if rl.DistOpX.positionSet {
+		field, exists := order[rl.DistOpX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpX")
+			return order, err
+		}
+		order[rl.DistOpX.position] = "DistOpX"
+	}
+
+	if rl.DistOpY.positionSet {
+		field, exists := order[rl.DistOpY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpY")
+			return order, err
+		}
+		order[rl.DistOpY.position] = "DistOpY"
+	}
+
+	if rl.DistOpZ.positionSet {
+		field, exists := order[rl.DistOpZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpZ")
+			return order, err
+		}
+		order[rl.DistOpZ.position] = "DistOpZ"
+	}
+
+	if rl.FncValues.positionSet {
+		field, exists := order[rl.FncValues.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and FncValues")
+			return order, err
+		}
+		order[rl.FncValues.position] = "FncValues"
+	}
+
+	if rl.Identification.positionSet {
+		field, exists := order[rl.Identification.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Identification")
+			return order, err
+		}
+		order[rl.Identification.position] = "Identification"
+	}
+
+	if rl.NoAxisPts4.positionSet {
+		field, exists := order[rl.NoAxisPts4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPts4")
+			return order, err
+		}
+		order[rl.NoAxisPts4.position] = "NoAxisPts4"
+	}
+
+	if rl.NoAxisPts5.positionSet {
+		field, exists := order[rl.NoAxisPts5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPts5")
+			return order, err
+		}
+		order[rl.NoAxisPts5.position] = "NoAxisPts5"
+	}
+
+	if rl.NoAxisPtsX.positionSet {
+		field, exists := order[rl.NoAxisPtsX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsX")
+			return order, err
+		}
+		order[rl.NoAxisPtsX.position] = "NoAxisPtsX"
+	}
+
+	if rl.NoAxisPtsY.positionSet {
+		field, exists := order[rl.NoAxisPtsY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsY")
+			return order, err
+		}
+		order[rl.NoAxisPtsY.position] = "NoAxisPtsY"
+	}
+
+	if rl.NoAxisPtsZ.positionSet {
+		field, exists := order[rl.NoAxisPtsZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsZ")
+			return order, err
+		}
+		order[rl.NoAxisPtsZ.position] = "NoAxisPtsZ"
+	}
+
+	if rl.NoRescaleX.positionSet {
+		field, exists := order[rl.NoRescaleX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoRescaleX")
+			return order, err
+		}
+		order[rl.NoRescaleX.position] = "NoRescaleX"
+	}
+
+	if rl.Offset4.positionSet {
+		field, exists := order[rl.Offset4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset4")
+			return order, err
+		}
+		order[rl.Offset4.position] = "Offset4"
+	}
+
+	if rl.Offset5.positionSet {
+		field, exists := order[rl.Offset5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset5")
+			return order, err
+		}
+		order[rl.Offset5.position] = "Offset5"
+	}
+
+	if rl.OffsetX.positionSet {
+		field, exists := order[rl.OffsetX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetX")
+			return order, err
+		}
+		order[rl.OffsetX.position] = "OffsetX"
+	}
+
+	if rl.OffsetY.positionSet {
+		field, exists := order[rl.OffsetY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetY")
+			return order, err
+		}
+		order[rl.OffsetY.position] = "OffsetY"
+	}
+
+	if rl.OffsetZ.positionSet {
+		field, exists := order[rl.OffsetZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetZ")
+			return order, err
+		}
+		order[rl.OffsetZ.position] = "OffsetZ"
+	}
+
+	if rl.Reserved.positionSet {
+		field, exists := order[rl.Reserved.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Reserved")
+			return order, err
+		}
+		order[rl.Reserved.position] = "Reserved"
+	}
+
+	if rl.RipAddr4.positionSet {
+		field, exists := order[rl.RipAddr4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr4")
+			return order, err
+		}
+		order[rl.RipAddr4.position] = "RipAddr4"
+	}
+
+	if rl.RipAddr5.positionSet {
+		field, exists := order[rl.RipAddr5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr5")
+			return order, err
+		}
+		order[rl.RipAddr5.position] = "RipAddr5"
+	}
+
+	if rl.RipAddrX.positionSet {
+		field, exists := order[rl.RipAddrX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrX")
+			return order, err
+		}
+		order[rl.RipAddrX.position] = "RipAddrX"
+	}
+
+	if rl.RipAddrY.positionSet {
+		field, exists := order[rl.RipAddrY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrY")
+			return order, err
+		}
+		order[rl.RipAddrY.position] = "RipAddrY"
+	}
+
+	if rl.RipAddrZ.positionSet {
+		field, exists := order[rl.RipAddrZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrZ")
+			return order, err
+		}
+		order[rl.RipAddrZ.position] = "RipAddrZ"
+	}
+
+	if rl.RipAddrW.positionSet {
+		field, exists := order[rl.RipAddrW.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrW")
+			return order, err
+		}
+		order[rl.RipAddrW.position] = "RipAddrW"
+	}
+
+	if rl.ShiftOp4.positionSet {
+		field, exists := order[rl.ShiftOp4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp4")
+			return order, err
+		}
+		order[rl.ShiftOp4.position] = "ShiftOp4"
+	}
+
+	if rl.ShiftOp5.positionSet {
+		field, exists := order[rl.ShiftOp5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp5")
+			return order, err
+		}
+		order[rl.ShiftOp5.position] = "ShiftOp5"
+	}
+
+	if rl.ShiftOpX.positionSet {
+		field, exists := order[rl.ShiftOpX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpX")
+			return order, err
+		}
+		order[rl.ShiftOpX.position] = "ShiftOpX"
+	}
+
+	if rl.ShiftOpY.positionSet {
+		field, exists := order[rl.ShiftOpY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpY")
+			return order, err
+		}
+		order[rl.ShiftOpY.position] = "ShiftOpY"
+	}
+
+	if rl.ShiftOpZ.positionSet {
+		field, exists := order[rl.ShiftOpZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpZ")
+			return order, err
+		}
+		order[rl.ShiftOpZ.position] = "ShiftOpZ"
+	}
+
+	if rl.SrcAddr4.positionSet {
+		field, exists := order[rl.SrcAddr4.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddr4")
+			return order, err
+		}
+		order[rl.SrcAddr4.position] = "SrcAddr4"
+	}
+
+	if rl.SrcAddr5.positionSet {
+		field, exists := order[rl.SrcAddr5.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddr5")
+			return order, err
+		}
+		order[rl.SrcAddr5.position] = "SrcAddr5"
+	}
+
+	if rl.SrcAddrX.positionSet {
+		field, exists := order[rl.SrcAddrX.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrX")
+			return order, err
+		}
+		order[rl.SrcAddrX.position] = "SrcAddrX"
+	}
+
+	if rl.SrcAddrY.positionSet {
+		field, exists := order[rl.SrcAddrY.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrY")
+			return order, err
+		}
+		order[rl.SrcAddrY.position] = "SrcAddrY"
+	}
+
+	if rl.SrcAddrZ.positionSet {
+		field, exists := order[rl.SrcAddrZ.position]
+		if exists {
+			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrZ")
+			return order, err
+		}
+		order[rl.SrcAddrZ.position] = "SrcAddrZ"
+	}
+
+	return order, err
+}
+
+// GetRecordLayoutAbsolutePositions retrieves the position of a record layout field
+// as an absolute value (in bits) including the offsets by its preceding fields
+func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]string) (map[string]uint16, error) {
+	var err error
+	orderAbs := make(map[string]uint16)
+
+	//get all relative positions as stated in the record layout
+	orderRel, err := rl.getRecordLayoutRelativePositions()
+	if err != nil {
+		return orderAbs, err
+	}
+
+	//put all position values in a slice
+	positions := make([]uint16, 0, len(orderRel))
+	for pos, _ := range orderRel {
+		positions = append(positions, pos)
+	}
+
+	//sort the slice in ascending order
+	sort.Slice(positions, func(i, j int) bool {
+		return positions[i] < positions[j]
+	})
+
+	//for each position within the orderRel we compute the offset due to the preceding datastructures and its own position
+	for _, p := range positions {
+		//get the field name:
+		dt, err := getDatatypeByFieldName(orderRel[p])
+		if err != nil {
+			return orderAbs, err
+		}
+		dt.GetDatatypeLength()
+
+	}
+	return orderAbs, err
+}
+
+func getDatatypeByFieldName(name string) (DataTypeEnum, error) {
+	switch name {
+	/*
+		AxisPtsX             axisPtsX
+		AxisPtsY             axisPtsY
+		AxisPtsZ             axisPtsZ
+		AxisPts4             axisPts4
+		AxisPts5             axisPts5
+		AxisRescaleX         axisRescaleX
+		DistOpX              distOpX
+		DistOpY              distOpY
+		DistOpZ              distOpZ
+		DistOp4              distOp4
+		DistOp5              distOp5
+	*/
+	}
+	return undefinedDatatype, nil
 }

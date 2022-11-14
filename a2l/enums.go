@@ -29,24 +29,65 @@ func parseEncodingEnum(tok *tokenGenerator) (encodingEnum, error) {
 	return e, err
 }
 
-type dataTypeEnum string
+type DataTypeEnum string
 
 const (
-	undefinedDatatype dataTypeEnum = emptyToken
-	UBYTE             dataTypeEnum = ubyteToken
-	SBYTE             dataTypeEnum = sbyteToken
-	UWORD             dataTypeEnum = uwordToken
-	SWORD             dataTypeEnum = swordToken
-	ULONG             dataTypeEnum = ulongToken
-	SLONG             dataTypeEnum = slongToken
-	aUint64           dataTypeEnum = aUint64Token
-	aInt64            dataTypeEnum = aInt64Token
-	float16Ieee       dataTypeEnum = float16IeeeToken
-	float32Ieee       dataTypeEnum = float32IeeeToken
-	float64Ieee       dataTypeEnum = float64IeeeToken
+	undefinedDatatype DataTypeEnum = emptyToken
+	//UBYTE is defined as an unsigned 8 bit integer
+	UBYTE DataTypeEnum = ubyteToken
+	//SBYTE is defined as an unsigned 8 bit integer
+	SBYTE DataTypeEnum = sbyteToken
+	//UWORD seems to be statically defined as a 32 bit unsigned integer
+	UWORD DataTypeEnum = uwordToken
+	//SWORD seems to be statically defined as a 32 bit signed integer
+	SWORD DataTypeEnum = swordToken
+	//ULONG is defined as a 64 bit unsigned integer
+	ULONG DataTypeEnum = ulongToken
+	//SLONG is defined as a 64 bit signed integer
+	SLONG DataTypeEnum = slongToken
+	//AUint64 is defined as a 64 bit unsigned integer
+	AUint64 DataTypeEnum = aUint64Token
+	//AInt64 is defined as a 64 bit signed integer
+	AInt64 DataTypeEnum = aInt64Token
+	//Float16Ieee is a standard 16 bit float
+	Float16Ieee DataTypeEnum = float16IeeeToken
+	//Float32Ieee is a standard 32 bit float
+	Float32Ieee DataTypeEnum = float32IeeeToken
+	//Float64Ieee is a standard 64 bit float
+	Float64Ieee DataTypeEnum = float64IeeeToken
 )
 
-func parseDataTypeEnum(tok *tokenGenerator) (dataTypeEnum, error) {
+func (dte *DataTypeEnum) GetDatatypeLength() uint16 {
+	switch *dte {
+	case UBYTE:
+		return 8
+	case SBYTE:
+		return 8
+	case UWORD:
+		return 32
+	case SWORD:
+		return 32
+	case ULONG:
+		return 32
+	case SLONG:
+		return 32
+	case AUint64:
+		return 64
+	case AInt64:
+		return 64
+	case Float16Ieee:
+		return 16
+	case Float32Ieee:
+		return 32
+	case Float64Ieee:
+		return 64
+	default:
+		return 0
+	}
+
+}
+
+func parseDataTypeEnum(tok *tokenGenerator) (DataTypeEnum, error) {
 	d := undefinedDatatype
 	var err error
 	switch tok.current() {
@@ -63,15 +104,15 @@ func parseDataTypeEnum(tok *tokenGenerator) (dataTypeEnum, error) {
 	case slongToken:
 		d = SLONG
 	case aUint64Token:
-		d = aUint64
+		d = AUint64
 	case aInt64Token:
-		d = aInt64
+		d = AInt64
 	case float16IeeeToken:
-		d = float16Ieee
+		d = Float16Ieee
 	case float32IeeeToken:
-		d = float32Ieee
+		d = Float32Ieee
 	case float64IeeeToken:
-		d = float64Ieee
+		d = Float64Ieee
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum datatype")
 	}

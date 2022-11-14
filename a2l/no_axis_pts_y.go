@@ -10,7 +10,7 @@ import (
 type noAxisPtsY struct {
 	position    uint16
 	positionSet bool
-	datatype    dataTypeEnum
+	datatype    DataTypeEnum
 	datatypeSet bool
 }
 

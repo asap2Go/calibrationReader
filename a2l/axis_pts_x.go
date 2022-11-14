@@ -12,7 +12,7 @@ type axisPtsX struct {
 	//If the Alternate option is used with FNC_VALUES, the position parameter determines the order of values and axis points.
 	position      uint16
 	positionSet   bool
-	datatype      dataTypeEnum
+	datatype      DataTypeEnum
 	datatypeSet   bool
 	indexIncr     indexOrderEnum
 	indexIncrSet  bool
