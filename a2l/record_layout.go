@@ -483,7 +483,8 @@ forLoop:
 getRecordLayoutRelativePositions determines in which order the individual fields of record layout are listed.
 it does so by storing the position in a map with uint16 as key and the name of the field as string value.
 this is mainly a helper function used to get the absolute positions.
-Could be implemented far more elegantly.
+could have been implemented far more elegantly, but avoids reflection for performance reasons.
+
 e.g.
 /begin RECORD_LAYOUT DAMOS_KF
 //field				//position		//datatype
@@ -917,16 +918,18 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 }
 
 // GetRecordLayoutAbsolutePositions retrieves the position of a record layout field
-// as an absolute value (in bits) including the offsets by its preceding fields
-func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]string) (map[string]uint16, error) {
+// as an absolute value (in bits) from the start of the characteristic
+// as defined in the ecu adress
+// plus the offsets by the preceding fields defined in the record layout
+func (rl *RecordLayout) GetRecordFncValuesPosition(relPos map[uint16]string) (map[string]uint16, error) {
 	var err error
-	orderAbs := make(map[string]uint16)
+	absPos := make(map[string]uint16)
 
 	//get all relative positions as stated in the record layout
 	orderRel, err := rl.getRecordLayoutRelativePositions()
 	if err != nil {
 		log.Err(err).Msg("recordLayout " + rl.Name + " absolute positions could not be determined")
-		return orderAbs, err
+		return absPos, err
 	}
 
 	//put all position values in a slice
@@ -941,37 +944,317 @@ func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]strin
 	})
 
 	//for each position within the orderRel we compute the offset due to the preceding datastructures and its own position
+	var curPos uint16 = 0
+forLooP:
 	for _, p := range positions {
 		//get the field name:
-		dt, err := rl.getDatatypeByFieldName(orderRel[p])
-		if err != nil {
-			log.Err(err).Msg("recordLayout " + rl.Name + " absolute positions could not be determined")
-			return orderAbs, err
+		if orderRel[p] != "FncValues" {
+			dt, err := rl.getDatatypeByFieldName(orderRel[p])
+			if err != nil {
+				log.Err(err).Msg("recordLayout " + rl.Name + " absolute positions could not be determined")
+				return absPos, err
+			}
+			//add the current field as key to the absolute position map
+			//and use the last known position as value
+			//(first value gets curPos=0 as value)
+			absPos[orderRel[p]] = curPos
+			//and its correpsonding length
+			curPos += dt.GetDatatypeLength()
+		} else {
+			break forLooP
 		}
-		dt.GetDatatypeLength()
 
 	}
-	return orderAbs, err
+	return absPos, err
 }
 
+// getDatatypeByFieldName retrieves the datatype of a given field within the record layout struct
+// just a big, hardcoded switch statement in order not to use slower reflection methods
 func (rl *RecordLayout) getDatatypeByFieldName(name string) (DataTypeEnum, error) {
 	switch name {
-	/*
-		AxisPtsX             axisPtsX
-		AxisPtsY             axisPtsY
-		AxisPtsZ             axisPtsZ
-		AxisPts4             axisPts4
-		AxisPts5             axisPts5
-		AxisRescaleX         axisRescaleX
-		DistOpX              distOpX
-		DistOpY              distOpY
-		DistOpZ              distOpZ
-		DistOp4              distOp4
-		DistOp5              distOp5
-	*/
+	case "AxisPtsX":
+		if !rl.AxisPtsX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisPtsX.datatype, nil
+	case "AxisPtsY":
+		if !rl.AxisPtsY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisPtsY.datatype, nil
+	case "AxisPtsZ":
+		if !rl.AxisPtsZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisPtsZ.datatype, nil
+	case "AxisPts4":
+		if !rl.AxisPts4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisPts4.datatype, nil
+	case "AxisPts5":
+		if !rl.AxisPts5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisPts5.datatype, nil
+	case "AxisRescaleX":
+		if !rl.AxisRescaleX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.AxisRescaleX.datatype, nil
+	case "DistOpX":
+		if !rl.DistOpX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.DistOpX.datatype, nil
+	case "DistOpY":
+		if !rl.DistOpY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.DistOpY.datatype, nil
+	case "DistOpZ":
+		if !rl.DistOpZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.DistOpZ.datatype, nil
+	case "DistOp4":
+		if !rl.DistOp4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.DistOp4.datatype, nil
+	case "DistOp5":
+		if !rl.DistOp5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.DistOp5.datatype, nil
+	case "FncValues":
+		if !rl.FncValues.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.FncValues.datatype, nil
+	case "Identification":
+		if !rl.Identification.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.Identification.datatype, nil
+	case "NoAxisPtsX":
+		if !rl.NoAxisPtsX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoAxisPtsX.datatype, nil
+	case "NoAxisPtsY":
+		if !rl.NoAxisPtsY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoAxisPtsY.datatype, nil
+	case "NoAxisPtsZ":
+		if !rl.NoAxisPtsZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoAxisPtsZ.datatype, nil
+	case "NoAxisPts4":
+		if !rl.NoAxisPts4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoAxisPts4.datatype, nil
+	case "NoAxisPts5":
+		if !rl.NoAxisPts5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoAxisPts5.datatype, nil
+	case "NoRescaleX":
+		if !rl.NoRescaleX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.NoRescaleX.datatype, nil
+	case "OffsetX":
+		if !rl.OffsetX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.OffsetX.datatype, nil
+	case "OffsetY":
+		if !rl.OffsetY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.OffsetY.datatype, nil
+	case "OffsetZ":
+		if !rl.OffsetZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.OffsetZ.datatype, nil
+	case "Offset4":
+		if !rl.Offset4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.Offset4.datatype, nil
+	case "Offset5":
+		if !rl.Offset5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.Offset5.datatype, nil
+	case "RipAddrW":
+		if !rl.RipAddrW.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddrW.datatype, nil
+	case "RipAddrX":
+		if !rl.RipAddrX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddrX.datatype, nil
+	case "RipAddrY":
+		if !rl.RipAddrY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddrY.datatype, nil
+	case "RipAddrZ":
+		if !rl.RipAddrZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddrZ.datatype, nil
+	case "RipAddr4":
+		if !rl.RipAddr4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddr4.datatype, nil
+	case "RipAddr5":
+		if !rl.RipAddr5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.RipAddr5.datatype, nil
+	case "SrcAddrX":
+		if !rl.SrcAddrX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.SrcAddrX.datatype, nil
+	case "SrcAddrY":
+		if !rl.SrcAddrY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.SrcAddrY.datatype, nil
+	case "SrcAddrZ":
+		if !rl.SrcAddrZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.SrcAddrZ.datatype, nil
+	case "SrcAddr4":
+		if !rl.SrcAddr4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.SrcAddr4.datatype, nil
+	case "SrcAddr5":
+		if !rl.SrcAddr5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.SrcAddr5.datatype, nil
+	case "ShiftOpX":
+		if !rl.ShiftOpX.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.ShiftOpX.datatype, nil
+	case "ShiftOpY":
+		if !rl.ShiftOpY.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.ShiftOpY.datatype, nil
+	case "ShiftOpZ":
+		if !rl.ShiftOpZ.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.ShiftOpZ.datatype, nil
+	case "ShiftOp4":
+		if !rl.ShiftOp4.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.ShiftOp4.datatype, nil
+	case "ShiftOp5":
+		if !rl.ShiftOp5.datatypeSet {
+			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+			log.Err(err).Msg("could not get datatype")
+			return undefinedDatatype, err
+		}
+		return rl.ShiftOp5.datatype, nil
 	default:
 		err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 		log.Err(err).Msg("could not get datatype")
+		return undefinedDatatype, err
 	}
-	return undefinedDatatype, nil
 }
