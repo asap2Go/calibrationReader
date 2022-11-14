@@ -507,6 +507,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisPts4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPts4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisPts4.position] = "AxisPts4"
@@ -516,6 +517,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisPts5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPts5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisPts5.position] = "AxisPts5"
@@ -525,6 +527,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisPtsX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisPtsX.position] = "AxisPtsX"
@@ -534,6 +537,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisPtsY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisPtsY.position] = "AxisPtsY"
@@ -543,6 +547,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisPtsZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisPtsZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisPtsZ.position] = "AxisPtsZ"
@@ -552,6 +557,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.AxisRescaleX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisRescaleX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.AxisRescaleX.position] = "AxisRescaleX"
@@ -561,6 +567,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.DistOp4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.DistOp4.position] = "DistOp4"
@@ -570,6 +577,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.DistOp5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.DistOp5.position] = "DistOp5"
@@ -579,6 +587,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.DistOpX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.DistOpX.position] = "DistOpX"
@@ -588,6 +597,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.DistOpY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.DistOpY.position] = "DistOpY"
@@ -597,6 +607,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.DistOpZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.DistOpZ.position] = "DistOpZ"
@@ -606,6 +617,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.FncValues.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and FncValues")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.FncValues.position] = "FncValues"
@@ -615,6 +627,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.Identification.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Identification")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.Identification.position] = "Identification"
@@ -624,6 +637,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoAxisPts4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPts4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoAxisPts4.position] = "NoAxisPts4"
@@ -633,6 +647,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoAxisPts5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPts5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoAxisPts5.position] = "NoAxisPts5"
@@ -642,6 +657,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoAxisPtsX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoAxisPtsX.position] = "NoAxisPtsX"
@@ -651,6 +667,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoAxisPtsY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoAxisPtsY.position] = "NoAxisPtsY"
@@ -660,6 +677,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoAxisPtsZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoAxisPtsZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoAxisPtsZ.position] = "NoAxisPtsZ"
@@ -669,6 +687,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.NoRescaleX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoRescaleX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.NoRescaleX.position] = "NoRescaleX"
@@ -678,6 +697,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.Offset4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.Offset4.position] = "Offset4"
@@ -687,6 +707,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.Offset5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.Offset5.position] = "Offset5"
@@ -696,6 +717,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.OffsetX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.OffsetX.position] = "OffsetX"
@@ -705,6 +727,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.OffsetY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.OffsetY.position] = "OffsetY"
@@ -714,6 +737,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.OffsetZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.OffsetZ.position] = "OffsetZ"
@@ -723,6 +747,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.Reserved.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Reserved")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.Reserved.position] = "Reserved"
@@ -732,6 +757,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddr4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddr4.position] = "RipAddr4"
@@ -741,6 +767,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddr5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddr5.position] = "RipAddr5"
@@ -750,6 +777,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddrX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddrX.position] = "RipAddrX"
@@ -759,6 +787,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddrY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddrY.position] = "RipAddrY"
@@ -768,6 +797,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddrZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddrZ.position] = "RipAddrZ"
@@ -777,6 +807,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.RipAddrW.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrW")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.RipAddrW.position] = "RipAddrW"
@@ -786,6 +817,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.ShiftOp4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.ShiftOp4.position] = "ShiftOp4"
@@ -795,6 +827,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.ShiftOp5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.ShiftOp5.position] = "ShiftOp5"
@@ -804,6 +837,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.ShiftOpX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.ShiftOpX.position] = "ShiftOpX"
@@ -813,6 +847,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.ShiftOpY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.ShiftOpY.position] = "ShiftOpY"
@@ -822,6 +857,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.ShiftOpZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.ShiftOpZ.position] = "ShiftOpZ"
@@ -831,6 +867,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.SrcAddr4.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddr4")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.SrcAddr4.position] = "SrcAddr4"
@@ -840,6 +877,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.SrcAddr5.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddr5")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.SrcAddr5.position] = "SrcAddr5"
@@ -849,6 +887,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.SrcAddrX.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrX")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.SrcAddrX.position] = "SrcAddrX"
@@ -858,6 +897,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.SrcAddrY.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrY")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.SrcAddrY.position] = "SrcAddrY"
@@ -867,6 +907,7 @@ func (rl *RecordLayout) getRecordLayoutRelativePositions() (map[uint16]string, e
 		field, exists := order[rl.SrcAddrZ.position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and SrcAddrZ")
+			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
 		order[rl.SrcAddrZ.position] = "SrcAddrZ"
@@ -884,6 +925,7 @@ func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]strin
 	//get all relative positions as stated in the record layout
 	orderRel, err := rl.getRecordLayoutRelativePositions()
 	if err != nil {
+		log.Err(err).Msg("recordLayout " + rl.Name + " absolute positions could not be determined")
 		return orderAbs, err
 	}
 
@@ -901,8 +943,9 @@ func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]strin
 	//for each position within the orderRel we compute the offset due to the preceding datastructures and its own position
 	for _, p := range positions {
 		//get the field name:
-		dt, err := getDatatypeByFieldName(orderRel[p])
+		dt, err := rl.getDatatypeByFieldName(orderRel[p])
 		if err != nil {
+			log.Err(err).Msg("recordLayout " + rl.Name + " absolute positions could not be determined")
 			return orderAbs, err
 		}
 		dt.GetDatatypeLength()
@@ -911,7 +954,7 @@ func (rl *RecordLayout) GetRecordLayoutAbsolutePositions(relPos map[uint16]strin
 	return orderAbs, err
 }
 
-func getDatatypeByFieldName(name string) (DataTypeEnum, error) {
+func (rl *RecordLayout) getDatatypeByFieldName(name string) (DataTypeEnum, error) {
 	switch name {
 	/*
 		AxisPtsX             axisPtsX
@@ -926,6 +969,9 @@ func getDatatypeByFieldName(name string) (DataTypeEnum, error) {
 		DistOp4              distOp4
 		DistOp5              distOp5
 	*/
+	default:
+		err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
+		log.Err(err).Msg("could not get datatype")
 	}
 	return undefinedDatatype, nil
 }
