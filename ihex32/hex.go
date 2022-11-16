@@ -268,8 +268,8 @@ func hexToByte(str string) (byte, error) {
 	return b, err
 }
 
-// hexToByteSlice converts at least a four character hexString to a slice of several bytes. fails if input is too short or not valid hex.
-func hexToByteSlice(hexVal string) ([]byte, error) {
+// HexToByteSlice converts at least a four character hexString to a slice of several bytes. fails if input is too short or not valid hex.
+func HexToByteSlice(hexVal string) ([]byte, error) {
 	decoded, err := hex.DecodeString(hexVal)
 	if err != nil {
 		log.Err(err)

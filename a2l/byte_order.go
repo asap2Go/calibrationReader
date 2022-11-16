@@ -6,13 +6,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type byteOrder struct {
-	byteOrder    byteOrderEnum
-	byteOrderSet bool
+type ByteOrder struct {
+	ByteOrder    ByteOrderEnum
+	ByteOrderSet bool
 }
 
-func parseByteOrder(tok *tokenGenerator) (byteOrder, error) {
-	bo := byteOrder{}
+func parseByteOrder(tok *tokenGenerator) (ByteOrder, error) {
+	bo := ByteOrder{}
 	var err error
 	tok.next()
 	if tok.current() == emptyToken {
@@ -21,12 +21,12 @@ func parseByteOrder(tok *tokenGenerator) (byteOrder, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("byteOrder could not be parsed")
-	} else if !bo.byteOrderSet {
-		bo.byteOrder, err = parseByteOrderEnum(tok)
+	} else if !bo.ByteOrderSet {
+		bo.ByteOrder, err = parseByteOrderEnum(tok)
 		if err != nil {
 			log.Err(err).Msg("byteOrder byteOrder could not be parsed")
 		}
-		bo.byteOrderSet = true
+		bo.ByteOrderSet = true
 		log.Info().Msg("byteOrder byteOrder successfully parsed")
 	}
 	return bo, err

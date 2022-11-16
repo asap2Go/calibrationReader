@@ -7,8 +7,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-/*AXIS_PTS and AXIS_DESCR define the same parameters.
-Which parameters are dominate is described at AXIS_DESCR.*/
+/*
+AXIS_PTS and AXIS_DESCR define the same parameters.
+Which parameters are dominate is described at AXIS_DESCR.
+*/
 type axisPts struct {
 	/*The name has to be unique within all measure and adjustable objects of the MODULE,
 	i.e. there must	not be another AXIS_PTS, MEASUREMENT, CHARACTERISTIC, BLOB or INSTANCE object
@@ -51,7 +53,7 @@ type axisPts struct {
 	upperLimit          float64
 	upperLimitSet       bool
 	annotation          []annotation
-	byteOrder           byteOrder
+	byteOrder           ByteOrder
 	calibrationAccess   calibrationAccessEnum
 	deposit             deposit
 	displayIdentifier   DisplayIdentifier

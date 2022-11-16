@@ -9,14 +9,14 @@ import (
 type modCommon struct {
 	comment              string
 	commentSet           bool
-	alignmentByte        alignmentByte
-	alignmentFloat16Ieee alignmentFloat16Ieee
-	alignmentFloat32Ieee alignmentFloat32Ieee
-	alignmentFloat64Ieee alignmentFloat64Ieee
-	alignmentInt64       alignmentInt64
-	alignmentLong        alignmentLong
-	alignmentWord        alignmentWord
-	byteOrder            byteOrder
+	AlignmentByte        alignmentByte
+	AlignmentFloat16Ieee alignmentFloat16Ieee
+	AlignmentFloat32Ieee alignmentFloat32Ieee
+	AlignmentFloat64Ieee alignmentFloat64Ieee
+	AlignmentInt64       alignmentInt64
+	AlignmentLong        alignmentLong
+	AlignmentWord        alignmentWord
+	ByteOrder            ByteOrder
 	dataSize             dataSize
 	deposit              deposit
 }
@@ -28,56 +28,56 @@ forLoop:
 	for {
 		switch tok.next() {
 		case alignmentByteToken:
-			mc.alignmentByte, err = parseAlignmentByte(tok)
+			mc.AlignmentByte, err = parseAlignmentByte(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentByte could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentByte successfully parsed")
 		case alignmentFloat16IeeeToken:
-			mc.alignmentFloat16Ieee, err = parseAlignmentFloat16Ieee(tok)
+			mc.AlignmentFloat16Ieee, err = parseAlignmentFloat16Ieee(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentFloat16Ieee could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentFloat16Ieee successfully parsed")
 		case alignmentFloat32IeeeToken:
-			mc.alignmentFloat32Ieee, err = parseAlignmentFloat32Ieee(tok)
+			mc.AlignmentFloat32Ieee, err = parseAlignmentFloat32Ieee(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentFloat32Ieee could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentFloat32Ieee successfully parsed")
 		case alignmentFloat64IeeeToken:
-			mc.alignmentFloat64Ieee, err = parseAlignmentFloat64Ieee(tok)
+			mc.AlignmentFloat64Ieee, err = parseAlignmentFloat64Ieee(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentFloat64Ieee could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentFloat64Ieee successfully parsed")
 		case alignmentInt64Token:
-			mc.alignmentInt64, err = parseAlignmentInt64(tok)
+			mc.AlignmentInt64, err = parseAlignmentInt64(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentInt64 could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentInt64 successfully parsed")
 		case alignmentLongToken:
-			mc.alignmentLong, err = parseAlignmentLong(tok)
+			mc.AlignmentLong, err = parseAlignmentLong(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentLong could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentLong successfully parsed")
 		case alignmentWordToken:
-			mc.alignmentWord, err = parseAlignmentWord(tok)
+			mc.AlignmentWord, err = parseAlignmentWord(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon alignmentWord could not be parsed")
 				break forLoop
 			}
 			log.Info().Msg("modCommon alignmentWord successfully parsed")
 		case byteOrderToken:
-			mc.byteOrder, err = parseByteOrder(tok)
+			mc.ByteOrder, err = parseByteOrder(tok)
 			if err != nil {
 				log.Err(err).Msg("modCommon byteOrder could not be parsed")
 				break forLoop

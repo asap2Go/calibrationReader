@@ -7,13 +7,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-//alignmentFloat32Ieee is necessary because in complex objects (maps and axis) the alignment of a value may not coincide with the bitwidth of a value.
-//This keyword is used to define the alignment in the case of 64bit floats.
+// alignmentFloat64Ieee is necessary because in complex objects (maps and axis) the alignment of a value may not coincide with the bitwidth of a value.
+// This keyword is used to define the alignment in the case of 64bit floats.
 type alignmentFloat64Ieee struct {
-	//alignmentBorder describes the border at which the value is aligned to, i.e.
+	//AlignmentBorder describes the border at which the value is aligned to, i.e.
 	//its memory address must be dividable by the value AlignmentBorder.
-	alignmentBorder    uint16
-	alignmentBorderSet bool
+	AlignmentBorder    uint16
+	AlignmentBorderSet bool
 }
 
 func parseAlignmentFloat64Ieee(tok *tokenGenerator) (alignmentFloat64Ieee, error) {
@@ -26,14 +26,14 @@ func parseAlignmentFloat64Ieee(tok *tokenGenerator) (alignmentFloat64Ieee, error
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("alignmentFloat64Ieee could not be parsed")
-	} else if !af64.alignmentBorderSet {
+	} else if !af64.AlignmentBorderSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
 			log.Err(err).Msg("alignmentFloat64Ieee alignmentBorder could not be parsed")
 		}
-		af64.alignmentBorder = uint16(buf)
-		af64.alignmentBorderSet = true
+		af64.AlignmentBorder = uint16(buf)
+		af64.AlignmentBorderSet = true
 		log.Info().Msg("alignmentFloat64Ieee alignmentBorder successfully parsed")
 	}
 	return af64, err

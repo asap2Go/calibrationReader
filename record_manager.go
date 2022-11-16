@@ -1,10 +1,17 @@
 package calibrationReader
 
 import (
+	"encoding/binary"
+	"encoding/hex"
 	"errors"
+	"fmt"
+	"math"
+	"strconv"
+	"strings"
 
 	"github.com/asap2Go/calibrationReader/a2l"
 	"github.com/rs/zerolog/log"
+	"github.com/x448/float16"
 )
 
 func (cd *CalibrationData) getSystemConstant(ident string) (a2l.SystemConstant, error) {
@@ -31,48 +38,6 @@ func (cd *CalibrationData) getSystemConstantValue(ident string) (string, error) 
 		return "", err
 	}
 	return val, nil
-}
-
-func (cd *CalibrationData) getCharacteristicValueBinary(c a2l.Characteristic) (interface{}, error) {
-	var err error
-	rl, err := cd.getRecordLayout(&c)
-	if err != nil {
-		return nil, err
-	}
-	log.Debug().Msg("record layout " + rl.Name + "found")
-	return err, nil
-}
-
-func (cd *CalibrationData) getCharacteristicValueDecimal() (interface{}, error) {
-	return nil, nil
-}
-
-func (cd *CalibrationData) getCharacteristicValueDisplay() (interface{}, error) {
-	return nil, nil
-}
-
-func (cd *CalibrationData) getCharacteristicValueHex() (interface{}, error) {
-	return nil, nil
-}
-
-// getRecordLayout tries to retrieve the record layout for a specified characteristic
-func (cd *CalibrationData) getRecordLayout(c *a2l.Characteristic) (*a2l.RecordLayout, error) {
-	var err error
-	var rl a2l.RecordLayout
-	module := cd.A2l.Project.Modules[cd.ModuleIndex]
-	if !c.DepositSet {
-		err = errors.New("no deposit set in characteristic " + c.Name)
-		log.Err(err).Msg("record layout not found")
-		return &rl, err
-	}
-	var exists bool
-	rl, exists = module.RecordLayouts[c.Deposit]
-	if !exists {
-		err = errors.New("no record layout found for deposit identifier" + c.Deposit + " of characteristic " + c.Name)
-		log.Err(err).Msg("record layout not found")
-		return &rl, err
-	}
-	return &rl, nil
 }
 
 // GetObjectByIdent returns an object with a given identifier that is defined within the a2l
@@ -133,4 +98,133 @@ func (cd *CalibrationData) GetObjectByIdent(ident string) []interface{} {
 		calibrationObjects = append(calibrationObjects, buf)
 	}
 	return calibrationObjects
+}
+
+// hexToByteSlice converts at least a four character hexString to a slice of several bytes. fails if input is too short or not valid hex.
+func hexToByteSlice(hexVal string) ([]byte, error) {
+	decoded, err := hex.DecodeString(hexVal)
+	if err != nil {
+		log.Err(err)
+	}
+	return decoded, err
+}
+
+// convertStringToUint32Address is used to convert the adresses in string format in the characteristics to a uint32
+func (cd *CalibrationData) convertStringToUint32Address(str string) (uint32, error) {
+	var val uint32
+	byteSlice, err := hexToByteSlice(strings.ReplaceAll(str, "0x", ""))
+	if err != nil {
+		log.Err(err).Msg("string '" + str + "' could not be parsed")
+		return val, err
+	}
+	modCom := &cd.A2l.Project.Modules[cd.ModuleIndex].ModCommon
+	if modCom.ByteOrder.ByteOrder == a2l.MsbFirstMswLast || modCom.ByteOrder.ByteOrder == a2l.MsbLastMswFirst {
+		err = errors.New("unexpected byte order")
+		log.Err(err).Msg("byte order " + string(modCom.ByteOrder.ByteOrder) + "not implemented")
+		return val, err
+	}
+	if !modCom.ByteOrder.ByteOrderSet || modCom.ByteOrder.ByteOrder == a2l.BigEndian || modCom.ByteOrder.ByteOrder == a2l.MsbFirst {
+		val = binary.BigEndian.Uint32(byteSlice)
+	} else {
+		val = binary.LittleEndian.Uint32(byteSlice)
+	}
+	return val, nil
+}
+
+// converts a byteSlice into a a2l.DatatypeEnum datatype.
+// if not enough bytes are supplied the conversion fails.
+// if MsbFirstMswLast or MsbLastMswFirst are used as binary encoding then the conversion fails
+// as those are not implemented
+func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.DataTypeEnum) (interface{}, error) {
+	//bounds check
+	if len(byteSlice) == 0 || len(byteSlice)*8 < int(dte.GetDatatypeLength()) {
+		err := errors.New("byte slice holds " + fmt.Sprintf("%d", len(byteSlice)) + " bytes. " +
+			strconv.Itoa(int(dte.GetDatatypeLength()/8)) + " bytes necessary to convert to datatype " + dte.String())
+		log.Err(err).Msg("conversion failed")
+		return nil, err
+	}
+	//check which byteorder is used
+	modCom := &cd.A2l.Project.Modules[cd.ModuleIndex].ModCommon
+	if modCom.ByteOrder.ByteOrder == a2l.MsbFirstMswLast || modCom.ByteOrder.ByteOrder == a2l.MsbLastMswFirst {
+		err := errors.New("unexpected byte order")
+		log.Err(err).Msg("byte order " + string(modCom.ByteOrder.ByteOrder) + "not implemented")
+		return nil, err
+	}
+	if !modCom.ByteOrder.ByteOrderSet || modCom.ByteOrder.ByteOrder == a2l.BigEndian || modCom.ByteOrder.ByteOrder == a2l.MsbFirst {
+		switch dte {
+		case a2l.UBYTE:
+			return byteSlice[0], nil
+		case a2l.SBYTE:
+			return int8(byteSlice[0]), nil
+		case a2l.UWORD:
+			val := binary.BigEndian.Uint32(byteSlice)
+			return val, nil
+		case a2l.SWORD:
+			val := int32(binary.BigEndian.Uint32(byteSlice))
+			return val, nil
+		case a2l.ULONG:
+			val := binary.BigEndian.Uint64(byteSlice)
+			return val, nil
+		case a2l.SLONG:
+			val := int64(binary.BigEndian.Uint64(byteSlice))
+			return val, nil
+		case a2l.AUint64:
+			val := binary.BigEndian.Uint64(byteSlice)
+			return val, nil
+		case a2l.AInt64:
+			val := int64(binary.BigEndian.Uint64(byteSlice))
+			return val, nil
+		case a2l.Float16Ieee:
+			val := float16.Frombits(binary.BigEndian.Uint16(byteSlice))
+			return val, nil
+		case a2l.Float32Ieee:
+			val := math.Float32frombits(binary.BigEndian.Uint32(byteSlice))
+			return val, nil
+		case a2l.Float64Ieee:
+			val := math.Float64frombits(binary.BigEndian.Uint64(byteSlice))
+			return val, nil
+		default:
+			err := errors.New("unexpected datatype")
+			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
+			return nil, err
+		}
+	} else {
+		switch dte {
+		case a2l.UBYTE:
+			return byteSlice[0], nil
+		case a2l.SBYTE:
+			return int8(byteSlice[0]), nil
+		case a2l.UWORD:
+			val := binary.LittleEndian.Uint32(byteSlice)
+			return val, nil
+		case a2l.SWORD:
+			val := int32(binary.LittleEndian.Uint32(byteSlice))
+			return val, nil
+		case a2l.ULONG:
+			val := binary.LittleEndian.Uint64(byteSlice)
+			return val, nil
+		case a2l.SLONG:
+			val := int64(binary.LittleEndian.Uint64(byteSlice))
+			return val, nil
+		case a2l.AUint64:
+			val := binary.LittleEndian.Uint64(byteSlice)
+			return val, nil
+		case a2l.AInt64:
+			val := int64(binary.LittleEndian.Uint64(byteSlice))
+			return val, nil
+		case a2l.Float16Ieee:
+			val := float16.Frombits(binary.LittleEndian.Uint16(byteSlice))
+			return val, nil
+		case a2l.Float32Ieee:
+			val := math.Float32frombits(binary.LittleEndian.Uint32(byteSlice))
+			return val, nil
+		case a2l.Float64Ieee:
+			val := math.Float64frombits(binary.LittleEndian.Uint64(byteSlice))
+			return val, nil
+		default:
+			err := errors.New("unexpected datatype")
+			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
+			return nil, err
+		}
+	}
 }

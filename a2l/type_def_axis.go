@@ -26,7 +26,7 @@ type typeDefAxis struct {
 	lowerLimitSet     bool
 	upperLimit        float64
 	upperLimitSet     bool
-	byteOrder         byteOrder
+	byteOrder         ByteOrder
 	deposit           deposit
 	extendedLimits    extendedLimits
 	format            format

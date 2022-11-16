@@ -26,7 +26,7 @@ type typeDefCharacteristic struct {
 	upperLimitSet     bool
 	axisDescr         []axisDescr
 	bitMask           bitMask
-	byteOrder         byteOrder
+	byteOrder         ByteOrder
 	discrete          discreteKeyword
 	encoding          encodingEnum
 	extendedLimits    extendedLimits

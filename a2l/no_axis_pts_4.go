@@ -7,15 +7,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type noAxisPts4 struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+type NoAxisPts4 struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
+	Value       uint16
+	ValueSet    bool
 }
 
-func parseNoAxisPts4(tok *tokenGenerator) (noAxisPts4, error) {
-	nap4 := noAxisPts4{}
+func parseNoAxisPts4(tok *tokenGenerator) (NoAxisPts4, error) {
+	nap4 := NoAxisPts4{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +30,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("noAxisPts4 could not be parsed")
 			break forLoop
-		} else if !nap4.positionSet {
+		} else if !nap4.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("noAxisPts4 position could not be parsed")
 				break forLoop
 			}
-			nap4.position = uint16(buf)
-			nap4.positionSet = true
+			nap4.Position = uint16(buf)
+			nap4.PositionSet = true
 			log.Info().Msg("noAxisPts4 position successfully parsed")
-		} else if !nap4.datatypeSet {
-			nap4.datatype, err = parseDataTypeEnum(tok)
+		} else if !nap4.DatatypeSet {
+			nap4.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPts4 datatype could not be parsed")
 				break forLoop
 			}
-			nap4.datatypeSet = true
+			nap4.DatatypeSet = true
 			log.Info().Msg("noAxisPts4 datatype successfully parsed")
 			break forLoop
 		}

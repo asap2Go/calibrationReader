@@ -8,6 +8,7 @@ import (
 )
 
 /*
+AxisRescaleX
 Description of rescaling the axis values of an adjustable object. A rescale axis consists
 mainly of a number of rescaling axis points pairs (axis i , virtual i ) which describe a rescale
 mapping between the axis points and a virtual axis that is used for the access of the table
@@ -39,7 +40,7 @@ X 7 = 100 + (192 – 192) * 116/64 = 100 and
 X 8 = 100 + (224 – 192) * 116/64 = 158.
 Also X 1 = axis 1 = 0 and X 9 = axis 3 = 216.
 */
-type axisRescaleX struct {
+type AxisRescaleX struct {
 	//position of the rescale axis point value pairs in the deposit structure (description of sequence of elements in the data record).
 	position                   uint16
 	positionSet                bool
@@ -53,8 +54,8 @@ type axisRescaleX struct {
 	adressingSet               bool
 }
 
-func parseAxisRescaleX(tok *tokenGenerator) (axisRescaleX, error) {
-	arX := axisRescaleX{}
+func parseAxisRescaleX(tok *tokenGenerator) (AxisRescaleX, error) {
+	arX := AxisRescaleX{}
 	var err error
 forLoop:
 	for {

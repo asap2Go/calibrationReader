@@ -1,6 +1,10 @@
 package a2l
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/x448/float16"
+)
 
 //enums used in several A2L Datatypes:
 
@@ -56,6 +60,80 @@ const (
 	//Float64Ieee is a standard 64 bit float
 	Float64Ieee DataTypeEnum = float64IeeeToken
 )
+
+func (dte *DataTypeEnum) String() string {
+	switch *dte {
+	case undefinedDatatype:
+		return emptyToken
+	case UBYTE:
+		return ubyteToken
+	case SBYTE:
+		return sbyteToken
+	case UWORD:
+		return uwordToken
+	case SWORD:
+		return swordToken
+	case ULONG:
+		return ulongToken
+	case SLONG:
+		return slongToken
+	case AUint64:
+		return aUint64Token
+	case AInt64:
+		return aInt64Token
+	case Float16Ieee:
+		return float16IeeeToken
+	case Float32Ieee:
+		return float32IeeeToken
+	case Float64Ieee:
+		return float64IeeeToken
+	default:
+		return emptyToken
+	}
+
+}
+
+func (dte *DataTypeEnum) GetType() interface{} {
+	switch *dte {
+	case undefinedDatatype:
+		return nil
+	case UBYTE:
+		var t uint8
+		return t
+	case SBYTE:
+		var t int8
+		return t
+	case UWORD:
+		var t uint32
+		return t
+	case SWORD:
+		var t int32
+		return t
+	case ULONG:
+		var t uint32
+		return t
+	case SLONG:
+		var t int32
+		return t
+	case AUint64:
+		var t uint64
+		return t
+	case AInt64:
+		var t int64
+		return t
+	case Float16Ieee:
+		var t float16.Float16
+		return t
+	case Float32Ieee:
+		var t float32
+		return t
+	case Float64Ieee:
+		var t float64
+		return t
+	default:
+		return nil
+	}
+}
 
 func (dte *DataTypeEnum) GetDatatypeLength() uint16 {
 	switch *dte {
@@ -144,7 +222,7 @@ func parseDataSizeEnum(tok *tokenGenerator) (dataSizeEnum, error) {
 	return d, err
 }
 
-//addrTypeEnum defines which address width is necessary.
+// addrTypeEnum defines which address width is necessary.
 type addrTypeEnum string
 
 const (
@@ -178,34 +256,34 @@ func parseAddrTypeEnum(tok *tokenGenerator) (addrTypeEnum, error) {
 	return a, err
 }
 
-type byteOrderEnum string
+type ByteOrderEnum string
 
 const (
-	undefinedByteorder byteOrderEnum = emptyToken
-	littleEndian       byteOrderEnum = littleEndianToken
-	bigEndian          byteOrderEnum = bigEndianToken
-	msbLast            byteOrderEnum = msbLastToken
-	msbFirst           byteOrderEnum = msbFirstToken
-	msbFirstMswLast    byteOrderEnum = msbFirstMswLastToken
-	msbLastMswFirst    byteOrderEnum = msbLastMswFirstToken
+	undefinedByteorder ByteOrderEnum = emptyToken
+	LittleEndian       ByteOrderEnum = littleEndianToken
+	BigEndian          ByteOrderEnum = bigEndianToken
+	MsbLast            ByteOrderEnum = msbLastToken
+	MsbFirst           ByteOrderEnum = msbFirstToken
+	MsbFirstMswLast    ByteOrderEnum = msbFirstMswLastToken
+	MsbLastMswFirst    ByteOrderEnum = msbLastMswFirstToken
 )
 
-func parseByteOrderEnum(tok *tokenGenerator) (byteOrderEnum, error) {
+func parseByteOrderEnum(tok *tokenGenerator) (ByteOrderEnum, error) {
 	b := undefinedByteorder
 	var err error
 	switch tok.current() {
 	case littleEndianToken:
-		b = littleEndian
+		b = LittleEndian
 	case bigEndianToken:
-		b = bigEndian
+		b = BigEndian
 	case msbLastToken:
-		b = msbLast
+		b = MsbLast
 	case msbFirstToken:
-		b = msbFirst
+		b = MsbFirst
 	case msbFirstMswLastToken:
-		b = msbFirstMswLast
+		b = MsbFirstMswLast
 	case msbLastMswFirstToken:
-		b = msbLastMswFirst
+		b = MsbLastMswFirst
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum byteorder")
 	}

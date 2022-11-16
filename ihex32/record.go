@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-//record stores the data of one line/record of an ihex32 file.
+// record stores the data of one line/record of an ihex32 file.
 type record struct {
 	//rwm is used to coordinate multithreaded reading/writing when applying offsets or calculating checksums.
 	rwm sync.Mutex
@@ -24,7 +24,7 @@ type record struct {
 	offset string
 }
 
-//parseRecord takes a line as string and fills the respective fields in the record struct.
+// parseRecord takes a line as string and fills the respective fields in the record struct.
 func parseRecord(line string) (*record, error) {
 	r := record{}
 	if line[0] == beginLineToken[0] && len(line) >= 11 {
@@ -53,8 +53,8 @@ func parseRecord(line string) (*record, error) {
 
 }
 
-//addOffsets walks through all records and updates the offset-value in the records of type data.
-//It stops when it finds a record that has already been updated by another goroutine.
+// addOffsets walks through all records and updates the offset-value in the records of type data.
+// It stops when it finds a record that has already been updated by another goroutine.
 func addOffsets(wg *sync.WaitGroup, recs []*record, start int) {
 	defer wg.Done()
 	firstRecordAfterNewOffset := false
@@ -80,8 +80,8 @@ forLoop:
 	}
 }
 
-//validateChecksumsRoutine calls the validateChecksum Method for each record
-//it is given and sends false to a channel in case a checksum isn't valid.
+// validateChecksumsRoutine calls the validateChecksum Method for each record
+// it is given and sends false to a channel in case a checksum isn't valid.
 func validateChecksumsRoutine(wg *sync.WaitGroup, c chan bool, recs []*record) {
 	defer wg.Done()
 	var csValid bool
@@ -96,7 +96,7 @@ forLoop:
 	}
 }
 
-//validateChecksum computes a checksum for a single record
+// validateChecksum computes a checksum for a single record
 func (r *record) validateChecksum() (bool, error) {
 	//sum is intended to overflow if necessary. the checksum is valid if the least significant byte of the sum equals 0.
 	//therefore we can ignore all higher bytes and just look at the least significant byte / this uint8.
@@ -167,7 +167,7 @@ func calcDataRoutine(c chan []dataByte, recs []*record) {
 	close(c)
 }
 
-//calcDataEntries calculates all data entries with their final addresses.
+// calcDataEntries calculates all data entries with their final addresses.
 func (r *record) calcDataEntries() ([]dataByte, error) {
 	var d []dataByte
 	var err error
@@ -178,7 +178,7 @@ func (r *record) calcDataEntries() ([]dataByte, error) {
 	for i, s := range r.data {
 
 		//add index position to the address of the line to get the individual byte position
-		bs, err = hexToByteSlice(r.addressField)
+		bs, err = HexToByteSlice(r.addressField)
 		if err != nil {
 			return d, err
 		}
@@ -190,7 +190,7 @@ func (r *record) calcDataEntries() ([]dataByte, error) {
 		//fill byte slice buffer with thenew value of line address
 		binary.BigEndian.PutUint16(lineAddressBytes, lineAddress)
 		//convert offset string to byte slice
-		bs, err = hexToByteSlice(r.offset)
+		bs, err = HexToByteSlice(r.offset)
 		if err != nil {
 			return d, err
 		}

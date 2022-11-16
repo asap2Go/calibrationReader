@@ -7,13 +7,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type fixNoAxisPtsX struct {
-	numberOfAxisPoints    uint16
-	numberOfAxisPointsSet bool
+type FixNoAxisPtsX struct {
+	NumberOfAxisPoints    uint16
+	NumberOfAxisPointsSet bool
 }
 
-func parseFixNoAxisPtsX(tok *tokenGenerator) (fixNoAxisPtsX, error) {
-	fnapx := fixNoAxisPtsX{}
+func parseFixNoAxisPtsX(tok *tokenGenerator) (FixNoAxisPtsX, error) {
+	fnapx := FixNoAxisPtsX{}
 	var err error
 	tok.next()
 	if tok.current() == emptyToken {
@@ -22,14 +22,14 @@ func parseFixNoAxisPtsX(tok *tokenGenerator) (fixNoAxisPtsX, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("fixNoAxisPtsX could not be parsed")
-	} else if !fnapx.numberOfAxisPointsSet {
+	} else if !fnapx.NumberOfAxisPointsSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
 			log.Err(err).Msg("fixNoAxisPtsx numberOfAxisPoints could not be parsed")
 		}
-		fnapx.numberOfAxisPoints = uint16(buf)
-		fnapx.numberOfAxisPointsSet = true
+		fnapx.NumberOfAxisPoints = uint16(buf)
+		fnapx.NumberOfAxisPointsSet = true
 		log.Info().Msg("fixNoAxisPtsx numberOfAxisPoints successfully parsed")
 	}
 	return fnapx, err

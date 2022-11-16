@@ -28,7 +28,7 @@ type measurement struct {
 	arraySize           arraySize
 	bitMask             bitMask
 	bitOperation        bitOperation
-	byteOrder           byteOrder
+	byteOrder           ByteOrder
 	discrete            discreteKeyword
 	displayIdentifier   DisplayIdentifier
 	ecuAddress          ecuAddress

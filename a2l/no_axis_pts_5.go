@@ -7,15 +7,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type noAxisPts5 struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+type NoAxisPts5 struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
+	Value       uint16
+	ValueSet    bool
 }
 
-func parseNoAxisPts5(tok *tokenGenerator) (noAxisPts5, error) {
-	nap5 := noAxisPts5{}
+func parseNoAxisPts5(tok *tokenGenerator) (NoAxisPts5, error) {
+	nap5 := NoAxisPts5{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +30,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("noAxisPts5 could not be parsed")
 			break forLoop
-		} else if !nap5.positionSet {
+		} else if !nap5.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("noAxisPts5 position could not be parsed")
 				break forLoop
 			}
-			nap5.position = uint16(buf)
-			nap5.positionSet = true
+			nap5.Position = uint16(buf)
+			nap5.PositionSet = true
 			log.Info().Msg("noAxisPts5 position successfully parsed")
-		} else if !nap5.datatypeSet {
-			nap5.datatype, err = parseDataTypeEnum(tok)
+		} else if !nap5.DatatypeSet {
+			nap5.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPts5 datatype could not be parsed")
 				break forLoop
 			}
-			nap5.datatypeSet = true
+			nap5.DatatypeSet = true
 			log.Info().Msg("noAxisPts5 datatype successfully parsed")
 			break forLoop
 		}

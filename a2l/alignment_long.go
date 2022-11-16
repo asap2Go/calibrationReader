@@ -7,13 +7,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-//alignmentFloat32Ieee is necessary because in complex objects (maps and axis) the alignment of a value may not coincide with the bitwidth of a value.
-//This keyword is used to define the alignment in the case of longs.
+// alignmentLong is necessary because in complex objects (maps and axis) the alignment of a value may not coincide with the bitwidth of a value.
+// This keyword is used to define the alignment in the case of longs.
 type alignmentLong struct {
-	//alignmentBorder describes the border at which the value is aligned to, i.e.
+	//AlignmentBorder describes the border at which the value is aligned to, i.e.
 	//its memory address must be dividable by the value AlignmentBorder.
-	alignmentBorder    uint16
-	alignmentBorderSet bool
+	AlignmentBorder    uint16
+	AlignmentBorderSet bool
 }
 
 func parseAlignmentLong(tok *tokenGenerator) (alignmentLong, error) {
@@ -26,14 +26,14 @@ func parseAlignmentLong(tok *tokenGenerator) (alignmentLong, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("alignmentLong could not be parsed")
-	} else if !al.alignmentBorderSet {
+	} else if !al.AlignmentBorderSet {
 		var buf uint64
 		buf, err = strconv.ParseUint(tok.current(), 10, 16)
 		if err != nil {
 			log.Err(err).Msg("alignmentLong alignmentBorder could not be parsed")
 		}
-		al.alignmentBorder = uint16(buf)
-		al.alignmentBorderSet = true
+		al.AlignmentBorder = uint16(buf)
+		al.AlignmentBorderSet = true
 		log.Info().Msg("alignmentLong alignmentBorder successfully parsed")
 	}
 	return al, err

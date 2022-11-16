@@ -7,15 +7,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type noAxisPtsX struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+type NoAxisPtsX struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
+	Value       uint16
+	ValueSet    bool
 }
 
-func parseNoAxisPtsX(tok *tokenGenerator) (noAxisPtsX, error) {
-	napx := noAxisPtsX{}
+func parseNoAxisPtsX(tok *tokenGenerator) (NoAxisPtsX, error) {
+	napx := NoAxisPtsX{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +30,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("noAxisPtsX could not be parsed")
 			break forLoop
-		} else if !napx.positionSet {
+		} else if !napx.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("noAxisPtsx position could not be parsed")
 				break forLoop
 			}
-			napx.position = uint16(buf)
-			napx.positionSet = true
+			napx.Position = uint16(buf)
+			napx.PositionSet = true
 			log.Info().Msg("noAxisPtsx position successfully parsed")
-		} else if !napx.datatypeSet {
-			napx.datatype, err = parseDataTypeEnum(tok)
+		} else if !napx.DatatypeSet {
+			napx.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noAxisPtsx datatype could not be parsed")
 				break forLoop
 			}
-			napx.datatypeSet = true
+			napx.DatatypeSet = true
 			log.Info().Msg("noAxisPtsx datatype successfully parsed")
 			break forLoop
 		}

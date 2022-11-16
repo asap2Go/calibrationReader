@@ -15,6 +15,7 @@ type Characteristic struct {
 	Type              typeEnum
 	TypeSet           bool
 	Address           string
+	AddressUint32     uint32
 	addressSet        bool
 	//Deposit is the identifier of the corresponding record layout
 	Deposit       string
@@ -31,7 +32,7 @@ type Characteristic struct {
 	axisDescr     []axisDescr
 	bitMask       bitMask
 	//byteOrder can be used to overwrite the standard byte order defined in mod par
-	byteOrder               byteOrder
+	byteOrder               ByteOrder
 	calibrationAccess       calibrationAccessEnum
 	comparisonQuantity      comparisonQuantity
 	dependentCharacteristic []DependentCharacteristic

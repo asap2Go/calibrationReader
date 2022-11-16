@@ -7,7 +7,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-/*axisDescr is the Axis description within an adjustable object
+/*
+axisDescr is the Axis description within an adjustable object
 Note:
 With the 'input quantity' parameter a reference is made to a measurement object
 (MEASUREMENT). The MEASUREMENT keyword also specifies the
@@ -39,7 +40,8 @@ to define the dimension both at the axis and at the curve resp. map – e.g. the
 corresponding record layouts can both contain the NO_AXIS_PTS_X component.
 It is recommended not to do so, but if the dimension is defined twice and if it is
 not equal, then application systems shall always use the dimension of the
-AXIS_PTS object.*/
+AXIS_PTS object.
+*/
 type axisDescr struct {
 	attribute    attributeEnum
 	attributeSet bool
@@ -66,7 +68,7 @@ type axisDescr struct {
 	upperLimitSet  bool
 	annotation     []annotation
 	axisPtsRef     axisPtsRef
-	byteOrder      byteOrder
+	byteOrder      ByteOrder
 	curveAxisRef   curveAxisRef
 	deposit        deposit
 	extendedLimits extendedLimits

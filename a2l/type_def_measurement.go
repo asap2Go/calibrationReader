@@ -26,7 +26,7 @@ type typeDefMeasurement struct {
 	upperLimitSet     bool
 	bitMask           bitMask
 	bitOperation      bitOperation
-	byteOrder         byteOrder
+	byteOrder         ByteOrder
 	discrete          discreteKeyword
 	errorMask         errorMask
 	format            format
