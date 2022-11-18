@@ -45,13 +45,13 @@ type RecordLayout struct {
 	OffsetZ              OffsetZ
 	Offset4              Offset4
 	Offset5              Offset5
-	Reserved             reserved
-	RipAddrW             ripAddrW
+	Reserved             Reserved
+	RipAddrW             RipAddrW
 	RipAddrX             ripAddrX
-	RipAddrY             ripAddrY
-	RipAddrZ             ripAddrZ
-	RipAddr4             ripAddr4
-	RipAddr5             ripAddr5
+	RipAddrY             RipAddrY
+	RipAddrZ             RipAddrZ
+	RipAddr4             RipAddr4
+	RipAddr5             RipAddr5
 	SrcAddrX             srcAddrX
 	SrcAddrY             srcAddrY
 	SrcAddrZ             srcAddrZ
@@ -555,14 +555,14 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.AxisPtsZ.Position] = "AxisPtsZ"
 	}
 
-	if rl.AxisRescaleX.positionSet {
-		field, exists := order[rl.AxisRescaleX.position]
+	if rl.AxisRescaleX.PositionSet {
+		field, exists := order[rl.AxisRescaleX.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and AxisRescaleX")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.AxisRescaleX.position] = "AxisRescaleX"
+		order[rl.AxisRescaleX.Position] = "AxisRescaleX"
 	}
 
 	if rl.DistOp4.PositionSet {
@@ -745,34 +745,34 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.OffsetZ.Position] = "OffsetZ"
 	}
 
-	if rl.Reserved.positionSet {
-		field, exists := order[rl.Reserved.position]
+	if rl.Reserved.PositionSet {
+		field, exists := order[rl.Reserved.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Reserved")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.Reserved.position] = "Reserved"
+		order[rl.Reserved.Position] = "Reserved"
 	}
 
-	if rl.RipAddr4.positionSet {
-		field, exists := order[rl.RipAddr4.position]
+	if rl.RipAddr4.PositionSet {
+		field, exists := order[rl.RipAddr4.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr4")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.RipAddr4.position] = "RipAddr4"
+		order[rl.RipAddr4.Position] = "RipAddr4"
 	}
 
-	if rl.RipAddr5.positionSet {
-		field, exists := order[rl.RipAddr5.position]
+	if rl.RipAddr5.PositionSet {
+		field, exists := order[rl.RipAddr5.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddr5")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.RipAddr5.position] = "RipAddr5"
+		order[rl.RipAddr5.Position] = "RipAddr5"
 	}
 
 	if rl.RipAddrX.positionSet {
@@ -785,34 +785,34 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.RipAddrX.position] = "RipAddrX"
 	}
 
-	if rl.RipAddrY.positionSet {
-		field, exists := order[rl.RipAddrY.position]
+	if rl.RipAddrY.PositionSet {
+		field, exists := order[rl.RipAddrY.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrY")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.RipAddrY.position] = "RipAddrY"
+		order[rl.RipAddrY.Position] = "RipAddrY"
 	}
 
-	if rl.RipAddrZ.positionSet {
-		field, exists := order[rl.RipAddrZ.position]
+	if rl.RipAddrZ.PositionSet {
+		field, exists := order[rl.RipAddrZ.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrZ")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.RipAddrZ.position] = "RipAddrZ"
+		order[rl.RipAddrZ.Position] = "RipAddrZ"
 	}
 
-	if rl.RipAddrW.positionSet {
-		field, exists := order[rl.RipAddrW.position]
+	if rl.RipAddrW.PositionSet {
+		field, exists := order[rl.RipAddrW.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and RipAddrW")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.RipAddrW.position] = "RipAddrW"
+		order[rl.RipAddrW.Position] = "RipAddrW"
 	}
 
 	if rl.ShiftOp4.positionSet {
@@ -958,12 +958,12 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.AxisPts5.Datatype, nil
 	case "AxisRescaleX":
-		if !rl.AxisRescaleX.datatypeSet {
+		if !rl.AxisRescaleX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.AxisRescaleX.datatype, nil
+		return rl.AxisRescaleX.Datatype, nil
 	case "DistOpX":
 		if !rl.DistOpX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
@@ -1091,12 +1091,12 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.Offset5.Datatype, nil
 	case "RipAddrW":
-		if !rl.RipAddrW.datatypeSet {
+		if !rl.RipAddrW.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.RipAddrW.datatype, nil
+		return rl.RipAddrW.Datatype, nil
 	case "RipAddrX":
 		if !rl.RipAddrX.datatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
@@ -1105,33 +1105,33 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.RipAddrX.datatype, nil
 	case "RipAddrY":
-		if !rl.RipAddrY.datatypeSet {
+		if !rl.RipAddrY.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.RipAddrY.datatype, nil
+		return rl.RipAddrY.Datatype, nil
 	case "RipAddrZ":
-		if !rl.RipAddrZ.datatypeSet {
+		if !rl.RipAddrZ.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.RipAddrZ.datatype, nil
+		return rl.RipAddrZ.Datatype, nil
 	case "RipAddr4":
-		if !rl.RipAddr4.datatypeSet {
+		if !rl.RipAddr4.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.RipAddr4.datatype, nil
+		return rl.RipAddr4.Datatype, nil
 	case "RipAddr5":
-		if !rl.RipAddr5.datatypeSet {
+		if !rl.RipAddr5.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.RipAddr5.datatype, nil
+		return rl.RipAddr5.Datatype, nil
 	case "SrcAddrX":
 		if !rl.SrcAddrX.datatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)

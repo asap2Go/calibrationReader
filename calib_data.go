@@ -561,7 +561,9 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 				log.Err(err).Msg("could not get values for 5-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisRescaleX":
-			//continue
+			//To-Do?
+			err = errors.New("undefined case in record layout")
+			log.Err(err).Msg("axisRescaleX not implemented")
 		case "DistOpX":
 			cv.DistOpXValue, err = cd.getDistOpX(rl, &curPos)
 			if err != nil {
@@ -650,12 +652,28 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 				log.Err(err).Msg("could not get value for offset5 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "Reserved":
+			err = cd.getReserved(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get offset from reserved datasize characteristic '" + cv.characteristic.Name + "'")
+			}
+
+		/*RIP_ADDR_X-Y-Z-4-5-W
+		are only used to store interpolation results,
+		so they are not read from hex as there is nothing to read
 		case "RipAddrW":
 		case "RipAddrX":
 		case "RipAddrY":
 		case "RipAddrZ":
 		case "RipAddr4":
-		case "RipAddr5":
+		case "RipAddr5":*/
+
+		/*SRC_ADDR_X-Y-Z-4-5 define a input quantity meaning a measurement that determines which point of an axis is chosen for reading a value from a given characteristic.
+		e.g. given a curve where the x-Axis is the rpm of the engine and the values are
+		a defined relative engine load:
+		x	1000	2000	3000	4000	5000	6000
+		v	  12	  27	  38	  42	  49	  18
+		then  if the input quantity for this curve would be the measurement of the current rpm of the engine
+		depending on the rpm a value is chosen.
 		case "SrcAddrX":
 		case "SrcAddrY":
 		case "SrcAddrZ":
@@ -666,6 +684,12 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		case "ShiftOpZ":
 		case "ShiftOp4":
 		case "ShiftOp5":
+		*/
+		default:
+			err := errors.New("undefined case in record layout position")
+			if err != nil {
+				log.Err(err).Msg("unexpected case '" + field + "' in characteristic '" + cv.characteristic.Name + "'")
+			}
 		}
 	}
 }

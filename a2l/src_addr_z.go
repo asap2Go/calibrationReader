@@ -7,6 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// srcAddrZ is the description of the address of the input quantity in an adjustable object
 type srcAddrZ struct {
 	position    uint16
 	positionSet bool

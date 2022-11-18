@@ -39,19 +39,32 @@ axis 2 )/(virtual 3 – virtual 2 ) = 116/64. Consequently
 X 7 = 100 + (192 – 192) * 116/64 = 100 and
 X 8 = 100 + (224 – 192) * 116/64 = 158.
 Also X 1 = axis 1 = 0 and X 9 = axis 3 = 216.
+
+Seriously. Who needs that stuff? Like... ever?
+I mean come on. Just buy another megabyte of f*****g RAM for f**k's sake.
+This whole standard could be implemented with half the loc
+if it wasn't designed by people who grew up with C++.
+Just look at the INSTANCE-keyword bulls***!
+And then everyone in the automotive industry wonders why people think they are
+'a little behind the curve' when it comes to technology
+And this is just one example. This whole standard is a mess.
+Like a mechanical engineer tried to design a car -
+by writing an algorithm in C++ that designs the car,
+but has race conditions, UAF and UB all over the place.
+Why?
 */
 type AxisRescaleX struct {
-	//position of the rescale axis point value pairs in the deposit structure (description of sequence of elements in the data record).
-	position                   uint16
-	positionSet                bool
-	datatype                   DataTypeEnum
-	datatypeSet                bool
-	maxNumberOfRescalePairs    uint16
-	maxNumberOfRescalePairsSet bool
-	indexIncr                  indexOrderEnum
-	indexIncrSet               bool
-	adressing                  addrTypeEnum
-	adressingSet               bool
+	//Position of the rescale axis point value pairs in the deposit structure (description of sequence of elements in the data record).
+	Position                   uint16
+	PositionSet                bool
+	Datatype                   DataTypeEnum
+	DatatypeSet                bool
+	MaxNumberOfRescalePairs    uint16
+	MaxNumberOfRescalePairsSet bool
+	IndexIncr                  indexOrderEnum
+	IndexIncrSet               bool
+	Adressing                  addrTypeEnum
+	AdressingSet               bool
 }
 
 func parseAxisRescaleX(tok *tokenGenerator) (AxisRescaleX, error) {
@@ -68,49 +81,49 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("axisRescaleX could not be parsed")
 			break forLoop
-		} else if !arX.positionSet {
+		} else if !arX.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("axisRescaleX position could not be parsed")
 				break forLoop
 			}
-			arX.position = uint16(buf)
-			arX.positionSet = true
+			arX.Position = uint16(buf)
+			arX.PositionSet = true
 			log.Info().Msg("axisRescaleX position successfully parsed")
-		} else if !arX.datatypeSet {
-			arX.datatype, err = parseDataTypeEnum(tok)
+		} else if !arX.DatatypeSet {
+			arX.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescaleX datatype could not be parsed")
 				break forLoop
 			}
-			arX.datatypeSet = true
+			arX.DatatypeSet = true
 			log.Info().Msg("axisRescaleX datatype successfully parsed")
-		} else if !arX.maxNumberOfRescalePairsSet {
+		} else if !arX.MaxNumberOfRescalePairsSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("axisRescaleX maxNumberOfRescalePairs could not be parsed")
 				break forLoop
 			}
-			arX.maxNumberOfRescalePairs = uint16(buf)
-			arX.maxNumberOfRescalePairsSet = true
+			arX.MaxNumberOfRescalePairs = uint16(buf)
+			arX.MaxNumberOfRescalePairsSet = true
 			log.Info().Msg("axisRescaleX maxNumberOfRescalePairs successfully parsed")
-		} else if !arX.indexIncrSet {
-			arX.indexIncr, err = parseIndexOrderEnum(tok)
+		} else if !arX.IndexIncrSet {
+			arX.IndexIncr, err = parseIndexOrderEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescaleX indexIncr could not be parsed")
 				break forLoop
 			}
-			arX.indexIncrSet = true
+			arX.IndexIncrSet = true
 			log.Info().Msg("axisRescaleX indexIncr successfully parsed")
-		} else if !arX.adressingSet {
-			arX.adressing, err = parseAddrTypeEnum(tok)
+		} else if !arX.AdressingSet {
+			arX.Adressing, err = parseAddrTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("axisRescaleX adressing could not be parsed")
 				break forLoop
 			}
-			arX.adressingSet = true
+			arX.AdressingSet = true
 			log.Info().Msg("axisRescaleX adressing successfully parsed")
 			break forLoop
 		}

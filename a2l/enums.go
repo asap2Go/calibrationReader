@@ -197,16 +197,30 @@ func parseDataTypeEnum(tok *tokenGenerator) (DataTypeEnum, error) {
 	return d, err
 }
 
-type dataSizeEnum string
+type DataSizeEnum string
 
 const (
-	undefinedDatasize dataSizeEnum = emptyToken
-	BYTE              dataSizeEnum = byteToken
-	WORD              dataSizeEnum = wordToken
-	LONG              dataSizeEnum = longToken
+	undefinedDatasize DataSizeEnum = emptyToken
+	BYTE              DataSizeEnum = byteToken
+	WORD              DataSizeEnum = wordToken
+	LONG              DataSizeEnum = longToken
 )
 
-func parseDataSizeEnum(tok *tokenGenerator) (dataSizeEnum, error) {
+func (dse *DataSizeEnum) GetDataSizeLength() uint16 {
+	switch *dse {
+	case BYTE:
+		return 8
+	case WORD:
+		return 32
+	case LONG:
+		return 64
+	default:
+		return 0
+	}
+
+}
+
+func parseDataSizeEnum(tok *tokenGenerator) (DataSizeEnum, error) {
 	d := undefinedDatasize
 	var err error
 	switch tok.current() {

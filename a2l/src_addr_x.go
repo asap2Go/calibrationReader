@@ -14,6 +14,7 @@ type srcAddrX struct {
 	datatypeSet bool
 }
 
+// srcAddrX is the description of the address of the input quantity in an adjustable object
 func parseSrcAddrX(tok *tokenGenerator) (srcAddrX, error) {
 	sax := srcAddrX{}
 	var err error
