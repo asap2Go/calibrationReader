@@ -14,4 +14,16 @@
 
 # ASAM standards due to licensing restrictions
 *.pdf
+
+#Go coverage profile
 covprofile
+
+.VSCodeCounter/2022-11-18_23-56-11/details.md
+.VSCodeCounter/2022-11-18_23-56-11/diff-details.md
+.VSCodeCounter/2022-11-18_23-56-11/diff.csv
+.VSCodeCounter/2022-11-18_23-56-11/diff.md
+.VSCodeCounter/2022-11-18_23-56-11/diff.txt
+.VSCodeCounter/2022-11-18_23-56-11/results.csv
+.VSCodeCounter/2022-11-18_23-56-11/results.json
+.VSCodeCounter/2022-11-18_23-56-11/results.md
+.VSCodeCounter/2022-11-18_23-56-11/results.txt
