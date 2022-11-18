@@ -40,11 +40,11 @@ type RecordLayout struct {
 	NoAxisPts4           NoAxisPts4
 	NoAxisPts5           NoAxisPts5
 	NoRescaleX           NoRescaleX
-	OffsetX              offsetX
+	OffsetX              OffsetX
 	OffsetY              offsetY
-	OffsetZ              offsetZ
-	Offset4              offset4
-	Offset5              offset5
+	OffsetZ              OffsetZ
+	Offset4              Offset4
+	Offset5              Offset5
 	Reserved             reserved
 	RipAddrW             ripAddrW
 	RipAddrX             ripAddrX
@@ -695,54 +695,54 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.NoRescaleX.Position] = "NoRescaleX"
 	}
 
-	if rl.Offset4.positionSet {
-		field, exists := order[rl.Offset4.position]
+	if rl.Offset4.PositionSet {
+		field, exists := order[rl.Offset4.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset4")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.Offset4.position] = "Offset4"
+		order[rl.Offset4.Position] = "Offset4"
 	}
 
-	if rl.Offset5.positionSet {
-		field, exists := order[rl.Offset5.position]
+	if rl.Offset5.PositionSet {
+		field, exists := order[rl.Offset5.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Offset5")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.Offset5.position] = "Offset5"
+		order[rl.Offset5.Position] = "Offset5"
 	}
 
-	if rl.OffsetX.positionSet {
-		field, exists := order[rl.OffsetX.position]
+	if rl.OffsetX.PositionSet {
+		field, exists := order[rl.OffsetX.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetX")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.OffsetX.position] = "OffsetX"
+		order[rl.OffsetX.Position] = "OffsetX"
 	}
 
-	if rl.OffsetY.positionSet {
-		field, exists := order[rl.OffsetY.position]
+	if rl.OffsetY.PositionSet {
+		field, exists := order[rl.OffsetY.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetY")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.OffsetY.position] = "OffsetY"
+		order[rl.OffsetY.Position] = "OffsetY"
 	}
 
-	if rl.OffsetZ.positionSet {
-		field, exists := order[rl.OffsetZ.position]
+	if rl.OffsetZ.PositionSet {
+		field, exists := order[rl.OffsetZ.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and OffsetZ")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.OffsetZ.position] = "OffsetZ"
+		order[rl.OffsetZ.Position] = "OffsetZ"
 	}
 
 	if rl.Reserved.positionSet {
@@ -1056,40 +1056,40 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.NoRescaleX.Datatype, nil
 	case "OffsetX":
-		if !rl.OffsetX.datatypeSet {
+		if !rl.OffsetX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.OffsetX.datatype, nil
+		return rl.OffsetX.Datatype, nil
 	case "OffsetY":
-		if !rl.OffsetY.datatypeSet {
+		if !rl.OffsetY.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.OffsetY.datatype, nil
+		return rl.OffsetY.Datatype, nil
 	case "OffsetZ":
-		if !rl.OffsetZ.datatypeSet {
+		if !rl.OffsetZ.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.OffsetZ.datatype, nil
+		return rl.OffsetZ.Datatype, nil
 	case "Offset4":
-		if !rl.Offset4.datatypeSet {
+		if !rl.Offset4.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.Offset4.datatype, nil
+		return rl.Offset4.Datatype, nil
 	case "Offset5":
-		if !rl.Offset5.datatypeSet {
+		if !rl.Offset5.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.Offset5.datatype, nil
+		return rl.Offset5.Datatype, nil
 	case "RipAddrW":
 		if !rl.RipAddrW.datatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)

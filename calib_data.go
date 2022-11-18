@@ -590,7 +590,7 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		case "FncValues":
 			//interesting part
 		case "Identification":
-			cv.Identification, err = cd.getDistOp5(rl, &curPos)
+			cv.IdentificationValue, err = cd.getDistOp5(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for identification of characteristic '" + cv.characteristic.Name + "'")
 			}
@@ -622,13 +622,33 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		case "NoRescaleX":
 			cv.NoAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
 			if err != nil {
-				log.Err(err).Msg("could not get value for noAxisPts5 of characteristic '" + cv.characteristic.Name + "'")
+				log.Err(err).Msg("could not get value for noRescaleX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "OffsetX":
+			cv.OffsetXValue, err = cd.getOffsetX(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for offsetX of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "OffsetY":
+			cv.OffsetYValue, err = cd.getOffsetY(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for offsetY of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "OffsetZ":
+			cv.OffsetZValue, err = cd.getOffsetZ(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for offsetZ of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "Offset4":
+			cv.Offset4Value, err = cd.getOffset4(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for offset4 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "Offset5":
+			cv.Offset5Value, err = cd.getOffset5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for offset5 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "Reserved":
 		case "RipAddrW":
 		case "RipAddrX":

@@ -7,15 +7,22 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type offsetX struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+/*
+OffsetX is the description of the 'offset' parameter in the deposit structure to compute the axis points for
+fixed characteristic curves and fixed characteristic maps (see also keyword
+FIX_AXIS_PAR). The axis points for fixed characteristic curves or fixed characteristic
+maps are derived from the two 'offset' and 'shift' parameters as follows:
+Xi = Offset + (i - 1)*2Shift i = { 1...numberofaxispts }
+*/
+type OffsetX struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
 }
 
-func parseOffsetX(tok *tokenGenerator) (offsetX, error) {
-	ox := offsetX{}
+func parseOffsetX(tok *tokenGenerator) (OffsetX, error) {
+	ox := OffsetX{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +35,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("offsetX could not be parsed")
 			break forLoop
-		} else if !ox.positionSet {
+		} else if !ox.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("offsetx position could not be parsed")
 				break forLoop
 			}
-			ox.position = uint16(buf)
-			ox.positionSet = true
+			ox.Position = uint16(buf)
+			ox.PositionSet = true
 			log.Info().Msg("offsetx position successfully parsed")
-		} else if !ox.datatypeSet {
-			ox.datatype, err = parseDataTypeEnum(tok)
+		} else if !ox.DatatypeSet {
+			ox.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("offsetx datatype could not be parsed")
 				break forLoop
 			}
-			ox.datatypeSet = true
+			ox.DatatypeSet = true
 			log.Info().Msg("offsetx datatype successfully parsed")
 			break forLoop
 		}
