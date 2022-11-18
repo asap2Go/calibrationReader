@@ -7,15 +7,16 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type noRescaleX struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+// NoRescaleX defines the actual number of rescaling axis point value pairs.
+type NoRescaleX struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
 }
 
-func parseNoRescaleX(tok *tokenGenerator) (noRescaleX, error) {
-	nrx := noRescaleX{}
+func parseNoRescaleX(tok *tokenGenerator) (NoRescaleX, error) {
+	nrx := NoRescaleX{}
 	var err error
 forLoop:
 	for {
@@ -28,24 +29,24 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("noRescaleX could not be parsed")
 			break forLoop
-		} else if !nrx.positionSet {
+		} else if !nrx.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("noRescalex position could not be parsed")
 				break forLoop
 			}
-			nrx.position = uint16(buf)
-			nrx.positionSet = true
+			nrx.Position = uint16(buf)
+			nrx.PositionSet = true
 			log.Info().Msg("noRescalex position successfully parsed")
 			break forLoop
-		} else if !nrx.datatypeSet {
-			nrx.datatype, err = parseDataTypeEnum(tok)
+		} else if !nrx.DatatypeSet {
+			nrx.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("noRescalex datatype could not be parsed")
 				break forLoop
 			}
-			nrx.datatypeSet = true
+			nrx.DatatypeSet = true
 			log.Info().Msg("noRescalex datatype successfully parsed")
 		}
 	}

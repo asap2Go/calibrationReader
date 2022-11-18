@@ -524,8 +524,11 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 	}
 	rl.RelativePositions = relPos
 
+	//curPos tracks the current position within the deposit structure as an uint32 address
+	//with each field that gets parsed from the hex file curPos is incremented by the length of the datastructure.
+	var curPos uint32
 	//determine the start address of the characteristic
-	curPos, err := cd.convertStringToUint32Address(cv.characteristic.Address)
+	curPos, err = cd.convertStringToUint32Address(cv.characteristic.Address)
 	if err != nil {
 		log.Err(err).Msg("could not convert address of characteristic '" + cv.characteristic.Name + "'")
 	}
@@ -533,51 +536,94 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 	for _, field := range cv.recordLayout.RelativePositions {
 		switch field {
 		case "AxisPtsX":
-			cv.AxisX, err = cd.getAxisPointsX(rl, &curPos)
+			cv.AxisXValues, err = cv.getAxisPointsX(cd, rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get values for X-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisPtsY":
-			cv.AxisY, err = cd.getAxisPointsY(rl, &curPos)
+			cv.AxisYValues, err = cv.getAxisPointsY(cd, rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get values for Y-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisPtsZ":
-			cv.AxisZ, err = cd.getAxisPointsZ(rl, &curPos)
+			cv.AxisZValues, err = cv.getAxisPointsZ(cd, rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get values for Z-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisPts4":
-			cv.Axis4, err = cd.getAxisPoints4(rl, &curPos)
+			cv.Axis4Values, err = cv.getAxisPoints4(cd, rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get values for 4-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisPts5":
-			cv.Axis5, err = cd.getAxisPoints5(rl, &curPos)
+			cv.Axis5Values, err = cv.getAxisPoints5(cd, rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get values for 5-Axis of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "AxisRescaleX":
 			//continue
 		case "DistOpX":
+			cv.DistOpXValue, err = cd.getDistOpX(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for distOpX of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "DistOpY":
+			cv.DistOpYValue, err = cd.getDistOpY(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for distOpY of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "DistOpZ":
+			cv.DistOpZValue, err = cd.getDistOpZ(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for distOpZ of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "DistOp4":
+			cv.DistOp4Value, err = cd.getDistOp4(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for distOp4 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "DistOp5":
-		case "FixNoAxisPtsX":
-		case "FixNoAxisPtsY":
-		case "FixNoAxisPtsZ":
-		case "FixNoAxisPts4":
-		case "FixNoAxisPts5":
+			cv.DistOp5Value, err = cd.getDistOp5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for distOp5 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "FncValues":
 			//interesting part
 		case "Identification":
+			cv.Identification, err = cd.getDistOp5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for identification of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoAxisPtsX":
+			cv.NoAxisPtsXValue, err = cd.getNoAxisPtsX(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPtsX of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoAxisPtsY":
+			cv.NoAxisPtsYValue, err = cd.getNoAxisPtsY(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPtsY of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoAxisPtsZ":
+			cv.NoAxisPtsZValue, err = cd.getNoAxisPtsZ(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPtsZ of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoAxisPts4":
+			cv.NoAxisPts4Value, err = cd.getNoAxisPts4(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPts4 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoAxisPts5":
+			cv.NoAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPts5 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "NoRescaleX":
+			cv.NoAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for noAxisPts5 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "OffsetX":
 		case "OffsetY":
 		case "OffsetZ":

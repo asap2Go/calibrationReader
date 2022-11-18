@@ -12,8 +12,6 @@ type NoAxisPts5 struct {
 	PositionSet bool
 	Datatype    DataTypeEnum
 	DatatypeSet bool
-	Value       uint16
-	ValueSet    bool
 }
 
 func parseNoAxisPts5(tok *tokenGenerator) (NoAxisPts5, error) {

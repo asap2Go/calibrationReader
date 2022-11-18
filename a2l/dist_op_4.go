@@ -7,15 +7,34 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type distOp4 struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+/*
+DistOp4
+uint Position Position of the distance operand in the deposit structure.
+datatype Datatype Data type of the distance operand.
+Description:
+Description of the distance operand in the deposit structure to compute the axis points for
+fixed characteristic curves and fixed characteristic maps (see also keyword
+FIX_AXIS_PAR_DIST). The axis points distribution for fixed characteristic curves or fixed
+characteristic maps is derived from the two 'offset' and 'distance' parameters as follows:
+Xi = Offset + (i - 1)*Distance i = { 1...numberofaxispts }
+or
+Yk = Offset + (k - 1)* Distance k = { 1...numberofaxispts }
+or
+Zm = Offset + (m - 1)* Distance m = { 1...numberofaxispts }
+or
+Z4n = Offset + (n - 1)* Distance n = { 1...numberofaxispts }
+or
+Z5o = Offset + (o - 1)* Distance o = { 1...numberofaxispts }
+*/
+type DistOp4 struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
 }
 
-func parseDistOp4(tok *tokenGenerator) (distOp4, error) {
-	do := distOp4{}
+func parseDistOp4(tok *tokenGenerator) (DistOp4, error) {
+	do := DistOp4{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +47,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("distOp4 could not be parsed")
 			break forLoop
-		} else if !do.positionSet {
+		} else if !do.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("distOp4 position could not be parsed")
 				break forLoop
 			}
-			do.position = uint16(buf)
-			do.positionSet = true
+			do.Position = uint16(buf)
+			do.PositionSet = true
 			log.Info().Msg("distOp4 position successfully parsed")
-		} else if !do.datatypeSet {
-			do.datatype, err = parseDataTypeEnum(tok)
+		} else if !do.DatatypeSet {
+			do.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("distOp4 datatype could not be parsed")
 				break forLoop
 			}
-			do.datatypeSet = true
+			do.DatatypeSet = true
 			log.Info().Msg("distOp4 datatype successfully parsed")
 			break forLoop
 		}

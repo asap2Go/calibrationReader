@@ -7,15 +7,16 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type identification struct {
-	position    uint16
-	positionSet bool
-	datatype    DataTypeEnum
-	datatypeSet bool
+// Identification defines an 'identifier' in an adjustable object.
+type Identification struct {
+	Position    uint16
+	PositionSet bool
+	Datatype    DataTypeEnum
+	DatatypeSet bool
 }
 
-func parseIdentification(tok *tokenGenerator) (identification, error) {
-	i := identification{}
+func parseIdentification(tok *tokenGenerator) (Identification, error) {
+	i := Identification{}
 	var err error
 forLoop:
 	for {
@@ -28,23 +29,23 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("identification could not be parsed")
 			break forLoop
-		} else if !i.positionSet {
+		} else if !i.PositionSet {
 			var buf uint64
 			buf, err = strconv.ParseUint(tok.current(), 10, 16)
 			if err != nil {
 				log.Err(err).Msg("identification position could not be parsed")
 				break forLoop
 			}
-			i.position = uint16(buf)
-			i.positionSet = true
+			i.Position = uint16(buf)
+			i.PositionSet = true
 			log.Info().Msg("identification position successfully parsed")
-		} else if !i.datatypeSet {
-			i.datatype, err = parseDataTypeEnum(tok)
+		} else if !i.DatatypeSet {
+			i.Datatype, err = parseDataTypeEnum(tok)
 			if err != nil {
 				log.Err(err).Msg("identification position could not be parsed")
 				break forLoop
 			}
-			i.datatypeSet = true
+			i.DatatypeSet = true
 			log.Info().Msg("identification datatype successfully parsed")
 			break forLoop
 		}

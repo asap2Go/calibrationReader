@@ -22,24 +22,24 @@ type RecordLayout struct {
 	AxisPts4             AxisPts4
 	AxisPts5             AxisPts5
 	AxisRescaleX         AxisRescaleX
-	DistOpX              distOpX
-	DistOpY              distOpY
-	DistOpZ              distOpZ
-	DistOp4              distOp4
-	DistOp5              distOp5
+	DistOpX              DistOpX
+	DistOpY              DistOpY
+	DistOpZ              DistOpZ
+	DistOp4              DistOp4
+	DistOp5              DistOp5
 	FixNoAxisPtsX        FixNoAxisPtsX
 	FixNoAxisPtsY        FixNoAxisPtsY
 	FixNoAxisPtsZ        FixNoAxisPtsZ
 	FixNoAxisPts4        FixNoAxisPts4
 	FixNoAxisPts5        FixNoAxisPts5
 	FncValues            FncValues
-	Identification       identification
+	Identification       Identification
 	NoAxisPtsX           NoAxisPtsX
 	NoAxisPtsY           NoAxisPtsY
 	NoAxisPtsZ           NoAxisPtsZ
 	NoAxisPts4           NoAxisPts4
 	NoAxisPts5           NoAxisPts5
-	NoRescaleX           noRescaleX
+	NoRescaleX           NoRescaleX
 	OffsetX              offsetX
 	OffsetY              offsetY
 	OffsetZ              offsetZ
@@ -565,54 +565,54 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.AxisRescaleX.position] = "AxisRescaleX"
 	}
 
-	if rl.DistOp4.positionSet {
-		field, exists := order[rl.DistOp4.position]
+	if rl.DistOp4.PositionSet {
+		field, exists := order[rl.DistOp4.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp4")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.DistOp4.position] = "DistOp4"
+		order[rl.DistOp4.Position] = "DistOp4"
 	}
 
-	if rl.DistOp5.positionSet {
-		field, exists := order[rl.DistOp5.position]
+	if rl.DistOp5.PositionSet {
+		field, exists := order[rl.DistOp5.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOp5")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.DistOp5.position] = "DistOp5"
+		order[rl.DistOp5.Position] = "DistOp5"
 	}
 
-	if rl.DistOpX.positionSet {
-		field, exists := order[rl.DistOpX.position]
+	if rl.DistOpX.PositionSet {
+		field, exists := order[rl.DistOpX.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpX")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.DistOpX.position] = "DistOpX"
+		order[rl.DistOpX.Position] = "DistOpX"
 	}
 
-	if rl.DistOpY.positionSet {
-		field, exists := order[rl.DistOpY.position]
+	if rl.DistOpY.PositionSet {
+		field, exists := order[rl.DistOpY.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpY")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.DistOpY.position] = "DistOpY"
+		order[rl.DistOpY.Position] = "DistOpY"
 	}
 
-	if rl.DistOpZ.positionSet {
-		field, exists := order[rl.DistOpZ.position]
+	if rl.DistOpZ.PositionSet {
+		field, exists := order[rl.DistOpZ.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and DistOpZ")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.DistOpZ.position] = "DistOpZ"
+		order[rl.DistOpZ.Position] = "DistOpZ"
 	}
 
 	if rl.FncValues.PositionSet {
@@ -625,14 +625,14 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.FncValues.Position] = "FncValues"
 	}
 
-	if rl.Identification.positionSet {
-		field, exists := order[rl.Identification.position]
+	if rl.Identification.PositionSet {
+		field, exists := order[rl.Identification.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and Identification")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.Identification.position] = "Identification"
+		order[rl.Identification.Position] = "Identification"
 	}
 
 	if rl.NoAxisPts4.PositionSet {
@@ -685,14 +685,14 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.NoAxisPtsZ.Position] = "NoAxisPtsZ"
 	}
 
-	if rl.NoRescaleX.positionSet {
-		field, exists := order[rl.NoRescaleX.position]
+	if rl.NoRescaleX.PositionSet {
+		field, exists := order[rl.NoRescaleX.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and NoRescaleX")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.NoRescaleX.position] = "NoRescaleX"
+		order[rl.NoRescaleX.Position] = "NoRescaleX"
 	}
 
 	if rl.Offset4.positionSet {
@@ -965,40 +965,40 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.AxisRescaleX.datatype, nil
 	case "DistOpX":
-		if !rl.DistOpX.datatypeSet {
+		if !rl.DistOpX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.DistOpX.datatype, nil
+		return rl.DistOpX.Datatype, nil
 	case "DistOpY":
-		if !rl.DistOpY.datatypeSet {
+		if !rl.DistOpY.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.DistOpY.datatype, nil
+		return rl.DistOpY.Datatype, nil
 	case "DistOpZ":
-		if !rl.DistOpZ.datatypeSet {
+		if !rl.DistOpZ.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.DistOpZ.datatype, nil
+		return rl.DistOpZ.Datatype, nil
 	case "DistOp4":
-		if !rl.DistOp4.datatypeSet {
+		if !rl.DistOp4.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.DistOp4.datatype, nil
+		return rl.DistOp4.Datatype, nil
 	case "DistOp5":
-		if !rl.DistOp5.datatypeSet {
+		if !rl.DistOp5.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.DistOp5.datatype, nil
+		return rl.DistOp5.Datatype, nil
 	case "FncValues":
 		if !rl.FncValues.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
@@ -1007,12 +1007,12 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.FncValues.Datatype, nil
 	case "Identification":
-		if !rl.Identification.datatypeSet {
+		if !rl.Identification.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.Identification.datatype, nil
+		return rl.Identification.Datatype, nil
 	case "NoAxisPtsX":
 		if !rl.NoAxisPtsX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
@@ -1049,12 +1049,12 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.NoAxisPts5.Datatype, nil
 	case "NoRescaleX":
-		if !rl.NoRescaleX.datatypeSet {
+		if !rl.NoRescaleX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.NoRescaleX.datatype, nil
+		return rl.NoRescaleX.Datatype, nil
 	case "OffsetX":
 		if !rl.OffsetX.datatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
