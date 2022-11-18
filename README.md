@@ -50,6 +50,19 @@
 
  `b, exists := calibrationData.Hex[12345]`
  
+##  Test-Coverage
+Coverage was previously at upper 60s but has temporarily plummeted.
+60% includes all of the active paths in hex, s19 and a2l, 
+excluding error handling for every specific error possible.
+Because I recently started implementing reading characteristic values from hex the coverage keeps falling.
+This will only be a temporary issue as test files and test cases will be added after implementation.
+I'll cross verify the values against other knwon and "battle tested" parsers and 
+then implement testcases to check that calibrationReader gets to the same values as the other parser.
+However this will be done once the intial implementation is finished.
+It makes no sense to implement test cases just for test coverage's sake 
+until actual values can be read and cross verified.
+
+ 
 ##  Disclaimer
  I am a mechanical engineer, so any code you see might not be up to the standards of true/correct/modern/acceptable software development ;)
  Feedback is always appreciated.
