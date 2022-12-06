@@ -17,7 +17,7 @@ func (cv *CharacteristicValues) getAxisPointsX(cd *CalibrationData, rl *a2l.Reco
 	if rl.FixNoAxisPtsX.NumberOfAxisPointsSet {
 		noAxisPts = uint32(rl.FixNoAxisPtsX.NumberOfAxisPoints)
 	} else if !rl.FixNoAxisPtsX.NumberOfAxisPointsSet {
-		buf, isInt := cv.NoAxisPtsXValue.(int)
+		buf, isInt := cv.noAxisPtsXValue.(int)
 		if !isInt {
 			err = errors.New("could not convert number of axisPts datatype to int")
 			log.Err(err).Msg("could not retrieve NoAxisPointsX value")
@@ -51,7 +51,7 @@ func (cv *CharacteristicValues) getAxisPointsY(cd *CalibrationData, rl *a2l.Reco
 	if rl.FixNoAxisPtsY.NumberOfAxisPointsSet {
 		noAxisPts = uint32(rl.FixNoAxisPtsY.NumberOfAxisPoints)
 	} else if !rl.FixNoAxisPtsY.NumberOfAxisPointsSet {
-		buf, isInt := cv.NoAxisPtsYValue.(int)
+		buf, isInt := cv.noAxisPtsYValue.(int)
 		if !isInt {
 			err = errors.New("could not convert number of axisPts datatype to int")
 			log.Err(err).Msg("could not retrieve NoAxisPointsY value")
@@ -85,7 +85,7 @@ func (cv *CharacteristicValues) getAxisPointsZ(cd *CalibrationData, rl *a2l.Reco
 	if rl.FixNoAxisPtsZ.NumberOfAxisPointsSet {
 		noAxisPts = uint32(rl.FixNoAxisPtsZ.NumberOfAxisPoints)
 	} else if !rl.FixNoAxisPtsZ.NumberOfAxisPointsSet {
-		buf, isInt := cv.NoAxisPtsZValue.(int)
+		buf, isInt := cv.noAxisPtsZValue.(int)
 		if !isInt {
 			err = errors.New("could not convert number of axisPts datatype to int")
 			log.Err(err).Msg("could not retrieve NoAxisPointsZ value")
@@ -119,7 +119,7 @@ func (cv *CharacteristicValues) getAxisPoints4(cd *CalibrationData, rl *a2l.Reco
 	if rl.FixNoAxisPts4.NumberOfAxisPointsSet {
 		noAxisPts = uint32(rl.FixNoAxisPts4.NumberOfAxisPoints)
 	} else if !rl.FixNoAxisPts4.NumberOfAxisPointsSet {
-		buf, isInt := cv.NoAxisPts4Value.(int)
+		buf, isInt := cv.noAxisPts4Value.(int)
 		if !isInt {
 			err = errors.New("could not convert number of axisPts datatype to int")
 			log.Err(err).Msg("could not retrieve NoAxisPoints4 value")
@@ -153,7 +153,7 @@ func (cv *CharacteristicValues) getAxisPoints5(cd *CalibrationData, rl *a2l.Reco
 	if rl.FixNoAxisPts5.NumberOfAxisPointsSet {
 		noAxisPts = uint32(rl.FixNoAxisPts5.NumberOfAxisPoints)
 	} else if !rl.FixNoAxisPts5.NumberOfAxisPointsSet {
-		buf, isInt := cv.NoAxisPts5Value.(int)
+		buf, isInt := cv.noAxisPts5Value.(int)
 		if !isInt {
 			err = errors.New("could not convert number of axisPts datatype to int")
 			log.Err(err).Msg("could not retrieve NoAxisPoints5 value")

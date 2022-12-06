@@ -12,32 +12,30 @@ type CharacteristicValues struct {
 	AxisZValues         interface{}
 	Axis4Values         interface{}
 	Axis5Values         interface{}
-	DistOpXValue        interface{}
-	DistOpYValue        interface{}
-	DistOpZValue        interface{}
-	DistOp4Value        interface{}
-	DistOp5Value        interface{}
-	IdentificationValue interface{}
-	NoAxisPtsXValue     interface{}
-	NoAxisPtsYValue     interface{}
-	NoAxisPtsZValue     interface{}
-	NoAxisPts4Value     interface{}
-	NoAxisPts5Value     interface{}
-	NoRescaleXValue     interface{}
-	OffsetXValue        interface{}
-	OffsetYValue        interface{}
-	OffsetZValue        interface{}
-	Offset4Value        interface{}
-	Offset5Value        interface{}
-	ShiftOpXValue       interface{}
-	ShiftOpYValue       interface{}
-	ShiftOpZValue       interface{}
-	ShiftOp4Value       interface{}
-	ShiftOp5Value       interface{}
-	valuesBin           interface{}
-	valuesHex           interface{}
-	valuesDec           interface{}
-	valuesPhy           interface{}
+	distOpXValue        interface{}
+	distOpYValue        interface{}
+	distOpZValue        interface{}
+	distOp4Value        interface{}
+	distOp5Value        interface{}
+	identificationValue interface{}
+	noAxisPtsXValue     interface{}
+	noAxisPtsYValue     interface{}
+	noAxisPtsZValue     interface{}
+	noAxisPts4Value     interface{}
+	noAxisPts5Value     interface{}
+	noRescaleXValue     interface{}
+	offsetXValue        interface{}
+	offsetYValue        interface{}
+	offsetZValue        interface{}
+	offset4Value        interface{}
+	offset5Value        interface{}
+	shiftOpXValue       interface{}
+	shiftOpYValue       interface{}
+	shiftOpZValue       interface{}
+	shiftOp4Value       interface{}
+	shiftOp5Value       interface{}
+	ValuesDec           interface{}
+	ValuesPhy           interface{}
 }
 
 func (cv *CharacteristicValues) getCharacteristicValueDecimal() (interface{}, error) {

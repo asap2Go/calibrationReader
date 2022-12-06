@@ -571,27 +571,27 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 			err = errors.New("undefined case in record layout")
 			log.Err(err).Msg("axisRescaleX not implemented")
 		case "DistOpX":
-			cv.DistOpXValue, err = cd.getDistOpX(rl, &curPos)
+			cv.distOpXValue, err = cd.getDistOpX(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for distOpX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "DistOpY":
-			cv.DistOpYValue, err = cd.getDistOpY(rl, &curPos)
+			cv.distOpYValue, err = cd.getDistOpY(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for distOpY of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "DistOpZ":
-			cv.DistOpZValue, err = cd.getDistOpZ(rl, &curPos)
+			cv.distOpZValue, err = cd.getDistOpZ(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for distOpZ of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "DistOp4":
-			cv.DistOp4Value, err = cd.getDistOp4(rl, &curPos)
+			cv.distOp4Value, err = cd.getDistOp4(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for distOp4 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "DistOp5":
-			cv.DistOp5Value, err = cd.getDistOp5(rl, &curPos)
+			cv.distOp5Value, err = cd.getDistOp5(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for distOp5 of characteristic '" + cv.characteristic.Name + "'")
 			}
@@ -599,62 +599,62 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 			//interesting part
 
 		case "Identification":
-			cv.IdentificationValue, err = cd.getDistOp5(rl, &curPos)
+			cv.identificationValue, err = cd.getIdentification(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for identification of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoAxisPtsX":
-			cv.NoAxisPtsXValue, err = cd.getNoAxisPtsX(rl, &curPos)
+			cv.noAxisPtsXValue, err = cd.getNoAxisPtsX(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noAxisPtsX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoAxisPtsY":
-			cv.NoAxisPtsYValue, err = cd.getNoAxisPtsY(rl, &curPos)
+			cv.noAxisPtsYValue, err = cd.getNoAxisPtsY(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noAxisPtsY of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoAxisPtsZ":
-			cv.NoAxisPtsZValue, err = cd.getNoAxisPtsZ(rl, &curPos)
+			cv.noAxisPtsZValue, err = cd.getNoAxisPtsZ(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noAxisPtsZ of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoAxisPts4":
-			cv.NoAxisPts4Value, err = cd.getNoAxisPts4(rl, &curPos)
+			cv.noAxisPts4Value, err = cd.getNoAxisPts4(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noAxisPts4 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoAxisPts5":
-			cv.NoAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
+			cv.noAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noAxisPts5 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "NoRescaleX":
-			cv.NoAxisPts5Value, err = cd.getNoAxisPts5(rl, &curPos)
+			cv.noRescaleXValue, err = cd.getNoRescaleX(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for noRescaleX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "OffsetX":
-			cv.OffsetXValue, err = cd.getOffsetX(rl, &curPos)
+			cv.offsetXValue, err = cd.getOffsetX(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for offsetX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "OffsetY":
-			cv.OffsetYValue, err = cd.getOffsetY(rl, &curPos)
+			cv.offsetYValue, err = cd.getOffsetY(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for offsetY of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "OffsetZ":
-			cv.OffsetZValue, err = cd.getOffsetZ(rl, &curPos)
+			cv.offsetZValue, err = cd.getOffsetZ(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for offsetZ of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "Offset4":
-			cv.Offset4Value, err = cd.getOffset4(rl, &curPos)
+			cv.offset4Value, err = cd.getOffset4(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for offset4 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "Offset5":
-			cv.Offset5Value, err = cd.getOffset5(rl, &curPos)
+			cv.offset5Value, err = cd.getOffset5(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for offset5 of characteristic '" + cv.characteristic.Name + "'")
 			}
@@ -663,52 +663,51 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 			if err != nil {
 				log.Err(err).Msg("could not get offset from reserved datasize characteristic '" + cv.characteristic.Name + "'")
 			}
-
 		/*RIP_ADDR_X-Y-Z-4-5-W
 		are only used to store interpolation results,
 		so they are not read from hex as there is nothing to read
+		*/
 		case "RipAddrW":
 		case "RipAddrX":
 		case "RipAddrY":
 		case "RipAddrZ":
 		case "RipAddr4":
-		case "RipAddr5":*/
-
-		/*SRC_ADDR_X-Y-Z-4-5 define a input quantity meaning a measurement that determines which point of an axis is chosen for reading a value from a given characteristic.
+		case "RipAddr5":
+		/*SRC_ADDR_X-Y-Z-4-5
+		define a input quantity meaning a measurement that determines which point of an axis is chosen for reading a value from a given characteristic.
 		e.g. given a curve where the x-Axis is the rpm of the engine and the values are
 		a defined relative engine load:
 		x	1000	2000	3000	4000	5000	6000
 		v	  12	  27	  38	  42	  49	  18
 		then  if the input quantity for this curve would be the measurement of the current rpm of the engine
-		depending on the rpm a value is chosen.
+		depending on the rpm a value is chosen.*/
 		case "SrcAddrX":
 		case "SrcAddrY":
 		case "SrcAddrZ":
 		case "SrcAddr4":
 		case "SrcAddr5":
-		*/
 		case "ShiftOpX":
-			cv.ShiftOpXValue, err = cd.getShiftOpX(rl, &curPos)
+			cv.shiftOpXValue, err = cd.getShiftOpX(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for shiftOpX of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "ShiftOpY":
-			cv.ShiftOpYValue, err = cd.getShiftOpY(rl, &curPos)
+			cv.shiftOpYValue, err = cd.getShiftOpY(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for shiftOpY of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "ShiftOpZ":
-			cv.ShiftOpZValue, err = cd.getShiftOpZ(rl, &curPos)
+			cv.shiftOpZValue, err = cd.getShiftOpZ(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for shiftOpZ of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "ShiftOp4":
-			cv.ShiftOp4Value, err = cd.getShiftOp4(rl, &curPos)
+			cv.shiftOp4Value, err = cd.getShiftOp4(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for shiftOp4 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "ShiftOp5":
-			cv.ShiftOp5Value, err = cd.getShiftOp5(rl, &curPos)
+			cv.shiftOp5Value, err = cd.getShiftOp5(rl, &curPos)
 			if err != nil {
 				log.Err(err).Msg("could not get value for shiftOp5 of characteristic '" + cv.characteristic.Name + "'")
 			}
