@@ -702,12 +702,12 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 }
 
 func (cd *CalibrationData) getValue(curPos *uint32, dte a2l.DataTypeEnum, rl *a2l.RecordLayout) (interface{}, error) {
-	buf, err := cd.getBytes(cd.getNextAlignedAddress(*curPos, dte, rl), uint32(dte.GetDatatypeLength()))
+	bytes, err := cd.getBytes(cd.getNextAlignedAddress(*curPos, dte, rl), uint32(dte.GetDatatypeLength()))
 	if err != nil {
 		log.Err(err).Msg("could not retrieve value as byteSlice")
 		return nil, err
 	}
-	data, err := cd.convertByteSliceToDatatype(buf, dte)
+	data, err := cd.convertByteSliceToDatatype(bytes, dte)
 	if err != nil {
 		log.Err(err).Msg("could not convert byteSlice to dataType")
 		return nil, err
