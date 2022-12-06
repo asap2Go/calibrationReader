@@ -408,31 +408,32 @@ func parseCalibrationAccessEnum(tok *tokenGenerator) (calibrationAccessEnum, err
 	return ca, err
 }
 
-type typeEnum string
+// TypeEnum contains all types that an a2l characteristic might take
+type TypeEnum string
 
 const (
-	undefinedType typeEnum = emptyToken
+	undefinedType TypeEnum = emptyToken
 	//String value in ASCII format.
-	ASCII typeEnum = asciiToken
+	ASCII TypeEnum = asciiToken
 	//Curve Datatype of a characteristic is like an array for the y axis plus an axis description on the x axis
-	Curve typeEnum = curveToken
+	Curve TypeEnum = curveToken
 	//Map defines a two dimensional array
-	Map typeEnum = mapToken
+	Map TypeEnum = mapToken
 	//Cuboid defines a three dimensional array mostly represented as an array of Maps
-	Cuboid typeEnum = cuboidToken
+	Cuboid TypeEnum = cuboidToken
 	//The cuboid is stored as an array of maps with incremented or decremented Z coordinates. Rarely used
-	cube4 typeEnum = cube4Token
+	Cube4 TypeEnum = cube4Token
 	//The CUBE_5 is stored as an array of CUBE_4 with incremented or decremented Z5 coordinates. Rarely used
-	cube5 typeEnum = cube5Token
+	Cube5 TypeEnum = cube5Token
 	//Value Block is a a array with one, two or up to three dimensions.
-	ValBlk typeEnum = valBlkToken
+	ValBlk TypeEnum = valBlkToken
 	//Value is used in characteristics that only have one value like e.g. "1.0"
-	Value      typeEnum = valueToken
-	derived    typeEnum = derivedToken
-	extendedSi typeEnum = extendedSiToken
+	Value      TypeEnum = valueToken
+	Derived    TypeEnum = derivedToken
+	ExtendedSi TypeEnum = extendedSiToken
 )
 
-func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
+func parseTypeEnum(tok *tokenGenerator) (TypeEnum, error) {
 	t := undefinedType
 	var err error
 	switch tok.current() {
@@ -445,17 +446,17 @@ func parseTypeEnum(tok *tokenGenerator) (typeEnum, error) {
 	case cuboidToken:
 		t = Cuboid
 	case cube4Token:
-		t = cube4
+		t = Cube4
 	case cube5Token:
-		t = cube5
+		t = Cube5
 	case valBlkToken:
 		t = ValBlk
 	case valueToken:
 		t = Value
 	case derivedToken:
-		t = derived
+		t = Derived
 	case extendedSiToken:
-		t = extendedSi
+		t = ExtendedSi
 	default:
 		err = errors.New("incorrect value " + tok.current() + " for enum type")
 	}

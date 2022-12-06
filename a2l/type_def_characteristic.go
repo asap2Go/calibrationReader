@@ -12,7 +12,7 @@ type typeDefCharacteristic struct {
 	nameSet           bool
 	LongIdentifier    string
 	longIdentifierSet bool
-	Type              typeEnum
+	Type              TypeEnum
 	TypeSet           bool
 	recordLayout      string
 	recordLayoutSet   bool

@@ -12,7 +12,7 @@ type Characteristic struct {
 	nameSet           bool
 	LongIdentifier    string
 	longIdentifierSet bool
-	Type              typeEnum
+	Type              TypeEnum
 	TypeSet           bool
 	Address           string
 	AddressUint32     uint32

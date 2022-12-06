@@ -13,7 +13,7 @@ type unit struct {
 	longIdentifierSet bool
 	display           string
 	displaySet        bool
-	Type              typeEnum
+	Type              TypeEnum
 	TypeSet           bool
 	refUnit           refUnit
 	siExponents       siExponents

@@ -18,6 +18,7 @@ import (
 	"time"
 
 	"github.com/asap2Go/calibrationReader/a2l"
+	"github.com/x448/float16"
 
 	"github.com/asap2Go/calibrationReader/ihex32"
 
@@ -38,6 +39,11 @@ type CalibrationData struct {
 	//it is being simplified as a map that can be accessed by an address
 	//represented by an integer and returns a byte as value.
 	Hex map[uint32]byte
+}
+
+// Numeric is used to define all number types used within the generic functions in this module
+type Numeric interface {
+	uint8 | int8 | uint16 | int16 | uint32 | int32 | uint64 | int64 | float16.Float16 | float32 | float64
 }
 
 // ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -591,6 +597,7 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 			}
 		case "FncValues":
 			//interesting part
+
 		case "Identification":
 			cv.IdentificationValue, err = cd.getDistOp5(rl, &curPos)
 			if err != nil {
@@ -700,7 +707,7 @@ func (cd *CalibrationData) getValue(curPos *uint32, dte a2l.DataTypeEnum, rl *a2
 		log.Err(err).Msg("could not retrieve value as byteSlice")
 		return nil, err
 	}
-	data, err := cd.convertByteSliceToDatatype(buf, rl.AxisPts5.Datatype)
+	data, err := cd.convertByteSliceToDatatype(buf, dte)
 	if err != nil {
 		log.Err(err).Msg("could not convert byteSlice to dataType")
 		return nil, err
