@@ -57,11 +57,11 @@ type RecordLayout struct {
 	SrcAddrZ             srcAddrZ
 	SrcAddr4             srcAddr4
 	SrcAddr5             srcAddr5
-	ShiftOpX             shiftOpX
-	ShiftOpY             shiftOpY
-	ShiftOpZ             shiftOpZ
-	ShiftOp4             shiftOp4
-	ShiftOp5             shiftOp5
+	ShiftOpX             ShiftOpX
+	ShiftOpY             ShiftOpY
+	ShiftOpZ             ShiftOpZ
+	ShiftOp4             ShiftOp4
+	ShiftOp5             ShiftOp5
 	StaticRecordLayout   staticRecordLayoutKeyword
 	StaticAddressOffsets staticAddressOffsetsKeyword
 	RelativePositions    map[uint16]string
@@ -815,54 +815,54 @@ func (rl *RecordLayout) GetRecordLayoutRelativePositions() (map[uint16]string, e
 		order[rl.RipAddrW.Position] = "RipAddrW"
 	}
 
-	if rl.ShiftOp4.positionSet {
-		field, exists := order[rl.ShiftOp4.position]
+	if rl.ShiftOp4.PositionSet {
+		field, exists := order[rl.ShiftOp4.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp4")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.ShiftOp4.position] = "ShiftOp4"
+		order[rl.ShiftOp4.Position] = "ShiftOp4"
 	}
 
-	if rl.ShiftOp5.positionSet {
-		field, exists := order[rl.ShiftOp5.position]
+	if rl.ShiftOp5.PositionSet {
+		field, exists := order[rl.ShiftOp5.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOp5")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.ShiftOp5.position] = "ShiftOp5"
+		order[rl.ShiftOp5.Position] = "ShiftOp5"
 	}
 
-	if rl.ShiftOpX.positionSet {
-		field, exists := order[rl.ShiftOpX.position]
+	if rl.ShiftOpX.PositionSet {
+		field, exists := order[rl.ShiftOpX.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpX")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.ShiftOpX.position] = "ShiftOpX"
+		order[rl.ShiftOpX.Position] = "ShiftOpX"
 	}
 
-	if rl.ShiftOpY.positionSet {
-		field, exists := order[rl.ShiftOpY.position]
+	if rl.ShiftOpY.PositionSet {
+		field, exists := order[rl.ShiftOpY.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpY")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.ShiftOpY.position] = "ShiftOpY"
+		order[rl.ShiftOpY.Position] = "ShiftOpY"
 	}
 
-	if rl.ShiftOpZ.positionSet {
-		field, exists := order[rl.ShiftOpZ.position]
+	if rl.ShiftOpZ.PositionSet {
+		field, exists := order[rl.ShiftOpZ.Position]
 		if exists {
 			err = errors.New("position set twice in RecordLayout " + rl.Name + " for " + field + " and ShiftOpZ")
 			log.Err(err).Msg("recordLayout relative positions could not be determined")
 			return order, err
 		}
-		order[rl.ShiftOpZ.position] = "ShiftOpZ"
+		order[rl.ShiftOpZ.Position] = "ShiftOpZ"
 	}
 
 	if rl.SrcAddr4.positionSet {
@@ -1168,40 +1168,40 @@ func (rl *RecordLayout) GetDatatypeByFieldName(name string) (DataTypeEnum, error
 		}
 		return rl.SrcAddr5.datatype, nil
 	case "ShiftOpX":
-		if !rl.ShiftOpX.datatypeSet {
+		if !rl.ShiftOpX.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.ShiftOpX.datatype, nil
+		return rl.ShiftOpX.Datatype, nil
 	case "ShiftOpY":
-		if !rl.ShiftOpY.datatypeSet {
+		if !rl.ShiftOpY.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.ShiftOpY.datatype, nil
+		return rl.ShiftOpY.Datatype, nil
 	case "ShiftOpZ":
-		if !rl.ShiftOpZ.datatypeSet {
+		if !rl.ShiftOpZ.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.ShiftOpZ.datatype, nil
+		return rl.ShiftOpZ.Datatype, nil
 	case "ShiftOp4":
-		if !rl.ShiftOp4.datatypeSet {
+		if !rl.ShiftOp4.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.ShiftOp4.datatype, nil
+		return rl.ShiftOp4.Datatype, nil
 	case "ShiftOp5":
-		if !rl.ShiftOp5.datatypeSet {
+		if !rl.ShiftOp5.DatatypeSet {
 			err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 			log.Err(err).Msg("could not get datatype")
 			return undefinedDatatype, err
 		}
-		return rl.ShiftOp5.datatype, nil
+		return rl.ShiftOp5.Datatype, nil
 	default:
 		err := errors.New("no datatype set for " + name + " in record layout " + rl.Name)
 		log.Err(err).Msg("could not get datatype")

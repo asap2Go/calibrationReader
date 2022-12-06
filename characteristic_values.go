@@ -29,6 +29,11 @@ type CharacteristicValues struct {
 	OffsetZValue        interface{}
 	Offset4Value        interface{}
 	Offset5Value        interface{}
+	ShiftOpXValue       interface{}
+	ShiftOpYValue       interface{}
+	ShiftOpZValue       interface{}
+	ShiftOp4Value       interface{}
+	ShiftOp5Value       interface{}
 	valuesBin           interface{}
 	valuesHex           interface{}
 	valuesDec           interface{}
@@ -40,9 +45,5 @@ func (cv *CharacteristicValues) getCharacteristicValueDecimal() (interface{}, er
 }
 
 func (cv *CharacteristicValues) getCharacteristicValuePhysical() (interface{}, error) {
-	return nil, nil
-}
-
-func (cv *CharacteristicValues) getCharacteristicValueHex() (interface{}, error) {
 	return nil, nil
 }

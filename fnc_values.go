@@ -16,6 +16,11 @@ import (
 //to determine how to read the FNC_Values correctly, this can lead to hard to detect errors when not implemented.
 
 func (cv *CharacteristicValues) getFncValues(cd *CalibrationData, rl *a2l.RecordLayout, curPos *uint32) (interface{}, error) {
+	if !rl.FncValues.DatatypeSet {
+		err := errors.New("fncValues datatype not set")
+		log.Err(err).Msg("could not determine datatype of FncValues of characteristic " + cv.characteristic.Name)
+		return nil, err
+	}
 	val, err := cv.getValuesByCharacteristicType(cd, rl, curPos)
 	if err != nil {
 		log.Err(err).Msg("could not retrieve fncValues value")
@@ -31,11 +36,7 @@ func (cv *CharacteristicValues) getValuesByCharacteristicType(cd *CalibrationDat
 		log.Err(err).Msg("could not determine type of characteristic " + cv.characteristic.Name)
 		return nil, err
 	}
-	if !rl.FncValues.DatatypeSet {
-		err := errors.New("fncValues datatype not set")
-		log.Err(err).Msg("could not determine datatype of FncValues of characteristic " + cv.characteristic.Name)
-		return nil, err
-	}
+
 	switch cv.characteristic.Type {
 	case a2l.ASCII:
 	case a2l.Curve:

@@ -686,12 +686,32 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		case "SrcAddrZ":
 		case "SrcAddr4":
 		case "SrcAddr5":
-		case "ShiftOpX":
-		case "ShiftOpY":
-		case "ShiftOpZ":
-		case "ShiftOp4":
-		case "ShiftOp5":
 		*/
+		case "ShiftOpX":
+			cv.ShiftOpXValue, err = cd.getShiftOpX(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for shiftOpX of characteristic '" + cv.characteristic.Name + "'")
+			}
+		case "ShiftOpY":
+			cv.ShiftOpYValue, err = cd.getShiftOpY(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for shiftOpY of characteristic '" + cv.characteristic.Name + "'")
+			}
+		case "ShiftOpZ":
+			cv.ShiftOpZValue, err = cd.getShiftOpZ(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for shiftOpZ of characteristic '" + cv.characteristic.Name + "'")
+			}
+		case "ShiftOp4":
+			cv.ShiftOp4Value, err = cd.getShiftOp4(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for shiftOp4 of characteristic '" + cv.characteristic.Name + "'")
+			}
+		case "ShiftOp5":
+			cv.ShiftOp5Value, err = cd.getShiftOp5(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for shiftOp5 of characteristic '" + cv.characteristic.Name + "'")
+			}
 		default:
 			err := errors.New("undefined case in record layout position")
 			if err != nil {
