@@ -7,30 +7,30 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type compuVTab struct {
-	name                string
-	nameSet             bool
-	longIdentifier      string
-	longIdentifierSet   bool
-	conversionType      conversionTypeEnum
-	conversionTypeSet   bool
-	numberValuePairs    uint16
-	numberValuePairsSet bool
-	inVal               []float64
-	inValSet            bool
-	outVal              []string
-	outValSet           bool
-	defaultValue        defaultValue
+type CompuVTab struct {
+	Name                string
+	NameSet             bool
+	LongIdentifier      string
+	LongIdentifierSet   bool
+	ConversionType      conversionTypeEnum
+	ConversionTypeSet   bool
+	NumberValuePairs    uint16
+	NumberValuePairsSet bool
+	InVal               []float64
+	InValSet            bool
+	OutVal              []string
+	OutValSet           bool
+	DefaultValue        DefaultValue
 }
 
-func parseCompuVtab(tok *tokenGenerator) (compuVTab, error) {
-	cvt := compuVTab{}
+func parseCompuVtab(tok *tokenGenerator) (CompuVTab, error) {
+	cvt := CompuVTab{}
 	var err error
 forLoop:
 	for {
 		switch tok.next() {
 		case defaultValueToken:
-			cvt.defaultValue, err = parseDefaultValue(tok)
+			cvt.DefaultValue, err = parseDefaultValue(tok)
 			if err != nil {
 				log.Err(err).Msg("compuVtab defaultValue could not be parsed")
 				break forLoop
@@ -47,49 +47,49 @@ forLoop:
 				err = errors.New("unexpected token " + tok.current())
 				log.Err(err).Msg("compuVTab could not be parsed")
 				break forLoop
-			} else if !cvt.nameSet {
-				cvt.name = tok.current()
-				cvt.nameSet = true
+			} else if !cvt.NameSet {
+				cvt.Name = tok.current()
+				cvt.NameSet = true
 				log.Info().Msg("compuVtab name successfully parsed")
-			} else if !cvt.longIdentifierSet {
-				cvt.longIdentifier = tok.current()
-				cvt.longIdentifierSet = true
+			} else if !cvt.LongIdentifierSet {
+				cvt.LongIdentifier = tok.current()
+				cvt.LongIdentifierSet = true
 				log.Info().Msg("compuVtab longIdentifier successfully parsed")
-			} else if !cvt.conversionTypeSet {
-				cvt.conversionType, err = parseConversionTypeEnum(tok)
+			} else if !cvt.ConversionTypeSet {
+				cvt.ConversionType, err = parseConversionTypeEnum(tok)
 				if err != nil {
 					log.Err(err).Msg("compuVtab conversionType could not be parsed")
 					break forLoop
 				}
-				cvt.conversionTypeSet = true
+				cvt.ConversionTypeSet = true
 				log.Info().Msg("compuVtab conversionType successfully parsed")
-			} else if !cvt.numberValuePairsSet {
+			} else if !cvt.NumberValuePairsSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 16)
 				if err != nil {
 					log.Err(err).Msg("compuVtab numberValuePairs could not be parsed")
 					break forLoop
 				}
-				cvt.numberValuePairs = uint16(buf)
-				cvt.numberValuePairsSet = true
-			} else if !cvt.inValSet || !cvt.outValSet {
+				cvt.NumberValuePairs = uint16(buf)
+				cvt.NumberValuePairsSet = true
+			} else if !cvt.InValSet || !cvt.OutValSet {
 				var buf float64
 				buf, err = strconv.ParseFloat(tok.current(), 64)
 				if err != nil {
 					log.Err(err).Msg("compuVtab inVal could not be parsed")
 					break forLoop
 				}
-				cvt.inVal = append(cvt.inVal, buf)
+				cvt.InVal = append(cvt.InVal, buf)
 				log.Info().Msg("compuVtab inVal successfully parsed")
-				if uint16(len(cvt.inVal)) == cvt.numberValuePairs {
-					cvt.inValSet = true
+				if uint16(len(cvt.InVal)) == cvt.NumberValuePairs {
+					cvt.InValSet = true
 					log.Info().Msg("compuVtab inVal successfully parsed")
 				}
 				tok.next()
-				cvt.outVal = append(cvt.outVal, tok.current())
+				cvt.OutVal = append(cvt.OutVal, tok.current())
 				log.Info().Msg("compuVtab outVal successfully parsed")
-				if uint16(len(cvt.outVal)) == cvt.numberValuePairs {
-					cvt.outValSet = true
+				if uint16(len(cvt.OutVal)) == cvt.NumberValuePairs {
+					cvt.OutValSet = true
 				}
 			}
 		}

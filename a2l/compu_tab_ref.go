@@ -6,13 +6,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type compuTabRef struct {
-	conversionTable    string
-	conversionTableSet bool
+type CompuTabRef struct {
+	ConversionTable    string
+	ConversionTableSet bool
 }
 
-func parseCompuTabRef(tok *tokenGenerator) (compuTabRef, error) {
-	ctr := compuTabRef{}
+func parseCompuTabRef(tok *tokenGenerator) (CompuTabRef, error) {
+	ctr := CompuTabRef{}
 	var err error
 	tok.next()
 	if tok.current() == emptyToken {
@@ -21,9 +21,9 @@ func parseCompuTabRef(tok *tokenGenerator) (compuTabRef, error) {
 	} else if isKeyword(tok.current()) {
 		err = errors.New("unexpected token " + tok.current())
 		log.Err(err).Msg("compuTabRef could not be parsed")
-	} else if !ctr.conversionTableSet {
-		ctr.conversionTable = tok.current()
-		ctr.conversionTableSet = true
+	} else if !ctr.ConversionTableSet {
+		ctr.ConversionTable = tok.current()
+		ctr.ConversionTableSet = true
 	}
 	return ctr, err
 }

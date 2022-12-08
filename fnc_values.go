@@ -43,7 +43,7 @@ func (cv *CharacteristicValues) getFncValues2D(cd *CalibrationData, rl *a2l.Reco
 			log.Err(err).Msg("could not retrieve NoFncValues value")
 			return nil, err
 		}
-		noFncValues = cv.noFncValuesXValue
+		//noFncValues = cv.noFncValuesXValue
 	} else {
 		err = errors.New("number of FncValues could not be determined")
 		log.Err(err).Msg("could not convert FncValues values")

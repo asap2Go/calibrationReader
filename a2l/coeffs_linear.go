@@ -7,15 +7,15 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type coeffsLinear struct {
-	a    float64
-	aSet bool
-	b    float64
-	bSet bool
+type CoeffsLinear struct {
+	A    float64
+	ASet bool
+	B    float64
+	BSet bool
 }
 
-func parseCoeffsLinear(tok *tokenGenerator) (coeffsLinear, error) {
-	cl := coeffsLinear{}
+func parseCoeffsLinear(tok *tokenGenerator) (CoeffsLinear, error) {
+	cl := CoeffsLinear{}
 	var err error
 forLoop:
 	for {
@@ -28,25 +28,25 @@ forLoop:
 			err = errors.New("unexpected token " + tok.current())
 			log.Err(err).Msg("coeffsLinear could not be parsed")
 			break forLoop
-		} else if !cl.aSet {
+		} else if !cl.ASet {
 			var buf float64
 			buf, err = strconv.ParseFloat(tok.current(), 64)
 			if err != nil {
 				log.Err(err).Msg("coeffsLinear a could not be parsed")
 				break forLoop
 			}
-			cl.a = buf
-			cl.aSet = true
+			cl.A = buf
+			cl.ASet = true
 			log.Info().Msg("coeffsLinear a successfully parsed")
-		} else if !cl.bSet {
+		} else if !cl.BSet {
 			var buf float64
 			buf, err = strconv.ParseFloat(tok.current(), 64)
 			if err != nil {
 				log.Err(err).Msg("coeffsLinear b could not be parsed")
 				break forLoop
 			}
-			cl.b = buf
-			cl.bSet = true
+			cl.B = buf
+			cl.BSet = true
 			log.Info().Msg("coeffsLinear b successfully parsed")
 			break forLoop
 		}

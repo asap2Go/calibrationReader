@@ -18,10 +18,10 @@ type Module struct {
 	AxisPts                map[string]axisPts
 	blobs                  map[string]blob
 	Characteristics        map[string]Characteristic
-	CompuMethods           map[string]compuMethod
-	CompuTabs              map[string]compuTab
-	CompuVTabs             map[string]compuVTab
-	CompuVTabRanges        map[string]compuVTabRange
+	CompuMethods           map[string]CompuMethod
+	CompuTabs              map[string]CompuTab
+	CompuVTabs             map[string]CompuVTab
+	CompuVTabRanges        map[string]CompuVTabRange
 	frame                  frame
 	Functions              map[string]function
 	Groups                 map[string]group
@@ -48,10 +48,10 @@ func parseModule(tok *tokenGenerator) (Module, error) {
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
 	myModule.Characteristics = make(map[string]Characteristic, 10000)
-	myModule.CompuMethods = make(map[string]compuMethod, 1000)
-	myModule.CompuTabs = make(map[string]compuTab, 1000)
-	myModule.CompuVTabs = make(map[string]compuVTab, 1000)
-	myModule.CompuVTabRanges = make(map[string]compuVTabRange, 1000)
+	myModule.CompuMethods = make(map[string]CompuMethod, 1000)
+	myModule.CompuTabs = make(map[string]CompuTab, 1000)
+	myModule.CompuVTabs = make(map[string]CompuVTab, 1000)
+	myModule.CompuVTabRanges = make(map[string]CompuVTabRange, 1000)
 	myModule.Functions = make(map[string]function, 10000)
 	myModule.Groups = make(map[string]group, 1000)
 	myModule.ifData = make(map[string]IfData, 1000)
@@ -70,10 +70,10 @@ func parseModule(tok *tokenGenerator) (Module, error) {
 	var bufAxisPts axisPts
 	var bufBlob blob
 	var bufCharacteristic Characteristic
-	var bufCompuMethod compuMethod
-	var bufCompuTab compuTab
-	var bufCompuVtab compuVTab
-	var bufCompuVtabRange compuVTabRange
+	var bufCompuMethod CompuMethod
+	var bufCompuTab CompuTab
+	var bufCompuVtab CompuVTab
+	var bufCompuVtabRange CompuVTabRange
 	var bufFunction function
 	var bufGroup group
 	var bufIfData IfData
@@ -129,7 +129,7 @@ forLoop:
 				log.Err(err).Msg("module compuMethod could not be parsed")
 				break forLoop
 			}
-			myModule.CompuMethods[bufCompuMethod.name] = bufCompuMethod
+			myModule.CompuMethods[bufCompuMethod.Name] = bufCompuMethod
 			log.Info().Msg("module compuMethod successfully parsed")
 		case beginCompuTabToken:
 			bufCompuTab, err = parseCompuTab(tok)
@@ -137,7 +137,7 @@ forLoop:
 				log.Err(err).Msg("module compuTab could not be parsed")
 				break forLoop
 			}
-			myModule.CompuTabs[bufCompuTab.name] = bufCompuTab
+			myModule.CompuTabs[bufCompuTab.Name] = bufCompuTab
 			log.Info().Msg("module compuTab successfully parsed")
 		case beginCompuVtabToken:
 			bufCompuVtab, err = parseCompuVtab(tok)
@@ -145,7 +145,7 @@ forLoop:
 				log.Err(err).Msg("module compuVtab could not be parsed")
 				break forLoop
 			}
-			myModule.CompuVTabs[bufCompuVtab.name] = bufCompuVtab
+			myModule.CompuVTabs[bufCompuVtab.Name] = bufCompuVtab
 			log.Info().Msg("module compuVtab successfully parsed")
 		case beginCompuVtabRangeToken:
 			bufCompuVtabRange, err = parseCompuVtabRange(tok)
@@ -153,7 +153,7 @@ forLoop:
 				log.Err(err).Msg("module compuVtabRange could not be parsed")
 				break forLoop
 			}
-			myModule.CompuVTabRanges[bufCompuVtabRange.name] = bufCompuVtabRange
+			myModule.CompuVTabRanges[bufCompuVtabRange.Name] = bufCompuVtabRange
 			log.Info().Msg("module compuVtabRange successfully parsed")
 		case beginFrameToken:
 			myModule.frame, err = parseFrame(tok)
@@ -331,10 +331,10 @@ func parseModuleMultithreaded(tok *tokenGenerator) (Module, error) {
 	myModule.AxisPts = make(map[string]axisPts, 1000)
 	myModule.blobs = make(map[string]blob, 5)
 	myModule.Characteristics = make(map[string]Characteristic, 10000)
-	myModule.CompuMethods = make(map[string]compuMethod, 1000)
-	myModule.CompuTabs = make(map[string]compuTab, 1000)
-	myModule.CompuVTabs = make(map[string]compuVTab, 1000)
-	myModule.CompuVTabRanges = make(map[string]compuVTabRange, 1000)
+	myModule.CompuMethods = make(map[string]CompuMethod, 1000)
+	myModule.CompuTabs = make(map[string]CompuTab, 1000)
+	myModule.CompuVTabs = make(map[string]CompuVTab, 1000)
+	myModule.CompuVTabRanges = make(map[string]CompuVTabRange, 1000)
 	myModule.Functions = make(map[string]function, 10000)
 	myModule.Groups = make(map[string]group, 1000)
 	myModule.ifData = make(map[string]IfData, 1000)
@@ -375,10 +375,10 @@ forLoop:
 	cAxisPts := make(chan axisPts, 100)
 	cBlob := make(chan blob, 5)
 	cCharacteristic := make(chan Characteristic, 1000)
-	cCompuMethod := make(chan compuMethod, 100)
-	cCompuTab := make(chan compuTab, 100)
-	cCompuVtab := make(chan compuVTab, 100)
-	cCompuVtabRange := make(chan compuVTabRange, 100)
+	cCompuMethod := make(chan CompuMethod, 100)
+	cCompuTab := make(chan CompuTab, 100)
+	cCompuVtab := make(chan CompuVTab, 100)
+	cCompuVtabRange := make(chan CompuVTabRange, 100)
 	cFrame := make(chan frame, 1)
 	cFunction := make(chan function, 1000)
 	cGroup := make(chan group, 100)
@@ -453,8 +453,8 @@ forLoop:
 // usually the Select Collector is to be prefered as it is mostly faster and always easier on memory
 // as the additional goroutines spun up in collectChannelsMultithreaded seem to block the GC a lot
 func collectChannelsMultithreaded(myModule *Module, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
-	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
-	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
+	cCompuMethod chan CompuMethod, cCompuTab chan CompuTab, cCompuVtab chan CompuVTab,
+	cCompuVtabRange chan CompuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
@@ -503,28 +503,28 @@ func collectChannelsMultithreaded(myModule *Module, cA2ml chan a2ml, cAxisPts ch
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cCompuMethod {
-			myModule.CompuMethods[elem.name] = elem
+			myModule.CompuMethods[elem.Name] = elem
 		}
 		log.Info().Msg("collected compuMethods")
 	}(wgCollectors)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cCompuTab {
-			myModule.CompuTabs[elem.name] = elem
+			myModule.CompuTabs[elem.Name] = elem
 		}
 		log.Info().Msg("collected compuTabs")
 	}(wgCollectors)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cCompuVtab {
-			myModule.CompuVTabs[elem.name] = elem
+			myModule.CompuVTabs[elem.Name] = elem
 		}
 		log.Info().Msg("collected compuVtabs")
 	}(wgCollectors)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		for elem := range cCompuVtabRange {
-			myModule.CompuVTabRanges[elem.name] = elem
+			myModule.CompuVTabRanges[elem.Name] = elem
 		}
 		log.Info().Msg("collected compuVtabRanges")
 	}(wgCollectors)
@@ -664,8 +664,8 @@ func collectChannelsMultithreaded(myModule *Module, cA2ml chan a2ml, cAxisPts ch
 // channels have to be closed in order for the collector to recognize when it is done
 // because no more data can be sent and all channels are empty
 func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
-	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
-	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
+	cCompuMethod chan CompuMethod, cCompuTab chan CompuTab, cCompuVtab chan CompuVTab,
+	cCompuVtabRange chan CompuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
@@ -707,8 +707,8 @@ func closeChannelsAfterParsing(wg *sync.WaitGroup, cA2ml chan a2ml, cAxisPts cha
 // parseModuleMainLoop is used by the parseModuleMultithreaded function to run the module parser in individual goroutines
 func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	cA2ml chan a2ml, cAxisPts chan axisPts, cBlob chan blob, cCharacteristic chan Characteristic,
-	cCompuMethod chan compuMethod, cCompuTab chan compuTab, cCompuVtab chan compuVTab,
-	cCompuVtabRange chan compuVTabRange, cFrame chan frame, cFunction chan function,
+	cCompuMethod chan CompuMethod, cCompuTab chan CompuTab, cCompuVtab chan CompuVTab,
+	cCompuVtabRange chan CompuVTabRange, cFrame chan frame, cFunction chan function,
 	cGroup chan group, cIfData chan IfData, cMeasurement chan measurement,
 	cModCommon chan modCommon, cModPar chan modPar, cRecordLayout chan RecordLayout,
 	cInstance chan instance, cTransformer chan transformer, cTypeDefAxis chan typeDefAxis,
@@ -724,10 +724,10 @@ func parseModuleMainLoop(wg *sync.WaitGroup, minIndex int, maxIndex int,
 	var bufAxisPts axisPts
 	var bufBlob blob
 	var bufCharacteristic Characteristic
-	var bufCompuMethod compuMethod
-	var bufCompuTab compuTab
-	var bufCompuVtab compuVTab
-	var bufCompuVtabRange compuVTabRange
+	var bufCompuMethod CompuMethod
+	var bufCompuTab CompuTab
+	var bufCompuVtab CompuVTab
+	var bufCompuVtabRange CompuVTabRange
 	var bufFunction function
 	var bufGroup group
 	var bufIfData IfData
