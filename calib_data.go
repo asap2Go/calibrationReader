@@ -720,16 +720,19 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 	}
 }
 
-func (cd *CalibrationData) getValue(curPos *uint32, dte a2l.DataTypeEnum, rl *a2l.RecordLayout) (interface{}, error) {
+func (cd *CalibrationData) getValue(curPos *uint32, dte a2l.DataTypeEnum, rl *a2l.RecordLayout) ([]byte, error) {
 	bytes, err := cd.getBytes(cd.getNextAlignedAddress(*curPos, dte, rl), uint32(dte.GetDatatypeLength()))
 	if err != nil {
 		log.Err(err).Msg("could not retrieve value as byteSlice")
 		return nil, err
 	}
-	data, err := cd.convertByteSliceToDatatype(bytes, dte)
-	if err != nil {
-		log.Err(err).Msg("could not convert byteSlice to dataType")
-		return nil, err
-	}
-	return data, nil
+	return bytes, nil
+}
+
+func convertNumericToInt[num Numeric](n num) int64 {
+	return int64(n)
+}
+
+func convertNumericToFloat[num Numeric](n num) float64 {
+	return float64(n)
 }

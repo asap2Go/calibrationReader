@@ -38,7 +38,7 @@ type measurement struct {
 	functionList        FunctionList
 	ifData              []IfData
 	layout              layout
-	matrixDim           matrixDim
+	matrixDim           MatrixDim
 	maxRefresh          MaxRefresh
 	modelLink           modelLink
 	physUnit            physUnit

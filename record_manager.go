@@ -135,96 +135,96 @@ func (cd *CalibrationData) convertStringToUint32Address(str string) (uint32, err
 // if not enough bytes are supplied the conversion fails.
 // if MsbFirstMswLast or MsbLastMswFirst are used as binary encoding then the conversion fails
 // as those are not implemented
-func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.DataTypeEnum) (interface{}, error) {
+func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.DataTypeEnum) (float64, error) {
 	//bounds check
 	if len(byteSlice) == 0 || len(byteSlice)*8 < int(dte.GetDatatypeLength()) {
 		err := errors.New("byte slice holds " + fmt.Sprintf("%d", len(byteSlice)) + " bytes. " +
 			strconv.Itoa(int(dte.GetDatatypeLength()/8)) + " bytes necessary to convert to datatype " + dte.String())
 		log.Err(err).Msg("conversion failed")
-		return nil, err
+		return 0.0, err
 	}
 	//check which byteorder is used
 	modCom := &cd.A2l.Project.Modules[cd.ModuleIndex].ModCommon
 	if modCom.ByteOrder.ByteOrder == a2l.MsbFirstMswLast || modCom.ByteOrder.ByteOrder == a2l.MsbLastMswFirst {
 		err := errors.New("unexpected byte order")
 		log.Err(err).Msg("byte order " + string(modCom.ByteOrder.ByteOrder) + "not implemented")
-		return nil, err
+		return 0.0, err
 	}
 	if !modCom.ByteOrder.ByteOrderSet || modCom.ByteOrder.ByteOrder == a2l.BigEndian || modCom.ByteOrder.ByteOrder == a2l.MsbFirst {
 		switch dte {
 		case a2l.UBYTE:
-			return byteSlice[0], nil
+			return float64(byteSlice[0]), nil
 		case a2l.SBYTE:
-			return int8(byteSlice[0]), nil
+			return float64(int8(byteSlice[0])), nil
 		case a2l.UWORD:
 			val := binary.BigEndian.Uint32(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.SWORD:
 			val := int32(binary.BigEndian.Uint32(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.ULONG:
 			val := binary.BigEndian.Uint64(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.SLONG:
 			val := int64(binary.BigEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.AUint64:
 			val := binary.BigEndian.Uint64(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.AInt64:
 			val := int64(binary.BigEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float16Ieee:
 			val := float16.Frombits(binary.BigEndian.Uint16(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float32Ieee:
 			val := math.Float32frombits(binary.BigEndian.Uint32(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float64Ieee:
 			val := math.Float64frombits(binary.BigEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		default:
 			err := errors.New("unexpected datatype")
 			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
-			return nil, err
+			return 0.0, err
 		}
 	} else {
 		switch dte {
 		case a2l.UBYTE:
-			return byteSlice[0], nil
+			return float64(byteSlice[0]), nil
 		case a2l.SBYTE:
-			return int8(byteSlice[0]), nil
+			return float64(int8(byteSlice[0])), nil
 		case a2l.UWORD:
 			val := binary.LittleEndian.Uint32(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.SWORD:
 			val := int32(binary.LittleEndian.Uint32(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.ULONG:
 			val := binary.LittleEndian.Uint64(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.SLONG:
 			val := int64(binary.LittleEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.AUint64:
 			val := binary.LittleEndian.Uint64(byteSlice)
-			return val, nil
+			return float64(val), nil
 		case a2l.AInt64:
 			val := int64(binary.LittleEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float16Ieee:
 			val := float16.Frombits(binary.LittleEndian.Uint16(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float32Ieee:
 			val := math.Float32frombits(binary.LittleEndian.Uint32(byteSlice))
-			return val, nil
+			return float64(val), nil
 		case a2l.Float64Ieee:
 			val := math.Float64frombits(binary.LittleEndian.Uint64(byteSlice))
-			return val, nil
+			return float64(val), nil
 		default:
 			err := errors.New("unexpected datatype")
 			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
-			return nil, err
+			return 0.0, err
 		}
 	}
 }

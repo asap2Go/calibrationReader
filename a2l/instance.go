@@ -21,7 +21,7 @@ type instance struct {
 	displayIdentifier   DisplayIdentifier
 	ecuAddressExtension ecuAddressExtension
 	ifData              []IfData
-	matrixDim           matrixDim
+	matrixDim           MatrixDim
 	maxRefresh          MaxRefresh
 	modelLink           modelLink
 	overwrite           overwrite

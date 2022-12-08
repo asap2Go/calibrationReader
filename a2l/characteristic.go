@@ -20,6 +20,7 @@ type Characteristic struct {
 	//Deposit is the identifier of the corresponding record layout
 	Deposit       string
 	DepositSet    bool
+	encoding      encodingEnum
 	maxDiff       float64
 	maxDiffSet    bool
 	conversion    string
@@ -45,7 +46,7 @@ type Characteristic struct {
 	guardRails              guardRailsKeyword
 	ifData                  []IfData
 	mapList                 []MapList
-	matrixDim               matrixDim
+	MatrixDim               MatrixDim
 	maxRefresh              MaxRefresh
 	modelLink               modelLink
 	number                  Number
@@ -132,6 +133,13 @@ forLoop:
 				break forLoop
 			}
 			log.Info().Msg("characteristic displayIdentifier successfully parsed")
+		case encodingToken:
+			c.encoding, err = parseEncodingEnum(tok)
+			if err != nil {
+				log.Err(err).Msg("characteristic encoding could not be parsed")
+				break forLoop
+			}
+			log.Info().Msg("characteristic encoding successfully parsed")
 		case ecuAddressExtensionToken:
 			c.ecuAddressExtension, err = parseECUAddressExtension(tok)
 			if err != nil {
@@ -188,7 +196,7 @@ forLoop:
 			c.mapList = append(c.mapList, buf)
 			log.Info().Msg("characteristic mapList successfully parsed")
 		case matrixDimToken:
-			c.matrixDim, err = parseMatrixDim(tok)
+			c.MatrixDim, err = parseMatrixDim(tok)
 			if err != nil {
 				log.Err(err).Msg("characteristic matrixDim could not be parsed")
 				break forLoop

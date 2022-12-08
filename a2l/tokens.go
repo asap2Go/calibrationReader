@@ -140,6 +140,7 @@ const ecuCalibrationOffsetToken = "ECU_CALIBRATION_OFFSET"
 const ecuToken = "ECU"
 const eepromToken = "EEPROM"
 const emptyToken = ""
+const encodingToken = "ENCODING"
 const endA2mlToken = "/end A2ML"
 const endAnnotationTextToken = "/end ANNOTATION_TEXT"
 const endAnnotationToken = "/end ANNOTATION"
@@ -538,6 +539,7 @@ var keywordMap = map[string]uint8{
 	"/end VARIANT_CODING":             0,
 	"/end VIRTUAL_CHARACTERISTIC":     0,
 	"/end VIRTUAL":                    0,
+	"ENCODING":                        0,
 	"EPK":                             0,
 	"ERROR_MASK":                      0,
 	"EXTENDED_LIMITS":                 0,

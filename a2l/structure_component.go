@@ -15,7 +15,7 @@ type structureComponent struct {
 	addressOffsetSet bool
 	addressType      addrTypeEnum
 	layout           layout
-	matrixDim        matrixDim
+	matrixDim        MatrixDim
 	symbolTypeLink   symbolTypeLink
 }
 

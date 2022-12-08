@@ -470,9 +470,28 @@ const (
 	//Identical defines a OneToOne conversion from hex to decimal
 	Identical conversionTypeEnum = identicalToken
 	Form      conversionTypeEnum = formToken
-	Linear    conversionTypeEnum = linearToken
-	RatFunc   conversionTypeEnum = ratFuncToken
-	TabIntp   conversionTypeEnum = tabIntpToken
+	/*Linear function of the following type:
+	f(x)=ax + b
+	for which:
+	PHYS=f(INT)
+	The coefficients a and b have to be
+	specified by the COEFFS_LINEAR
+	keyword.*/
+	Linear conversionTypeEnum = linearToken
+	/*RatFunc is a fractional rational function of the following type:
+	f(x)=(axx + bx + c)/(dxx + ex + f)
+	for which:
+	INT = f(PHYS)
+	Coefficients a, b, c, d, e, f have to be specified by the COEFFS keyword.
+	Note: For linear functions, use the	ConversionType LINEAR,
+	for ident functions the ConversionType IDENT.
+	For non linear functions it	must be possible to invert the formula within the limits of the
+	AXIS_PTS, CHARACTERISTIC or	MEASUREMENT where it is used.
+	Otherwise use the ConversionType FORM.*/
+	RatFunc conversionTypeEnum = ratFuncToken
+	//TabIntp defines a table with interpolation
+	TabIntp conversionTypeEnum = tabIntpToken
+	//TabIntp defines a table withOut interpolation
 	TabNointp conversionTypeEnum = tabNointpToken
 	//Tab Verb is a table to convert numeric values into strings. e.g.: 1 -> "True"
 	TabVerb conversionTypeEnum = tabVerbToken

@@ -31,7 +31,7 @@ type typeDefCharacteristic struct {
 	encoding          encodingEnum
 	extendedLimits    extendedLimits
 	format            format
-	matrixDim         matrixDim
+	matrixDim         MatrixDim
 	number            Number
 	physUnit          physUnit
 	stepSize          StepSize

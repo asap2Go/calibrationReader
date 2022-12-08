@@ -31,7 +31,7 @@ type typeDefMeasurement struct {
 	errorMask         errorMask
 	format            format
 	layout            layout
-	matrixDim         matrixDim
+	matrixDim         MatrixDim
 	physUnit          physUnit
 }
 
