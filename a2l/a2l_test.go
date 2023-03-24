@@ -13,7 +13,7 @@ import (
 
 func TestParseFromFile(t *testing.T) {
 	configureLogger()
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	startTime := time.Now()
 	a, err := ParseFromFile(a2lPath)
@@ -28,31 +28,27 @@ func TestParseFromFile(t *testing.T) {
 
 func TestMapify(t *testing.T) {
 	configureLogger()
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	a, err := ParseFromFile(a2lPath)
 	if err != nil {
 		t.Fatalf("failed parsing with error: %s.", err)
 	}
 	startTime := time.Now()
-	hm, err := a.toHashMap()
+	_, err = a.toHashMap()
 	if err != nil {
 		t.Fatalf("failed to convert a2l struct into hashmap %s.", err)
 	}
 	endTime := time.Now()
 	elapsed := endTime.Sub(startTime)
-	_, err = fmt.Println(hm)
-	if err != nil {
-		log.Err(err).Msg("failed to print hashmap")
-		t.Fatalf("failed to print a2l struct hashmap %s.", err)
-	}
+
 	log.Info().Str("project name", a.Project.Name).Msg("finished parsing:")
 	log.Info().Msg("time for parsing a2l test file: " + fmt.Sprint(elapsed.Milliseconds()) + "[ms]")
 }
 
 func FuzzParseA2L(f *testing.F) {
 	configureLogger()
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"
 	text, _ := readFileToString(a2lPath)
 	f.Add(text)
@@ -94,7 +90,7 @@ func FuzzParseA2L(f *testing.F) {
 
 func BenchmarkParseFromFile(b *testing.B) {
 	configureLogger()
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		a2lPath := "testing/ASAP2_Demo_V171_allKeywords.a2l"

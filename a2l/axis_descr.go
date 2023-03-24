@@ -223,8 +223,8 @@ forLoop:
 				log.Info().Msg("axisDescr inputQuantity successfully parsed")
 			} else if !ad.conversionSet {
 				ad.conversion = tok.current()
-				ad.inputQuantitySet = true
-				log.Info().Msg("axisDescr inputQuantity successfully parsed")
+				ad.conversionSet = true
+				log.Info().Msg("axisDescr conversionSet successfully parsed")
 			} else if !ad.maxAxisPointsSet {
 				var buf uint64
 				buf, err = strconv.ParseUint(tok.current(), 10, 16)

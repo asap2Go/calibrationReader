@@ -347,3 +347,11 @@ func getTwoWordedToken(currentOuterIndex *int, currentInnerIndex *int, str [][]s
 		return emptyToken, err
 	}
 }
+
+// mock function for testing purposes
+func newTokenGenerator() tokenGenerator {
+	// create a new token generator
+	tok := tokenGenerator{}
+	tok.index = 0
+	return tok
+}
