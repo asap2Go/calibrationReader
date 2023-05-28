@@ -104,7 +104,7 @@ func (cd *CalibrationData) GetObjectByIdent(ident string) []interface{} {
 func hexToByteSlice(hexVal string) ([]byte, error) {
 	decoded, err := hex.DecodeString(hexVal)
 	if err != nil {
-		log.Err(err)
+		log.Err(err).Msg("could not decode hex string " + hexVal)
 	}
 	return decoded, err
 }
@@ -120,7 +120,7 @@ func (cd *CalibrationData) convertStringToUint32Address(str string) (uint32, err
 	modCom := &cd.A2l.Project.Modules[cd.ModuleIndex].ModCommon
 	if modCom.ByteOrder.ByteOrder == a2l.MsbFirstMswLast || modCom.ByteOrder.ByteOrder == a2l.MsbLastMswFirst {
 		err = errors.New("unexpected byte order")
-		log.Err(err).Msg("byte order " + string(modCom.ByteOrder.ByteOrder) + "not implemented")
+		log.Err(err).Msg("byte order " + modCom.ByteOrder.ByteOrder.String() + "not implemented")
 		return val, err
 	}
 	if !modCom.ByteOrder.ByteOrderSet || modCom.ByteOrder.ByteOrder == a2l.BigEndian || modCom.ByteOrder.ByteOrder == a2l.MsbFirst {
@@ -147,7 +147,7 @@ func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.
 	modCom := &cd.A2l.Project.Modules[cd.ModuleIndex].ModCommon
 	if modCom.ByteOrder.ByteOrder == a2l.MsbFirstMswLast || modCom.ByteOrder.ByteOrder == a2l.MsbLastMswFirst {
 		err := errors.New("unexpected byte order")
-		log.Err(err).Msg("byte order " + string(modCom.ByteOrder.ByteOrder) + "not implemented")
+		log.Err(err).Msg("byte order " + modCom.ByteOrder.ByteOrder.String() + "not implemented")
 		return 0.0, err
 	}
 	if !modCom.ByteOrder.ByteOrderSet || modCom.ByteOrder.ByteOrder == a2l.BigEndian || modCom.ByteOrder.ByteOrder == a2l.MsbFirst {
@@ -188,7 +188,7 @@ func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.
 			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
 			return 0.0, err
 		}
-	} else {
+	} else if modCom.ByteOrder.ByteOrder == a2l.LittleEndian || modCom.ByteOrder.ByteOrder == a2l.MsbLast {
 		switch dte {
 		case a2l.UBYTE:
 			return float64(byteSlice[0]), nil
@@ -226,5 +226,9 @@ func (cd *CalibrationData) convertByteSliceToDatatype(byteSlice []byte, dte a2l.
 			log.Err(err).Msg("datatype " + dte.String() + " not implemented")
 			return 0.0, err
 		}
+	} else {
+		err := errors.New("unexpected byte order")
+		log.Err(err).Msg("byte order " + modCom.ByteOrder.ByteOrder.String() + " not implemented")
+		return 0.0, err
 	}
 }

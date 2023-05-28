@@ -7,8 +7,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-//Specification of a binary blob object which has no further semantic interpretation in the MCD system.
-//It is just an array of bytes without a conversion method or special record layout.
+// Specification of a binary blob object which has no further semantic interpretation in the MCD system.
+// It is just an array of bytes without a conversion method or special record layout.
 type blob struct {
 	name                string
 	nameSet             bool
@@ -18,7 +18,7 @@ type blob struct {
 	addressSet          bool
 	size                uint32
 	sizeSet             bool
-	addressType         addrTypeEnum
+	addressType         AddrTypeEnum
 	addressTypeSet      bool
 	annotation          []annotation
 	calibrationAccess   calibrationAccessEnum

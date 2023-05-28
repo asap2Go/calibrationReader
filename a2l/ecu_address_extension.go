@@ -7,6 +7,16 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+/*
+This keyword is used to specify additional address information. For instance it can be
+used, to distinguish different address spaces of an ECU (multi-micro controller devices).
+ECU_ADDRESS_EXTENSION is an optional keyword of MEASUREMENT, AXIS_PTS
+and CHARACTERISTIC.
+Some calibration interfaces, such as CCP and XCP need an address extension to
+access ECU data. To avoid the need for additional IF_DATA section at calibration
+and measurement objects, the keyword ECU_ADDRESS_EXTENSION has been
+introduced
+*/
 type ecuAddressExtension struct {
 	extension    int16
 	extensionSet bool

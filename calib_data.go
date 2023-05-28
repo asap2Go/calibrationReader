@@ -18,7 +18,6 @@ import (
 	"time"
 
 	"github.com/asap2Go/calibrationReader/a2l"
-	"github.com/x448/float16"
 
 	"github.com/asap2Go/calibrationReader/ihex32"
 
@@ -39,11 +38,6 @@ type CalibrationData struct {
 	//it is being simplified as a map that can be accessed by an address
 	//represented by an integer and returns a byte as value.
 	Hex map[uint32]byte
-}
-
-// Numeric is used to define all number types used within the generic functions in this module
-type Numeric interface {
-	uint8 | int8 | uint16 | int16 | uint32 | int32 | uint64 | int64 | float16.Float16 | float32 | float64
 }
 
 // ReadCalibration takes filepaths to the a2l file and the hex file,
@@ -483,7 +477,7 @@ func (cd *CalibrationData) getNextAlignedAddress(address uint32, dte a2l.DataTyp
 	}
 }
 
-// getBytes gets a number of bites (length) from a given address and returns a byte slice
+// getBytes gets a number of bytes (length) from a given address and returns a byte slice
 // if the address cannot be found an error is returned
 func (cd *CalibrationData) getBytes(address uint32, length uint32) ([]byte, error) {
 	nBytes := length / 8
@@ -505,19 +499,8 @@ func (cd *CalibrationData) getBytes(address uint32, length uint32) ([]byte, erro
 	return bytes, nil
 }
 
-// GetAllValuesFromHex Reads all values for each characteristic and its corresponding record layout from the hex file and converts it to decimal, and physical values.
-func (cd *CalibrationData) GetAllValuesFromHex() error {
-	//for each characteristic get its record layout:
-	for _, c := range cd.A2l.Project.Modules[cd.ModuleIndex].Characteristics {
-		var cv CharacteristicValues
-		cv.characteristic = &c
-		cd.getValuesFromHex(&cv)
-	}
-	return nil
-}
-
 // getValuesFromHex Reads all values for ONE specific characteristic and its corresponding record layout from the hex file and converts it to decimal, and physical values.
-func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
+func getValuesFromHex(cv *CharacteristicValues, cd *CalibrationData) {
 	rl, err := cd.getRecordLayout(cv.characteristic)
 	if err != nil {
 		log.Err(err).Msg("record layout for identifier '" + cv.characteristic.Deposit + "' not found")
@@ -596,8 +579,10 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 				log.Err(err).Msg("could not get value for distOp5 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "FncValues":
-			//interesting part
-
+			cv.fncValues, err = cd.getFncValues(rl, &curPos)
+			if err != nil {
+				log.Err(err).Msg("could not get value for fncValues of characteristic '" + cv.characteristic.Name + "'")
+			}
 		case "Identification":
 			cv.identificationValue, err = cd.getIdentification(rl, &curPos)
 			if err != nil {
@@ -666,13 +651,13 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		/*RIP_ADDR_X-Y-Z-4-5-W
 		are only used to store interpolation results,
 		so they are not read from hex as there is nothing to read
-		*/
 		case "RipAddrW":
 		case "RipAddrX":
 		case "RipAddrY":
 		case "RipAddrZ":
 		case "RipAddr4":
 		case "RipAddr5":
+
 		/*SRC_ADDR_X-Y-Z-4-5
 		define a input quantity meaning a measurement that determines which point of an axis is chosen for reading a value from a given characteristic.
 		e.g. given a curve where the x-Axis is the rpm of the engine and the values are
@@ -680,12 +665,13 @@ func (cd *CalibrationData) getValuesFromHex(cv *CharacteristicValues) {
 		x	1000	2000	3000	4000	5000	6000
 		v	  12	  27	  38	  42	  49	  18
 		then  if the input quantity for this curve would be the measurement of the current rpm of the engine
-		depending on the rpm a value is chosen.*/
+		depending on the rpm a value is chosen.
 		case "SrcAddrX":
 		case "SrcAddrY":
 		case "SrcAddrZ":
 		case "SrcAddr4":
 		case "SrcAddr5":
+		*/
 		case "ShiftOpX":
 			cv.shiftOpXValue, err = cd.getShiftOpX(rl, &curPos)
 			if err != nil {
@@ -729,10 +715,55 @@ func (cd *CalibrationData) getValue(curPos *uint32, dte a2l.DataTypeEnum, rl *a2
 	return bytes, nil
 }
 
-func convertNumericToInt[num Numeric](n num) int64 {
-	return int64(n)
-}
-
-func convertNumericToFloat[num Numeric](n num) float64 {
-	return float64(n)
+func (cd *CalibrationData) getFncValues(rl *a2l.RecordLayout, curPos *uint32, cv *CharacteristicValues) (interface{}, error) {
+	//check access type. DIRECT is the most used. Just read value from a given address.
+	//in case other access types are set this gets more complicated as either offsets or pointers are leveraged to
+	//define the position of the calibration objects.
+	//for VALUE Type: just read one value at curPos
+	//for higher level objects: read the number of elements defined by the matrix dim or NoAxisPts fields with the direction (row, column, alternate, ...) specified.
+	//for applicable objects check whether STATIC_RECORD_LAYOUT and STATIC_ ADDRESS_OFFSET are set
+	//to determine how to read the FNC_Values correctly, this can lead to hard to detect errors when not implemented.
+	//for now just read the values as they are defined in the A2L file.
+	if !rl.FncValues.AddresstypeSet {
+		rl.FncValues.Addresstype = a2l.DIRECT
+	}
+	switch rl.FncValues.Addresstype {
+	case a2l.DIRECT:
+		valBytes, err := cd.getValue(curPos, a2l.UBYTE, rl)
+		if err != nil {
+			log.Err(err).Msg("could not get byte of new adress for fncValues of characteristic '" + cv.characteristic.Name + "'")
+			return nil, err
+		}
+		val, err := cd.convertByteSliceToDatatype(valBytes, a2l.UBYTE)
+		if err != nil {
+			log.Err(err).Msg("could not get adress from new adress bytes for fncValues of characteristic '" + cv.characteristic.Name + "'")
+			return nil, err
+		}
+		log.Info().Msg(strconv.FormatFloat(val, 'f', 0, 64))
+	case a2l.PBYTE:
+		newAdressBytes, err := cd.getValue(curPos, a2l.UBYTE, rl)
+		if err != nil {
+			log.Err(err).Msg("could not get byte of new adress for fncValues of characteristic '" + cv.characteristic.Name + "'")
+			return nil, err
+		}
+		newAdress, err := cd.convertByteSliceToDatatype(newAdressBytes, a2l.UBYTE)
+		if err != nil {
+			log.Err(err).Msg("could not get adress from new adress bytes for fncValues of characteristic '" + cv.characteristic.Name + "'")
+			return nil, err
+		}
+		log.Info().Msg(strconv.FormatFloat(newAdress, 'f', 0, 64))
+		//the address contains an one byte pointer to the first axis point or value
+	case a2l.PWORD:
+		//the address contains an two byte pointer to the first axis point or value
+	case a2l.PLONG:
+		//the address contains an four byte pointer to the first axis point or value
+	case a2l.PLONGLONG:
+		//the address contains an eight byte pointer to the first axis point or value
+	default:
+		//no valid address type
+		err := errors.New("invalid address type for fncValues")
+		log.Err(err).Msg("invalid address type for fncValues of characteristic '" + cv.characteristic.Name + "'")
+		return nil, err
+	}
+	return nil, nil
 }

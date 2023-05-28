@@ -236,23 +236,23 @@ func parseDataSizeEnum(tok *tokenGenerator) (DataSizeEnum, error) {
 	return d, err
 }
 
-// addrTypeEnum defines which address width is necessary.
-type addrTypeEnum string
+// AddrTypeEnum defines which address width is necessary.
+type AddrTypeEnum string
 
 const (
-	undefinedAddrtype addrTypeEnum = emptyToken
-	PBYTE             addrTypeEnum = pbyteToken
-	PWORD             addrTypeEnum = pwordToken
-	PLONG             addrTypeEnum = plongToken
-	PLONGLONG         addrTypeEnum = plonLongToken
+	undefinedAddrtype AddrTypeEnum = emptyToken
+	PBYTE             AddrTypeEnum = pbyteToken
+	PWORD             AddrTypeEnum = pwordToken
+	PLONG             AddrTypeEnum = plongToken
+	PLONGLONG         AddrTypeEnum = plonLongToken
 	/*DIRECT: If an adjustable or measurable object is defined with indirect addressing
 	(ADDRESS_TYPE is not DIRECT) and if the used interface does not support indirect
 	addressing, it is the responsibility of the MC-System to dereference the object’s
 	address before accessing the data or configuring measurement lists.*/
-	DIRECT addrTypeEnum = directToken
+	DIRECT AddrTypeEnum = directToken
 )
 
-func parseAddrTypeEnum(tok *tokenGenerator) (addrTypeEnum, error) {
+func parseAddrTypeEnum(tok *tokenGenerator) (AddrTypeEnum, error) {
 	a := undefinedAddrtype
 	var err error
 	switch tok.current() {
@@ -302,6 +302,25 @@ func parseByteOrderEnum(tok *tokenGenerator) (ByteOrderEnum, error) {
 		err = errors.New("incorrect value " + tok.current() + " for enum byteorder")
 	}
 	return b, err
+}
+
+func (boe *ByteOrderEnum) String() string {
+	switch *boe {
+	case LittleEndian:
+		return littleEndianToken
+	case BigEndian:
+		return bigEndianToken
+	case MsbLast:
+		return msbLastToken
+	case MsbFirst:
+		return msbFirstToken
+	case MsbFirstMswLast:
+		return msbFirstMswLastToken
+	case MsbLastMswFirst:
+		return msbLastMswFirstToken
+	default:
+		return emptyToken
+	}
 }
 
 type indexOrderEnum string

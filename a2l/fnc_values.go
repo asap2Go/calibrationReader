@@ -29,9 +29,11 @@ type FncValues struct {
 			to this table value or axis point value.
 	PLONG:	The relevant memory location has a 4 byte pointer
 			to this table value or axis point value.
+	PLONGLONG:	The relevant memory location has a 8 byte pointer
+			to this table value or axis point value.
 	DIRECT:	The relevant memory location has the first table value
 			or axis point value, all others follow with incrementing address. */
-	Addresstype    addrTypeEnum
+	Addresstype    AddrTypeEnum
 	AddresstypeSet bool
 }
 

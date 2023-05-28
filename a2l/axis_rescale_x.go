@@ -63,7 +63,7 @@ type AxisRescaleX struct {
 	MaxNumberOfRescalePairsSet bool
 	IndexIncr                  indexOrderEnum
 	IndexIncrSet               bool
-	Adressing                  addrTypeEnum
+	Adressing                  AddrTypeEnum
 	AdressingSet               bool
 }
 

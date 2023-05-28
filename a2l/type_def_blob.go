@@ -14,7 +14,7 @@ type typeDefBlob struct {
 	longIdentifierSet bool
 	size              uint32
 	sizeSet           bool
-	addressType       addrTypeEnum
+	addressType       AddrTypeEnum
 }
 
 func parseTypeDefBlob(tok *tokenGenerator) (typeDefBlob, error) {
