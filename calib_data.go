@@ -579,7 +579,7 @@ func getValuesFromHex(cv *CharacteristicValues, cd *CalibrationData) {
 				log.Err(err).Msg("could not get value for distOp5 of characteristic '" + cv.characteristic.Name + "'")
 			}
 		case "FncValues":
-			cv.fncValues, err = cd.getFncValues(rl, &curPos)
+			cv.fncValues, err = cd.getFncValues(rl, &curPos, cv)
 			if err != nil {
 				log.Err(err).Msg("could not get value for fncValues of characteristic '" + cv.characteristic.Name + "'")
 			}
