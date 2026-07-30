@@ -77,7 +77,7 @@ forLoop:
 				log.Info().Msg("typeDefStructure typeDefName successfully parsed")
 			} else if !tds.sizeSet {
 				var buf uint64
-				buf, err = strconv.ParseUint(tok.current(), 10, 32)
+				buf, err = strconv.ParseUint(tok.current(), 0, 32)
 				if err != nil {
 					log.Err(err).Msg("typeDefStructure address could not be parsed")
 					break forLoop
